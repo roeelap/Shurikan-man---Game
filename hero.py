@@ -2,7 +2,6 @@ import pygame
 
 
 # PLAYER_STANDING = pygame.image.load('./data/player images/standing.png')
-# Hi
 
 PLAYER_WALK_RIGHT = [pygame.image.load('./data/player-images/R1.png'), pygame.image.load('./data/player-images/R2.png'), pygame.image.load('./data/player-images/R3.png'),
                      pygame.image.load('./data/player-images/R4.png'), pygame.image.load(
@@ -15,9 +14,8 @@ PLAYER_WALK_LEFT = [pygame.image.load('./data/player-images/L1.png'), pygame.ima
                         './data/player-images/L5.png'), pygame.image.load('./data/player-images/L6.png'),
                     pygame.image.load('./data/player-images/L7.png'), pygame.image.load('./data/player-images/L8.png'), pygame.image.load('./data/player-images/L9.png')]
 
-
 class Player:
-
+#TODO d
     def __init__(self, x, y, width, height):
         self.x = x
         self.y = y
