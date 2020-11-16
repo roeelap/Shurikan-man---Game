@@ -16,7 +16,7 @@ PLAYER_WALK_LEFT = [pygame.image.load('./data/player-images/L1.png'), pygame.ima
                     pygame.image.load('./data/player-images/L7.png'), pygame.image.load('./data/player-images/L8.png'), pygame.image.load('./data/player-images/L9.png')]
 
 class Player:
-#TODO d
+
     def __init__(self, x, y, width, height):
         self.x = x
         self.y = y
