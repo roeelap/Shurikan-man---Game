@@ -110,12 +110,10 @@ def player_movement():
     if not player.is_jump:
         if keys[pygame.K_UP]:
             player.is_jump = True
-            player.left = False
-            player.right = False
             player.walk_count = 0
     else:
         if player.jump_count >= -10:
-            player.y -= (player.jump_count * abs(player.jump_count)) * 0.3
+            player.y -= (player.jump_count * abs(player.jump_count)) * 0.25
             player.jump_count -= 1
         else:
             player.jump_count = 10
