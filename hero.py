@@ -1,7 +1,7 @@
 import pygame
 
 
-# PLAYER_STANDING = pygame.image.load('./data/player images/standing.png')
+PLAYER_STANDING = pygame.image.load('./data/player-images/standing.png')
 
 
 PLAYER_WALK_RIGHT = [pygame.image.load('./data/player-images/R1.png'), pygame.image.load('./data/player-images/R2.png'), pygame.image.load('./data/player-images/R3.png'),
@@ -15,6 +15,7 @@ PLAYER_WALK_LEFT = [pygame.image.load('./data/player-images/L1.png'), pygame.ima
                         './data/player-images/L5.png'), pygame.image.load('./data/player-images/L6.png'),
                     pygame.image.load('./data/player-images/L7.png'), pygame.image.load('./data/player-images/L8.png'), pygame.image.load('./data/player-images/L9.png')]
 
+
 class Player:
 
     def __init__(self, x, y, width, height):
@@ -27,8 +28,8 @@ class Player:
         self.jump_count = 10
         self.left = False
         self.right = False
-        self.walk_count = 0
         self.standing = True
+        self.walk_count = 0
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
 
     def draw(self, window):
@@ -47,8 +48,10 @@ class Player:
         else:
             if self.left:
                 window.blit(PLAYER_WALK_LEFT[0], (self.x, self.y))
-            else:
+            elif self.right:
                 window.blit(PLAYER_WALK_RIGHT[0], (self.x, self.y))
+            else:
+                window.blit(PLAYER_STANDING, (self.x, self.y))
 
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)

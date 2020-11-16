@@ -1,8 +1,9 @@
 import pygame
 from hero import player
 from enemy import Enemy
-from projectile import Shuriken 
+from projectile import Shuriken
 from background import background
+import sys
 
 
 pygame.init()
@@ -21,22 +22,22 @@ def player_movement():
     keys = pygame.key.get_pressed()
 
     if player.x < 350 and background.x == 0:
-                if keys[pygame.K_LEFT] and player.x > player.velocity:
-                    player.x -= player.velocity
-                    player.left = True
-                    player.right = False
-                    player.standing = False
+        if keys[pygame.K_LEFT] and player.x > player.velocity:
+            player.x -= player.velocity
+            player.left = True
+            player.right = False
+            player.standing = False
 
-                elif keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.velocity - player.width:  
-                    player.x += player.velocity
-                    player.left = False
-                    player.right = True
-                    player.standing = False
-                
-                else:
-                    player.standing = True
-                    player.walk_count = 0
-            
+        elif keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.velocity - player.width:
+            player.x += player.velocity
+            player.left = False
+            player.right = True
+            player.standing = False
+
+        else:
+            player.standing = True
+            player.walk_count = 0
+
     elif player.x == 350:
         if background.x == 0:
             if keys[pygame.K_LEFT]:
@@ -45,12 +46,12 @@ def player_movement():
                 player.right = False
                 player.standing = False
 
-            elif keys[pygame.K_RIGHT] and background.x > SCREEN_WIDTH - background.width:  
+            elif keys[pygame.K_RIGHT] and background.x > SCREEN_WIDTH - background.width:
                 background.x -= background.velocity
                 player.left = False
                 player.right = True
                 player.standing = False
-                    
+
             else:
                 player.standing = True
                 player.walk_count = 0
@@ -61,17 +62,17 @@ def player_movement():
                 player.left = True
                 player.right = False
                 player.standing = False
-                    
-            elif keys[pygame.K_RIGHT] and background.x > SCREEN_WIDTH - background.width:  
+
+            elif keys[pygame.K_RIGHT] and background.x > SCREEN_WIDTH - background.width:
                 background.x -= background.velocity
                 player.left = False
                 player.right = True
                 player.standing = False
-                    
+
             else:
                 player.standing = True
                 player.walk_count = 0
-                
+
         elif background.x == SCREEN_WIDTH - background.width:
             if keys[pygame.K_LEFT] and background.x < 0:
                 background.x += background.velocity
@@ -79,7 +80,7 @@ def player_movement():
                 player.right = False
                 player.standing = False
 
-            elif keys[pygame.K_RIGHT] and background.x == SCREEN_WIDTH - background.width:  
+            elif keys[pygame.K_RIGHT] and background.x == SCREEN_WIDTH - background.width:
                 player.x += player.velocity
                 player.left = False
                 player.right = True
@@ -89,19 +90,19 @@ def player_movement():
                 player.standing = True
                 player.walk_count = 0
 
-    if player.x > 350 and SCREEN_WIDTH - background.width: 
+    if player.x > 350 and SCREEN_WIDTH - background.width:
         if keys[pygame.K_LEFT] and player.x > player.velocity:
             player.x -= player.velocity
             player.left = True
             player.right = False
             player.standing = False
 
-        elif keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.velocity - player.width:  
+        elif keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.velocity - player.width:
             player.x += player.velocity
             player.left = False
             player.right = True
             player.standing = False
-                
+
         else:
             player.standing = True
             player.walk_count = 0
@@ -116,7 +117,7 @@ def player_movement():
         if player.jump_count >= -10:
             player.y -= (player.jump_count * abs(player.jump_count)) * 0.3
             player.jump_count -= 1
-        else: 
+        else:
             player.jump_count = 10
             player.is_jump = False
 
@@ -131,16 +132,13 @@ def main():
         for shuriken in shurikens:
             shuriken.draw(window)
         pygame.display.update()
-    
-    
+
     goblin = Enemy(500, 530, 64, 64, 100)
     shurikens = []
     shuriken_shootloop = 0
 
-
     # game loop
-    run = True
-    while run:
+    while True:
         clock.tick(27)
 
         if shuriken_shootloop > 0:
@@ -150,7 +148,8 @@ def main():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
+                pygame.quit()
+                sys.exit()
 
         for shuriken in shurikens:
             if goblin.visible:
@@ -162,9 +161,10 @@ def main():
             if shuriken.x < SCREEN_WIDTH and shuriken.x > 0 and shuriken.throw_count != -20:
                 if shuriken.throw_count >= -20:
                     shuriken.x += shuriken.velocity
-                    shuriken.y -= (shuriken.throw_count * abs(shuriken.throw_count)) * 0.1
+                    shuriken.y -= (shuriken.throw_count *
+                                   abs(shuriken.throw_count)) * 0.1
                     shuriken.throw_count -= 1
-                else: 
+                else:
                     shuriken.throw_count = 10
             else:
                 shurikens.pop(shurikens.index(shuriken))
@@ -174,18 +174,17 @@ def main():
         if keys[pygame.K_SPACE] and shuriken_shootloop == 0:
             if player.left:
                 facing = -1
+            elif player.right:
+                facing = 1
             else:
                 facing = 1
             if len(shurikens) < 3:
-                shurikens.append(Shuriken(round(player.x + player.width //2), round(player.y + player.height//2), facing))
-        
-        
+                shurikens.append(Shuriken(
+                    round(player.x + player.width // 2), round(player.y + player.height//2), facing))
+
         player_movement()
 
-        redrawGameWindow() 
-        
-        
-    pygame.quit()
+        redrawGameWindow()
 
 
 if __name__ == "__main__":
