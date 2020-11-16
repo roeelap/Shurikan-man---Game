@@ -2,7 +2,7 @@ import pygame
 
 
 # PLAYER_STANDING = pygame.image.load('./data/player images/standing.png')
-# Hi
+
 
 PLAYER_WALK_RIGHT = [pygame.image.load('./data/player-images/R1.png'), pygame.image.load('./data/player-images/R2.png'), pygame.image.load('./data/player-images/R3.png'),
                      pygame.image.load('./data/player-images/R4.png'), pygame.image.load(
