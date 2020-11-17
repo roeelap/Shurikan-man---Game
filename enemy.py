@@ -4,7 +4,7 @@ from consts import ENEMY_WALK_LEFT, ENEMY_WALK_RIGHT
 
 class Enemy(object):
 
-    def __init__(self, x, y, width, height,x_end, speed, health ):
+    def __init__(self, x, y, width, height, x_end, speed, health):
         self.x = x
         self.y = y
         self.width = width
@@ -63,4 +63,4 @@ class Enemy(object):
             self.visible = False
 
 
-goblin = Enemy(500, 530, 64, 64, 100)
+goblin = Enemy(500, 530, 64, 64, 100, 3, 9)
