@@ -13,7 +13,7 @@ class Enemy(object):
         self.x_end = x_end
         self.walk_count = 0
         self.speed = speed
-        self.hitbox = (self.x + 17, self.y + 2, 31, 57)
+        self.hitbox = (self.x + 20, self.y + 5, 31, 59)
         self.health = health
         self.visible = True
 
@@ -36,7 +36,7 @@ class Enemy(object):
                              (self.hitbox[0], self.hitbox[1] - 20, 50, 10))
             pygame.draw.rect(
                 window, (0, 128, 0), (self.hitbox[0], self.hitbox[1] - 20, 50 - (5 * (9 - self.health)), 10))
-            self.hitbox = (self.x + 17, self.y + 2, 31, 57)
+            self.hitbox = (self.x + 20, self.y + 5, 31, 59)
             # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
 
     def auto_path(self):
