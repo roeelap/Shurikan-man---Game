@@ -1,7 +1,7 @@
 import pygame
-from hero import player
+from player import player
 from enemy import Enemy
-from projectile import Shuriken
+from shuriken import Shuriken
 from background import background
 import sys
 
