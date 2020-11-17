@@ -26,10 +26,12 @@ def player_movement():
             player.move_left()
 
         elif player.x == 350:
-            if background.x == 0 or SCREEN_WIDTH - background.width < background.x < 0:
-                background.move_right()
-            elif background.x == SCREEN_WIDTH - background.width:
+            if background.x == 0:
                 player.move_left()
+            elif background.x == SCREEN_WIDTH - background.width:
+                background.move_right()
+            elif SCREEN_WIDTH - background.width < background.x < 0:
+                background.move_right()
 
     else:
         player.standing = True

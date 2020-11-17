@@ -19,7 +19,7 @@ class Enemy(object):
         self.visible = True
 
     def draw(self, window):
-        self.move()
+        self.auto_path()
         if self.visible:
             if self.walk_count + 1 >= 33:
                 self.walk_count = 0
@@ -40,7 +40,7 @@ class Enemy(object):
             self.hitbox = (self.x + 17, self.y + 2, 31, 57)
             # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
 
-    def move(self):
+    def auto_path(self):
         if self.speed > 0:
             if self.x - self.speed > self.x_end:
                 self.x -= self.speed
@@ -54,7 +54,7 @@ class Enemy(object):
                 self.speed = self.speed * -1
                 self.walk_count = 0
 
-    def move_left_or_right(self, background_speed, direction):
+    def move(self, background_speed, direction):
         self.x += background_speed * direction
 
     def hit(self):
