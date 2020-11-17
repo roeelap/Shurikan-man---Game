@@ -1,5 +1,6 @@
 import pygame
 from player import player
+from enemy import goblin
 
 
 class Background:
@@ -16,12 +17,14 @@ class Background:
 
     def move_right(self):
         self.x += self.speed
+        goblin.move_left_or_right(self.speed, 1)
         player.left = True
         player.right = False
         player.standing = False
 
     def move_left(self):
         self.x -= self.speed
+        goblin.move_left_or_right(self.speed, -1)
         player.left = False
         player.right = True
         player.standing = False

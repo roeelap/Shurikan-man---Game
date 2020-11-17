@@ -1,6 +1,6 @@
 import pygame
 from player import player
-from enemy import Enemy
+from enemy import goblin
 from shuriken import Shuriken
 from background import background
 from moving_function import player_movement
@@ -28,7 +28,7 @@ def main():
             shuriken.draw(window)
         pygame.display.update()
 
-    goblin = Enemy(500, 530, 64, 64, 100)
+    
     shurikens = []
     shuriken_shootloop = 0
 

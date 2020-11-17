@@ -54,8 +54,14 @@ class Enemy(object):
                 self.speed = self.speed * -1
                 self.walk_count = 0
 
+    def move_left_or_right(self, background_speed, direction):
+        self.x += background_speed * direction
+
     def hit(self):
         if self.health > 0:
             self.health -= 1
         else:
             self.visible = False
+
+
+goblin = Enemy(500, 530, 64, 64, 100)

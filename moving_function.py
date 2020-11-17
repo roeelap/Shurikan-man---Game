@@ -41,7 +41,7 @@ def player_movement():
             player.walk_count = 3  # Why this line?
     else:
         if player.jump_count >= -10:
-            player.y -= (player.jump_count * abs(player.jump_count)) * 0.25
+            player.y -= int((player.jump_count * abs(player.jump_count)) * 0.25)
             player.jump_count -= 1
         else:
             player.jump_count = 10
