@@ -3,6 +3,7 @@ from player import player
 from enemy import Enemy
 from shuriken import Shuriken
 from background import background
+from moving_function import player_movement
 import sys
 
 
@@ -15,79 +16,6 @@ window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Shuriken Man")
 
 clock = pygame.time.Clock()
-
-
-def player_movement():
-    """The main character movement system"""
-    keys = pygame.key.get_pressed()
-
-    if player.x < 350 and background.x == 0:
-        if keys[pygame.K_LEFT] and player.x > player.velocity:
-            player.move_left()
-
-        elif keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.velocity - player.width:
-            player.move_right()
-
-        else:
-            player.standing = True
-            player.walk_count = 3
-
-    elif player.x == 350:
-        if background.x == 0:
-            if keys[pygame.K_LEFT]:
-                player.move_left()
-
-            elif keys[pygame.K_RIGHT] and background.x > SCREEN_WIDTH - background.width:
-                background.move_left()
-
-            else:
-                player.standing = True
-                player.walk_count = 3
-
-        elif SCREEN_WIDTH - background.width < background.x < 0:
-            if keys[pygame.K_LEFT] and background.x < 0:
-                background.move_right()
-
-            elif keys[pygame.K_RIGHT] and background.x > SCREEN_WIDTH - background.width:
-                background.move_left()
-
-            else:
-                player.standing = True
-                player.walk_count = 3
-
-        elif background.x == SCREEN_WIDTH - background.width:
-            if keys[pygame.K_LEFT] and background.x < 0:
-                background.move_right()
-
-            elif keys[pygame.K_RIGHT] and background.x == SCREEN_WIDTH - background.width:
-                player.move_right()
-
-            else:
-                player.standing = True
-                player.walk_count = 3
-
-    if player.x > 350 and SCREEN_WIDTH - background.width:
-        if keys[pygame.K_LEFT] and player.x > player.velocity:
-            player.move_left()
-
-        elif keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.velocity - player.width:
-            player.move_right()
-
-        else:
-            player.standing = True
-            player.walk_count = 3
-
-    if not player.is_jump:
-        if keys[pygame.K_UP]:
-            player.is_jump = True
-            player.walk_count = 3  # Why this line?
-    else:
-        if player.jump_count >= -10:
-            player.y -= (player.jump_count * abs(player.jump_count)) * 0.25
-            player.jump_count -= 1
-        else:
-            player.jump_count = 10
-            player.is_jump = False
 
 
 # mainloop
@@ -151,6 +79,7 @@ def main():
                     round(player.x + player.width // 2), round(player.y + player.height//2), facing))
 
         player_movement()
+        
         redrawGameWindow()
 
 

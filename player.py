@@ -41,7 +41,6 @@ class Player:
                 window.blit(
                     PLAYER_WALK_LEFT[self.walk_count // 3], (self.x, self.y))
             elif self.right:
-                print(self.walk_count)
                 window.blit(
                     PLAYER_WALK_RIGHT[self.walk_count // 3], (self.x, self.y))
             self.walk_count += 1
@@ -52,21 +51,23 @@ class Player:
                 window.blit(PLAYER_WALK_RIGHT[0], (self.x, self.y))
             else:
                 window.blit(PLAYER_STANDING, (self.x, self.y))
+                self.standing = True
+                self.walk_count = 3
 
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def move_right(self):
-        player.x += player.velocity
-        player.left = False
-        player.right = True
-        player.standing = False
+        self.x += player.velocity
+        self.left = False
+        self.right = True
+        self.standing = False
 
     def move_left(self):
-        player.x -= player.velocity
-        player.left = True
-        player.right = False
-        player.standing = False
+        self.x -= self.velocity
+        self.left = True
+        self.right = False
+        self.standing = False
 
 
 player = Player(10, 530, 64, 64)

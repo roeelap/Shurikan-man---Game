@@ -15,13 +15,13 @@ class Background:
         window.blit(self.image, (self.x, self.y))
 
     def move_right(self):
-        background.x += background.velocity
+        self.x += self.velocity
         player.left = True
         player.right = False
         player.standing = False
 
     def move_left(self):
-        background.x -= background.velocity
+        self.x -= self.velocity
         player.left = False
         player.right = True
         player.standing = False
