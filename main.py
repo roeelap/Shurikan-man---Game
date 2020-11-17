@@ -33,15 +33,6 @@ def redrawGameWindow():
 # mainloop
 def main():
 
-    def redrawGameWindow():
-        background.draw(window)
-        goblin.draw(window)
-        player.draw(window)
-        for shuriken in shurikens:
-            shuriken.draw(window)
-        pygame.display.update()
-
-
     shurikens = []
     shuriken_shootloop = 0
 
