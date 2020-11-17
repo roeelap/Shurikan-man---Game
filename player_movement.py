@@ -4,7 +4,7 @@ from background import background
 from consts import *
 
 
-def player_movement():
+def player_movement(enemies):
     """The main character movement system"""
 
     keys = pygame.key.get_pressed()
@@ -17,6 +17,8 @@ def player_movement():
         elif player.x == SCREEN_MIDDLE:
             if background.x == 0 or SCREEN_WIDTH - background.width < background.x < 0:
                 background.move_left()
+                for enemy in enemies:
+                    enemy.move(background.speed, -1)
             elif background.x == SCREEN_WIDTH - background.width:
                 player.move_right()
 
@@ -30,6 +32,8 @@ def player_movement():
                 player.move_left()
             elif background.x == SCREEN_WIDTH - background.width or SCREEN_WIDTH - background.width < background.x < 0:
                 background.move_right()
+                for enemy in enemies:
+                    enemy.move(background.speed, 1)
 
     else:
         player.standing = True

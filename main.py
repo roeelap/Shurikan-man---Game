@@ -1,35 +1,37 @@
 import pygame
 from player import player
-from enemy import goblin
+from enemy import Enemy
 from shuriken import Shuriken
 from background import background
-from moving_function import player_movement
+from player_movement import player_movement
 import sys
 from consts import *
 
 
 pygame.init()
-
-
-window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Shuriken Man")
-
+window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
+
+shurikens = []
+enemies = [Enemy(500, 530, 64, 64, 100, 3, 9)]
+
+
+def redrawGameWindow():
+    background.draw(window)
+    player.draw(window)
+    for shuriken in shurikens:
+        shuriken.draw(window)
+    for enemy in enemies:
+        if enemy.alive:
+            enemy.draw(window)
+        else:
+            enemies.remove(enemy)
+    pygame.display.update()
 
 
 # mainloop
 def main():
-
-    def redrawGameWindow():
-        background.draw(window)
-        goblin.draw(window)
-        player.draw(window)
-        for shuriken in shurikens:
-            shuriken.draw(window)
-        pygame.display.update()
-
-    
-    shurikens = []
     shuriken_shootloop = 0
 
     # game loop
@@ -46,12 +48,18 @@ def main():
                 pygame.quit()
                 sys.exit()
 
+        # Check shuriken collision
         for shuriken in shurikens:
-            if goblin.visible:
-                if shuriken.y - shuriken.radius < goblin.hitbox[1] + goblin.hitbox[3] and shuriken.y + shuriken.radius > goblin.hitbox[1]:
-                    if shuriken.x + shuriken.radius > goblin.hitbox[0] and shuriken.x - shuriken.radius < goblin.hitbox[0] + goblin.hitbox[2]:
-                        goblin.hit()
-                        shurikens.pop(shurikens.index(shuriken))
+            for enemy in enemies:
+                inbound_x_left = shuriken.x + shuriken.radius > enemy.hitbox[0]
+                inbound_x_right = shuriken.x - \
+                    shuriken.radius < enemy.hitbox[0] + enemy.hitbox[2]
+                inbound_y_up = shuriken.y - \
+                    shuriken.radius < enemy.hitbox[1] + enemy.hitbox[3]
+                inbound_y_down = shuriken.y + shuriken.radius > enemy.hitbox[1]
+                if inbound_x_left and inbound_x_right and inbound_y_up and inbound_y_down:
+                    enemy.hit()
+                    shurikens.pop(shurikens.index(shuriken))
 
             if shuriken.x < SCREEN_WIDTH and shuriken.x > 0 and shuriken.throw_count != -20:
                 if shuriken.throw_count >= -20:
@@ -77,7 +85,7 @@ def main():
                 shurikens.append(Shuriken(
                     round(player.x + player.width // 2), round(player.y + player.height//2), facing))
 
-        player_movement()
+        player_movement(enemies)
 
         redrawGameWindow()
 
