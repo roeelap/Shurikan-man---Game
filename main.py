@@ -39,11 +39,13 @@ def main():
     while True:
         clock.tick(FPS)
 
+        # Only 3 shurikens allowed
         if shuriken_shootloop > 0:
             shuriken_shootloop += 1
-        if shuriken_shootloop > 3:
+        if shuriken_shootloop > MAX_SHURIKENS:
             shuriken_shootloop = 0
 
+        # Exit on quit button
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -62,6 +64,7 @@ def main():
                     enemy.hit()
                     shurikens.pop(shurikens.index(shuriken))
 
+            # Remove shuriken when out of screen
             if shuriken.x < SCREEN_WIDTH and shuriken.x > 0 and shuriken.throw_count != -20:
                 if shuriken.throw_count >= -20:
                     shuriken.x += shuriken.speed
@@ -75,6 +78,7 @@ def main():
 
         keys = pygame.key.get_pressed()
 
+        # Jumping on space
         if keys[pygame.K_SPACE] and shuriken_shootloop == 0:
             if player.left:
                 facing = -1
@@ -87,7 +91,6 @@ def main():
                     round(player.x + player.width // 2), round(player.y + player.height//2), facing))
 
         player_movement(enemies)
-
         redrawGameWindow()
 
 

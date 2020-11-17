@@ -4,7 +4,7 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 610
 
 SCREEN_MIDDLE = 350
-
+MAX_SHURIKENS = 3
 FPS = 27
 
 ENEMY_WALK_RIGHT = [pygame.image.load('./data/goblin-images/R1E.png'), pygame.image.load('./data/goblin-images/R2E.png'), pygame.image.load('./data/goblin-images/R3E.png'),
