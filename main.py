@@ -36,7 +36,7 @@ def player_movement():
 
         else:
             player.standing = True
-            player.walk_count = 0
+            player.walk_count = 3
 
     elif player.x == 350:
         if background.x == 0:
@@ -54,7 +54,7 @@ def player_movement():
 
             else:
                 player.standing = True
-                player.walk_count = 0
+                player.walk_count = 3
 
         elif SCREEN_WIDTH - background.width < background.x < 0:
             if keys[pygame.K_LEFT] and background.x < 0:
@@ -71,7 +71,7 @@ def player_movement():
 
             else:
                 player.standing = True
-                player.walk_count = 0
+                player.walk_count = 3
 
         elif background.x == SCREEN_WIDTH - background.width:
             if keys[pygame.K_LEFT] and background.x < 0:
@@ -88,7 +88,7 @@ def player_movement():
 
             else:
                 player.standing = True
-                player.walk_count = 0
+                player.walk_count = 3
 
     if player.x > 350 and SCREEN_WIDTH - background.width:
         if keys[pygame.K_LEFT] and player.x > player.velocity:
@@ -105,12 +105,12 @@ def player_movement():
 
         else:
             player.standing = True
-            player.walk_count = 0
+            player.walk_count = 3
 
     if not player.is_jump:
         if keys[pygame.K_UP]:
             player.is_jump = True
-            player.walk_count = 0
+            player.walk_count = 3  # Why this line?
     else:
         if player.jump_count >= -10:
             player.y -= (player.jump_count * abs(player.jump_count)) * 0.25
@@ -181,7 +181,6 @@ def main():
                     round(player.x + player.width // 2), round(player.y + player.height//2), facing))
 
         player_movement()
-
         redrawGameWindow()
 
 

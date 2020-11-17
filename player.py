@@ -29,22 +29,22 @@ class Player:
         self.left = False
         self.right = False
         self.standing = True
-        self.walk_count = 0
+        self.walk_count = 3
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
 
     def draw(self, window):
         if self.walk_count + 1 >= 27:
-            self.walk_count = 0
+            self.walk_count = 3
 
         if not self.standing:
             if self.left:
                 window.blit(
                     PLAYER_WALK_LEFT[self.walk_count // 3], (self.x, self.y))
-                self.walk_count += 1
             elif self.right:
+                print(self.walk_count)
                 window.blit(
                     PLAYER_WALK_RIGHT[self.walk_count // 3], (self.x, self.y))
-                self.walk_count += 1
+            self.walk_count += 1
         else:
             if self.left:
                 window.blit(PLAYER_WALK_LEFT[0], (self.x, self.y))

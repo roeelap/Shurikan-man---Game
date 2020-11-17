@@ -3,3 +3,4 @@ Todo:
   ✔ Fix player facing right when jumping @done(20-11-16 23:33)
   ☐ Fix the enemy walking
   ✔ Fix the shuriken aiming (which side) @done(20-11-16 23:34)
+  ☐ Hero and Enemy should be of class 'character' (inheritance). All characters will have shared attributes and functions.
