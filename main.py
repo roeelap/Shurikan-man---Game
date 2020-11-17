@@ -32,11 +32,22 @@ def redrawGameWindow():
 
 # mainloop
 def main():
+
+    def redrawGameWindow():
+        background.draw(window)
+        goblin.draw(window)
+        player.draw(window)
+        for shuriken in shurikens:
+            shuriken.draw(window)
+        pygame.display.update()
+
+
+    shurikens = []
     shuriken_shootloop = 0
 
     # game loop
     while True:
-        clock.tick(27)
+        clock.tick(FPS)
 
         if shuriken_shootloop > 0:
             shuriken_shootloop += 1
@@ -64,8 +75,8 @@ def main():
             if shuriken.x < SCREEN_WIDTH and shuriken.x > 0 and shuriken.throw_count != -20:
                 if shuriken.throw_count >= -20:
                     shuriken.x += shuriken.speed
-                    shuriken.y -= (shuriken.throw_count *
-                                   abs(shuriken.throw_count)) * 0.1
+                    shuriken.y -= int((shuriken.throw_count *
+                                       abs(shuriken.throw_count)) * 0.1)
                     shuriken.throw_count -= 1
                 else:
                     shuriken.throw_count = 10
