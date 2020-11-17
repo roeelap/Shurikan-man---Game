@@ -22,6 +22,8 @@ GOBLIN_WALK_LEFT_IMAGES = [pygame.image.load('./data/goblin-images/L1E.png'), py
     pygame.image.load('./data/goblin-images/L10E.png'), pygame.image.load('./data/goblin-images/L11E.png')]
 
 PLAYER_STANDING_IMAGE = pygame.image.load('./data/player-images/standing.png')
+SHURIKEN_IMAGE = pygame.image.load('./data/player-images/shuriken.png')
+
 
 PLAYER_WALK_RIGHT_IMAGES = [pygame.image.load('./data/player-images/R1.png'), pygame.image.load('./data/player-images/R2.png'), pygame.image.load('./data/player-images/R3.png'),
                      pygame.image.load('./data/player-images/R4.png'), pygame.image.load(
