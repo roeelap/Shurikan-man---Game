@@ -4,3 +4,4 @@ Todo:
   ☐ Fix the enemy walking
   ✔ Fix the shuriken aiming (which side) @done(20-11-16 23:34)
   ☐ Hero and Enemy should be of class 'character' (inheritance). All characters will have shared attributes and functions.
+  ☐ Refactor code to avoid repeated code at main.py lines 24-108
