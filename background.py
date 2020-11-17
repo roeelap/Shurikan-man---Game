@@ -8,7 +8,7 @@ class Background:
         self.y = y
         self.width = width
         self.height = height
-        self.velocity = 5
+        self.velocity = player.velocity
         self.image = pygame.image.load('./data/background-images/dungeon.png')
 
     def draw(self, window):

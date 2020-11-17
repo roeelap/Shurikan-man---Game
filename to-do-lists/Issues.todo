@@ -3,5 +3,4 @@ Todo:
   ✔ Fix player facing right when jumping @done(20-11-16 23:33)
   ☐ Fix the enemy walking
   ✔ Fix the shuriken aiming (which side) @done(20-11-16 23:34)
-  ☐ Hero and Enemy should be of class 'character' (inheritance). All characters will have shared attributes and functions.
-  ☐ Refactor code to avoid repeated code at main.py lines 24-108
+  ✔ Refactor code to avoid repeated code at main.py lines 24-108 @done(20-11-17 13:25)
