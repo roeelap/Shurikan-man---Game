@@ -10,8 +10,8 @@ class Shuriken:
         self.y = y
         self.radius = 12
         self.facing = facing
-        self.velocity = 20 * facing
+        self.speed = 20 * facing
         self.throw_count = 10
 
-    def draw(self,window):
+    def draw(self, window):
         window.blit(SHURIKEN, (self.x, self.y))

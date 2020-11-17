@@ -55,7 +55,7 @@ def main():
 
             if shuriken.x < SCREEN_WIDTH and shuriken.x > 0 and shuriken.throw_count != -20:
                 if shuriken.throw_count >= -20:
-                    shuriken.x += shuriken.velocity
+                    shuriken.x += shuriken.speed
                     shuriken.y -= (shuriken.throw_count *
                                    abs(shuriken.throw_count)) * 0.1
                     shuriken.throw_count -= 1

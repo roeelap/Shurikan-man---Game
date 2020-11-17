@@ -9,7 +9,7 @@ def player_movement():
 
     keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.velocity - player.width:
+    if keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.speed - player.width:
 
         if player.x < 350 and background.x == 0 or player.x > 350 and background.x == SCREEN_WIDTH - background.width:
             player.move_right()
@@ -20,7 +20,7 @@ def player_movement():
             elif background.x == SCREEN_WIDTH - background.width:
                 player.move_right()
 
-    elif keys[pygame.K_LEFT] and player.x > player.velocity:
+    elif keys[pygame.K_LEFT] and player.x > player.speed:
 
         if player.x < 350 and background.x == 0 or player.x > 350 and background.x == SCREEN_WIDTH - background.width:
             player.move_left()

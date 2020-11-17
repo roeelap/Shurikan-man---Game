@@ -9,7 +9,7 @@ class Player:
         self.y = y
         self.width = width
         self.height = height
-        self.velocity = 5
+        self.speed = 5
         self.is_jump = False
         self.jump_count = 10
         self.left = False
@@ -44,13 +44,13 @@ class Player:
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def move_right(self):
-        self.x += player.velocity
+        self.x += player.speed
         self.left = False
         self.right = True
         self.standing = False
 
     def move_left(self):
-        self.x -= self.velocity
+        self.x -= self.speed
         self.left = True
         self.right = False
         self.standing = False
