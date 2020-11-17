@@ -11,7 +11,6 @@ class Enemy(object):
         self.height = height
         self.x_start = x
         self.x_end = x_end
-        self.path = [self.x_start, self.x_end]
         self.walk_count = 0
         self.speed = 3
         self.hitbox = (self.x + 17, self.y + 2, 31, 57)

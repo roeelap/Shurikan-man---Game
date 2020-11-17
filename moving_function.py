@@ -11,10 +11,10 @@ def player_movement():
 
     if keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.speed - player.width:
 
-        if player.x < 350 and background.x == 0 or player.x > 350 and background.x == SCREEN_WIDTH - background.width:
+        if player.x < SCREEN_MIDDLE and background.x == 0 or player.x > SCREEN_MIDDLE and background.x == SCREEN_WIDTH - background.width:
             player.move_right()
 
-        elif player.x == 350:
+        elif player.x == SCREEN_MIDDLE:
             if background.x == 0 or SCREEN_WIDTH - background.width < background.x < 0:
                 background.move_left()
             elif background.x == SCREEN_WIDTH - background.width:
@@ -22,15 +22,13 @@ def player_movement():
 
     elif keys[pygame.K_LEFT] and player.x > player.speed:
 
-        if player.x < 350 and background.x == 0 or player.x > 350 and background.x == SCREEN_WIDTH - background.width:
+        if player.x < SCREEN_MIDDLE and background.x == 0 or player.x > SCREEN_MIDDLE and background.x == SCREEN_WIDTH - background.width:
             player.move_left()
 
-        elif player.x == 350:
+        elif player.x == SCREEN_MIDDLE:
             if background.x == 0:
                 player.move_left()
-            elif background.x == SCREEN_WIDTH - background.width:
-                background.move_right()
-            elif SCREEN_WIDTH - background.width < background.x < 0:
+            elif background.x == SCREEN_WIDTH - background.width or SCREEN_WIDTH - background.width < background.x < 0:
                 background.move_right()
 
     else:

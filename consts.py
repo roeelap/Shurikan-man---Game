@@ -3,6 +3,8 @@ import pygame
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 610
 
+SCREEN_MIDDLE = 350
+
 ENEMY_WALK_RIGHT = [pygame.image.load('./data/goblin-images/R1E.png'), pygame.image.load('./data/goblin-images/R2E.png'), pygame.image.load('./data/goblin-images/R3E.png'),
                     pygame.image.load('./data/goblin-images/R4E.png'), pygame.image.load(
                         './data/goblin-images/R5E.png'), pygame.image.load('./data/goblin-images/R6E.png'),

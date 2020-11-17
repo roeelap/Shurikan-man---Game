@@ -1,4 +1,3 @@
-import pygame
 from consts import PLAYER_STANDING, PLAYER_WALK_LEFT, PLAYER_WALK_RIGHT
 
 
