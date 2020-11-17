@@ -4,18 +4,17 @@ from consts import ENEMY_WALK_LEFT, ENEMY_WALK_RIGHT
 
 class Enemy(object):
 
-    def __init__(self, x, y, width, height, x_end):
+    def __init__(self, x, y, width, height,x_end, speed, health ):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.x_start = x
         self.x_end = x_end
-        self.path = [self.x_start, self.x_end]
         self.walk_count = 0
-        self.speed = 3
+        self.speed = speed
         self.hitbox = (self.x + 17, self.y + 2, 31, 57)
-        self.health = 9
+        self.health = health
         self.visible = True
 
     def draw(self, window):

@@ -4,3 +4,4 @@ Todo:
   ☐ Fix the enemy walking
   ✔ Fix the shuriken aiming (which side) @done(20-11-16 23:34)
   ✔ Refactor code to avoid repeated code at main.py lines 24-108 @done(20-11-17 13:25)
+  ☐ Move all numbers to consts.py

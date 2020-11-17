@@ -1,16 +1,15 @@
-import pygame
 from consts import PLAYER_STANDING, PLAYER_WALK_LEFT, PLAYER_WALK_RIGHT
 
 
 class Player:
 
-    def __init__(self, x, y, width, height):
+    def __init__(self, x, y, speed):
         self.x = x
         self.y = y
-        self.width = width
-        self.height = height
-        self.speed = 5
-        self.is_jump = False
+        self.width = 64
+        self.height = 64
+        self.speed = speed
+        self.jumping = False
         self.jump_count = 10
         self.left = False
         self.right = False
@@ -56,4 +55,4 @@ class Player:
         self.standing = False
 
 
-player = Player(10, 530, 64, 64)
+player = Player(10, 530, 5)
