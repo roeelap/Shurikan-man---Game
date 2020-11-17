@@ -56,5 +56,17 @@ class Player:
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
+    def move_right(self):
+        player.x += player.velocity
+        player.left = False
+        player.right = True
+        player.standing = False
+
+    def move_left(self):
+        player.x -= player.velocity
+        player.left = True
+        player.right = False
+        player.standing = False
+
 
 player = Player(10, 530, 64, 64)

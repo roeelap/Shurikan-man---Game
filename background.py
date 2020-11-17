@@ -1,4 +1,5 @@
 import pygame
+from player import player
 
 
 class Background:
@@ -13,5 +14,17 @@ class Background:
     def draw(self, window):
         window.blit(self.image, (self.x, self.y))
 
+    def move_right(self):
+        background.x += background.velocity
+        player.left = True
+        player.right = False
+        player.standing = False
 
-background = Background(0, 0, 1655, 610)
+    def move_left(self):
+        background.x -= background.velocity
+        player.left = False
+        player.right = True
+        player.standing = False
+
+
+background = Background(0, 0, 1650, 610)
