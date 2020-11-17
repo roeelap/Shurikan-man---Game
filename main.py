@@ -5,12 +5,11 @@ from shuriken import Shuriken
 from background import background
 from moving_function import player_movement
 import sys
+from consts import *
 
 
 pygame.init()
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 610
 
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Shuriken Man")
@@ -79,7 +78,7 @@ def main():
                     round(player.x + player.width // 2), round(player.y + player.height//2), facing))
 
         player_movement()
-        
+
         redrawGameWindow()
 
 

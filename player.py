@@ -1,19 +1,5 @@
 import pygame
-
-
-PLAYER_STANDING = pygame.image.load('./data/player-images/standing.png')
-
-
-PLAYER_WALK_RIGHT = [pygame.image.load('./data/player-images/R1.png'), pygame.image.load('./data/player-images/R2.png'), pygame.image.load('./data/player-images/R3.png'),
-                     pygame.image.load('./data/player-images/R4.png'), pygame.image.load(
-                         './data/player-images/R5.png'), pygame.image.load('./data/player-images/R6.png'),
-                     pygame.image.load('./data/player-images/R7.png'), pygame.image.load('./data/player-images/R8.png'), pygame.image.load('./data/player-images/R9.png')]
-
-
-PLAYER_WALK_LEFT = [pygame.image.load('./data/player-images/L1.png'), pygame.image.load('./data/player-images/L2.png'), pygame.image.load('./data/player-images/L3.png'),
-                    pygame.image.load('./data/player-images/L4.png'), pygame.image.load(
-                        './data/player-images/L5.png'), pygame.image.load('./data/player-images/L6.png'),
-                    pygame.image.load('./data/player-images/L7.png'), pygame.image.load('./data/player-images/L8.png'), pygame.image.load('./data/player-images/L9.png')]
+from consts import PLAYER_STANDING, PLAYER_WALK_LEFT, PLAYER_WALK_RIGHT
 
 
 class Player:

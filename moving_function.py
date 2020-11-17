@@ -1,11 +1,11 @@
 import pygame
 from player import player
 from background import background
+from consts import *
 
 
 def player_movement():
     """The main character movement system"""
-    SCREEN_WIDTH = 800
 
     keys = pygame.key.get_pressed()
 
