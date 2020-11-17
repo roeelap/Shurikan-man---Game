@@ -22,8 +22,8 @@ def main():
 
     def redrawGameWindow():
         background.draw(window)
-        player.draw(window)
         goblin.draw(window)
+        player.draw(window)
         for shuriken in shurikens:
             shuriken.draw(window)
         pygame.display.update()
