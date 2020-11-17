@@ -33,7 +33,6 @@ def redrawGameWindow():
 # mainloop
 def main():
 
-    shurikens = []
     shuriken_shootloop = 0
 
     # game loop
