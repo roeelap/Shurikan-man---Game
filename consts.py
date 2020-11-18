@@ -1,14 +1,19 @@
 import pygame
 
+# screen consts
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 610
-
 SCREEN_MIDDLE = 350
-MAX_SHURIKENS = 3
 FPS = 27
 
+# shuriken consts
+MAX_SHURIKENS = 3
+SHURIKEN_IMAGE = pygame.image.load('./data/player-images/shuriken.png')
+
+# colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255), 'red': (255, 0, 0), 'green': (0, 128, 0)}
 
+# images
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/goblin-images/R1E.png'), pygame.image.load('./data/goblin-images/R2E.png'), pygame.image.load('./data/goblin-images/R3E.png'),
                     pygame.image.load('./data/goblin-images/R4E.png'), pygame.image.load(
                         './data/goblin-images/R5E.png'), pygame.image.load('./data/goblin-images/R6E.png'),
@@ -23,10 +28,6 @@ GOBLIN_WALK_LEFT_IMAGES = [pygame.image.load('./data/goblin-images/L1E.png'), py
     './data/goblin-images/L8E.png'), pygame.image.load('./data/goblin-images/L9E.png'),
     pygame.image.load('./data/goblin-images/L10E.png'), pygame.image.load('./data/goblin-images/L11E.png')]
 
-PLAYER_STANDING_IMAGE = pygame.image.load('./data/player-images/standing.png')
-SHURIKEN_IMAGE = pygame.image.load('./data/player-images/shuriken.png')
-
-
 PLAYER_WALK_RIGHT_IMAGES = [pygame.image.load('./data/player-images/R1.png'), pygame.image.load('./data/player-images/R2.png'), pygame.image.load('./data/player-images/R3.png'),
                      pygame.image.load('./data/player-images/R4.png'), pygame.image.load(
                          './data/player-images/R5.png'), pygame.image.load('./data/player-images/R6.png'),
@@ -36,3 +37,5 @@ PLAYER_WALK_LEFT_IMAGES = [pygame.image.load('./data/player-images/L1.png'), pyg
                     pygame.image.load('./data/player-images/L4.png'), pygame.image.load(
                         './data/player-images/L5.png'), pygame.image.load('./data/player-images/L6.png'),
                     pygame.image.load('./data/player-images/L7.png'), pygame.image.load('./data/player-images/L8.png'), pygame.image.load('./data/player-images/L9.png')]
+
+PLAYER_STANDING_IMAGE = pygame.image.load('./data/player-images/standing.png')
