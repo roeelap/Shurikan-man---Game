@@ -7,3 +7,5 @@ Todo:
   ☐ Move all numbers to consts.py
   ☐ Modify background.py to recieve image as parameter from consts.py
   ✔ Create a colors dict under consts.py to store color and their rgb as a tuple @done(20-11-18 14:02)
+  ☐ display the player's health near his health bar (in numbers)
+  ☐ figure what to do if the player dies
