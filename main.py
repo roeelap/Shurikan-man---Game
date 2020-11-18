@@ -9,7 +9,7 @@ from consts import *
 
 
 pygame.init()
-pygame.display.set_caption("Shuriken Man")
+pygame.display.set_caption("Shuriken player")
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
@@ -50,6 +50,12 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
+        # Check player - enemy collision
+        for enemy in enemies:
+            if player.hitbox[1] < enemy.hitbox[1] + enemy.hitbox[3] and player.hitbox[1] + player.hitbox[3] > enemy.hitbox[1]:
+                if player.hitbox[0] + player.hitbox[2] > enemy.hitbox[0] and player.hitbox[0] < enemy.hitbox[0] + enemy.hitbox[2]:
+                    player.hit()
 
         # Check shuriken collision
         for shuriken in shurikens:

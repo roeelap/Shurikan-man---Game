@@ -19,6 +19,7 @@ class Enemy(object):
 
     def draw(self, window):
         self.auto_path()
+
         if self.walk_count + 1 >= 33:
             self.walk_count = 0
 
@@ -26,17 +27,20 @@ class Enemy(object):
             window.blit(
                 ENEMY_WALK_RIGHT[self.walk_count // 3], (self.x, self.y))
             self.walk_count += 1
+
         else:
             window.blit(
                 ENEMY_WALK_LEFT[self.walk_count // 3], (self.x, self.y))
             self.walk_count += 1
 
-            pygame.draw.rect(window, (255, 0, 0),
-                             (self.hitbox[0], self.hitbox[1] - 20, 50, 10))
-            pygame.draw.rect(
-                window, (0, 128, 0), (self.hitbox[0], self.hitbox[1] - 20, 50 - (5 * (9 - self.health)), 10))
-            self.hitbox = (self.x + 20, self.y + 5, 31, 59)
-            # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
+        # drawing the health bar
+        pygame.draw.rect(window, (255, 0, 0),
+                         (self.hitbox[0], self.hitbox[1] - 20, 50, 10))
+        pygame.draw.rect(
+            window, (0, 128, 0), (self.hitbox[0], self.hitbox[1] - 20, 50 - (5 * (9 - self.health)), 10))
+
+        self.hitbox = (self.x + 20, self.y + 5, 31, 59)
+        # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
 
     def auto_path(self):
         if self.speed > 0:
@@ -60,5 +64,3 @@ class Enemy(object):
             self.health -= 1
         else:
             self.alive = False
-
-

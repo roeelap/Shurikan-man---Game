@@ -16,6 +16,7 @@ class Player:
         self.standing = True
         self.walk_count = 3
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
+        self.health = 9
 
     def draw(self, window):
         if self.walk_count + 1 >= 27:
@@ -53,6 +54,12 @@ class Player:
         self.left = True
         self.right = False
         self.standing = False
+    
+    def hit(self):
+        if self.health > 0:
+            self.health -= 1
+        else:
+            print("DEAD")
 
 
 player = Player(10, 530, 5)
