@@ -1,10 +1,8 @@
 import pygame
-from consts import ENEMY_WALK_LEFT, ENEMY_WALK_RIGHT
-
 
 class Enemy(object):
 
-    def __init__(self, x, y, width, height, x_end, speed, health):
+    def __init__(self, x, y, width, height, x_end, speed, health,walk_right_images,walk_left_images):
         self.x = x
         self.y = y
         self.width = width
@@ -16,6 +14,8 @@ class Enemy(object):
         self.hitbox = (self.x + 20, self.y + 5, 31, 59)
         self.health = health
         self.alive = True
+        self.walk_right_images = walk_right_images
+        self.walk_left_images = walk_left_images
 
     def draw(self, window):
         self.auto_path()
@@ -25,12 +25,12 @@ class Enemy(object):
 
         if self.speed < 0:
             window.blit(
-                ENEMY_WALK_RIGHT[self.walk_count // 3], (self.x, self.y))
+                self.walk_right_images[self.walk_count // 3], (self.x, self.y))
             self.walk_count += 1
 
         else:
             window.blit(
-                ENEMY_WALK_LEFT[self.walk_count // 3], (self.x, self.y))
+                self.walk_left_images[self.walk_count // 3], (self.x, self.y))
             self.walk_count += 1
 
         # drawing the health bar

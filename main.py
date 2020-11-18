@@ -14,7 +14,8 @@ window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
 shurikens = []
-enemies = [Enemy(500, 530, 64, 64, 100, 3, 9)]
+enemies = [Enemy(500, 530, 64, 64, 100, 3, 9,
+                 GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)]
 
 
 def redrawGameWindow():
@@ -86,15 +87,13 @@ def main():
 
         # Jumping on space
         if keys[pygame.K_SPACE] and shuriken_shootloop == 0:
+            facing = 1
             if player.left:
                 facing = -1
-            elif player.right:
-                facing = 1
-            else:
-                facing = 1
+
             if len(shurikens) < 3:
                 shurikens.append(Shuriken(
-                    round(player.x + player.width // 2), round(player.y + player.height//2), facing))
+                    round(player.x + player.width // 2), round(player.y + player.height//2), 20*facing))
 
         player_movement(enemies)
         redrawGameWindow()

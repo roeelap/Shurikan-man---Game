@@ -1,4 +1,4 @@
-from consts import PLAYER_STANDING, PLAYER_WALK_LEFT, PLAYER_WALK_RIGHT
+from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES
 
 
 class Player:
@@ -25,18 +25,18 @@ class Player:
         if not self.standing:
             if self.left:
                 window.blit(
-                    PLAYER_WALK_LEFT[self.walk_count // 3], (self.x, self.y))
+                    PLAYER_WALK_LEFT_IMAGES[self.walk_count // 3], (self.x, self.y))
             elif self.right:
                 window.blit(
-                    PLAYER_WALK_RIGHT[self.walk_count // 3], (self.x, self.y))
+                    PLAYER_WALK_RIGHT_IMAGES[self.walk_count // 3], (self.x, self.y))
             self.walk_count += 1
         else:
             if self.left:
-                window.blit(PLAYER_WALK_LEFT[0], (self.x, self.y))
+                window.blit(PLAYER_WALK_LEFT_IMAGES[0], (self.x, self.y))
             elif self.right:
-                window.blit(PLAYER_WALK_RIGHT[0], (self.x, self.y))
+                window.blit(PLAYER_WALK_RIGHT_IMAGES[0], (self.x, self.y))
             else:
-                window.blit(PLAYER_STANDING, (self.x, self.y))
+                window.blit(PLAYER_STANDING_IMAGE, (self.x, self.y))
                 self.standing = True
                 self.walk_count = 3
 
