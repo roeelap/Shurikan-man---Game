@@ -5,8 +5,6 @@ Todo:
   ✔ Fix the shuriken aiming (which side) @done(20-11-16 23:34)
   ✔ Refactor code to avoid repeated code at main.py lines 24-108 @done(20-11-17 13:25)
   ☐ Move all numbers to consts.py
-  ☐ Modify background.py to recieve image as parameter from consts.py
+  ✔ Modify background.py to recieve image as parameter from consts.py @done(20-11-18 21:51)
   ✔ Create a colors dict under consts.py to store color and their rgb as a tuple @done(20-11-18 14:02)
-  ☐ display the player's health near his health bar (in numbers)
-  ☐ figure what to do if the player dies
-  ☐ Fix enemy "following" you and not sticking to its path (was already heppening before my refactor)
+  ✔ Fix enemy "following" you and not sticking to its path @done(20-11-18 21:49)

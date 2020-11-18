@@ -1,3 +1,4 @@
+from background import Background
 import pygame
 from consts import COLORS
 
@@ -11,6 +12,7 @@ class Enemy(object):
         self.height = height
         self.start_path_x = x
         self.end_path_x = end_path_x
+        self.trail = [self.start_path_x, self.end_path_x]
         self.walk_count = 0
         self.walk_count_limit = len(walk_right_images) * 3
         self.speed = speed
@@ -47,12 +49,18 @@ class Enemy(object):
         # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
 
     def auto_path(self):
-        inbound_left = self.x + self.speed > self.end_path_x
-        inbound_right = self.x + self.speed < self.start_path_x
-        if inbound_left and self.speed < 0 or inbound_right and self.speed > 0:
+        inbound_left = self.x + self.speed > self.trail[1]
+        inbound_right = self.x + self.speed < self.trail[0]
+        going_left = self.speed < 0
+        going_right = self.speed > 0
+        if inbound_left and going_left or inbound_right and going_right:
             self.x += self.speed
         else:
             self.turn_around()
+
+    def updatePathLimits(self, background_x):
+        self.trail = [self.start_path_x+background_x,
+                      self.end_path_x+background_x]
 
     def turn_around(self):
         self.speed *= -1

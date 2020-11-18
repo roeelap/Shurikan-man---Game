@@ -14,9 +14,9 @@ window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
 shurikens = []
+background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
 enemies = [Enemy(500, 530, 64, 64, 100, -3, 9,
                  GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)]
-background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
 
 
 def redrawGameWindow():
