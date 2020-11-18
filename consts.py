@@ -5,6 +5,7 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 610
 SCREEN_MIDDLE = 350
 FPS = 27
+BACKGROUND_DUNGEON = pygame.image.load('./data/background-images/dungeon.png')
 
 # shuriken consts
 MAX_SHURIKENS = 3
@@ -13,7 +14,7 @@ SHURIKEN_IMAGE = pygame.image.load('./data/player-images/shuriken.png')
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255), 'red': (255, 0, 0), 'green': (0, 128, 0)}
 
-# images
+# character images
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/goblin-images/R1E.png'), pygame.image.load('./data/goblin-images/R2E.png'), pygame.image.load('./data/goblin-images/R3E.png'),
                     pygame.image.load('./data/goblin-images/R4E.png'), pygame.image.load(
                         './data/goblin-images/R5E.png'), pygame.image.load('./data/goblin-images/R6E.png'),

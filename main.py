@@ -2,7 +2,7 @@ import pygame
 from player import player
 from enemy import Enemy
 from shuriken import Shuriken
-from background import background
+from background import Background
 from player_movement import player_movement
 import sys
 from consts import *
@@ -16,6 +16,7 @@ clock = pygame.time.Clock()
 shurikens = []
 enemies = [Enemy(500, 530, 64, 64, 100, 3, 9,
                  GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)]
+background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
 
 
 def redrawGameWindow():
@@ -100,10 +101,10 @@ def main():
                 shurikens.append(Shuriken(
                     round(player.x + player.width // 2), round(player.y + player.height//2), 20*facing))
 
-        player_movement(enemies)
+        player_movement(player, enemies, background)
         redrawGameWindow()
 
-        # is the player dies, the game stops (not a real feature, just to check if things are working properly)
+        # if the player dies, the game stops (not a real feature, just to check if things are working properly)
         if player.health == 0:
             pygame.time.delay(1000)
             sys.exit()

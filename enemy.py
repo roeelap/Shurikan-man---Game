@@ -1,15 +1,16 @@
 import pygame
 from consts import COLORS
 
+
 class Enemy(object):
 
-    def __init__(self, x, y, width, height, x_end, speed, health,walk_right_images,walk_left_images):
+    def __init__(self, x, y, width, height, end_path_x, speed, health, walk_right_images, walk_left_images):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-        self.x_start = x
-        self.x_end = x_end
+        self.start_path_x = x
+        self.end_path_x = end_path_x
         self.walk_count = 0
         self.speed = speed
         self.hitbox = (self.x + 20, self.y + 5, 31, 59)
@@ -45,13 +46,13 @@ class Enemy(object):
 
     def auto_path(self):
         if self.speed > 0:
-            if self.x - self.speed > self.x_end:
+            if self.x - self.speed > self.end_path_x:
                 self.x -= self.speed
             else:
                 self.speed = self.speed * -1
                 self.walk_count = 0
         else:
-            if self.x + self.speed < self.x_start:
+            if self.x + self.speed < self.start_path_x:
                 self.x -= self.speed
             else:
                 self.speed = self.speed * -1
