@@ -6,4 +6,4 @@ Todo:
   ✔ Refactor code to avoid repeated code at main.py lines 24-108 @done(20-11-17 13:25)
   ☐ Move all numbers to consts.py
   ☐ Modify background.py to recieve image as parameter from consts.py
-  ☐ Create a colors dict under consts.py to store color and their rgb as a tuple
+  ✔ Create a colors dict under consts.py to store color and their rgb as a tuple @done(20-11-18 14:02)

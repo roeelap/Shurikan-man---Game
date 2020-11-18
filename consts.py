@@ -7,6 +7,8 @@ SCREEN_MIDDLE = 350
 MAX_SHURIKENS = 3
 FPS = 27
 
+COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255), 'red': (255, 0, 0), 'green': (0, 128, 0)}
+
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/goblin-images/R1E.png'), pygame.image.load('./data/goblin-images/R2E.png'), pygame.image.load('./data/goblin-images/R3E.png'),
                     pygame.image.load('./data/goblin-images/R4E.png'), pygame.image.load(
                         './data/goblin-images/R5E.png'), pygame.image.load('./data/goblin-images/R6E.png'),

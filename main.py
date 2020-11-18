@@ -20,7 +20,7 @@ enemies = [Enemy(500, 530, 64, 64, 100, 3, 9,
 
 def redrawGameWindow():
     background.draw(window)
-    player.draw(window)
+    player.display_health_bar(window)
     for shuriken in shurikens:
         shuriken.draw(window)
     for enemy in enemies:
@@ -28,6 +28,7 @@ def redrawGameWindow():
             enemy.draw(window)
         else:
             enemies.remove(enemy)
+    player.draw(window)
     pygame.display.update()
 
 
@@ -35,16 +36,11 @@ def redrawGameWindow():
 def main():
 
     shuriken_shootloop = 0
+    player_collision_detector = 0
 
     # game loop
     while True:
         clock.tick(FPS)
-
-        # Only 3 shurikens allowed
-        if shuriken_shootloop > 0:
-            shuriken_shootloop += 1
-        if shuriken_shootloop > MAX_SHURIKENS:
-            shuriken_shootloop = 0
 
         # Exit on quit button
         for event in pygame.event.get():
@@ -52,13 +48,17 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        # Check player - enemy collision
-        for enemy in enemies:
-            if player.hitbox[1] < enemy.hitbox[1] + enemy.hitbox[3] and player.hitbox[1] + player.hitbox[3] > enemy.hitbox[1]:
-                if player.hitbox[0] + player.hitbox[2] > enemy.hitbox[0] and player.hitbox[0] < enemy.hitbox[0] + enemy.hitbox[2]:
-                    player.hit()
+        # Check player - enemy collision, the detector is giving the player time to run away from the enemy before the enemy will hit them again
+        if 0 <= player_collision_detector < 20:
+            player_collision_detector += 1
+        if player_collision_detector == 20:
+            for enemy in enemies:
+                if player.hitbox[1] < enemy.hitbox[1] + enemy.hitbox[3] and player.hitbox[1] + player.hitbox[3] > enemy.hitbox[1]:
+                    if player.hitbox[0] + player.hitbox[2] > enemy.hitbox[0] and player.hitbox[0] < enemy.hitbox[0] + enemy.hitbox[2]:
+                        player.hit()
+                        player_collision_detector = 0
 
-        # Check shuriken collision
+        # Check shuriken - enemy collision
         for shuriken in shurikens:
             for enemy in enemies:
                 inbound_x_left = shuriken.x + shuriken.radius > enemy.hitbox[0]
@@ -85,18 +85,28 @@ def main():
 
         keys = pygame.key.get_pressed()
 
-        # Jumping on space
+        # the shurikens won't be thrown together, the shoot loop needs to be reset before every throw
+        if shuriken_shootloop >= 0:
+            shuriken_shootloop += 1
+        if shuriken_shootloop > MAX_SHURIKENS:
+            shuriken_shootloop = 0
+
+        # Throwing shurikens with space-bar. Only 3 shurikens allowed
         if keys[pygame.K_SPACE] and shuriken_shootloop == 0:
             facing = 1
             if player.left:
                 facing = -1
-
-            if len(shurikens) < 3:
+            if len(shurikens) < MAX_SHURIKENS:
                 shurikens.append(Shuriken(
                     round(player.x + player.width // 2), round(player.y + player.height//2), 20*facing))
 
         player_movement(enemies)
         redrawGameWindow()
+
+        # is the player dies, the game stops (not a real feature, just to check if things are working properly)
+        if player.health == 0:
+            pygame.time.delay(1000)
+            sys.exit()
 
 
 if __name__ == "__main__":

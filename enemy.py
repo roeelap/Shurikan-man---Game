@@ -1,4 +1,5 @@
 import pygame
+from consts import COLORS
 
 class Enemy(object):
 
@@ -34,10 +35,10 @@ class Enemy(object):
             self.walk_count += 1
 
         # drawing the health bar
-        pygame.draw.rect(window, (255, 0, 0),
+        pygame.draw.rect(window, COLORS['red'],
                          (self.hitbox[0], self.hitbox[1] - 20, 50, 10))
         pygame.draw.rect(
-            window, (0, 128, 0), (self.hitbox[0], self.hitbox[1] - 20, 50 - (5 * (9 - self.health)), 10))
+            window, COLORS['green'], (self.hitbox[0], self.hitbox[1] - 20, 50 - (5 * (9 - self.health)), 10))
 
         self.hitbox = (self.x + 20, self.y + 5, 31, 59)
         # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
