@@ -49,7 +49,6 @@ class Enemy(object):
     def auto_path(self):
         inbound_left = self.x + self.speed > self.end_path_x
         inbound_right = self.x + self.speed < self.start_path_x
-        print(inbound_left, inbound_right)
         if inbound_left and self.speed < 0 or inbound_right and self.speed > 0:
             self.x += self.speed
         else:
