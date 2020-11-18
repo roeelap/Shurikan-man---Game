@@ -1,5 +1,5 @@
 import pygame
-from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, COLORS
+from consts import *
 
 
 class Player:
@@ -59,11 +59,19 @@ class Player:
     def hit(self):
         if self.health > 0:
             self.health -= 1
+        
             
-    def display_health_bar(self, window):
-        pygame.draw.rect(window, COLORS['red'], (40, 30, 720, 30))
-        pygame.draw.rect(window, COLORS['green'], (40, 30, 720 - (80 * (9 - self.health)), 30))
+    def display_health_status(self, window):
+        pygame.draw.rect(window, COLORS['red'], (130, 30, 630, 30))
+        pygame.draw.rect(window, COLORS['green'], (130, 30, 630 - (70 * (9 - self.health)), 30))
+        window.blit(PLAYER_PORTRAIT, (40, 30))
 
+        health = str(self.health) + ' / 9'
+        if self.health == 0:
+            health = 'DEAD'
+        health_text = PIXEL_FONT.render(health, True,  COLORS['white'])
+        window.blit(health_text, (35, 70))
+        
 
 
 player = Player(10, 530, 5)

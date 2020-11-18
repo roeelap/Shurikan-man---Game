@@ -21,7 +21,7 @@ enemies = [Enemy(500, 530, 64, 64, 100, -3, 9,
 
 def redrawGameWindow():
     background.draw(window)
-    player.display_health_bar(window)
+    player.display_health_status(window)
     for shuriken in shurikens:
         shuriken.draw(window)
     for enemy in enemies:

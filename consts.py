@@ -7,6 +7,10 @@ SCREEN_MIDDLE = 350
 FPS = 27
 BACKGROUND_DUNGEON = pygame.image.load('./data/background-images/dungeon.png')
 
+# text fonts
+pygame.init()
+PIXEL_FONT = pygame.font.Font('./data/dpcomic.ttf', 20)
+
 # shuriken consts
 MAX_SHURIKENS = 3
 SHURIKEN_IMAGE = pygame.image.load('./data/player-images/shuriken.png')
@@ -40,3 +44,5 @@ PLAYER_WALK_LEFT_IMAGES = [pygame.image.load('./data/player-images/L1.png'), pyg
                     pygame.image.load('./data/player-images/L7.png'), pygame.image.load('./data/player-images/L8.png'), pygame.image.load('./data/player-images/L9.png')]
 
 PLAYER_STANDING_IMAGE = pygame.image.load('./data/player-images/standing.png')
+
+PLAYER_PORTRAIT = pygame.image.load('./data/player-images/character-portrait.png')
