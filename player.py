@@ -32,13 +32,11 @@ class Player:
             elif self.right:
                 self.image = PLAYER_WALK_RIGHT_IMAGES[self.walk_count // 3]
 
-            window.blit(self.image, (self.x, self.y))
-
             if self.hurt:
-                hurt_image = self.image.copy()
-                hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
-                window.blit(hurt_image, (self.x, self.y))
-                self.hurt = False
+                self.hurt_animation(window)
+            
+            else:
+                window.blit(self.image, (self.x, self.y))
                 
             self.walk_count += 1
 
@@ -53,14 +51,12 @@ class Player:
                 self.image = PLAYER_STANDING_IMAGE
                 self.standing = True
                 self.walk_count = 3
-            
-            window.blit(self.image, (self.x, self.y))
 
             if self.hurt:
-                hurt_image = self.image.copy()
-                hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
-                window.blit(hurt_image, (self.x, self.y))
-                self.hurt = False
+                self.hurt_animation(window)
+            
+            else:
+                window.blit(self.image, (self.x, self.y))
             
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
@@ -81,6 +77,12 @@ class Player:
         self.hurt = True
         if self.health > 0:
             self.health -= 1
+        
+    def hurt_animation(self, window):
+        hurt_image = self.image.copy()
+        hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
+        window.blit(hurt_image, (self.x, self.y))
+        self.hurt = False
 
     def display_health_status(self, window):
         pygame.draw.rect(window, COLORS['red'], (130, 30, 630, 30))
