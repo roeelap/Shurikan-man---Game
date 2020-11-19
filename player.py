@@ -17,7 +17,6 @@ class Player:
         self.standing = True
         self.walk_count = 3
         self.image = None
-        self.hurt_image = None
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
         self.health = 9
         self.hurt = False
@@ -36,9 +35,9 @@ class Player:
             window.blit(self.image, (self.x, self.y))
 
             if self.hurt:
-                self.hurt_image = self.image.copy()
-                self.hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
-                window.blit(self.hurt_image, (self.x, self.y))
+                hurt_image = self.image.copy()
+                hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
+                window.blit(hurt_image, (self.x, self.y))
                 self.hurt = False
                 
             self.walk_count += 1
@@ -58,9 +57,9 @@ class Player:
             window.blit(self.image, (self.x, self.y))
 
             if self.hurt:
-                self.hurt_image = self.image.copy()
-                self.hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
-                window.blit(self.hurt_image, (self.x, self.y))
+                hurt_image = self.image.copy()
+                hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
+                window.blit(hurt_image, (self.x, self.y))
                 self.hurt = False
             
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
