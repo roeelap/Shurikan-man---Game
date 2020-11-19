@@ -82,7 +82,10 @@ def main():
                 else:
                     shuriken.throw_count = 10
             else:
-                shurikens.pop(shurikens.index(shuriken))
+                try:
+                    shurikens.pop(shurikens.index(shuriken))
+                except:
+                    pass
 
         keys = pygame.key.get_pressed()
 

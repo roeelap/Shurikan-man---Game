@@ -17,10 +17,9 @@ class Player:
         self.standing = True
         self.walk_count = 3
         self.image = None
-        self.hurt_image = None
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
         self.health = 9
-        self.hurt = False
+        self.hurt_counter = 0
 
     def draw(self, window):
         if self.walk_count + 1 >= 27:
@@ -33,13 +32,11 @@ class Player:
             elif self.right:
                 self.image = PLAYER_WALK_RIGHT_IMAGES[self.walk_count // 3]
 
-            window.blit(self.image, (self.x, self.y))
-
-            if self.hurt:
-                self.hurt_image = self.image.copy()
-                self.hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
-                window.blit(self.hurt_image, (self.x, self.y))
-                self.hurt = False
+            if self.hurt_counter > 1:
+                self.hurt_animation(window)
+            
+            else:
+                window.blit(self.image, (self.x, self.y))
                 
             self.walk_count += 1
 
@@ -54,14 +51,12 @@ class Player:
                 self.image = PLAYER_STANDING_IMAGE
                 self.standing = True
                 self.walk_count = 3
-            
-            window.blit(self.image, (self.x, self.y))
 
-            if self.hurt:
-                self.hurt_image = self.image.copy()
-                self.hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
-                window.blit(self.hurt_image, (self.x, self.y))
-                self.hurt = False
+            if self.hurt_counter > 0:
+                self.hurt_animation(window)
+            
+            else:
+                window.blit(self.image, (self.x, self.y))
             
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
@@ -79,9 +74,18 @@ class Player:
         self.standing = False
     
     def hit(self):
-        self.hurt = True
+        self.hurt_counter = 9
         if self.health > 0:
             self.health -= 1
+        
+    def hurt_animation(self, window):
+        if self.hurt_counter % 3 == 0:
+            hurt_image = self.image.copy()
+            hurt_image.fill(COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
+            window.blit(hurt_image, (self.x, self.y))
+        else:
+            window.blit(self.image, (self.x, self.y))
+        self.hurt_counter -= 1
 
     def display_health_status(self, window):
         pygame.draw.rect(window, COLORS['red'], (130, 30, 630, 30))
