@@ -1,4 +1,3 @@
-from background import Background
 import pygame
 from consts import COLORS
 
@@ -16,6 +15,7 @@ class Enemy(object):
         self.walk_count = 0
         self.walk_count_limit = len(walk_right_images) * 3
         self.speed = speed
+        self.max_speed = abs(speed)
         self.hitbox = (self.x + 20, self.y + 5, 31, 59)
         self.health = health
         self.max_health = health
@@ -26,6 +26,11 @@ class Enemy(object):
     def draw(self, window):
         self.auto_path()
 
+        # Slow enemy down when punching
+        self.speed = self.max_speed if self.speed > 0 else self.max_speed * -1
+        if 9 <= self.walk_count//3 <= 11:
+            self.speed //= 3
+        
         if self.walk_count + 1 >= self.walk_count_limit:
             self.walk_count = 0
 
