@@ -2,4 +2,4 @@ Todo:
   ☐ figure what to do if the player dies
   ✔ display the player's health near his health bar (in numbers) @done(20-11-18 23:30)
   ☐ Display a "hovering" borken-heart for a second when player or enemy get hit.
-  ☐ 
+  ☐ When player is hit, make him transparent for sometime - changing the player image's opacity
