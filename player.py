@@ -16,7 +16,7 @@ class Player:
         self.right = False
         self.standing = True
         self.walk_count = 3
-        self.image = None
+        self.image = PLAYER_STANDING_IMAGE
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
         self.health = 9
         self.hurt_counter = 0
@@ -25,38 +25,21 @@ class Player:
         if self.walk_count + 1 >= 27:
             self.walk_count = 3
 
-        if not self.standing:
-            if self.left:
-                self.image = PLAYER_WALK_LEFT_IMAGES[self.walk_count // 3]
+        if self.standing:
+            self.walk_count = 0
 
-            elif self.right:
-                self.image = PLAYER_WALK_RIGHT_IMAGES[self.walk_count // 3]
+        if self.left:
+            self.image = PLAYER_WALK_LEFT_IMAGES[self.walk_count // 3]
 
-            if self.hurt_counter > 1:
-                self.hurt_animation(window)
+        if self.right:
+            self.image = PLAYER_WALK_RIGHT_IMAGES[self.walk_count // 3]
 
-            else:
-                window.blit(self.image, (self.x, self.y))
-
-            self.walk_count += 1
-
+        if self.hurt_counter > 0:
+            self.hurt_animation(window)
         else:
-            if self.left:
-                self.image = PLAYER_WALK_LEFT_IMAGES[0]
+            window.blit(self.image, (self.x, self.y))
 
-            elif self.right:
-                self.image = PLAYER_WALK_RIGHT_IMAGES[0]
-
-            else:
-                self.image = PLAYER_STANDING_IMAGE
-                self.standing = True
-                self.walk_count = 3
-
-            if self.hurt_counter > 0:
-                self.hurt_animation(window)
-
-            else:
-                window.blit(self.image, (self.x, self.y))
+        self.walk_count += 1
 
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
