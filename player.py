@@ -58,6 +58,8 @@ class Player:
         self.standing = False
 
     def hit(self):
+        HIT_SOUND = pygame.mixer.music.load('./data/music/hit_sound.wav') 
+        pygame.mixer.music.play()
         self.hurt_counter = 9
         if self.health > 0:
             self.health -= 1
