@@ -4,8 +4,8 @@ Todo:
   ✔ Fix the enemy walking @done(20-11-17 18:54)
   ✔ Fix the shuriken aiming (which side) @done(20-11-16 23:34)
   ✔ Refactor code to avoid repeated code at main.py lines 24-108 @done(20-11-17 13:25)
-  ☐ Move all numbers to consts.py
+  ✔ Move all numbers to consts.py @done(20-11-20 14:44)
   ✔ Modify background.py to receive image as parameter from consts.py @done(20-11-18 21:51)
   ✔ Create a colors dict under consts.py to store color and their rgb as a tuple @done(20-11-18 14:02)
   ✔ Fix enemy "following" you and not sticking to its path @done(20-11-18 21:49)
-  ☐ fix a bug where the enemy exits the background image 
+  ✔ fix a bug where the enemy exits the background image @done(20-11-20 14:44)

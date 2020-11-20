@@ -28,7 +28,7 @@ class Enemy:
         # Slow enemy down when punching
         self.speed = self.max_speed if self.speed > 0 else self.max_speed * -1
         if 9 <= self.walk_count//3 <= 11:
-            self.speed //= 3
+            self.speed /= 20
 
         if self.walk_count + 1 >= self.walk_count_limit:
             self.walk_count = 0

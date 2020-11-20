@@ -42,7 +42,6 @@ def player_movement(player, enemies, background):
     if not player.jumping:
         if keys[pygame.K_UP]:
             player.jumping = True
-            player.walk_count = 3  # Why this line?
     else:
         if player.jump_count >= -10:
             player.y -= int((player.jump_count *
