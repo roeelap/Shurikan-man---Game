@@ -46,7 +46,7 @@ class Player:
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def move_right(self):
-        self.x += player.speed
+        self.x += self.speed
         self.left = False
         self.right = True
         self.standing = False
@@ -84,6 +84,3 @@ class Player:
             health = 'DEAD'
         health_text = PIXEL_FONT.render(health, True,  COLORS['white'])
         window.blit(health_text, (35, 70))
-
-
-player = Player(10, 530)

@@ -14,7 +14,7 @@ def player_movement(player, enemies, background):
 
         elif player.x == SCREEN_MIDDLE:
             if background.x == 0 or SCREEN_WIDTH - background.width < background.x < 0:
-                background.move_left()
+                background.move_left(player)
                 for enemy in enemies:
                     enemy.updatePathLimits(background.x)
                     enemy.move(player.speed, -1)
@@ -30,7 +30,7 @@ def player_movement(player, enemies, background):
             if background.x == 0:
                 player.move_left()
             elif background.x == SCREEN_WIDTH - background.width or SCREEN_WIDTH - background.width < background.x < 0:
-                background.move_right()
+                background.move_right(player)
                 for enemy in enemies:
                     enemy.updatePathLimits(background.x)
                     enemy.move(player.speed, 1)
