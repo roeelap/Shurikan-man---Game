@@ -59,24 +59,24 @@ class Player:
 
     def hit(self):
         PLAYER_HIT_SOUND.play()
-        self.hurt_counter = 9
+        self.hurt_counter = PLAYER_INVINCIBLE_TIME
         if self.health > 0:
             self.health -= 1
 
     def hurt_animation(self, window):
         if self.hurt_counter % 3 == 0:
+            window.blit(self.image, (self.x, self.y))
+        else:
             hurt_image = self.image.copy()
             hurt_image.fill(
-                COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
+                (255, 255, 255, 128), special_flags=pygame.BLEND_RGBA_MULT)
             window.blit(hurt_image, (self.x, self.y))
-        else:
-            window.blit(self.image, (self.x, self.y))
         self.hurt_counter -= 1
 
     def display_health_status(self, window):
         pygame.draw.rect(window, COLORS['red'], (130, 30, 630, 30))
         pygame.draw.rect(
-            window, COLORS['green'], (130, 30, 630 - (70 * (9 - self.health)), 30))
+            window, COLORS['green'], (130, 30, 630 - (70 * (self.max_health - self.health)), 30))
         window.blit(PLAYER_PORTRAIT, (40, 30))
 
         health = f'{self.health} / {self.max_health}'

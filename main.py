@@ -39,7 +39,6 @@ def redrawGameWindow():
 def main():
 
     shuriken_shootloop = 0
-    player_collision_detector = 0
 
     # game loop
     while True:
@@ -51,15 +50,12 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        # Check player - enemy collision, the detector is giving the player time to run away from the enemy before the enemy will hit them again
-        if 0 <= player_collision_detector < 20:
-            player_collision_detector += 1
-        if player_collision_detector == 20:
+        # Check player-enemy collision, the detector is giving the player time to run away.
+        if player.hurt_counter == 0:
             for enemy in enemies:
                 if player.hitbox[1] < enemy.hitbox[1] + enemy.hitbox[3] and player.hitbox[1] + player.hitbox[3] > enemy.hitbox[1]:
                     if player.hitbox[0] + player.hitbox[2] > enemy.hitbox[0] and player.hitbox[0] < enemy.hitbox[0] + enemy.hitbox[2]:
                         player.hit()
-                        player_collision_detector = 0
 
         # Check shuriken - enemy collision
         for shuriken in shurikens:

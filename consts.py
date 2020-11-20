@@ -1,4 +1,5 @@
 import pygame
+pygame.mixer.pre_init(44100, -16, 2, 1024)
 pygame.mixer.init()
 pygame.font.init()
 
@@ -8,6 +9,7 @@ SCREEN_HEIGHT = 610
 SCREEN_MIDDLE = 350
 FPS = 27
 BACKGROUND_DUNGEON = pygame.image.load('./data/background-images/dungeon.png')
+PLAYER_INVINCIBLE_TIME = 27
 
 # text fonts
 PIXEL_FONT = pygame.font.Font('./data/dpcomic.ttf', 20)
