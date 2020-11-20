@@ -5,6 +5,7 @@ from enemy import Enemy
 from shuriken import Shuriken
 from background import Background
 from player_movement import player_movement
+from collision_checks import *
 import sys
 from consts import *
 
@@ -19,9 +20,9 @@ def new_game():
                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)]
     player = Player(10, 530)
     return window, background, player, enemies, shurikens
+
+
 # mainloop
-
-
 def main():
 
     window, background, player, enemies, shurikens = new_game()
@@ -45,6 +46,7 @@ def main():
 
     # game loop
     while True:
+
         clock.tick(FPS)
 
         # Exit on quit button
@@ -54,28 +56,13 @@ def main():
                 sys.exit()
 
         # Check player-enemy collision, the detector is giving the player time to run away.
-        if player.hurt_counter == 0:
-            for enemy in enemies:
-                if player.hitbox[1] < enemy.hitbox[1] + enemy.hitbox[3] and player.hitbox[1] + player.hitbox[3] > enemy.hitbox[1]:
-                    if player.hitbox[0] + player.hitbox[2] > enemy.hitbox[0] and player.hitbox[0] < enemy.hitbox[0] + enemy.hitbox[2]:
-                        player.hit()
+        check_player_enemy_collision(player, enemies)
 
         # Check shuriken - enemy collision
-        for shuriken in shurikens:
-            for enemy in enemies:
-                inbound_x_left = shuriken.x + \
-                    shuriken.radius > enemy.hitbox[0]
-                inbound_x_right = shuriken.x - \
-                    shuriken.radius < enemy.hitbox[0] + enemy.hitbox[2]
-                inbound_y_up = shuriken.y - \
-                    shuriken.radius < enemy.hitbox[1] + enemy.hitbox[3]
-                inbound_y_down = shuriken.y + \
-                    shuriken.radius > enemy.hitbox[1]
-                if inbound_x_left and inbound_x_right and inbound_y_up and inbound_y_down:
-                    enemy.hit()
-                    shurikens.pop(shurikens.index(shuriken))
+        check_shuriken_enemy_collision(shurikens, enemies)
 
-            # Remove shuriken when out of screen
+        # Remove shuriken when out of screen
+        for shuriken in shurikens:
             if shuriken.x < SCREEN_WIDTH and shuriken.x > 0 and shuriken.throw_count != -20:
                 if shuriken.throw_count >= -20:
                     shuriken.x += shuriken.speed
