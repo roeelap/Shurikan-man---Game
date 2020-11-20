@@ -47,3 +47,6 @@ PLAYER_WALK_LEFT_IMAGES = [pygame.image.load('./data/player-images/L1.png'), pyg
 PLAYER_STANDING_IMAGE = pygame.image.load('./data/player-images/standing.png')
 
 PLAYER_PORTRAIT = pygame.image.load('./data/player-images/character-portrait.png')
+
+# Sounds
+PLAYER_HIT_SOUND = pygame.mixer.Sound('./data/music/hit_sound.wav') 
