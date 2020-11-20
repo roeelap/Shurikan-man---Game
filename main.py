@@ -17,6 +17,7 @@ def new_game():
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
     enemies = [Enemy(500, 530, 64, 64, Path(500, 100), -3, 9,
+                     GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES), Enemy(700, 530, 64, 64, Path(700, 100), -3, 9,
                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)]
     player = Player(10, 530)
     return window, background, player, enemies, shurikens
@@ -40,7 +41,8 @@ def main():
                 enemy.draw(window)
             else:
                 enemies.remove(enemy)
-        player.display_health_status(window)
+                player.score += 1
+        player.display_player_stats(window)
         player.draw(window)
         pygame.display.update()
 
@@ -100,6 +102,7 @@ def main():
 
         # if the player dies, the game stops (not a real feature, just to check if things are working properly)
         if player.health == 0:
+            pygame.time.delay(1000)
             window, background, player, enemies, shurikens = new_game()
 
 

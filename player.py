@@ -18,9 +18,10 @@ class Player:
         self.walk_count = 3
         self.image = PLAYER_STANDING_IMAGE
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
-        self.max_health = 9
+        self.max_health = 10
         self.health = self.max_health
         self.hurt_counter = 0
+        self.score = 0
 
     def draw(self, window):
         if self.walk_count + 1 >= 27:
@@ -73,14 +74,18 @@ class Player:
             window.blit(hurt_image, (self.x, self.y))
         self.hurt_counter -= 1
 
-    def display_health_status(self, window):
-        pygame.draw.rect(window, COLORS['red'], (130, 30, 630, 30))
+    def display_player_stats(self, window):
+        pygame.draw.rect(window, COLORS['red'], (120, 30, 650, 30))
         pygame.draw.rect(
-            window, COLORS['green'], (130, 30, 630 - (70 * (self.max_health - self.health)), 30))
+            window, COLORS['green'], (120, 30, 650 - (65 * (self.max_health - self.health)), 30))
         window.blit(PLAYER_PORTRAIT, (40, 30))
 
         health = f'{self.health} / {self.max_health}'
         if self.health == 0:
             health = 'DEAD'
         health_text = PIXEL_FONT.render(health, True,  COLORS['white'])
-        window.blit(health_text, (35, 70))
+        window.blit(health_text, (130, 35))
+
+        score = f'Score: {self.score}'
+        score_text = PIXEL_FONT.render(score, True,  COLORS['white'])
+        window.blit(score_text, (25, 80))
