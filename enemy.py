@@ -1,5 +1,6 @@
 import pygame
 from consts import COLORS
+from path import Path
 
 
 class Enemy:
@@ -13,7 +14,7 @@ class Enemy:
         self.walk_count_limit = len(walk_right_images) * 3
         self.speed = speed
         self.path = path
-        self.path_limit = path
+        self.path_limit = Path(self.path.start, self.path.end)
         self.max_speed = abs(speed)
         self.hitbox = (x + 20, y + 5, 31, 59)
         self.health = health
