@@ -1,4 +1,6 @@
 import pygame
+pygame.mixer.init()
+pygame.font.init()
 
 # screen consts
 SCREEN_WIDTH = 800
@@ -8,7 +10,6 @@ FPS = 27
 BACKGROUND_DUNGEON = pygame.image.load('./data/background-images/dungeon.png')
 
 # text fonts
-pygame.init()
 PIXEL_FONT = pygame.font.Font('./data/dpcomic.ttf', 20)
 
 # shuriken consts

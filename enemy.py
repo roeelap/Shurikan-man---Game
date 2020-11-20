@@ -63,8 +63,8 @@ class Enemy:
             self.turn_around()
 
     def updatePathLimits(self, background_x):
-        self.path.start = self.path_limit.start+background_x
-        self.path.end = self.path_limit.end+background_x
+        self.path.start = self.path_limit.start + background_x
+        self.path.end = self.path_limit.end + background_x
 
     def turn_around(self):
         self.speed *= -1
