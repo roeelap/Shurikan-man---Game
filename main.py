@@ -90,14 +90,12 @@ def main():
         # the shurikens won't be thrown together, the shoot loop needs to be reset before every throw
         if shuriken_shootloop > 0:
             shuriken_shootloop += 1
-        if shuriken_shootloop > MAX_SHURIKENS:
+        if shuriken_shootloop > SHURIKEN_TIMEOUT:
             shuriken_shootloop = 0
-
-        print(shuriken_shootloop)
 
         # Throwing shurikens with space-bar. Only 3 shurikens allowed
         if keys[pygame.K_SPACE] and shuriken_shootloop == 0:
-            shuriken_shootloop+=1
+            shuriken_shootloop = 1
             facing = 1
             if player.left:
                 facing = -1

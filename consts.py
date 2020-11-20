@@ -16,6 +16,7 @@ PIXEL_FONT = pygame.font.Font('./data/dpcomic.ttf', 20)
 
 # shuriken consts
 MAX_SHURIKENS = 3
+SHURIKEN_TIMEOUT = 6
 SHURIKEN_IMAGE = pygame.image.load('./data/player-images/shuriken.png')
 
 # colors dict
