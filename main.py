@@ -1,5 +1,6 @@
 import pygame
 from player import player
+from path import Path
 from enemy import Enemy
 from shuriken import Shuriken
 from background import Background
@@ -15,20 +16,21 @@ clock = pygame.time.Clock()
 
 shurikens = []
 background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
-enemies = [Enemy(500, 530, 64, 64, 100, -3, 9,
+enemies = [Enemy(500, 530, 64, 64, Path(500, 100), -3, 9,
                  GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)]
 
 
 def redrawGameWindow():
     background.draw(window)
-    player.display_health_status(window)
     for shuriken in shurikens:
         shuriken.draw(window)
     for enemy in enemies:
         if enemy.alive:
+            enemy.auto_path()
             enemy.draw(window)
         else:
             enemies.remove(enemy)
+    player.display_health_status(window)
     player.draw(window)
     pygame.display.update()
 

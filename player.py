@@ -4,7 +4,7 @@ from consts import *
 
 class Player:
 
-    def __init__(self, x, y, ):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
         self.width = 64
@@ -18,7 +18,8 @@ class Player:
         self.walk_count = 3
         self.image = PLAYER_STANDING_IMAGE
         self.hitbox = (self.x + 17, self.y + 11, 28, 53)
-        self.health = 9
+        self.max_health = 9
+        self.health = self.max_health
         self.hurt_counter = 0
 
     def draw(self, window):
@@ -77,7 +78,7 @@ class Player:
             window, COLORS['green'], (130, 30, 630 - (70 * (9 - self.health)), 30))
         window.blit(PLAYER_PORTRAIT, (40, 30))
 
-        health = str(self.health) + ' / 9'
+        health = f'{self.health} / {self.max_health}'
         if self.health == 0:
             health = 'DEAD'
         health_text = PIXEL_FONT.render(health, True,  COLORS['white'])
