@@ -24,14 +24,14 @@ def new_game():
 
 
 # Pilot for random enemy spawning
-def spawn_enemy(spawn_enemy_loop, enemies, countdown):
+def spawn_enemy(spawn_enemy_loop, enemies, countdown, background):
     spawn_enemy_loop += 1
     if spawn_enemy_loop == int(countdown * FPS):
-        start = randint(64, 1650-64)
-        end = randint(64, 1650-64)
+        start = randint(enemies[0].width, background.width - enemies[0].width)
+        end = randint(enemies[0].width, background.width - enemies[0].width)
         while (abs(end - start) < 300):
-            start = randint(0, 1650)
-            end = randint(0, 1650)
+            start = randint(0, background.width)
+            end = randint(0, background.width)
         direction = 1
         if start > end:
             direction = -1
@@ -72,7 +72,7 @@ def main():
         clock.tick(FPS)
 
         # Randomely spawn enemies every 5 seconds
-        spawn_enemy_loop = spawn_enemy(spawn_enemy_loop, enemies, 5)
+        spawn_enemy_loop = spawn_enemy(spawn_enemy_loop, enemies, 5, background)
 
         # Exit on quit button
         for event in pygame.event.get():
