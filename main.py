@@ -48,6 +48,8 @@ def spawn_enemy(enemies, player_x_pos, background):
 
 def main():
 
+    pygame.mixer.music.play(loops=-1)
+
     window, background, player, enemies, shurikens = new_game()
     spawn_enemy(enemies, player.x, background)
 
