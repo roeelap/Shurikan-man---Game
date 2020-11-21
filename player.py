@@ -83,9 +83,9 @@ class Player:
         health = f'{self.health} / {self.max_health}'
         if self.health == 0:
             health = 'DEAD'
-        health_text = PIXEL_FONT.render(health, True,  COLORS['white'])
+        health_text = PIXEL_FONT_SMALL.render(health, True,  COLORS['white'])
         window.blit(health_text, (130, 35))
 
         score = f'Score: {self.score}'
-        score_text = PIXEL_FONT.render(score, True,  COLORS['white'])
+        score_text = PIXEL_FONT_SMALL.render(score, True,  COLORS['white'])
         window.blit(score_text, (25, 80))

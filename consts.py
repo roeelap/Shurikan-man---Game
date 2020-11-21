@@ -16,7 +16,8 @@ GOBLIN_WIDTH = 64
 GOBLIN_HEIGHT = 64
 
 # text fonts
-PIXEL_FONT = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
+PIXEL_FONT_SMALL = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
+PIXEL_FONT_BIG = pygame.font.Font('./data/fonts/dpcomic.ttf', 100)
 
 # shuriken consts
 MAX_SHURIKENS = 3
@@ -65,3 +66,7 @@ PLAYER_HIT_SOUND = pygame.mixer.Sound('./data/sounds/player-hit.wav')
 SHURIKEN_THROW_SOUND = pygame.mixer.Sound('./data/sounds/shuriken-throw.wav')
 PLAYER_JUMP_SOUND = pygame.mixer.Sound('./data/sounds/player-jump.wav')
 ENEMY_SPAWN_SOUND = pygame.mixer.Sound('./data/sounds/enemy-spawn.wav')
+
+# button images
+NEW_GAME_INACTIVE_BUTTON = pygame.image.load('./data/images/buttons/newgame_inactive.png')
+NEW_GAME_ACTIVE_BUTTON = pygame.image.load('./data/images/buttons/newgame_active.png')
