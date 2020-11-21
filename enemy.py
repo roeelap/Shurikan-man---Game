@@ -27,8 +27,16 @@ class Enemy:
 
     def draw(self, window):
 
+        image_to_blit = self.walk_right_images[self.walk_count //
+                                               3] if self.speed > 0 else self.walk_left_images[self.walk_count//3]
+        timeout_image = image_to_blit.copy()
+        timeout_image.fill(
+            COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
+
         if self.movement_timer < self.movement_timeout:
             self.movement_timer += 1
+            if self.movement_timer % 3 != 0:
+                image_to_blit = timeout_image
         else:
             self.walk_count += 1
 
@@ -41,11 +49,9 @@ class Enemy:
             self.walk_count = 0
 
         if self.speed > 0:
-            window.blit(
-                self.walk_right_images[self.walk_count // 3], (self.x, self.y))
+            window.blit(image_to_blit, (self.x, self.y))
         else:
-            window.blit(
-                self.walk_left_images[self.walk_count // 3], (self.x, self.y))
+            window.blit(image_to_blit, (self.x, self.y))
 
         # drawing the health bar
         self.hitbox = (self.x + 20, self.y + 5, 31, 59)
