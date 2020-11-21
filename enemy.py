@@ -1,5 +1,5 @@
 import pygame
-from consts import COLORS
+from consts import COLORS, FPS
 from path import Path
 
 
@@ -22,8 +22,15 @@ class Enemy:
         self.alive = True
         self.walk_right_images = walk_right_images
         self.walk_left_images = walk_left_images
+        self.movement_timer = 0
+        self.movement_timeout = FPS
 
     def draw(self, window):
+
+        if self.movement_timer < self.movement_timeout:
+            self.movement_timer += 1
+        else:
+            self.walk_count += 1
 
         # Slow enemy down when punching
         self.speed = self.max_speed if self.speed > 0 else self.max_speed * -1
@@ -36,19 +43,13 @@ class Enemy:
         if self.speed > 0:
             window.blit(
                 self.walk_right_images[self.walk_count // 3], (self.x, self.y))
-            self.walk_count += 1
         else:
             window.blit(
                 self.walk_left_images[self.walk_count // 3], (self.x, self.y))
-            self.walk_count += 1
 
         # drawing the health bar
         self.hitbox = (self.x + 20, self.y + 5, 31, 59)
-        pygame.draw.rect(window, COLORS['red'],
-                         (self.hitbox[0], self.hitbox[1] - 20, 50, 10))
-        pygame.draw.rect(
-            window, COLORS['green'], (self.hitbox[0], self.hitbox[1] - 20, 50 - (5 * (self.max_health - self.health)), 10))
-
+        self.draw_health_bar(window)
         # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
 
     def auto_path(self):
@@ -58,10 +59,18 @@ class Enemy:
         inbound_right = self.x + self.speed < right_limit
         going_left = self.speed < 0
         going_right = self.speed >= 0
-        if inbound_left and going_left or inbound_right and going_right:
-            self.x += self.speed
-        else:
-            self.turn_around()
+        if self.movement_timer >= self.movement_timeout:
+            if inbound_left and going_left or inbound_right and going_right:
+                self.x += self.speed
+            else:
+                self.turn_around()
+
+    def draw_health_bar(self, window):
+        x_axis_fix = 17 if self.speed > 0 else 5
+        pygame.draw.rect(window, COLORS['red'],
+                         (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 20, 50, 10))
+        pygame.draw.rect(
+            window, COLORS['green'], (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 20, 50 - (5 * (self.max_health - self.health)), 10))
 
     def updatePathLimits(self, background_x):
         self.path.start = self.path_limit.start + background_x
