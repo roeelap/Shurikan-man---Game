@@ -7,20 +7,20 @@ class Shuriken:
         self.y = y
         self.radius = 12
         self.speed = speed
-        self.throw_count = 10
+        self.y_change = 10
 
     def draw(self, window):
         window.blit(SHURIKEN_IMAGE, (self.x, self.y))
 
-    def throw(self):
-        if self.x < SCREEN_WIDTH and self.x > 0 and self.throw_count != -20:
-            if self.throw_count >= -20:
+    def is_in_screen(self):
+        if self.x < SCREEN_WIDTH and self.x > 0 and self.y_change != -20:
+            if self.y_change >= -20:
                 self.x += self.speed
-                self.y -= int((self.throw_count *
-                                    abs(self.throw_count)) * 0.1)
-                self.throw_count -= 1
+                self.y -= int((self.y_change *
+                                    abs(self.y_change)) * 0.1)
+                self.y_change -= 1
             else:
-                self.throw_count = 10
+                self.y_change = 10
             return True
         else:
             return False
