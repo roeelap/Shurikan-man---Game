@@ -72,5 +72,11 @@ SHURIKEN_HIT_SOUNDS = [pygame.mixer.Sound('./data/sounds/shuriken-hit-1.wav'), p
     './data/sounds/shuriken-hit-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken-hit-3.wav')]
 
 # button images
-NEW_GAME_INACTIVE_BUTTON = pygame.image.load('./data/images/buttons/newgame_inactive.png')
-NEW_GAME_ACTIVE_BUTTON = pygame.image.load('./data/images/buttons/newgame_active.png')
+NEW_GAME_INACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/newgame-inactive.png')
+NEW_GAME_ACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/newgame-active.png')
+OPTIONS_INACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/options-inactive.png')
+OPTIONS_ACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/options-active.png')

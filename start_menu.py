@@ -26,6 +26,8 @@ def redraw_main_menu():
     window.blit(title_text, (145, 100))
     button(100, 400, 227, 46, NEW_GAME_INACTIVE_BUTTON,
            NEW_GAME_ACTIVE_BUTTON, window, sys.exit)
+    button(473, 400, 227, 46, OPTIONS_INACTIVE_BUTTON,
+           OPTIONS_ACTIVE_BUTTON, window, sys.exit)
     pygame.display.update()
 
 
