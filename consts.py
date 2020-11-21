@@ -11,6 +11,10 @@ FPS = 27
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
 PLAYER_INVINCIBLE_TIME = 27
 
+# goblin
+GOBLIN_WIDTH = 64
+GOBLIN_HEIGHT = 64
+
 # text fonts
 PIXEL_FONT = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
 
@@ -58,3 +62,4 @@ PLAYER_PORTRAIT = pygame.image.load(
 PLAYER_HIT_SOUND = pygame.mixer.Sound('./data/sounds/player-hit.wav')
 SHURIKEN_THROW_SOUND = pygame.mixer.Sound('./data/sounds/shuriken-throw.wav')
 PLAYER_JUMP_SOUND = pygame.mixer.Sound('./data/sounds/player-jump.wav')
+ENEMY_SPAWN_SOUND = pygame.mixer.Sound('./data/sounds/enemy-spawn.wav')
