@@ -11,3 +11,4 @@ Todo:
   ✔ fix a bug where the enemy exits the background image @done(20-11-20 14:44)
   ✔ Raw numbers in shuriken.py @done(20-11-21 17:59)
   ☐ Shurikens disappearing when out of current screen (even though they should hit the enemy that is currently not visible)
+  ☐ When enemy is facing left, the shurikens hitting him from behind vanish a little too soon.
