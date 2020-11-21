@@ -23,6 +23,8 @@ MAX_SHURIKENS = 3
 SHURIKEN_TIMEOUT = 6
 SHURIKEN_IMAGE = pygame.image.load('./data/images/player/shuriken.png')
 SHURIKEN_RADIUS = 12
+SHURIKEN_STARTING_SLOPE = 10
+SHURIKEN_ENDING_SLOPE = -20
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
