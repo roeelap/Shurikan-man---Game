@@ -10,3 +10,4 @@ Todo:
   ✔ Fix enemy "following" you and not sticking to its path @done(20-11-18 21:49)
   ✔ fix a bug where the enemy exits the background image @done(20-11-20 14:44)
   ✔ Raw numbers in shuriken.py @done(20-11-21 17:59)
+  ☐ Shurikens disappearing when out of current screen (even though they should hit the enemy that is currently not visible)
