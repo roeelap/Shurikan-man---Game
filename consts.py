@@ -16,7 +16,8 @@ GOBLIN_WIDTH = 64
 GOBLIN_HEIGHT = 64
 
 # text fonts
-PIXEL_FONT = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
+PIXEL_FONT_SMALL = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
+PIXEL_FONT_BIG = pygame.font.Font('./data/fonts/dpcomic.ttf', 100)
 
 # shuriken consts
 MAX_SHURIKENS = 3
