@@ -110,6 +110,7 @@ def main():
             if len(shurikens) < MAX_SHURIKENS:
                 shurikens.append(Shuriken(
                     round(player.x + player.width // 2), round(player.y + player.height//2), 20*facing))
+                SHURIKEN_THROW_SOUND.play()
 
         player_movement(player, enemies, background)
         redrawGameWindow()

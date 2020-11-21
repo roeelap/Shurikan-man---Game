@@ -55,3 +55,4 @@ PLAYER_PORTRAIT = pygame.image.load(
 
 # Sounds
 PLAYER_HIT_SOUND = pygame.mixer.Sound('./data/sounds/hit.wav')
+SHURIKEN_THROW_SOUND = pygame.mixer.Sound('./data/sounds/shuriken_throw.mp3')
