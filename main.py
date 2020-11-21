@@ -13,7 +13,7 @@ from consts import *
 
 def new_game():
     pygame.init()
-    pygame.display.set_caption("Shuriken player")
+    pygame.display.set_caption("Shuriken Man")
     window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
@@ -79,15 +79,7 @@ def main():
 
         # Remove shuriken when out of screen
         for shuriken in shurikens:
-            if shuriken.x < SCREEN_WIDTH and shuriken.x > 0 and shuriken.throw_count != -20:
-                if shuriken.throw_count >= -20:
-                    shuriken.x += shuriken.speed
-                    shuriken.y -= int((shuriken.throw_count *
-                                       abs(shuriken.throw_count)) * 0.1)
-                    shuriken.throw_count -= 1
-                else:
-                    shuriken.throw_count = 10
-            else:
+            if not shuriken.throw():
                 try:
                     shurikens.pop(shurikens.index(shuriken))
                 except:
