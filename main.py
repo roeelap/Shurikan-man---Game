@@ -51,7 +51,7 @@ def main():
     shuriken_shootloop = 0
     spawn_enemy_loop = 0
 
-    def redrawGameWindow():
+    def redraw_window():
         background.draw(window)
         for shuriken in shurikens:
             shuriken.draw(window)
@@ -80,10 +80,7 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-        # Check player-enemy collision, the detector is giving the player time to run away.
         check_player_enemy_collision(player, enemies)
-
-        # Check shuriken - enemy collision
         check_shuriken_enemy_collision(shurikens, enemies)
 
         # Remove shuriken when out of screen
@@ -114,7 +111,7 @@ def main():
                 SHURIKEN_THROW_SOUND.play()
 
         player_movement(player, enemies, background)
-        redrawGameWindow()
+        redraw_window()
 
         # if the player dies, the game stops (not a real feature, just to check if things are working properly)
         if player.health == 0:

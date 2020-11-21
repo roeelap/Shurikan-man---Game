@@ -1,11 +1,11 @@
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SHURIKEN_RADIUS
 
 
 class Shuriken:
     def __init__(self, x, y, speed):
         self.x = x
         self.y = y
-        self.radius = 12
+        self.radius = SHURIKEN_RADIUS
         self.speed = speed
         self.y_change = 10
 
