@@ -1,5 +1,5 @@
 import pygame
-from consts import SCREEN_WIDTH, SCREEN_MIDDLE
+from consts import PLAYER_JUMP_SOUND, SCREEN_WIDTH, SCREEN_MIDDLE
 
 
 def player_movement(player, enemies, background):
@@ -41,6 +41,7 @@ def player_movement(player, enemies, background):
 
     if not player.jumping:
         if keys[pygame.K_UP]:
+            PLAYER_JUMP_SOUND.play()
             player.jumping = True
     else:
         if player.jump_count >= -10:

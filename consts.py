@@ -18,6 +18,7 @@ PIXEL_FONT = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
 MAX_SHURIKENS = 3
 SHURIKEN_TIMEOUT = 6
 SHURIKEN_IMAGE = pygame.image.load('./data/images/player/shuriken.png')
+SHURIKEN_RADIUS = 12
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
@@ -54,5 +55,6 @@ PLAYER_PORTRAIT = pygame.image.load(
     './data/images/player/character-portrait.png')
 
 # Sounds
-PLAYER_HIT_SOUND = pygame.mixer.Sound('./data/sounds/hit.wav')
-SHURIKEN_THROW_SOUND = pygame.mixer.Sound('./data/sounds/shuriken_throw.mp3')
+PLAYER_HIT_SOUND = pygame.mixer.Sound('./data/sounds/player-hit.wav')
+SHURIKEN_THROW_SOUND = pygame.mixer.Sound('./data/sounds/shuriken-throw.wav')
+PLAYER_JUMP_SOUND = pygame.mixer.Sound('./data/sounds/player-jump.wav')
