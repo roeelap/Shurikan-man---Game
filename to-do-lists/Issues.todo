@@ -9,3 +9,4 @@ Todo:
   ✔ Create a colors dict under consts.py to store color and their rgb as a tuple @done(20-11-18 14:02)
   ✔ Fix enemy "following" you and not sticking to its path @done(20-11-18 21:49)
   ✔ fix a bug where the enemy exits the background image @done(20-11-20 14:44)
+  ☐ Raw numbers in shuriken.py
