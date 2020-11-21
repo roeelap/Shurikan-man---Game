@@ -90,7 +90,7 @@ def main():
 
         # Remove shuriken when out of screen
         for shuriken in shurikens:
-            if not shuriken.is_in_screen():
+            if not shuriken.is_in_screen(background):
                 try:
                     shurikens.pop(shurikens.index(shuriken))
                 except:

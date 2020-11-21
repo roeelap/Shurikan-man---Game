@@ -1,4 +1,4 @@
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SHURIKEN_RADIUS, SHURIKEN_STARTING_SLOPE, SHURIKEN_ENDING_SLOPE
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, SHURIKEN_RADIUS, SHURIKEN_STARTING_SLOPE, SHURIKEN_ENDING_SLOPE
 
 
 class Shuriken:
@@ -12,8 +12,8 @@ class Shuriken:
     def draw(self, window):
         window.blit(SHURIKEN_IMAGE, (self.x, self.y))
 
-    def is_in_screen(self):
-        if self.x < SCREEN_WIDTH and self.x > 0 and self.slope != SHURIKEN_ENDING_SLOPE:
+    def is_in_screen(self, background):
+        if self.y < SCREEN_HEIGHT and 0 < self.x < background.width and self.slope != SHURIKEN_ENDING_SLOPE:
             if self.slope >= SHURIKEN_ENDING_SLOPE:
                 self.x += self.speed
                 self.y -= int((self.slope *
