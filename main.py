@@ -24,12 +24,21 @@ def new_game():
 
 
 # Pilot for random enemy spawning
-def spawn_enemy(spawn_enemy_loop, enemies):
+def spawn_enemy(spawn_enemy_loop, enemies, countdown):
     spawn_enemy_loop += 1
-    if spawn_enemy_loop == 100:
-        x_pos = randint(0, 1650)
-        enemies.append(Enemy(x_pos, 530, 64, 64, Path(x_pos, randint(0, 1650)), -3, 9,
-                             GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
+    if spawn_enemy_loop == int(countdown * FPS):
+        start = randint(64, 1650-64)
+        end = randint(64, 1650-64)
+        while (abs(end - start) < 300):
+            start = randint(0, 1650)
+            end = randint(0, 1650)
+        direction = 1
+        if start > end:
+            direction = -1
+        new_enemy = Enemy(start, 530, 64, 64, Path(start, end), 3 * direction, 9,
+                          GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
+        print('enemy_spawned')
+        enemies.append(new_enemy)
         spawn_enemy_loop = 0
     return spawn_enemy_loop
 
@@ -62,8 +71,8 @@ def main():
 
         clock.tick(FPS)
 
-        # Not working yet, feature in progress
-        # spawn_enemy_loop = spawn_enemy(spawn_enemy_loop, enemies)
+        # Randomely spawn enemies every 5 seconds
+        spawn_enemy_loop = spawn_enemy(spawn_enemy_loop, enemies, 5)
 
         # Exit on quit button
         for event in pygame.event.get():

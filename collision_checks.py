@@ -18,4 +18,7 @@ def check_shuriken_enemy_collision(shurikens, enemies):
             inbound_y_down = shuriken.y + shuriken.radius > enemy.hitbox[1]
             if inbound_x_left and inbound_x_right and inbound_y_up and inbound_y_down:
                 enemy.hit()
-                shurikens.pop(shurikens.index(shuriken))
+                try:
+                    shurikens.pop(shurikens.index(shuriken))
+                except:
+                    pass

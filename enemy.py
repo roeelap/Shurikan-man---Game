@@ -37,7 +37,6 @@ class Enemy:
             window.blit(
                 self.walk_right_images[self.walk_count // 3], (self.x, self.y))
             self.walk_count += 1
-
         else:
             window.blit(
                 self.walk_left_images[self.walk_count // 3], (self.x, self.y))
@@ -53,10 +52,12 @@ class Enemy:
         # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
 
     def auto_path(self):
-        inbound_left = self.x + self.speed > self.path.end
-        inbound_right = self.x + self.speed < self.path.start
+        left_limit = min(self.path.start, self.path.end)
+        right_limit = max(self.path.start, self.path.end)
+        inbound_left = self.x + self.speed > left_limit
+        inbound_right = self.x + self.speed < right_limit
         going_left = self.speed < 0
-        going_right = self.speed > 0
+        going_right = self.speed >= 0
         if inbound_left and going_left or inbound_right and going_right:
             self.x += self.speed
         else:
