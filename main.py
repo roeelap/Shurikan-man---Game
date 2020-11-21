@@ -7,6 +7,7 @@ from background import Background
 from player_movement import player_movement
 from collision_checks import *
 import sys
+from random import randint
 from consts import *
 
 
@@ -17,19 +18,29 @@ def new_game():
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
     enemies = [Enemy(500, 530, 64, 64, Path(500, 100), -3, 9,
-                     GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES), Enemy(700, 530, 64, 64, Path(700, 100), -3, 9,
                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)]
     player = Player(10, 530)
     return window, background, player, enemies, shurikens
 
 
-# mainloop
+# Pilot for random enemy spawning
+def spawn_enemy(spawn_enemy_loop, enemies):
+    spawn_enemy_loop += 1
+    if spawn_enemy_loop == 100:
+        x_pos = randint(0, 1650)
+        enemies.append(Enemy(x_pos, 530, 64, 64, Path(x_pos, randint(0, 1650)), -3, 9,
+                             GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
+        spawn_enemy_loop = 0
+    return spawn_enemy_loop
+
+
 def main():
 
     window, background, player, enemies, shurikens = new_game()
 
     clock = pygame.time.Clock()
     shuriken_shootloop = 0
+    spawn_enemy_loop = 0
 
     def redrawGameWindow():
         background.draw(window)
@@ -46,10 +57,13 @@ def main():
         player.draw(window)
         pygame.display.update()
 
-    # game loop
+    # Game loop
     while True:
 
         clock.tick(FPS)
+
+        # Not working yet, feature in progress
+        # spawn_enemy_loop = spawn_enemy(spawn_enemy_loop, enemies)
 
         # Exit on quit button
         for event in pygame.event.get():
