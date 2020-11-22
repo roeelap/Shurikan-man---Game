@@ -32,15 +32,18 @@ def can_spawn_enemy(spawn_enemy_loop, enemies, player_x_pos, countdown, backgrou
 
 
 def spawn_enemy(enemies, player_x_pos, background):
-    start = randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
-    end = randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
-    while (abs(end - start) < 300 or abs(start-player_x_pos) < 100):
-        start = randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
-        end = randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
+    start = background.x + \
+        randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
+    end = background.x + randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
+    while (abs(end - start) < 300 or abs(start - player_x_pos) < 100):
+        start = background.x + \
+            randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
+        end = background.x + \
+            randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
     direction = 1
     if start > end:
         direction = -1
-    new_enemy = Enemy(start, 530, 64, 64, Path(start, end), 3 * direction, 9,
+    new_enemy = Enemy(start, 530, 64, 64, Path(start, end), 30 * direction, 9,
                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
     ENEMY_SPAWN_SOUND.play()
     enemies.append(new_enemy)
@@ -76,8 +79,8 @@ def main():
         clock.tick(FPS)
 
         # Randomely spawn enemies every 5 seconds
-        spawn_enemy_loop = can_spawn_enemy(
-            spawn_enemy_loop, enemies,  player.x, 5, background)
+        # spawn_enemy_loop = can_spawn_enemy(
+        #     spawn_enemy_loop, enemies,  player.x, 5, background)
 
         # Exit on quit button
         for event in pygame.event.get():
@@ -114,6 +117,13 @@ def main():
                 shurikens.append(Shuriken(
                     round(player.x + player.width // 2), round(player.y + player.height//2), 20*facing))
                 SHURIKEN_THROW_SOUND.play()
+
+        # Leave for testing
+        # if keys[pygame.K_DOWN]:
+        #     spawn_enemy(enemies, player.x, background)
+
+        # if keys[pygame.K_s]:
+        #     enemies.clear()
 
         player_movement(player, enemies, background)
         redraw_window()

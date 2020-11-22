@@ -79,16 +79,16 @@ class Enemy:
         pygame.draw.rect(
             window, COLORS['green'], (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 20, 50 - (5 * (self.max_health - self.health)), 10))
 
-    def updatePathLimits(self, background_x):
-        self.path.start = self.path_limit.start + background_x
-        self.path.end = self.path_limit.end + background_x
+    def update_path_limits(self, player_speed, direction):
+        self.path.start -= player_speed * direction
+        self.path.end -= player_speed * direction
 
     def turn_around(self):
         self.speed *= -1
         self.walk_count = 0
 
-    def move(self, background_speed, direction):
-        self.x += background_speed * direction
+    def move(self, player_speed, direction):
+        self.x -= player_speed * direction
 
     def hit(self):
         if self.health > 0:
