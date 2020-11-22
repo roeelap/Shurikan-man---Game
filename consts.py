@@ -79,3 +79,11 @@ OPTIONS_INACTIVE_BUTTON = pygame.image.load(
     './data/images/buttons/options-inactive.png')
 OPTIONS_ACTIVE_BUTTON = pygame.image.load(
     './data/images/buttons/options-active.png')
+SHOP_INACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/shop-inactive.png')
+SHOP_ACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/shop-active.png')
+QUIT_INACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/quit-inactive.png')
+QUIT_ACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/quit-active.png')

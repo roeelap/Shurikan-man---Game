@@ -9,6 +9,7 @@ from collision_checks import *
 import sys
 from random import randint
 from consts import *
+from start_menu import start_menu
 
 
 def new_game():
@@ -47,6 +48,8 @@ def spawn_enemy(enemies, player_x_pos, background):
 
 
 def main():
+
+    start_menu()
 
     window, background, player, enemies, shurikens = new_game()
     spawn_enemy(enemies, player.x, background)
