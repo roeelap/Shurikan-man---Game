@@ -28,7 +28,7 @@ class Player:
             self.walk_count = 3
 
         if self.standing:
-            self.walk_count = 0
+            self.walk_count = 2
 
         if self.left:
             self.image = PLAYER_WALK_LEFT_IMAGES[self.walk_count // 3]
