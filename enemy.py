@@ -1,5 +1,5 @@
 import pygame
-from consts import COLORS, FPS, GOBLIN_DEATH_SOUND, SHURIKEN_HIT_SOUNDS
+from consts import COLORS, FPS, GOBLIN_DEATH_SOUNDS, SHURIKEN_HIT_SOUNDS
 from path import Path
 from random import choice
 
@@ -95,5 +95,5 @@ class Enemy:
             choice(SHURIKEN_HIT_SOUNDS).play()
             self.health -= 1
         else:
-            GOBLIN_DEATH_SOUND.play()
+            choice(GOBLIN_DEATH_SOUNDS).play()
             self.alive = False

@@ -66,7 +66,11 @@ PLAYER_HIT_SOUND = pygame.mixer.Sound('./data/sounds/player-hit.wav')
 SHURIKEN_THROW_SOUND = pygame.mixer.Sound('./data/sounds/shuriken-throw.wav')
 PLAYER_JUMP_SOUND = pygame.mixer.Sound('./data/sounds/player-jump.wav')
 ENEMY_SPAWN_SOUND = pygame.mixer.Sound('./data/sounds/enemy-spawn.wav')
-GOBLIN_DEATH_SOUND = pygame.mixer.Sound('./data/sounds/goblin-death.wav')
+TRANSITION_SOUND = pygame.mixer.Sound('./data/sounds/transition.wav')
+BUTTON_CLICK_SOUND = pygame.mixer.Sound('./data/sounds/button-click.wav')
+BUTTON_HOVER_SOUND = pygame.mixer.Sound('./data/sounds/button-hover.wav')
+GOBLIN_DEATH_SOUNDS = [pygame.mixer.Sound(
+    './data/sounds/goblin-death-1.wav'), pygame.mixer.Sound('./data/sounds/goblin-death-2.wav')]
 SHURIKEN_HIT_SOUNDS = [pygame.mixer.Sound('./data/sounds/shuriken-hit-1.wav'), pygame.mixer.Sound(
     './data/sounds/shuriken-hit-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken-hit-3.wav')]
 
