@@ -25,7 +25,7 @@ quit_button = Button(280, 500, 227, 46, QUIT_INACTIVE_BUTTON,
 
 
 def redraw_options_menu(mouse):
-    window.blit(BACKGROUND_DUNGEON, (-500, 0))
+    window.blit(BACKGROUND_DUNGEON, (-300, 0))
     window.blit(options_title_text, (260, 100))
     window.blit(music_text, (200, 300))
     window.blit(sound_text, (200, 400))

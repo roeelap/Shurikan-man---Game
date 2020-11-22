@@ -3,6 +3,7 @@ from consts import *
 import sys
 from button import Button
 from options_menu import options_menu
+from shop_menu import shop_menu
 
 
 pygame.init()
@@ -55,5 +56,8 @@ def start_menu():
 
         elif options_button.is_pressed(mouse, click):
             options_menu()
+        
+        elif shop_button.is_pressed(mouse, click):
+            shop_menu()
 
         redraw_start_menu(mouse)
