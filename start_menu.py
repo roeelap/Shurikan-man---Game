@@ -1,38 +1,15 @@
 import pygame
 from consts import *
 import sys
+from button import Button
 
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
-pygame.display.set_icon(PLAYER_PORTRAIT)
+pygame.display.set_icon(SHURIKEN_IMAGE)
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 title_text = PIXEL_FONT_BIG.render("Shuriken Man", True,  COLORS['white'])
-
-
-class Button:
-    def __init__(self, x, y, width, height, inactive_image, active_image):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.inactive_image = inactive_image
-        self.active_image = active_image
-    
-    def show(self, window):
-        global mouse
-        mouse = pygame.mouse.get_pos()
-        if self.x < mouse[0] < self.x + self.width and self.y < mouse[1] < self.y + self.height:
-            window.blit(self.active_image, (self.x, self.y))
-        else:
-            window.blit(self.inactive_image, (self.x, self.y))
-    
-    def is_pressed(self, action=None):
-        click = pygame.mouse.get_pressed()
-        if self.x < mouse[0] < self.x + self.width and self.y < mouse[1] < self.y + self.height:
-            if click[0] == 1:
-                return True
 
 
 new_game_button = Button(100, 300, 227, 46, NEW_GAME_INACTIVE_BUTTON,

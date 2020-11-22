@@ -15,7 +15,7 @@ from start_menu import start_menu
 def new_game():
     pygame.init()
     pygame.display.set_caption("Shuriken Man")
-    pygame.display.set_icon(PLAYER_PORTRAIT)
+    pygame.display.set_icon(SHURIKEN_IMAGE)
     window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
