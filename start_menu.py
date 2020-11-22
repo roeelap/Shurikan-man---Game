@@ -34,13 +34,13 @@ class Button:
                 return True
 
 
-new_game_button = Button(100, 400, 227, 46, NEW_GAME_INACTIVE_BUTTON,
+new_game_button = Button(100, 300, 227, 46, NEW_GAME_INACTIVE_BUTTON,
            NEW_GAME_ACTIVE_BUTTON)
-shop_button = Button(473, 400, 227, 46, SHOP_INACTIVE_BUTTON,
+shop_button = Button(473, 300, 227, 46, SHOP_INACTIVE_BUTTON,
            SHOP_ACTIVE_BUTTON)
-options_button = Button(100, 500, 227, 46, OPTIONS_INACTIVE_BUTTON,
+options_button = Button(100, 400, 227, 46, OPTIONS_INACTIVE_BUTTON,
            OPTIONS_ACTIVE_BUTTON)
-quit_button = Button(473, 500, 227, 46, QUIT_INACTIVE_BUTTON,
+quit_button = Button(473, 400, 227, 46, QUIT_INACTIVE_BUTTON,
            QUIT_ACTIVE_BUTTON) 
 
 
@@ -64,6 +64,7 @@ def start_menu():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.exit()
 
         if new_game_button.is_pressed():
             break
