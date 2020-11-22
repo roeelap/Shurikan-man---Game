@@ -6,9 +6,10 @@ from shuriken import Shuriken
 from background import Background
 from player_movement import player_movement
 from collision_checks import *
-import sys
+from sys import exit
 from random import randint
-from consts import *
+from consts import BACKGROUND_DUNGEON, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
+    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, ENEMY_SPAWN_SOUND, MAX_SHURIKENS, SHURIKEN_TIMEOUT, SHURIKEN_THROW_SOUND
 from start_menu import start_menu
 
 
@@ -90,7 +91,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
+                exit()
 
         check_player_enemy_collision(player, enemies)
         check_shuriken_enemy_collision(shurikens, enemies)
