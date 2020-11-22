@@ -34,3 +34,33 @@ class Button:
             if click[0] == 1:
                 BUTTON_CLICK_SOUND.play()
                 return True
+
+
+class Checkbox(Button):
+    def __init__(self, x, y, width, height, inactive_image, active_image):
+        Button.__init__(self, x, y, width, height, inactive_image, active_image)
+        self.is_on = True
+        self.click_counter = 0
+    
+    def show(self, window, mouse):
+        if self.click_counter > 0:
+            self.click_counter -= 1
+
+        if self.is_on:
+            window.blit(self.active_image, (self.x, self.y))
+        else:
+            window.blit(self.inactive_image, (self.x, self.y))            
+
+        if not self.is_mouse_over(mouse):
+            self.over = False
+
+    def is_pressed(self, mouse, click, action=None):
+        if self.is_mouse_over(mouse):
+            if click[0] == 1 and self.click_counter == 0:
+                if self.is_on:
+                    self.is_on = False
+                else:
+                    self.is_on = True
+                self.click_counter = 7
+                BUTTON_CLICK_SOUND.play()
+                return True

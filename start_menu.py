@@ -2,6 +2,7 @@ import pygame
 from consts import *
 import sys
 from button import Button
+from options_menu import options_menu
 
 
 pygame.init()
@@ -51,5 +52,8 @@ def start_menu():
         elif quit_button.is_pressed(mouse, click):
             pygame.quit()
             sys.exit()
+        
+        elif options_button.is_pressed(mouse, click):
+            options_menu()
 
         redraw_start_menu(mouse)
