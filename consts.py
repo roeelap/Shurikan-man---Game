@@ -70,9 +70,6 @@ GOBLIN_DEATH_SOUND = pygame.mixer.Sound('./data/sounds/goblin-death.wav')
 SHURIKEN_HIT_SOUNDS = [pygame.mixer.Sound('./data/sounds/shuriken-hit-1.wav'), pygame.mixer.Sound(
     './data/sounds/shuriken-hit-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken-hit-3.wav')]
 
-# music
-MUSIC = pygame.mixer.music.load('./data/music/Crimson-Knights.mp3')
-
 # button images
 NEW_GAME_INACTIVE_BUTTON = pygame.image.load(
     './data/images/buttons/newgame-inactive.png')
