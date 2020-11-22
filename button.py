@@ -1,4 +1,5 @@
-import pygame
+from consts import BUTTON_CLICK_SOUND, BUTTON_HOVER_SOUND
+
 
 class Button:
 
