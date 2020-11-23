@@ -1,5 +1,5 @@
 import pygame
-from consts import SOUNDS, SCREEN_WIDTH, SCREEN_MIDDLE
+from consts import SOUNDS, SCREEN_WIDTH, SCREEN_MIDDLE, PLAYER_JUMP_COUNT
 
 
 def player_movement(player, enemies, shurikens, background):
