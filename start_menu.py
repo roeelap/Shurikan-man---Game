@@ -1,5 +1,5 @@
 import pygame
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, TRANSITION_SOUND, COLORS
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, COLORS
 import sys
 from button import Button
 from options_menu import options_menu
@@ -43,7 +43,7 @@ def start_menu():
                 sys.exit()
 
         if new_game_button.is_pressed(mouse, click):
-            TRANSITION_SOUND.play()
+            SOUNDS['transition'].play()
             break
 
         elif quit_button.is_pressed(mouse, click):

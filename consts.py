@@ -63,17 +63,12 @@ PLAYER_PORTRAIT = pygame.image.load(
     './data/images/player/character-portrait.png')
 
 # Sounds
-PLAYER_HIT_SOUND = pygame.mixer.Sound('./data/sounds/player-hit.wav')
-SHURIKEN_THROW_SOUND = pygame.mixer.Sound('./data/sounds/shuriken-throw.wav')
-PLAYER_JUMP_SOUND = pygame.mixer.Sound('./data/sounds/player-jump.wav')
-ENEMY_SPAWN_SOUND = pygame.mixer.Sound('./data/sounds/enemy-spawn.wav')
-TRANSITION_SOUND = pygame.mixer.Sound('./data/sounds/transition.wav')
-BUTTON_CLICK_SOUND = pygame.mixer.Sound('./data/sounds/button-click.wav')
-BUTTON_HOVER_SOUND = pygame.mixer.Sound('./data/sounds/button-hover.wav')
-GOBLIN_DEATH_SOUNDS = [pygame.mixer.Sound(
-    './data/sounds/goblin-death-1.wav'), pygame.mixer.Sound('./data/sounds/goblin-death-2.wav')]
-SHURIKEN_HIT_SOUNDS = [pygame.mixer.Sound('./data/sounds/shuriken-hit-1.wav'), pygame.mixer.Sound(
-    './data/sounds/shuriken-hit-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken-hit-3.wav')]
+SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/player-hit.wav'), 'shuriken_throw': pygame.mixer.Sound('./data/sounds/shuriken-throw.wav'),
+          'player_jump': pygame.mixer.Sound('./data/sounds/player-jump.wav'), 'enemy_spawn': pygame.mixer.Sound('./data/sounds/enemy-spawn.wav'),
+          'transition': pygame.mixer.Sound('./data/sounds/transition.wav'), 'button_click': pygame.mixer.Sound('./data/sounds/button-click.wav'),
+          'button_hover': pygame.mixer.Sound('./data/sounds/button-hover.wav'),
+          'goblin_deaths': [pygame.mixer.Sound('./data/sounds/goblin-death-1.wav'), pygame.mixer.Sound('./data/sounds/goblin-death-2.wav')],
+          'shuriken_hits': [pygame.mixer.Sound('./data/sounds/shuriken-hit-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken-hit-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken-hit-3.wav')]}
 
 # button images
 INACTIVE_BUTTON = pygame.image.load(

@@ -1,4 +1,4 @@
-from consts import BUTTON_CLICK_SOUND, BUTTON_HOVER_SOUND, PIXEL_FONT_BUTTON, COLORS, INACTIVE_BUTTON, ACTIVE_BUTTON, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE
+from consts import SOUNDS, PIXEL_FONT_BUTTON, COLORS, INACTIVE_BUTTON, ACTIVE_BUTTON, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE
 
 class Button:
 
@@ -16,7 +16,7 @@ class Button:
 
     def play_hover_sound(self):
         if not self.over:
-            BUTTON_HOVER_SOUND.play()
+            SOUNDS['button_hover'].play()
             self.over = True
 
     def is_mouse_over(self, mouse):
@@ -41,7 +41,7 @@ class Button:
     def is_pressed(self, mouse, click, action=None):
         if self.is_mouse_over(mouse):
             if click[0] == 1:
-                BUTTON_CLICK_SOUND.play()
+                SOUNDS['button_click'].play()
                 return True
 
 
@@ -76,5 +76,5 @@ class Checkbox(Button):
                 else:
                     self.is_on = True
                 self.click_counter = 7
-                BUTTON_CLICK_SOUND.play()
+                SOUNDS['button_click'].play()
                 return True
