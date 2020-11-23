@@ -11,7 +11,9 @@ window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
 shurikens_button = Button('Shurikens', 280, 250)
-quit_shop_button = Button('Back', 280, 500)
+weapons_button = Button('Special Weapons', 280, 325)
+backgrounds_button = Button('Backgrounds', 280, 400)
+quit_shop_button = Button('Back', 280, 475)
 
 
 def redraw_shop_menu(mouse):
@@ -21,7 +23,8 @@ def redraw_shop_menu(mouse):
     window.blit(shop_title_text, (300, 100))
 
     shurikens_button.show(window, mouse)
-
+    weapons_button.show(window, mouse)
+    backgrounds_button.show(window, mouse)
     quit_shop_button.show(window, mouse)
 
     pygame.display.update()
