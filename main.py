@@ -9,7 +9,7 @@ from collision_checks import *
 from sys import exit
 from random import randint
 from consts import BACKGROUND_DUNGEON, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
-    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, ENEMY_SPAWN_SOUND, SHURIKEN_TIMEOUT, SHURIKEN_THROW_SOUND
+    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, ENEMY_SPAWN_SOUND, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SHURIKEN_THROW_SOUND
 from start_menu import start_menu
 
 
@@ -121,7 +121,7 @@ def main():
                 facing = -1
                 shuriken_start_x = player.hitbox[0] + 5
             shurikens.append(Shuriken(
-                shuriken_start_x, round(player.y + player.height/2), 15 * facing))
+                shuriken_start_x, round(player.y + player.height/2), SHURIKEN_RADIUS, player.throw_speed * facing))
             SHURIKEN_THROW_SOUND.play()
 
         # Leave for testing

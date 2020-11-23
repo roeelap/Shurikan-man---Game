@@ -22,6 +22,7 @@ class Player:
         self.health = self.max_health
         self.hurt_counter = 0
         self.score = 0
+        self.throw_speed = 15
 
     def draw(self, window):
         if self.walk_count + 1 >= 27:

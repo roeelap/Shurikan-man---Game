@@ -91,10 +91,11 @@ class Enemy:
     def move(self, player_speed, direction):
         self.x -= player_speed * direction
 
-    def hit(self):
+    def hit(self, shuriken_speed, ):
         if self.health > 0:
             choice(SHURIKEN_HIT_SOUNDS).play()
             self.health -= 1
+            self.x += int(shuriken_speed / 3)
         else:
             choice(GOBLIN_DEATH_SOUNDS).play()
             self.alive = False
