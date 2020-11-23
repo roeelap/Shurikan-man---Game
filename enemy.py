@@ -27,8 +27,12 @@ class Enemy:
         self.movement_timeout = FPS
 
     def draw(self, window):
+        if not self.alive:
+            return
+        self.auto_path()
 
         hitbox_correction = 0
+
         image_to_blit = self.walk_right_images[self.walk_count //
                                                6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
         timeout_image = image_to_blit.copy()
@@ -57,10 +61,11 @@ class Enemy:
             window.blit(image_to_blit, (self.x, self.y))
 
         # drawing the health bar
-        self.hitbox = (self.x + 20 + hitbox_correction, self.y + 15, 31, 59)
+        self.hitbox = (self.x + 20 + hitbox_correction,
+                       self.y + 30, 31, 10)
         self.draw_health_bar(window)
 
-        # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def auto_path(self):
         left_limit = min(self.path.start, self.path.end)
@@ -78,9 +83,9 @@ class Enemy:
     def draw_health_bar(self, window):
         x_axis_fix = 17 if self.speed > 0 else 5
         pygame.draw.rect(window, COLORS['red'],
-                         (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 20, 50, 10))
+                         (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 40, 50, 10))
         pygame.draw.rect(
-            window, COLORS['green'], (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 20, 50 - (5 * (self.max_health - self.health)), 10))
+            window, COLORS['green'], (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 40, 50 - (5 * (self.max_health - self.health)), 10))
 
     def update_path_limits(self, player_speed, direction):
         self.path.start -= player_speed * direction

@@ -65,17 +65,21 @@ def main():
 
     def redraw_window():
         background.draw(window)
+        objects_to_draw = []
         for shuriken in shurikens:
-            shuriken.draw(window)
+            objects_to_draw.append(shuriken)
         for enemy in enemies:
-            if enemy.alive:
-                enemy.auto_path()
-                enemy.draw(window)
-            else:
-                enemies.remove(enemy)
-                player.score += 1
+            objects_to_draw.append(enemy)
+        objects_to_draw.append(player)
+        objects_to_draw.sort(key=lambda object: object.y, reverse=False)
+        for object in objects_to_draw:
+            object.draw(window)
+            if(type(object) == Enemy):
+                if not object.alive:
+                    enemies.remove(object)
+                    player.score += 1
+
         player.display_player_stats(window)
-        player.draw(window)
         pygame.display.update()
 
     # Game loop
