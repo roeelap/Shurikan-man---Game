@@ -7,6 +7,7 @@ class Shuriken:
         self.x = x
         self.y = y
         self.radius = radius
+        self.height = radius * 2
         self.speed = speed
         self.slope = SHURIKEN_STARTING_SLOPE
         self.rotation_angle = 0

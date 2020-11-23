@@ -75,12 +75,13 @@ def main():
         for coin in coins:
             objects_to_draw.append(coin)
         objects_to_draw.append(player)
-        objects_to_draw.sort(key=lambda object: object.y, reverse=False)
+        objects_to_draw.sort(key=lambda object: object.y +
+                             object.height, reverse=False)
         for object in objects_to_draw:
             object.draw(window)
             if(type(object) == Enemy):
                 if object.alive:
-                    object.can_hit = True if player.y - 5 <= object.y <= player.y + 5 else False
+                    object.can_hit = True if player.y - 15 <= object.y <= player.y + 15 else False
                 else:
                     enemies.remove(object)
                     coins.append(Coin(object.x, object.y, "bronze"))
