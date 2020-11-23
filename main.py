@@ -65,12 +65,6 @@ def main():
     shuriken_shootloop = 0
     spawn_enemy_loop = 0
 
-    def refresh_hit_boxes(enemy):
-        if player.y-5 <= enemy.y <= player.y+5:
-            enemy.create_hitbox()
-        else:
-            enemy.remove_hitbox()
-
     def redraw_window():
         background.draw(window)
         objects_to_draw = []
@@ -86,7 +80,7 @@ def main():
             object.draw(window)
             if(type(object) == Enemy):
                 if object.alive:
-                    refresh_hit_boxes(object)
+                    object.can_hit = True if player.y - 5 <= object.y <= player.y + 5 else False
                 else:
                     enemies.remove(object)
                     coins.append(Coin(object.x, object.y, "bronze"))
@@ -138,7 +132,7 @@ def main():
                 facing = -1
                 shuriken_start_x = player.hitbox[0] + 5
             shurikens.append(Shuriken(
-                shuriken_start_x, round(player.y + player.height/2), SHURIKEN_RADIUS, player.throw_speed * facing))
+                shuriken_start_x, round(player.y + player.height / 2), SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3]))
             SOUNDS['shuriken_throw'].play()
 
         # Leave for testing
