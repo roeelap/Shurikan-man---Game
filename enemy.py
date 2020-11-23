@@ -17,7 +17,7 @@ class Enemy:
         self.path = path
         self.path_limit = Path(self.path.start, self.path.end)
         self.max_speed = abs(speed)
-        self.hitbox = (x + 20, y + 5, 31, 59)
+        self.hitbox = (self.x + 20, self.y + 15, 31, 59)
         self.health = health
         self.max_health = health
         self.alive = True
@@ -28,6 +28,7 @@ class Enemy:
 
     def draw(self, window):
 
+        hitbox_correction = 0
         image_to_blit = self.walk_right_images[self.walk_count //
                                                6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
         timeout_image = image_to_blit.copy()
@@ -52,13 +53,14 @@ class Enemy:
         if self.speed > 0:
             window.blit(image_to_blit, (self.x, self.y))
         else:
+            hitbox_correction = 15
             window.blit(image_to_blit, (self.x, self.y))
 
         # drawing the health bar
-        self.hitbox = (self.x + 20, self.y + 5, 31, 59)
+        self.hitbox = (self.x + 20 + hitbox_correction, self.y + 15, 31, 59)
         self.draw_health_bar(window)
 
-        # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
+        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def auto_path(self):
         left_limit = min(self.path.start, self.path.end)
