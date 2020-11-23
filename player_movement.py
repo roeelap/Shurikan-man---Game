@@ -2,7 +2,7 @@ import pygame
 from consts import PLAYER_JUMP_SOUND, SCREEN_WIDTH, SCREEN_MIDDLE
 
 
-def player_movement(player, enemies, background):
+def player_movement(player, enemies, shurikens, background):
     """The main character movement system"""
 
     keys = pygame.key.get_pressed()
@@ -18,6 +18,8 @@ def player_movement(player, enemies, background):
                 for enemy in enemies:
                     enemy.update_path_limits(player.speed, 1)
                     enemy.move(player.speed, 1)
+                for shuriken in shurikens:
+                    shuriken.x -= player.speed
             elif background.x == SCREEN_WIDTH - background.width:
                 player.move_right()
 
@@ -34,6 +36,8 @@ def player_movement(player, enemies, background):
                 for enemy in enemies:
                     enemy.update_path_limits(player.speed, -1)
                     enemy.move(player.speed, -1)
+                for shuriken in shurikens:
+                    shuriken.x += player.speed
 
     else:
         player.standing = True

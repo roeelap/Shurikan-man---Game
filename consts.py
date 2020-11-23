@@ -21,11 +21,11 @@ PIXEL_FONT_MID = pygame.font.Font('./data/fonts/dpcomic.ttf', 50)
 PIXEL_FONT_BIG = pygame.font.Font('./data/fonts/dpcomic.ttf', 100)
 
 # shuriken consts
-MAX_SHURIKENS = 3
+# MAX_SHURIKENS = 3
 SHURIKEN_TIMEOUT = 6
 SHURIKEN_IMAGE = pygame.image.load('./data/images/player/shuriken.png')
 SHURIKEN_RADIUS = 9
-SHURIKEN_STARTING_SLOPE = 8
+SHURIKEN_STARTING_SLOPE = 9
 SHURIKEN_ENDING_SLOPE = -20
 
 # colors dict
@@ -92,10 +92,12 @@ QUIT_INACTIVE_BUTTON = pygame.image.load(
     './data/images/buttons/quit-inactive.png')
 QUIT_ACTIVE_BUTTON = pygame.image.load(
     './data/images/buttons/quit-active.png')
-SHURIKENS_INACTIVE_BUTTON = pygame.image.load('./data/images/buttons/shurikens-inactive.png')
-    
-SHURIKENS_ACTIVE_BUTTON = pygame.image.load('./data/images/buttons/shurikens-active.png')
-    
+SHURIKENS_INACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/shurikens-inactive.png')
+
+SHURIKENS_ACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/shurikens-active.png')
+
 CHECKBOX_INACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-inactive.png')
 CHECKBOX_ACTIVE = pygame.image.load(

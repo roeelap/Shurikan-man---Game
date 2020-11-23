@@ -9,7 +9,7 @@ from collision_checks import *
 from sys import exit
 from random import randint
 from consts import BACKGROUND_DUNGEON, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
-    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, ENEMY_SPAWN_SOUND, MAX_SHURIKENS, SHURIKEN_TIMEOUT, SHURIKEN_THROW_SOUND
+    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, ENEMY_SPAWN_SOUND, SHURIKEN_TIMEOUT, SHURIKEN_THROW_SOUND
 from start_menu import start_menu
 
 
@@ -21,7 +21,7 @@ def new_game():
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
     enemies = []
-    player = Player(10, 30)
+    player = Player(10, 530)
     return window, background, player, enemies, shurikens
 
 
@@ -84,8 +84,8 @@ def main():
         clock.tick(FPS)
 
         # Randomely spawn enemies every 5 seconds
-        spawn_enemy_loop = can_spawn_enemy(
-            spawn_enemy_loop, enemies,  player.x, 5, background)
+        # spawn_enemy_loop = can_spawn_enemy(
+        #     spawn_enemy_loop, enemies,  player.x, 5, background)
 
         # Exit on quit button
         for event in pygame.event.get():
@@ -131,7 +131,7 @@ def main():
         # if keys[pygame.K_s]:
         #     enemies.clear()
 
-        player_movement(player, enemies, background)
+        player_movement(player, enemies, shurikens, background)
         redraw_window()
 
         # if the player dies, the game stops (not a real feature, just to check if things are working properly)
