@@ -57,6 +57,7 @@ class Enemy:
         # drawing the health bar
         self.hitbox = (self.x + 20, self.y + 5, 31, 59)
         self.draw_health_bar(window)
+
         # pygame.draw.rect(window, (255,0,0), self.hitbox,2)
 
     def auto_path(self):
