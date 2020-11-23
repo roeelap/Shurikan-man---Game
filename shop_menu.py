@@ -1,7 +1,7 @@
 import pygame
 import sys
 from button import Button
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH
 
 
 pygame.init()
@@ -10,17 +10,20 @@ pygame.display.set_icon(SHURIKEN_IMAGE)
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
-shurikens_button = Button('Shurikens', 280, 250)
-weapons_button = Button('Special Weapons', 280, 325)
-backgrounds_button = Button('Backgrounds', 280, 400)
-quit_shop_button = Button('Back', 280, 475)
+shop_title_text = PIXEL_FONT_BIG.render("Shop", True,  COLORS['white'])
+shop_textRect = shop_title_text.get_rect()
+shop_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 6
+
+shurikens_button = Button('Shurikens', (SCREEN_WIDTH // 2) - (BUTTON_WIDTH // 2), SCREEN_HEIGHT * 2// 6)
+weapons_button = Button('Special Weapons', (SCREEN_WIDTH // 2) - (BUTTON_WIDTH // 2), SCREEN_HEIGHT * 3// 6)
+backgrounds_button = Button('Backgrounds', (SCREEN_WIDTH // 2) - (BUTTON_WIDTH // 2), SCREEN_HEIGHT * 4// 6)
+quit_shop_button = Button('Back', (SCREEN_WIDTH // 2) - (BUTTON_WIDTH // 2), SCREEN_HEIGHT * 5// 6)
 
 
 def redraw_shop_menu(mouse):
     window.blit(BACKGROUND_DUNGEON, (0, 0))
 
-    shop_title_text = PIXEL_FONT_BIG.render("Shop", True,  COLORS['white'])
-    window.blit(shop_title_text, (300, 100))
+    window.blit(shop_title_text, shop_textRect)
 
     shurikens_button.show(window, mouse)
     weapons_button.show(window, mouse)
@@ -52,14 +55,13 @@ def shop_menu():
 
 
 # Shuriken shop
-quit_shuriken_shop_button = Button('Back', 500, 500)
+
+quit_shuriken_shop_button = Button('Back', SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 5// 6)
 
 def redraw_shuriken_shop(mouse):
-    window.blit(BACKGROUND_DUNGEON, (-800, 0))
+    window.blit(BACKGROUND_DUNGEON, (0, 0))
 
-    shop_title_text = PIXEL_FONT_BIG.render(
-        "Shurikens", True,  COLORS['white'])
-    window.blit(shop_title_text, (220, 100))
+    window.blit(shop_title_text, shop_textRect)
 
     quit_shuriken_shop_button.show(window, mouse)
 

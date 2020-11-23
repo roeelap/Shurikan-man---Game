@@ -1,5 +1,5 @@
 import pygame
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, CHECKBOX_HEIGHT, BUTTON_WIDTH
 from button import Button, Checkbox
 import sys
 
@@ -16,16 +16,16 @@ options_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 4
 
 music_text = PIXEL_FONT_MID.render("Music", True,  COLORS['white'])
 music_textRect = options_title_text.get_rect()
-music_textRect.center = SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2
+music_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2
 
 
 sound_text = PIXEL_FONT_MID.render("Sound", True,  COLORS['white'])
 sound_textRect = options_title_text.get_rect()
-sound_textRect.center = SCREEN_WIDTH // 3, SCREEN_HEIGHT * 3 // 4
+sound_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT * 3 // 4
 
-music_checkbox = Checkbox(530, 300)
-sound_checkbox = Checkbox(530, 400)
-quit_button = Button('Back', 280, 500)
+music_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT // 2 - CHECKBOX_HEIGHT)
+sound_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT * 3 // 4 - CHECKBOX_HEIGHT)
+back_button = Button('Back', SCREEN_WIDTH // 2 - (BUTTON_WIDTH // 2), SCREEN_HEIGHT * 5 // 6)
 
 def set_all_volumes(all_sounds, new_volume):
     for sound in all_sounds:
@@ -42,7 +42,7 @@ def redraw_options_menu(mouse):
     window.blit(sound_text, sound_textRect)
     music_checkbox.show(window, mouse)
     sound_checkbox.show(window, mouse)
-    quit_button.show(window, mouse)
+    back_button.show(window, mouse)
     pygame.display.update()
 
 
@@ -68,7 +68,7 @@ def options_menu():
             else:
                 set_all_volumes(SOUNDS.values(), 0.0)
 
-        elif quit_button.is_pressed(mouse, click):
+        elif back_button.is_pressed(mouse, click):
             break
 
         redraw_options_menu(mouse)

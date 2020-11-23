@@ -1,4 +1,4 @@
-from consts import SOUNDS, PIXEL_FONT_BUTTON, COLORS, INACTIVE_BUTTON, ACTIVE_BUTTON, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE, BUTTON_HEIGHT, BUTTON_WIDTH
+from consts import SOUNDS, PIXEL_FONT_BUTTON, COLORS, INACTIVE_BUTTON, ACTIVE_BUTTON, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE, BUTTON_HEIGHT, BUTTON_WIDTH, CHECKBOX_WIDTH, CHECKBOX_HEIGHT
 
 class Button:
 
@@ -49,8 +49,8 @@ class Checkbox(Button):
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.width = 52
-        self.height = 48
+        self.width = CHECKBOX_WIDTH
+        self.height = CHECKBOX_HEIGHT
         self.is_on = True
         self.click_counter = 0
         self.inactive_image = CHECKBOX_INACTIVE

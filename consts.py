@@ -80,6 +80,8 @@ SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/player-hit.wav'), 'shu
 # button consts
 BUTTON_WIDTH = 227
 BUTTON_HEIGHT = 52
+CHECKBOX_WIDTH = 52
+CHECKBOX_HEIGHT = 48
 INACTIVE_BUTTON = pygame.image.load(
     './data/images/buttons/button-inactive.png')
 ACTIVE_BUTTON = pygame.image.load(
