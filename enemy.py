@@ -60,7 +60,7 @@ class Enemy:
         self.hitbox = (self.x + 20 + hitbox_correction, self.y + 15, 31, 59)
         self.draw_health_bar(window)
 
-        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+        # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def auto_path(self):
         left_limit = min(self.path.start, self.path.end)

@@ -45,7 +45,7 @@ class Player:
         self.walk_count += 1
 
         self.hitbox = (self.x + 23, self.y + 16, 29, 58)
-        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+        # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def move_right(self):
         self.x += self.speed

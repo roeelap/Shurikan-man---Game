@@ -6,7 +6,7 @@ pygame.font.init()
 # screen consts
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 720
-SCREEN_MIDDLE = 350
+SCREEN_MIDDLE = int(SCREEN_WIDTH / 2) - 80
 FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
 PLAYER_INVINCIBLE_TIME = 1
@@ -86,11 +86,14 @@ CHECKBOX_ACTIVE = pygame.image.load(
 
 # coin images
 BRONZE_COINS = [pygame.image.load('./data/images/coins/bronze/bronze1.png'), pygame.image.load('./data/images/coins/bronze/bronze2.png'), pygame.image.load('./data/images/coins/bronze/bronze3.png'),
-                pygame.image.load('./data/images/coins/bronze/bronze4.png'), pygame.image.load('./data/images/coins/bronze/bronze5.png'), pygame.image.load('./data/images/coins/bronze/bronze6.png'),
+                pygame.image.load('./data/images/coins/bronze/bronze4.png'), pygame.image.load(
+                    './data/images/coins/bronze/bronze5.png'), pygame.image.load('./data/images/coins/bronze/bronze6.png'),
                 pygame.image.load('./data/images/coins/bronze/bronze7.png'), pygame.image.load('./data/images/coins/bronze/bronze8.png')]
 SILVER_COINS = [pygame.image.load('./data/images/coins/silver/silver1.png'), pygame.image.load('./data/images/coins/silver/silver2.png'), pygame.image.load('./data/images/coins/silver/silver3.png'),
-                pygame.image.load('./data/images/coins/silver/silver4.png'), pygame.image.load('./data/images/coins/silver/silver5.png'), pygame.image.load('./data/images/coins/silver/silver6.png'),
+                pygame.image.load('./data/images/coins/silver/silver4.png'), pygame.image.load(
+                    './data/images/coins/silver/silver5.png'), pygame.image.load('./data/images/coins/silver/silver6.png'),
                 pygame.image.load('./data/images/coins/silver/silver7.png'), pygame.image.load('./data/images/coins/silver/silver8.png')]
 GOLD_COINS = [pygame.image.load('./data/images/coins/gold/gold1.png'), pygame.image.load('./data/images/coins/gold/gold2.png'), pygame.image.load('./data/images/coins/gold/gold3.png'),
-                pygame.image.load('./data/images/coins/gold/gold4.png'), pygame.image.load('./data/images/coins/gold/gold5.png'), pygame.image.load('./data/images/coins/gold/gold6.png'),
-                pygame.image.load('./data/images/coins/gold/gold7.png'), pygame.image.load('./data/images/coins/gold/gold8.png')]
+              pygame.image.load('./data/images/coins/gold/gold4.png'), pygame.image.load(
+                  './data/images/coins/gold/gold5.png'), pygame.image.load('./data/images/coins/gold/gold6.png'),
+              pygame.image.load('./data/images/coins/gold/gold7.png'), pygame.image.load('./data/images/coins/gold/gold8.png')]
