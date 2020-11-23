@@ -21,7 +21,7 @@ def new_game():
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
     enemies = []
-    player = Player(10, 530)
+    player = Player(10, 30)
     return window, background, player, enemies, shurikens
 
 
@@ -118,10 +118,10 @@ def main():
             facing = 1
             if player.left:
                 facing = -1
-            if len(shurikens) < MAX_SHURIKENS:
-                shurikens.append(Shuriken(
-                    round(player.x + player.width // 2), round(player.y + player.height//2), 20*facing))
-                SHURIKEN_THROW_SOUND.play()
+            # if len(shurikens) < MAX_SHURIKENS:
+            shurikens.append(Shuriken(
+                round(player.x + player.width // 2), round(player.y + player.height//2), 2*facing))
+            SHURIKEN_THROW_SOUND.play()
 
         # Leave for testing
         # if keys[pygame.K_DOWN]:
