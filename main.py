@@ -11,6 +11,7 @@ from random import randint
 from consts import BACKGROUND_DUNGEON, GOBLIN_HEIGHT, MAX_SHURIKENS, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS
 from start_menu import start_menu
+from coin import Coin
 
 
 def new_game():
@@ -21,8 +22,9 @@ def new_game():
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
     enemies = []
+    coins = []
     player = Player(10, 630)
-    return window, background, player, enemies, shurikens
+    return window, background, player, enemies, shurikens, coins
 
 
 # Pilot for random enemy spawning
@@ -56,7 +58,7 @@ def main():
 
     start_menu()
 
-    window, background, player, enemies, shurikens = new_game()
+    window, background, player, enemies, shurikens, coins = new_game()
     spawn_enemy(enemies, player.x, background)
 
     clock = pygame.time.Clock()
@@ -76,6 +78,8 @@ def main():
             objects_to_draw.append(shuriken)
         for enemy in enemies:
             objects_to_draw.append(enemy)
+        for coin in coins:
+            objects_to_draw.append(coin)
         objects_to_draw.append(player)
         objects_to_draw.sort(key=lambda object: object.y, reverse=False)
         for object in objects_to_draw:
@@ -85,6 +89,7 @@ def main():
                     refresh_hit_boxes(object)
                 else:
                     enemies.remove(object)
+                    coins.append(Coin(object.x, object.y, "bronze"))
                     player.score += 1
 
         player.display_player_stats(window)
@@ -143,13 +148,13 @@ def main():
         # if keys[pygame.K_s]:
         #     enemies.clear()
 
-        player_movement(player, enemies, shurikens, background)
+        player_movement(player, enemies, coins, shurikens, background)
         redraw_window()
 
         # if the player dies, the game stops (not a real feature, just to check if things are working properly)
         if player.health == 0:
             pygame.time.delay(1000)
-            window, background, player, enemies, shurikens = new_game()
+            window, background, player, enemies, shurikens, coins = new_game()
 
 
 if __name__ == "__main__":
