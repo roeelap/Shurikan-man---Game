@@ -12,7 +12,7 @@ class Enemy:
         self.width = width
         self.height = height
         self.walk_count = 0
-        self.walk_count_limit = len(walk_right_images) * 3
+        self.walk_count_limit = len(walk_right_images) * 6
         self.speed = speed
         self.path = path
         self.path_limit = Path(self.path.start, self.path.end)
@@ -29,21 +29,21 @@ class Enemy:
     def draw(self, window):
 
         image_to_blit = self.walk_right_images[self.walk_count //
-                                               3] if self.speed > 0 else self.walk_left_images[self.walk_count//3]
+                                               6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
         timeout_image = image_to_blit.copy()
         timeout_image.fill(
             COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
 
         if self.movement_timer < self.movement_timeout:
             self.movement_timer += 1
-            if self.movement_timer % 3 != 0:
+            if 0 <= self.movement_timer % 6 <= 1:
                 image_to_blit = timeout_image
         else:
             self.walk_count += 1
 
         # Slow enemy down when punching
         self.speed = self.max_speed if self.speed > 0 else self.max_speed * -1
-        if 9 <= self.walk_count//3 <= 11:
+        if 9 <= self.walk_count//6 <= 11:
             self.speed /= 20
 
         if self.walk_count + 1 >= self.walk_count_limit:
@@ -91,11 +91,11 @@ class Enemy:
     def move(self, player_speed, direction):
         self.x -= player_speed * direction
 
-    def hit(self, shuriken_speed, ):
+    def hit(self, shuriken_speed):
         if self.health > 0:
             choice(SHURIKEN_HIT_SOUNDS).play()
             self.health -= 1
-            self.x += int(shuriken_speed / 3)
+            self.x += int(shuriken_speed / 2)
         else:
             choice(GOBLIN_DEATH_SOUNDS).play()
             self.alive = False

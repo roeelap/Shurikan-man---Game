@@ -11,6 +11,6 @@ Todo:
   ✔ fix a bug where the enemy exits the background image @done(20-11-20 14:44)
   ✔ Raw numbers in shuriken.py @done(20-11-21 17:59)
   ✔ Shurikens disappearing when out of current screen (even though they should hit the enemy that is currently not visible) @done(20-11-22 19:13)
-  ☐ When enemy is facing left, the shurikens hitting him from behind vanish a little too soon.
+  ✔ When enemy is facing left, the shurikens hitting him from behind vanish a little too soon. @done(20-11-23 22:39)
   ✔ Enemies out of screen @done(20-11-22 15:06)
-  ☐ Transition to 60 FPS - Game kinda slow (buttons not registering quick enough)
+  ✔ Transition to 60 FPS - Game kinda slow (buttons not registering quick enough) @done(20-11-23 22:39)

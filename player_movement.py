@@ -1,5 +1,5 @@
 import pygame
-from consts import PLAYER_JUMP_SOUND, SCREEN_WIDTH, SCREEN_MIDDLE
+from consts import PLAYER_JUMP_COUNT, PLAYER_JUMP_SOUND, SCREEN_WIDTH, SCREEN_MIDDLE
 
 
 def player_movement(player, enemies, shurikens, background):
@@ -48,10 +48,10 @@ def player_movement(player, enemies, shurikens, background):
             PLAYER_JUMP_SOUND.play()
             player.jumping = True
     else:
-        if player.jump_count >= -10:
+        if player.jump_count >= -PLAYER_JUMP_COUNT:
             player.y -= int((player.jump_count *
-                             abs(player.jump_count)) * 0.25)
-            player.jump_count -= 1
+                             abs(player.jump_count)) * 0.11)
+            player.jump_count -= 1/2
         else:
-            player.jump_count = 10
+            player.jump_count = PLAYER_JUMP_COUNT
             player.jumping = False

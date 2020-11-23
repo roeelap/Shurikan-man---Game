@@ -1,5 +1,5 @@
 import pygame
-from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, PLAYER_HIT_SOUND, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL
+from consts import PLAYER_JUMP_COUNT, PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, FPS, PLAYER_WALK_RIGHT_IMAGES, PLAYER_HIT_SOUND, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL
 
 
 class Player:
@@ -9,9 +9,9 @@ class Player:
         self.y = y
         self.width = 64
         self.height = 64
-        self.speed = 5
+        self.speed = 2
         self.jumping = False
-        self.jump_count = 10
+        self.jump_count = PLAYER_JUMP_COUNT
         self.left = False
         self.right = False
         self.standing = True
@@ -22,20 +22,20 @@ class Player:
         self.health = self.max_health
         self.hurt_counter = 0
         self.score = 0
-        self.throw_speed = 15
+        self.throw_speed = 7
 
     def draw(self, window):
-        if self.walk_count + 1 >= 27:
+        if self.walk_count + 1 >= 54:
             self.walk_count = 3
 
         if self.standing:
             self.walk_count = 2
 
         if self.left:
-            self.image = PLAYER_WALK_LEFT_IMAGES[self.walk_count // 3]
+            self.image = PLAYER_WALK_LEFT_IMAGES[self.walk_count // 6]
 
         if self.right:
-            self.image = PLAYER_WALK_RIGHT_IMAGES[self.walk_count // 3]
+            self.image = PLAYER_WALK_RIGHT_IMAGES[self.walk_count // 6]
 
         if self.hurt_counter > 0:
             self.hurt_animation(window)
@@ -61,12 +61,12 @@ class Player:
 
     def hit(self):
         PLAYER_HIT_SOUND.play()
-        self.hurt_counter = PLAYER_INVINCIBLE_TIME
+        self.hurt_counter = PLAYER_INVINCIBLE_TIME * FPS
         if self.health > 0:
             self.health -= 1
 
     def hurt_animation(self, window):
-        if self.hurt_counter % 3 == 0:
+        if 0 <= self.hurt_counter % 6 <= 1:
             window.blit(self.image, (self.x, self.y))
         else:
             hurt_image = self.image.copy()

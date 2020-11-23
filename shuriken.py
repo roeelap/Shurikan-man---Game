@@ -13,15 +13,15 @@ class Shuriken:
         window.blit(SHURIKEN_IMAGE, (self.x, self.y))
 
     def is_in_screen(self, background):
-        if self.y < SCREEN_HEIGHT and background.x < self.x < background.width and abs(self.speed) > 0:
+        if self.y < SCREEN_HEIGHT and background.x < self.x < background.width and abs(self.speed) > 0.1:
             self.x += self.speed
             if self.y - int((self.slope * abs(self.slope)) * 0.1) >= SCREEN_HEIGHT - 30 and self.slope < 0:
                 self.y = SCREEN_HEIGHT - 30
-                self.slope = abs(int(self.slope / 2))
-                self.speed = int(self.speed / 2)
+                self.slope = abs(self.slope / 1.8)
+                self.speed = self.speed / 2
             else:
-                self.y -= int((self.slope * abs(self.slope)) * 0.1)
-                self.slope -= 1
+                self.y -= int((self.slope * abs(self.slope)) * 0.05)
+                self.slope -= 0.5
             return True
         else:
             return False

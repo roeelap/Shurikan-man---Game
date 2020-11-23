@@ -46,7 +46,7 @@ def spawn_enemy(enemies, player_x_pos, background):
     direction = 1
     if start > end:
         direction = -1
-    new_enemy = Enemy(start, 530, 64, 64, Path(start, end), 3 * direction, 9,
+    new_enemy = Enemy(start, 530, 64, 64, Path(start, end), 1.5 * direction, 9,
                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
     ENEMY_SPAWN_SOUND.play()
     enemies.append(new_enemy)

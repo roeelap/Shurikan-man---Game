@@ -7,9 +7,10 @@ pygame.font.init()
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 610
 SCREEN_MIDDLE = 350
-FPS = 27
+FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
-PLAYER_INVINCIBLE_TIME = 27
+PLAYER_INVINCIBLE_TIME = 1
+PLAYER_JUMP_COUNT = 11
 
 # goblin
 GOBLIN_WIDTH = 64
@@ -22,8 +23,7 @@ PIXEL_FONT_BIG = pygame.font.Font('./data/fonts/dpcomic.ttf', 100)
 PIXEL_FONT_BUTTON = pygame.font.Font('./data/fonts/dpcomic.ttf', 30)
 
 # shuriken consts
-# MAX_SHURIKENS = 3
-SHURIKEN_TIMEOUT = 6
+SHURIKEN_TIMEOUT = 14
 SHURIKEN_IMAGE = pygame.image.load('./data/images/player/shuriken.png')
 SHURIKEN_RADIUS = 9
 SHURIKEN_STARTING_SLOPE = 9
