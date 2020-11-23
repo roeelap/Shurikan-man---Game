@@ -57,15 +57,23 @@ class Enemy:
         if self.speed > 0:
             window.blit(image_to_blit, (self.x, self.y))
         else:
-            hitbox_correction = 15
+
             window.blit(image_to_blit, (self.x, self.y))
 
         # drawing the health bar
-        self.hitbox = (self.x + 20 + hitbox_correction,
-                       self.y + 30, 31, 10)
         self.draw_health_bar(window)
 
-        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+        # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+
+    def create_hitbox(self):
+        hitbox_correction = 0
+        if self.speed < 0:
+            hitbox_correction = 15
+        self.hitbox = (self.x + 20 + hitbox_correction,
+                       self.y + 15, 31, 60)
+
+    def remove_hitbox(self):
+        self.hitbox = (0, 0, 0, 0)
 
     def auto_path(self):
         left_limit = min(self.path.start, self.path.end)

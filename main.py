@@ -46,7 +46,7 @@ def spawn_enemy(enemies, player_x_pos, background):
     direction = 1
     if start > end:
         direction = -1
-    new_enemy = Enemy(start, 630, GOBLIN_WIDTH, GOBLIN_HEIGHT, Path(start, end), 1.4 * direction, 9,
+    new_enemy = Enemy(start, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, Path(start, end), 1.4 * direction, 9,
                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
     SOUNDS['enemy_spawn'].play()
     enemies.append(new_enemy)
@@ -63,6 +63,12 @@ def main():
     shuriken_shootloop = 0
     spawn_enemy_loop = 0
 
+    def refresh_hit_boxes(enemy):
+        if player.y-5 <= enemy.y <= player.y+5:
+            enemy.create_hitbox()
+        else:
+            enemy.remove_hitbox()
+
     def redraw_window():
         background.draw(window)
         objects_to_draw = []
@@ -75,7 +81,9 @@ def main():
         for object in objects_to_draw:
             object.draw(window)
             if(type(object) == Enemy):
-                if not object.alive:
+                if object.alive:
+                    refresh_hit_boxes(object)
+                else:
                     enemies.remove(object)
                     player.score += 1
 
