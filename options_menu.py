@@ -29,7 +29,7 @@ def set_all_volumes(all_sounds, new_volume):
             sound.set_volume(new_volume)
 
 def redraw_options_menu(mouse):
-    window.blit(BACKGROUND_DUNGEON, (-300, 0))
+    window.blit(BACKGROUND_DUNGEON, (0, 0))
     window.blit(options_title_text, (260, 100))
     window.blit(music_text, (200, 300))
     window.blit(sound_text, (200, 400))

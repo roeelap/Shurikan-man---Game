@@ -17,7 +17,7 @@ quit_shop_button = Button('Back', 280, 475)
 
 
 def redraw_shop_menu(mouse):
-    window.blit(BACKGROUND_DUNGEON, (-800, 0))
+    window.blit(BACKGROUND_DUNGEON, (0, 0))
 
     shop_title_text = PIXEL_FONT_BIG.render("Shop", True,  COLORS['white'])
     window.blit(shop_title_text, (300, 100))
