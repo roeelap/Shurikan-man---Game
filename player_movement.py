@@ -1,5 +1,5 @@
 import pygame
-from consts import SOUNDS, SCREEN_WIDTH, SCREEN_MIDDLE, PLAYER_JUMP_COUNT
+from consts import BOTTOM_BORDER, SOUNDS, SCREEN_WIDTH, SCREEN_MIDDLE, PLAYER_JUMP_COUNT, TOP_BORDER
 
 
 def player_movement(player, enemies, shurikens, background):
@@ -38,13 +38,18 @@ def player_movement(player, enemies, shurikens, background):
                     enemy.move(player.speed, -1)
                 for shuriken in shurikens:
                     shuriken.x += player.speed
-
     else:
         player.standing = True
         player.walk_count = 3
 
+    if keys[pygame.K_UP] and player.y > TOP_BORDER:
+        player.move_up()
+
+    elif keys[pygame.K_DOWN] and player.y < BOTTOM_BORDER:
+        player.move_down()
+
     if not player.jumping:
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_SPACE]:
             SOUNDS['player_jump'].play()
             player.jumping = True
     else:

@@ -59,6 +59,12 @@ class Player:
         self.right = False
         self.standing = False
 
+    def move_up(self):
+        self.y -= 2
+
+    def move_down(self):
+        self.y += 2
+
     def hit(self):
         SOUNDS['player_hit'].play()
         self.hurt_counter = PLAYER_INVINCIBLE_TIME * 60
