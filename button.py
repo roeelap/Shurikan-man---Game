@@ -45,7 +45,7 @@ class Button:
                 return True
 
 
-class Checkbox:
+class Checkbox(Button):
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -55,17 +55,7 @@ class Checkbox:
         self.click_counter = 0
         self.inactive_image = CHECKBOX_INACTIVE
         self.active_image = CHECKBOX_ACTIVE
-
-    def play_hover_sound(self):
-        if not self.over:
-            BUTTON_HOVER_SOUND.play()
-            self.over = True
-
-    def is_mouse_over(self, mouse):
-        if self.x < mouse[0] < self.x + self.width and self.y < mouse[1] < self.y + self.height:
-            return True
-        return False
-    
+ 
     def show(self, window, mouse):
         if self.click_counter > 0:
             self.click_counter -= 1
