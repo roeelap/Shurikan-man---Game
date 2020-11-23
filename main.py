@@ -21,7 +21,7 @@ def new_game():
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
     enemies = []
-    player = Player(10, 530)
+    player = Player(10, 630)
     return window, background, player, enemies, shurikens
 
 
@@ -46,7 +46,7 @@ def spawn_enemy(enemies, player_x_pos, background):
     direction = 1
     if start > end:
         direction = -1
-    new_enemy = Enemy(start, 530, GOBLIN_WIDTH, GOBLIN_HEIGHT, Path(start, end), 1.4 * direction, 9,
+    new_enemy = Enemy(start, 630, GOBLIN_WIDTH, GOBLIN_HEIGHT, Path(start, end), 1.4 * direction, 9,
                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
     SOUNDS['enemy_spawn'].play()
     enemies.append(new_enemy)
