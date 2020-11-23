@@ -25,9 +25,12 @@ PIXEL_FONT_BUTTON = pygame.font.Font('./data/fonts/dpcomic.ttf', 30)
 # shuriken consts
 SHURIKEN_TIMEOUT = 15
 MAX_SHURIKENS = 3
-SHURIKEN_IMAGE = pygame.image.load('./data/images/player/shuriken.png')
 SHURIKEN_RADIUS = 9
 SHURIKEN_STARTING_SLOPE = 9
+
+# shuriken images
+SHURIKEN_IMAGE = pygame.image.load('./data/images/shurikens/shuriken.png')
+ORANGE_IMAGE = pygame.image.load('./data/images/shurikens/orange.png')
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
