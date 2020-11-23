@@ -42,7 +42,6 @@ class Player:
             window.blit(self.image, (self.x, self.y))
 
         self.walk_count += 1
-
         self.hitbox = (self.x + 23, self.y + 16, 29, 58)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
