@@ -11,10 +11,17 @@ window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
 options_title_text = PIXEL_FONT_BIG.render("Options", True,  COLORS['white'])
+options_textRect = options_title_text.get_rect()
+options_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 4
 
 music_text = PIXEL_FONT_MID.render("Music", True,  COLORS['white'])
+music_textRect = options_title_text.get_rect()
+music_textRect.center = SCREEN_WIDTH // 3, SCREEN_HEIGHT // 2
+
 
 sound_text = PIXEL_FONT_MID.render("Sound", True,  COLORS['white'])
+sound_textRect = options_title_text.get_rect()
+sound_textRect.center = SCREEN_WIDTH // 3, SCREEN_HEIGHT * 3 // 4
 
 music_checkbox = Checkbox(530, 300)
 sound_checkbox = Checkbox(530, 400)
@@ -30,9 +37,9 @@ def set_all_volumes(all_sounds, new_volume):
 
 def redraw_options_menu(mouse):
     window.blit(BACKGROUND_DUNGEON, (0, 0))
-    window.blit(options_title_text, (260, 100))
-    window.blit(music_text, (200, 300))
-    window.blit(sound_text, (200, 400))
+    window.blit(options_title_text, options_textRect)
+    window.blit(music_text, music_textRect)
+    window.blit(sound_text, sound_textRect)
     music_checkbox.show(window, mouse)
     sound_checkbox.show(window, mouse)
     quit_button.show(window, mouse)
