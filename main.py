@@ -8,7 +8,7 @@ from player_movement import player_movement
 from collision_checks import *
 from sys import exit
 from random import randint
-from consts import BACKGROUND_DUNGEON, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
+from consts import BACKGROUND_DUNGEON, MAX_SHURIKENS, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS
 from start_menu import start_menu
 
@@ -113,7 +113,7 @@ def main():
             shuriken_shootloop = 0
 
         # Throwing shurikens with space-bar. Only 3 shurikens allowed
-        if keys[pygame.K_SPACE] and shuriken_shootloop == 0:
+        if keys[pygame.K_SPACE] and shuriken_shootloop == 0 and len(shurikens) < MAX_SHURIKENS:
             shuriken_shootloop = 1
             facing = 1
             shuriken_start_x = player.hitbox[0] + player.hitbox[2] - 5
