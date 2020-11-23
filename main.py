@@ -84,8 +84,8 @@ def main():
         clock.tick(FPS)
 
         # Randomely spawn enemies every 5 seconds
-        # spawn_enemy_loop = can_spawn_enemy(
-        #     spawn_enemy_loop, enemies,  player.x, 5, background)
+        spawn_enemy_loop = can_spawn_enemy(
+            spawn_enemy_loop, enemies,  player.x, 5, background)
 
         # Exit on quit button
         for event in pygame.event.get():
