@@ -92,6 +92,10 @@ QUIT_INACTIVE_BUTTON = pygame.image.load(
     './data/images/buttons/quit-inactive.png')
 QUIT_ACTIVE_BUTTON = pygame.image.load(
     './data/images/buttons/quit-active.png')
+SHURIKENS_INACTIVE_BUTTON = pygame.image.load('./data/images/buttons/shurikens-inactive.png')
+    
+SHURIKENS_ACTIVE_BUTTON = pygame.image.load('./data/images/buttons/shurikens-active.png')
+    
 CHECKBOX_INACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-inactive.png')
 CHECKBOX_ACTIVE = pygame.image.load(
