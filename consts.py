@@ -13,7 +13,6 @@ SCREEN_MIDDLE = int(SCREEN_WIDTH / 2) - 80
 FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
 PLAYER_INVINCIBLE_TIME = 1
-PLAYER_JUMP_COUNT = 11
 
 # goblin
 GOBLIN_WIDTH = 77
@@ -71,7 +70,7 @@ PLAYER_PORTRAIT = pygame.image.load(
 
 # Sounds
 SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/player-hit.wav'), 'shuriken_throw': pygame.mixer.Sound('./data/sounds/shuriken-throw.wav'),
-          'player_jump': pygame.mixer.Sound('./data/sounds/player-jump.wav'), 'enemy_spawn': pygame.mixer.Sound('./data/sounds/enemy-spawn.wav'),
+          'enemy_spawn': pygame.mixer.Sound('./data/sounds/enemy-spawn.wav'),
           'transition': pygame.mixer.Sound('./data/sounds/transition.wav'), 'button_click': pygame.mixer.Sound('./data/sounds/button-click.wav'),
           'button_hover': pygame.mixer.Sound('./data/sounds/button-hover.wav'),
           'goblin_deaths': [pygame.mixer.Sound('./data/sounds/goblin-death-1.wav'), pygame.mixer.Sound('./data/sounds/goblin-death-2.wav')],

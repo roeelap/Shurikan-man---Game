@@ -1,5 +1,5 @@
 import pygame
-from consts import PLAYER_STANDING_IMAGE, PLAYER_JUMP_COUNT, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL
+from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL
 
 
 class Player:
@@ -10,8 +10,6 @@ class Player:
         self.width = 77
         self.height = 77
         self.speed = 2
-        self.jumping = False
-        self.jump_count = PLAYER_JUMP_COUNT
         self.left = False
         self.right = False
         self.standing = True
