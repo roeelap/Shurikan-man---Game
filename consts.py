@@ -13,8 +13,8 @@ PLAYER_INVINCIBLE_TIME = 1
 PLAYER_JUMP_COUNT = 11
 
 # goblin
-GOBLIN_WIDTH = 64
-GOBLIN_HEIGHT = 64
+GOBLIN_WIDTH = 77
+GOBLIN_HEIGHT = 77
 
 # text fonts
 PIXEL_FONT_SMALL = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)

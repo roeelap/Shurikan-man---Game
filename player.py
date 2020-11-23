@@ -7,8 +7,8 @@ class Player:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.width = 64
-        self.height = 64
+        self.width = 77
+        self.height = 77
         self.speed = 2
         self.jumping = False
         self.jump_count = PLAYER_JUMP_COUNT

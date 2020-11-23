@@ -8,7 +8,7 @@ from player_movement import player_movement
 from collision_checks import *
 from sys import exit
 from random import randint
-from consts import BACKGROUND_DUNGEON, MAX_SHURIKENS, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
+from consts import BACKGROUND_DUNGEON, GOBLIN_HEIGHT, MAX_SHURIKENS, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS
 from start_menu import start_menu
 
@@ -46,7 +46,7 @@ def spawn_enemy(enemies, player_x_pos, background):
     direction = 1
     if start > end:
         direction = -1
-    new_enemy = Enemy(start, 530, 64, 64, Path(start, end), 1.4 * direction, 9,
+    new_enemy = Enemy(start, 530, GOBLIN_WIDTH, GOBLIN_HEIGHT, Path(start, end), 1.4 * direction, 9,
                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
     SOUNDS['enemy_spawn'].play()
     enemies.append(new_enemy)
