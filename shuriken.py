@@ -1,4 +1,5 @@
 from consts import SHURIKEN_IMAGE, SCREEN_HEIGHT, SHURIKEN_STARTING_SLOPE
+import pygame
 
 
 class Shuriken:
@@ -8,9 +9,12 @@ class Shuriken:
         self.radius = radius
         self.speed = speed
         self.slope = SHURIKEN_STARTING_SLOPE
+        self.rotation_angle = 0
 
     def draw(self, window):
-        window.blit(SHURIKEN_IMAGE, (self.x, self.y))
+        window.blit(pygame.transform.rotate(SHURIKEN_IMAGE,
+                                            self.rotation_angle), (self.x, self.y))
+        self.rotation_angle -= self.speed * 3
 
     def is_in_screen(self, background):
         if self.y < SCREEN_HEIGHT and background.x < self.x < background.width and abs(self.speed) > 0.1:
