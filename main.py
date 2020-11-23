@@ -21,7 +21,7 @@ def new_game():
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
     enemies = []
-    player = Player(10, 30)
+    player = Player(10, 530)
     return window, background, player, enemies, shurikens
 
 

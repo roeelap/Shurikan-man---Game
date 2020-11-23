@@ -1,5 +1,5 @@
 import pygame
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, CHECKBOX_INACTIVE, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, QUIT_ACTIVE_BUTTON, QUIT_INACTIVE_BUTTON, CHECKBOX_ACTIVE, FPS
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS
 from button import Button, Checkbox
 import sys
 
@@ -16,12 +16,9 @@ music_text = PIXEL_FONT_MID.render("Music", True,  COLORS['white'])
 
 sound_text = PIXEL_FONT_MID.render("Sound", True,  COLORS['white'])
 
-music_checkbox = Checkbox(530, 300, 52, 48, CHECKBOX_INACTIVE,
-                          CHECKBOX_ACTIVE)
-sound_checkbox = Checkbox(530, 400, 52, 48, CHECKBOX_INACTIVE,
-                          CHECKBOX_ACTIVE)
-quit_button = Button(280, 500, 227, 46, QUIT_INACTIVE_BUTTON,
-                     QUIT_ACTIVE_BUTTON)
+music_checkbox = Checkbox(530, 300)
+sound_checkbox = Checkbox(530, 400)
+quit_button = Button('Quit', 280, 500)
 
 
 def redraw_options_menu(mouse):

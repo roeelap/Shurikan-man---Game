@@ -1,7 +1,7 @@
 import pygame
 import sys
 from button import Button
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, QUIT_INACTIVE_BUTTON, QUIT_ACTIVE_BUTTON, FPS, BACKGROUND_DUNGEON, SHURIKENS_ACTIVE_BUTTON, SHURIKENS_INACTIVE_BUTTON
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON
 
 
 pygame.init()
@@ -10,10 +10,8 @@ pygame.display.set_icon(SHURIKEN_IMAGE)
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
-shurikens_button = Button(280, 250, 227, 46, SHURIKENS_INACTIVE_BUTTON,
-                         SHURIKENS_ACTIVE_BUTTON)
-quit_shop_button = Button(280, 500, 227, 46, QUIT_INACTIVE_BUTTON,
-                         QUIT_ACTIVE_BUTTON)
+shurikens_button = Button('Shurikens', 280, 250)
+quit_shop_button = Button('Quit', 280, 500)
 
 
 def redraw_shop_menu(mouse):
@@ -51,8 +49,7 @@ def shop_menu():
 
 
 # Shuriken shop
-quit_shuriken_shop_button = Button(500, 500, 227, 46, QUIT_INACTIVE_BUTTON,
-                         QUIT_ACTIVE_BUTTON)
+quit_shuriken_shop_button = Button('Quit', 500, 500)
 
 def redraw_shuriken_shop(mouse):
     window.blit(BACKGROUND_DUNGEON, (-800, 0))
