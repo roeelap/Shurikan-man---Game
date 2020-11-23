@@ -19,6 +19,7 @@ GOBLIN_HEIGHT = 64
 PIXEL_FONT_SMALL = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
 PIXEL_FONT_MID = pygame.font.Font('./data/fonts/dpcomic.ttf', 50)
 PIXEL_FONT_BIG = pygame.font.Font('./data/fonts/dpcomic.ttf', 100)
+PIXEL_FONT_BUTTON = pygame.font.Font('./data/fonts/dpcomic.ttf', 30)
 
 # shuriken consts
 # MAX_SHURIKENS = 3
@@ -30,7 +31,7 @@ SHURIKEN_ENDING_SLOPE = -20
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
-          'red': (255, 0, 0), 'green': (0, 128, 0)}
+          'red': (255, 0, 0), 'green': (0, 128, 0), 'orange': (255, 201, 14)}
 
 # character images
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/goblin/R1E.png'), pygame.image.load('./data/images/goblin/R2E.png'), pygame.image.load('./data/images/goblin/R3E.png'),
@@ -76,28 +77,10 @@ SHURIKEN_HIT_SOUNDS = [pygame.mixer.Sound('./data/sounds/shuriken-hit-1.wav'), p
     './data/sounds/shuriken-hit-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken-hit-3.wav')]
 
 # button images
-NEW_GAME_INACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/newgame-inactive.png')
-NEW_GAME_ACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/newgame-active.png')
-OPTIONS_INACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/options-inactive.png')
-OPTIONS_ACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/options-active.png')
-SHOP_INACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/shop-inactive.png')
-SHOP_ACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/shop-active.png')
-QUIT_INACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/quit-inactive.png')
-QUIT_ACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/quit-active.png')
-SHURIKENS_INACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/shurikens-inactive.png')
-
-SHURIKENS_ACTIVE_BUTTON = pygame.image.load(
-    './data/images/buttons/shurikens-active.png')
-
+INACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/button-inactive.png')
+ACTIVE_BUTTON = pygame.image.load(
+    './data/images/buttons/button-active.png')
 CHECKBOX_INACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-inactive.png')
 CHECKBOX_ACTIVE = pygame.image.load(

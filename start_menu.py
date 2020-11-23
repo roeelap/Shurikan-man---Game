@@ -1,5 +1,5 @@
 import pygame
-from consts import *
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, TRANSITION_SOUND, COLORS
 import sys
 from button import Button
 from options_menu import options_menu
@@ -14,14 +14,10 @@ clock = pygame.time.Clock()
 title_text = PIXEL_FONT_BIG.render("Shuriken Man", True,  COLORS['white'])
 
 
-new_game_button = Button(100, 300, 227, 46, NEW_GAME_INACTIVE_BUTTON,
-                         NEW_GAME_ACTIVE_BUTTON)
-shop_button = Button(473, 300, 227, 46, SHOP_INACTIVE_BUTTON,
-                     SHOP_ACTIVE_BUTTON)
-options_button = Button(100, 400, 227, 46, OPTIONS_INACTIVE_BUTTON,
-                        OPTIONS_ACTIVE_BUTTON)
-quit_button = Button(473, 400, 227, 46, QUIT_INACTIVE_BUTTON,
-                     QUIT_ACTIVE_BUTTON)
+new_game_button = Button('New Game', 100, 300)
+shop_button = Button('Shop', 473, 300)
+options_button = Button('Options', 100, 400)
+quit_button = Button('Quit Game', 473, 400)
 
 
 def redraw_start_menu(mouse):
