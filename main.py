@@ -112,6 +112,7 @@ def main():
 
         check_player_enemy_collision(player, enemies)
         check_shuriken_enemy_collision(shurikens, enemies)
+        check_player_coin_collision(player, coins)
 
         # Remove shuriken when out of screen
         for shuriken in shurikens:

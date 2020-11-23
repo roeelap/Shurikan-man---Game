@@ -39,7 +39,7 @@ def player_movement(player, enemies, coins, shurikens, background):
                     enemy.update_path_limits(player.speed, -1)
                     enemy.move(player.speed, -1)
                 for coin in coins:
-                    coin.move(player.speed, 1)
+                    coin.move(player.speed, -1)
                 for shuriken in shurikens:
                     shuriken.x += player.speed
     else:

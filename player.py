@@ -20,6 +20,7 @@ class Player:
         self.health = self.max_health
         self.hurt_counter = 0
         self.score = 0
+        self.coins = 0
         self.throw_speed = 12
 
     def draw(self, window):
@@ -96,3 +97,7 @@ class Player:
         score = f'Score: {self.score}'
         score_text = PIXEL_FONT_SMALL.render(score, True,  COLORS['white'])
         window.blit(score_text, (25, 80))
+
+        coins = f'Coins: {self.coins}'
+        coins_text = PIXEL_FONT_SMALL.render(coins, True,  COLORS['white'])
+        window.blit(coins_text, (25, 100))
