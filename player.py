@@ -58,10 +58,12 @@ class Player:
         self.standing = False
 
     def move_up(self):
-        self.y -= 2
+        self.y -= self.speed
+        self.standing = False
 
     def move_down(self):
-        self.y += 2
+        self.y += self.speed
+        self.standing = False
 
     def hit(self):
         SOUNDS['player_hit'].play()

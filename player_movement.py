@@ -40,7 +40,6 @@ def player_movement(player, enemies, shurikens, background):
                     shuriken.x += player.speed
     else:
         player.standing = True
-        player.walk_count = 3
 
     if keys[pygame.K_UP] and player.y > TOP_BORDER:
         player.move_up()
@@ -48,3 +47,4 @@ def player_movement(player, enemies, shurikens, background):
     elif keys[pygame.K_DOWN] and player.y < BOTTOM_BORDER:
         player.move_down()
 
+ 
