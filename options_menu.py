@@ -18,7 +18,7 @@ sound_text = PIXEL_FONT_MID.render("Sound", True,  COLORS['white'])
 
 music_checkbox = Checkbox(530, 300)
 sound_checkbox = Checkbox(530, 400)
-quit_button = Button('Quit', 280, 500)
+quit_button = Button('Back', 280, 500)
 
 
 def redraw_options_menu(mouse):

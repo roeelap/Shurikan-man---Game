@@ -11,7 +11,7 @@ window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
 shurikens_button = Button('Shurikens', 280, 250)
-quit_shop_button = Button('Quit', 280, 500)
+quit_shop_button = Button('Back', 280, 500)
 
 
 def redraw_shop_menu(mouse):
@@ -49,7 +49,7 @@ def shop_menu():
 
 
 # Shuriken shop
-quit_shuriken_shop_button = Button('Quit', 500, 500)
+quit_shuriken_shop_button = Button('Back', 500, 500)
 
 def redraw_shuriken_shop(mouse):
     window.blit(BACKGROUND_DUNGEON, (-800, 0))

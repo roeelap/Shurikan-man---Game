@@ -8,7 +8,7 @@ class Button:
         self.x = x
         self.y = y
         self.width = 227
-        self.height = 49
+        self.height = 52
         self.center = self.x + self.width // 2, self.y + self.height // 2
         self.inactive_image = INACTIVE_BUTTON
         self.active_image = ACTIVE_BUTTON

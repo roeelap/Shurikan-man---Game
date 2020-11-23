@@ -17,7 +17,7 @@ title_text = PIXEL_FONT_BIG.render("Shuriken Man", True,  COLORS['white'])
 new_game_button = Button('New Game', 100, 300)
 shop_button = Button('Shop', 473, 300)
 options_button = Button('Options', 100, 400)
-quit_button = Button('Quit', 473, 400)
+quit_button = Button('Quit Game', 473, 400)
 
 
 def redraw_start_menu(mouse):
