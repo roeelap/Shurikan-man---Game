@@ -61,7 +61,7 @@ class Player:
 
     def hit(self):
         SOUNDS['player_hit'].play()
-        self.hurt_counter = PLAYER_INVINCIBLE_TIME
+        self.hurt_counter = PLAYER_INVINCIBLE_TIME * 60
         if self.health > 0:
             self.health -= 1
 
