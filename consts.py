@@ -4,8 +4,8 @@ pygame.mixer.init()
 pygame.font.init()
 
 # screen consts
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 610
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 720
 SCREEN_MIDDLE = 350
 FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
