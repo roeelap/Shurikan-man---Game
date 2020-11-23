@@ -1,12 +1,15 @@
-from consts import BUTTON_CLICK_SOUND, BUTTON_HOVER_SOUND
+from consts import BUTTON_CLICK_SOUND, BUTTON_HOVER_SOUND, PIXEL_FONT_BUTTON, COLORS, INACTIVE_BUTTON, ACTIVE_BUTTON
 
 class Button:
 
-    def __init__(self, x, y, width, height, inactive_image, active_image):
+    def __init__(self, text, x, y, width, height, inactive_image, active_image):
+        self.inactive_text = PIXEL_FONT_BUTTON.render(text, True,  COLORS['black'])
+        self.active_text = PIXEL_FONT_BUTTON.render(text, True,  COLORS['orange'])
         self.x = x
         self.y = y
         self.width = width
         self.height = height
+        self.center = (self.width // 2, self.height // 2)
         self.inactive_image = inactive_image
         self.active_image = active_image
         self.over = False
