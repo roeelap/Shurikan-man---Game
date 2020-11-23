@@ -113,7 +113,7 @@ def main():
             shuriken_shootloop = 0
 
         # Throwing shurikens with space-bar. Only 3 shurikens allowed
-        if keys[pygame.K_SPACE] and shuriken_shootloop == 0 and len(shurikens) < MAX_SHURIKENS:
+        if keys[pygame.K_z] and shuriken_shootloop == 0 and len(shurikens) < MAX_SHURIKENS:
             shuriken_shootloop = 1
             facing = 1
             shuriken_start_x = player.hitbox[0] + player.hitbox[2] - 5
