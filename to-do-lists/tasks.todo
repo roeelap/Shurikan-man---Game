@@ -4,3 +4,4 @@ Todo:
   ✔ When player is hit, make him transparent for sometime - changing the player image's opacity @done(20-11-20 15:01)
   ☐ When enemy is hit, display his image red for some time
   ✔ Fix shuriken to bounce on floor until disappearing @done(20-11-23 22:39)
+  ✔ Shuriken spinning @done(20-11-23 23:06)
