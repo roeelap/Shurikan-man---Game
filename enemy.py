@@ -1,5 +1,5 @@
 import pygame
-from consts import COLORS, FPS, GOBLIN_DEATH_SOUNDS, SHURIKEN_HIT_SOUNDS
+from consts import COLORS, FPS, SOUNDS
 from path import Path
 from random import choice
 
@@ -93,9 +93,9 @@ class Enemy:
 
     def hit(self, shuriken_speed, ):
         if self.health > 0:
-            choice(SHURIKEN_HIT_SOUNDS).play()
+            choice(SOUNDS['shuriken_hits']).play()
             self.health -= 1
             self.x += int(shuriken_speed / 3)
         else:
-            choice(GOBLIN_DEATH_SOUNDS).play()
+            choice(SOUNDS['goblin_deaths']).play()
             self.alive = False

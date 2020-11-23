@@ -1,5 +1,5 @@
 import pygame
-from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, PLAYER_HIT_SOUND, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL
+from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL
 
 
 class Player:
@@ -60,7 +60,7 @@ class Player:
         self.standing = False
 
     def hit(self):
-        PLAYER_HIT_SOUND.play()
+        SOUNDS['player_hit'].play()
         self.hurt_counter = PLAYER_INVINCIBLE_TIME
         if self.health > 0:
             self.health -= 1

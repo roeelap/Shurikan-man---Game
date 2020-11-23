@@ -9,7 +9,7 @@ from collision_checks import *
 from sys import exit
 from random import randint
 from consts import BACKGROUND_DUNGEON, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
-    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, ENEMY_SPAWN_SOUND, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SHURIKEN_THROW_SOUND
+    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS
 from start_menu import start_menu
 
 
@@ -48,7 +48,7 @@ def spawn_enemy(enemies, player_x_pos, background):
         direction = -1
     new_enemy = Enemy(start, 530, 64, 64, Path(start, end), 3 * direction, 9,
                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
-    ENEMY_SPAWN_SOUND.play()
+    SOUNDS['enemy_spawn'].play()
     enemies.append(new_enemy)
 
 
@@ -122,7 +122,7 @@ def main():
                 shuriken_start_x = player.hitbox[0] + 5
             shurikens.append(Shuriken(
                 shuriken_start_x, round(player.y + player.height/2), SHURIKEN_RADIUS, player.throw_speed * facing))
-            SHURIKEN_THROW_SOUND.play()
+            SOUNDS['shuriken_throw'].play()
 
         # Leave for testing
         # if keys[pygame.K_DOWN]:

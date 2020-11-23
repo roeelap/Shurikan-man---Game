@@ -1,5 +1,5 @@
 import pygame
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS
 from button import Button, Checkbox
 import sys
 
@@ -20,6 +20,13 @@ music_checkbox = Checkbox(530, 300)
 sound_checkbox = Checkbox(530, 400)
 quit_button = Button('Back', 280, 500)
 
+def set_all_volumes(all_sounds, new_volume):
+    for sound in all_sounds:
+        if isinstance(sound, list):
+            for sound in sound:
+                sound.set_volume(new_volume)
+        else:
+            sound.set_volume(new_volume)
 
 def redraw_options_menu(mouse):
     window.blit(BACKGROUND_DUNGEON, (-300, 0))
@@ -49,7 +56,10 @@ def options_menu():
             pass
 
         elif sound_checkbox.is_pressed(mouse, click):
-            pass
+            if sound_checkbox.is_on:
+                set_all_volumes(SOUNDS.values(), 1.0)
+            else:
+                set_all_volumes(SOUNDS.values(), 0.0)
 
         elif quit_button.is_pressed(mouse, click):
             break
