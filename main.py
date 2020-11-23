@@ -116,11 +116,12 @@ def main():
         if keys[pygame.K_SPACE] and shuriken_shootloop == 0:
             shuriken_shootloop = 1
             facing = 1
+            shuriken_start_x = player.hitbox[0] + player.hitbox[2] - 5
             if player.left:
                 facing = -1
-            # if len(shurikens) < MAX_SHURIKENS:
+                shuriken_start_x = player.hitbox[0] + 5
             shurikens.append(Shuriken(
-                round(player.x + player.width // 2), round(player.y + player.height//2), 2*facing))
+                shuriken_start_x, round(player.y + player.height/2), 15 * facing))
             SHURIKEN_THROW_SOUND.play()
 
         # Leave for testing

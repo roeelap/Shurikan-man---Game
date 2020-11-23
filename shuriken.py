@@ -14,13 +14,13 @@ class Shuriken:
 
     def is_in_screen(self, background):
         if self.y < SCREEN_HEIGHT and 0 < self.x < background.width:
-            # if self.slope >= SHURIKEN_ENDING_SLOPE:
-            self.x += self.speed
-            self.y -= int((self.slope *
-                                abs(self.slope)) * 0.1)
-            self.slope -= 1
-            # else:
-            #     self.slope = SHURIKEN_STARTING_SLOPE
+            if self.slope >= SHURIKEN_ENDING_SLOPE:
+                self.x += self.speed
+                self.y -= int((self.slope *
+                                    abs(self.slope)) * 0.1)
+                self.slope -= 1
+            else:
+                self.slope = SHURIKEN_STARTING_SLOPE
             return True
         else:
             return False
