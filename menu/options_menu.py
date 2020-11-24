@@ -1,5 +1,5 @@
 import pygame
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, CHECKBOX_HEIGHT, BUTTON_WIDTH
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, CHECKBOX_HEIGHT, BUTTON_WIDTH_BIG
 from menu.button import Button, Checkbox
 import sys
 
@@ -25,7 +25,7 @@ sound_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT * 3 // 4
 
 music_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT // 2 - CHECKBOX_HEIGHT, True)
 sound_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT * 3 // 4 - CHECKBOX_HEIGHT, True)
-back_button = Button('Back', SCREEN_WIDTH // 2 - (BUTTON_WIDTH // 2), SCREEN_HEIGHT * 5 // 6)
+back_button = Button('Back', SCREEN_WIDTH // 2 - (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 6, 'big')
 
 def set_all_volumes(all_sounds, new_volume):
     for sound in all_sounds:

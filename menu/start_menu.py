@@ -1,5 +1,5 @@
 import pygame
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, COLORS, BUTTON_WIDTH
+from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
 import sys
 from menu.button import Button
 from menu.options_menu import options_menu
@@ -15,10 +15,10 @@ title_text = PIXEL_FONT_BIG.render("Shuriken Man", True,  COLORS['white'])
 title_textRect = title_text.get_rect()
 title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 4
 
-new_game_button = Button('New Game', (SCREEN_WIDTH // 3) - (BUTTON_WIDTH // 2) , SCREEN_HEIGHT // 2)
-shop_button = Button('Shop', (SCREEN_WIDTH * 2 // 3) - (BUTTON_WIDTH // 2), SCREEN_HEIGHT // 2)
-options_button = Button('Options', (SCREEN_WIDTH // 3) - (BUTTON_WIDTH // 2) , SCREEN_HEIGHT * 3 // 4)
-quit_button = Button('Quit Game', (SCREEN_WIDTH * 2 // 3) - (BUTTON_WIDTH // 2) , SCREEN_HEIGHT * 3 // 4)
+new_game_button = Button('New Game', (SCREEN_WIDTH // 3) - (BUTTON_WIDTH_BIG // 2) , SCREEN_HEIGHT // 2, 'big')
+shop_button = Button('Shop', (SCREEN_WIDTH * 2 // 3) - (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT // 2, 'big')
+options_button = Button('Options', (SCREEN_WIDTH // 3) - (BUTTON_WIDTH_BIG // 2) , SCREEN_HEIGHT * 3 // 4, 'big')
+quit_button = Button('Quit Game', (SCREEN_WIDTH * 2 // 3) - (BUTTON_WIDTH_BIG // 2) , SCREEN_HEIGHT * 3 // 4, 'big')
 
 
 def redraw_start_menu(mouse):
