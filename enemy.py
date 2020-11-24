@@ -2,6 +2,7 @@ import pygame
 from consts import COLORS, FPS, SOUNDS
 from path import Path
 from random import choice
+from static_functions import draw_circle_alpha
 
 
 class Enemy:
@@ -30,9 +31,9 @@ class Enemy:
     def draw(self, window):
         if not self.alive:
             return
-        
+
         self.auto_path()
-        hitbox_correction = 0
+        correction = 0
 
         image_to_blit = self.walk_right_images[self.walk_count //
                                                6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
@@ -58,13 +59,18 @@ class Enemy:
         if self.speed > 0:
             window.blit(image_to_blit, (self.x, self.y))
         else:
-            hitbox_correction = 15
+            correction = 15
             window.blit(image_to_blit, (self.x, self.y))
 
         # drawing the health bar
-        self.hitbox = (self.x + 20 + hitbox_correction,
+        self.hitbox = (self.x + 20 + correction,
                        self.y + 15, 31, 60)
         self.draw_health_bar(window)
+
+        mid_bottom = (self.x + self.width / 2 + correction -
+                      5, self.hitbox[1] + self.hitbox[3])
+        draw_circle_alpha(
+            window, COLORS['black'], (mid_bottom), 38, 12)
 
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 

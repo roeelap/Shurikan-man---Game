@@ -138,11 +138,11 @@ def main():
             SOUNDS['shuriken_throw'].play()
 
         # Leave for testing
-        # if keys[pygame.K_DOWN]:
-        #     spawn_enemy(enemies, player.x, background)
+        if keys[pygame.K_DOWN]:
+            spawn_enemy(enemies, player.x, background)
 
-        # if keys[pygame.K_s]:
-        #     enemies.clear()
+        if keys[pygame.K_s]:
+            enemies.clear()
 
         player_movement(player, enemies, coins, shurikens, background)
         redraw_window()
