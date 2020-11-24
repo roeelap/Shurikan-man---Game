@@ -14,3 +14,5 @@ Todo:
   ✔ When enemy is facing left, the shurikens hitting him from behind vanish a little too soon. @done(20-11-23 22:39)
   ✔ Enemies out of screen @done(20-11-22 15:06)
   ✔ Transition to 60 FPS - Game kinda slow (buttons not registering quick enough) @done(20-11-23 22:39)
+  ☐ Fix coin pickup collision function
+  ☐ Fix enemy health-bar position
