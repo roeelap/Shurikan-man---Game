@@ -1,1 +1,29 @@
-{}
+{
+    "x": 310.0,
+    "y": 567.5,
+    "width": 77,
+    "height": 77,
+    "speed": 2.5,
+    "left": false,
+    "right": true,
+    "standing": true,
+    "walk_count": 3,
+    "hitbox": [
+        333.0,
+        583.5,
+        29,
+        58
+    ],
+    "max_health": 10,
+    "health": 10,
+    "hurt_counter": 0,
+    "score": 15,
+    "coins": 56,
+    "throw_speed": 12,
+    "shade": {
+        "x": 348.5,
+        "y": 641.5,
+        "w": 32,
+        "h": 12
+    }
+}

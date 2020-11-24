@@ -30,16 +30,17 @@ def save_game(player, player_data):
         json.dump(player_data, file, ensure_ascii=False, indent=4)
     data = player.__dict__
     new_dict = {}
-    for attr in data.keys():
-        if type(attr) is int or type(attr) is float or type(attr) is dict or type(attr) is tuple or type(attr) is bool:
-            new_dict[attr] = data[attr]
-    with open('./player/new_player.json', 'w', encoding='utf-8') as file:
+    for attr, value in data.items():
+        if type(value) is int or type(value) is float or type(value) is dict or type(value) is tuple or type(value) is bool:
+            new_dict[attr] = value
+    with open('./player/player.json', 'w', encoding='utf-8') as file:
         json.dump(new_dict, file, ensure_ascii=False, indent=4)
 
 
 def load_game(player):
     with open('./player/player.json') as file:
         player_data = json.load(file)
-    player.coins = player_data['coins']
-    player.score = player_data['score']
+    for attr, value in player_data.items():
+        if type(value) is int or type(value) is float or type(value) is dict or type(value) is tuple or type(value) is bool:
+            setattr(player, attr, value)
     return player_data
