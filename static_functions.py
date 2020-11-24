@@ -1,3 +1,4 @@
+from operator import itemgetter
 import pygame
 
 
@@ -9,3 +10,13 @@ def draw_circle_alpha(surface, color, center, width, height):
     pygame.draw.ellipse(shape_surf, color,
                         (width / 2, 4, width, height), width)
     surface.blit(shape_surf, target_rect)
+
+
+def is_shade_collision(shade1, shade2):
+    x1, y1, w1, h1 = itemgetter('x', 'y', 'w', 'h')(shade1)
+    x2, y2, w2, h2 = itemgetter('x', 'y', 'w', 'h')(shade2)
+    inbound_x = x1 + w1 > x2 and x1 < x2 + w2
+    inbound_y = y1 + h1 > y2 and y1 < y2 + h2
+    if inbound_x and inbound_y:
+        return True
+    return False

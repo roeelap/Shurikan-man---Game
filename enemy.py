@@ -27,7 +27,6 @@ class Enemy:
         self.walk_left_images = walk_left_images
         self.movement_timer = 0
         self.movement_timeout = FPS
-        self.can_hit = False
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
 
     def draw(self, window):
@@ -69,6 +68,7 @@ class Enemy:
                        self.y + 15, 31, 60)
         self.draw_health_bar(window)
         self.draw_shade(window, correction)
+
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def draw_shade(self, window, correction):
