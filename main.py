@@ -49,7 +49,7 @@ def spawn_enemy(enemies, background):
 
 def main():
 
-    start_menu()
+    start_menu(BACKGROUND_DUNGEON)
 
     window, background, player, enemies, shurikens, coins = new_game()
     spawn_enemy(enemies, background)
@@ -131,6 +131,10 @@ def main():
                 shuriken_start_x, round(player.y + player.height / 2), SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3]))
             SOUNDS['shuriken_throw'].play()
 
+        if keys[pygame.K_ESCAPE]:
+            win_at_the_moment = window.copy()
+            start_menu(win_at_the_moment)
+            
         # Leave for testing
         if keys[pygame.K_d]:
             spawn_enemy(enemies, background)

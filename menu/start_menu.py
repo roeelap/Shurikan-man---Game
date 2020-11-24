@@ -21,8 +21,8 @@ options_button = Button('Options', (SCREEN_WIDTH // 3) - (BUTTON_WIDTH_BIG // 2)
 quit_button = Button('Quit Game', (SCREEN_WIDTH * 2 // 3) - (BUTTON_WIDTH_BIG // 2) , SCREEN_HEIGHT * 3 // 4, 'big')
 
 
-def redraw_start_menu(mouse):
-    window.blit(BACKGROUND_DUNGEON, (0, 0))
+def redraw_start_menu(background, mouse):
+    window.blit(background, (0, 0))
     window.blit(title_text, title_textRect)
     play_button.show(window, mouse)
     shop_button.show(window, mouse)
@@ -31,7 +31,7 @@ def redraw_start_menu(mouse):
     pygame.display.update()
 
 
-def start_menu():
+def start_menu(background):
     while True:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
@@ -57,4 +57,4 @@ def start_menu():
         elif shop_button.is_pressed(mouse, click):
             shop_menu()
 
-        redraw_start_menu(mouse)
+        redraw_start_menu(background, mouse)
