@@ -89,7 +89,11 @@ class Enemy:
                     self.vertical_turn_around()
             else:
                 self.path_refresh_timer += 1
-            if BOTTOM_BORDER > self.y+self.vertical_speed > TOP_BORDER:
+
+            inbound_y = self.shade['y'] + \
+                self.shade['h'] > player_shade['y'] and self.shade['y'] < player_shade['y'] + \
+                player_shade['h']
+            if BOTTOM_BORDER > self.y+self.vertical_speed > TOP_BORDER and not inbound_y:
                 self.y += self.vertical_speed
             if 0 < self.x+self.speed+self.width < background_width:
                 self.x += self.speed
@@ -104,7 +108,6 @@ class Enemy:
             window, COLORS['green'], (x, y, w - (5 * (self.max_health - self.health)), h))
         pygame.draw.rect(window, COLORS['black'],
                          (x, y, w, h), width=1)
-
 
     def horizontal_turn_around(self):
         self.speed *= -1

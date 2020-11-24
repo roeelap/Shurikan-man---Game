@@ -17,5 +17,5 @@ Todo:
   ✔ Fix coin pickup collision function @done(20-11-24 14:44)
   ✔ Fix enemy health-bar position @done(20-11-24 14:59)
   ✔ Coin position @done(20-11-24 15:27)
-  ☐ Enemy path - change to shade
-  ☐ Enemies going out of borders
+  ✔ Enemy path - change to shade @done(20-11-24 22:35)
+  ✔ Enemies going out of borders @done(20-11-24 22:35)
