@@ -1,5 +1,5 @@
 import pygame
-from consts import COLORS, FPS, SOUNDS
+from consts import COLORS, FPS, GOBLIN_PATH_TIMEOUT, GOBLIN_SPAWN_TIMEOUT, SOUNDS
 from path import Path
 from random import choice
 from static_functions import draw_circle_alpha
@@ -16,6 +16,7 @@ class Enemy:
         self.walk_count = 0
         self.walk_count_limit = len(walk_right_images) * 6
         self.speed = speed
+        self.vertical_speed = self.speed / 2
         self.path = path
         self.path_limit = Path(self.path.start, self.path.end)
         self.max_speed = abs(speed)
@@ -25,8 +26,8 @@ class Enemy:
         self.alive = True
         self.walk_right_images = walk_right_images
         self.walk_left_images = walk_left_images
-        self.movement_timer = 0
-        self.movement_timeout = FPS
+        self.spawn_timer = 0
+        self.path_refresh_timer = GOBLIN_PATH_TIMEOUT
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
 
     def draw(self, window):
@@ -37,13 +38,13 @@ class Enemy:
 
         image_to_blit = self.walk_right_images[self.walk_count //
                                                6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
-        timeout_image = image_to_blit.copy()
-        timeout_image.fill(
-            COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
 
-        if self.movement_timer < self.movement_timeout:
-            self.movement_timer += 1
-            if 0 <= self.movement_timer % 6 <= 1:
+        if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT:
+            timeout_image = image_to_blit.copy()
+            timeout_image.fill(
+                COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
+            self.spawn_timer += 1
+            if 0 <= self.spawn_timer % 6 <= 1:
                 image_to_blit = timeout_image
         else:
             self.walk_count += 1
@@ -78,17 +79,20 @@ class Enemy:
             window, COLORS['black'], (x, y), w, h)
 
     def auto_path(self, player):
-        if self.movement_timer >= self.movement_timeout:
-            going_left = self.speed < 0
-            going_right = self.speed >= 0
-            if self.x > player.x and going_right:
-                self.turn_around()
-            if self.x < player.x and going_left:
-                self.turn_around()
-            if self.y > player.y:
-                self.y -= abs(self.speed)/2
-            if self.y < player.y:
-                self.y += abs(self.speed)/2
+        if self.spawn_timer >= GOBLIN_SPAWN_TIMEOUT:
+            if self.path_refresh_timer >= GOBLIN_PATH_TIMEOUT:
+                self.path_refresh_timer = 0
+                if self.x > player.x and self.speed >= 0:
+                    self.horizontal_turn_around()
+                if self.x < player.x and self.speed < 0:
+                    self.horizontal_turn_around()
+                if self.y > player.y and self.vertical_speed >= 0:
+                    self.vertical_turn_around()
+                if self.y < player.y and self.vertical_speed < 0:
+                    self.vertical_turn_around()
+            else:
+                self.path_refresh_timer += 1
+            self.y += self.vertical_speed
             self.x += self.speed
 
     def draw_health_bar(self, window):
@@ -106,8 +110,12 @@ class Enemy:
         self.path.start -= player_speed * direction
         self.path.end -= player_speed * direction
 
-    def turn_around(self):
+    def horizontal_turn_around(self):
         self.speed *= -1
+        self.walk_count = 0
+
+    def vertical_turn_around(self):
+        self.vertical_speed *= -1
         self.walk_count = 0
 
     def move(self, player_speed, direction):
