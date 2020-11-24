@@ -1,6 +1,7 @@
 import pygame
 from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH
 from static_functions import draw_circle_alpha
+from operator import itemgetter
 
 
 class Player:
@@ -16,13 +17,14 @@ class Player:
         self.standing = True
         self.walk_count = 3
         self.image = PLAYER_STANDING_IMAGE
-        self.hitbox = (self.x + 17, self.y + 11, 28, 53)
+        self.hitbox = (0, 0, 0, 0)
         self.max_health = 10
         self.health = self.max_health
         self.hurt_counter = 0
         self.score = 0
         self.coins = 0
         self.throw_speed = 12
+        self.shade = {'x': 0,'y': 0, 'w': 0, 'h': 0}
 
     def draw(self, window):
         if self.walk_count + 1 >= 54:
@@ -42,13 +44,18 @@ class Player:
         else:
             window.blit(self.image, (self.x, self.y))
 
-        mid_bottom = (self.x + self.width / 2, self.hitbox[1] + self.hitbox[3])
-        draw_circle_alpha(
-            window, COLORS['black'], (mid_bottom), 32, 12)
+        self.draw_shade(window)
 
         self.walk_count += 1
         self.hitbox = (self.x + 23, self.y + 16, 29, 58)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+
+    def draw_shade(self, window):
+        self.shade = {'x': self.x + self.width / 2,
+                      'y': self.hitbox[1] + self.hitbox[3], 'w': 32, 'h': 12}
+        x, y, w, h = itemgetter('x', 'y', 'w', 'h')(self.shade)
+        draw_circle_alpha(
+            window, COLORS['black'], (x, y), w, h)
 
     def move_right(self):
         self.x += self.speed

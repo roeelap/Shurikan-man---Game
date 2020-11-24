@@ -3,6 +3,7 @@ from consts import COLORS, FPS, SOUNDS
 from path import Path
 from random import choice
 from static_functions import draw_circle_alpha
+from operator import itemgetter
 
 
 class Enemy:
@@ -18,7 +19,7 @@ class Enemy:
         self.path = path
         self.path_limit = Path(self.path.start, self.path.end)
         self.max_speed = abs(speed)
-        self.hitbox = (self.x + 20, self.y + 15, 31, 59)
+        self.hitbox = (0, 0, 0, 0)
         self.health = health
         self.max_health = health
         self.alive = True
@@ -27,6 +28,7 @@ class Enemy:
         self.movement_timer = 0
         self.movement_timeout = FPS
         self.can_hit = False
+        self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
 
     def draw(self, window):
         if not self.alive:
@@ -66,13 +68,15 @@ class Enemy:
         self.hitbox = (self.x + 20 + correction,
                        self.y + 15, 31, 60)
         self.draw_health_bar(window)
-
-        mid_bottom = (self.x + self.width / 2 + correction -
-                      5, self.hitbox[1] + self.hitbox[3])
-        draw_circle_alpha(
-            window, COLORS['black'], (mid_bottom), 38, 12)
-
+        self.draw_shade(window, correction)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+
+    def draw_shade(self, window, correction):
+        self.shade = {'x': self.x + self.width / 2 + correction - 5,
+                      'y': self.hitbox[1] + self.hitbox[3], 'w': 38, 'h': 12}
+        x, y, w, h = itemgetter('x', 'y', 'w', 'h')(self.shade)
+        draw_circle_alpha(
+            window, COLORS['black'], (x, y), w, h)
 
     def auto_path(self):
         left_limit = min(self.path.start, self.path.end)

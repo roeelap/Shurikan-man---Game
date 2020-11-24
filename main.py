@@ -1,3 +1,4 @@
+from operator import itemgetter
 import pygame
 from player import Player
 from path import Path
@@ -78,13 +79,15 @@ def main():
         objects_to_draw.sort(key=lambda object: object.y +
                              object.height, reverse=False)
         for object in objects_to_draw:
+            x, y, w, h = itemgetter('x', 'y', 'w', 'h')(object.shade)
             object.draw(window)
             if(type(object) == Enemy):
                 if object.alive:
                     object.can_hit = True if player.y - 15 <= object.y <= player.y + 15 else False
                 else:
                     enemies.remove(object)
-                    coins.append(Coin(object.x, object.y, "bronze"))
+                    coins.append(
+                        Coin(x - 20, y - 4 * h, "bronze"))
                     player.score += 1
 
         player.display_player_stats(window)

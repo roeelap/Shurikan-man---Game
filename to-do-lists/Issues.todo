@@ -15,4 +15,5 @@ Todo:
   ✔ Enemies out of screen @done(20-11-22 15:06)
   ✔ Transition to 60 FPS - Game kinda slow (buttons not registering quick enough) @done(20-11-23 22:39)
   ✔ Fix coin pickup collision function @done(20-11-24 14:44)
-  ☐ Fix enemy health-bar position
+  ✔ Fix enemy health-bar position @done(20-11-24 14:59)
+  ✔ Coin position @done(20-11-24 15:27)
