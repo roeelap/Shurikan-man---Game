@@ -28,7 +28,8 @@ PIXEL_FONT_BUTTON = pygame.font.Font('./data/fonts/dpcomic.ttf', 30)
 SHURIKEN_TIMEOUT = 15
 MAX_SHURIKENS = 3
 SHURIKEN_RADIUS = 9
-SHURIKEN_STARTING_SLOPE = 9
+SHURIKEN_STARTING_SLOPE = 9.5
+SHURIKEN_MIN_SHADE_WIDTH = 20
 
 # shuriken images
 SHURIKEN_IMAGE = pygame.image.load('./data/images/shurikens/shuriken.png')
