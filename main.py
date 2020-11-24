@@ -53,7 +53,7 @@ def main():
 
     window, background, player, enemies, shurikens, coins = new_game()
     enemies.append(Enemy(500, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, -1.4, 9,
-                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
+                         GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
 
     clock = pygame.time.Clock()
     shuriken_shootloop = 0
@@ -134,8 +134,8 @@ def main():
 
         if keys[pygame.K_ESCAPE]:
             win_at_the_moment = window.copy()
-            start_menu(win_at_the_moment)
-            
+            start_menu(win_at_the_moment, True)
+
         # Leave for testing
         if keys[pygame.K_d]:
             spawn_enemy(enemies, background)
