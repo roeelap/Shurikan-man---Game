@@ -4,6 +4,16 @@ from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_R
 
 class Player:
 
+    @staticmethod
+    def draw_circle_alpha(surface, color, center, radius):
+        target_rect = pygame.Rect(center, (0, 0)).inflate(
+            (radius * 2, radius * 2))
+        shape_surf = pygame.Surface(target_rect.size, pygame.SRCALPHA)
+        shape_surf.set_alpha(64)
+        pygame.draw.ellipse(shape_surf, color,
+                            (0, 10, 2 * radius, radius - 5), radius)
+        surface.blit(shape_surf, target_rect)
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -40,6 +50,10 @@ class Player:
             self.hurt_animation(window)
         else:
             window.blit(self.image, (self.x, self.y))
+
+        mid_bottom = (self.x + self.width / 2, self.hitbox[1] + self.hitbox[3])
+        self.draw_circle_alpha(
+            window, COLORS['black'], (mid_bottom), 16)
 
         self.walk_count += 1
         self.hitbox = (self.x + 23, self.y + 16, 29, 58)
@@ -82,10 +96,12 @@ class Player:
         self.hurt_counter -= 1
 
     def display_player_stats(self, window):
-        pygame.draw.rect(window, COLORS['red'], (SCREEN_WIDTH * 2 // 20, 30, SCREEN_WIDTH * 17 // 20, 30))
+        pygame.draw.rect(
+            window, COLORS['red'], (SCREEN_WIDTH * 2 // 20, 30, SCREEN_WIDTH * 17 // 20, 30))
         pygame.draw.rect(
             window, COLORS['green'], (SCREEN_WIDTH * 2 // 20, 30, (SCREEN_WIDTH * 17 // 20) - ((SCREEN_WIDTH * 17 // 200) * (self.max_health - self.health)), 30))
-        pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH * 2 // 20, 30, SCREEN_WIDTH * 17 // 20, 30), width=3)
+        pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH *
+                                                   2 // 20, 30, SCREEN_WIDTH * 17 // 20, 30), width=3)
         window.blit(PLAYER_PORTRAIT, (SCREEN_WIDTH // 30, 30))
 
         health = f'{self.health} / {self.max_health}'
