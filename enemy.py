@@ -90,12 +90,12 @@ class Enemy:
             else:
                 self.path_refresh_timer += 1
 
-            inbound_y = self.shade['y'] + \
+            inbound_y = self.shade['y'] + 0.5 * \
                 self.shade['h'] > player_shade['y'] and self.shade['y'] < player_shade['y'] + \
-                player_shade['h']
-            if BOTTOM_BORDER > self.y+self.vertical_speed > TOP_BORDER and not inbound_y:
+                0.5 * player_shade['h']
+            if BOTTOM_BORDER > self.y + self.vertical_speed > TOP_BORDER and not inbound_y:
                 self.y += self.vertical_speed
-            if 0 < self.x+self.speed+self.width < background_width:
+            if 0 < self.x + self.speed + self.width < background_width:
                 self.x += self.speed
 
     def draw_health_bar(self, window):

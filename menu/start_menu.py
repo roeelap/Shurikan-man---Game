@@ -1,5 +1,5 @@
 import pygame
-from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
+from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
 import sys
 from menu.button import Button
 from menu.options_menu import options_menu
