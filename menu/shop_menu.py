@@ -5,6 +5,12 @@ from menu.shop_item import ShopItem
 from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH_BIG, SHURIKEN_IMAGE, ORANGE_IMAGE
 
 
+def equip_item(shop_item_name, shop_item_list):
+    for item in shop_item_list:
+        if item.is_equipped and item.name != shop_item_name:
+            item.is_equipped = False
+
+
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
 pygame.display.set_icon(SHURIKEN_IMAGE)
@@ -96,6 +102,7 @@ def shuriken_shop():
             if not shop_item.is_equipped and shop_item.is_owned:
                 if shop_item.equip_button.is_pressed(mouse, click):
                     shop_item.is_equipped = True
+                    equip_item(shop_item.name, shurikens_shop_items)
                     print("equipped", shop_item.price)
 
         if quit_shuriken_shop_button.is_pressed(mouse, click):
