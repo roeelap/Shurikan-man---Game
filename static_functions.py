@@ -26,12 +26,12 @@ def is_shade_collision(shade1, shade2):
 def save_game(player, player_data):
     player_data['coins'] = player.coins
     player_data['score'] = player.score
-    with open('player.json', 'w', encoding='utf-8') as file:
+    with open('./player/player.json', 'w', encoding='utf-8') as file:
         json.dump(player_data, file, ensure_ascii=False, indent=4)
 
 
 def load_game(player):
-    with open('player.json') as file:
+    with open('./player/player.json') as file:
         player_data = json.load(file)
     player.coins = player_data['coins']
     player.score = player_data['score']
