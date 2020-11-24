@@ -82,10 +82,11 @@ def main():
             x, y, h = itemgetter('x', 'y', 'h')(object.shade)
             object.draw(window)
             if(type(object) == Enemy):
-                object.auto_path(player)
+                object.auto_path(player.shade, background.width)
                 if not object.alive:
                     enemies.remove(object)
-                    coins.append(Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
+                    coins.append(
+                        Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
                     player.score += 1
 
         player.display_player_stats(window)

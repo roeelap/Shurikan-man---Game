@@ -1,5 +1,5 @@
 import pygame
-from consts import COLORS, FPS, GOBLIN_PATH_TIMEOUT, GOBLIN_SPAWN_TIMEOUT, SOUNDS
+from consts import BOTTOM_BORDER, COLORS, FPS, GOBLIN_PATH_TIMEOUT, GOBLIN_SPAWN_TIMEOUT, SOUNDS, TOP_BORDER
 from path import Path
 from random import choice
 from static_functions import draw_circle_alpha
@@ -78,22 +78,24 @@ class Enemy:
         draw_circle_alpha(
             window, COLORS['black'], (x, y), w, h)
 
-    def auto_path(self, player):
+    def auto_path(self, player_shade, background_width):
         if self.spawn_timer >= GOBLIN_SPAWN_TIMEOUT:
             if self.path_refresh_timer >= GOBLIN_PATH_TIMEOUT:
                 self.path_refresh_timer = 0
-                if self.x > player.x and self.speed >= 0:
+                if self.shade['x'] > player_shade['x'] and self.speed >= 0:
                     self.horizontal_turn_around()
-                if self.x < player.x and self.speed < 0:
+                if self.shade['x'] < player_shade['x'] and self.speed < 0:
                     self.horizontal_turn_around()
-                if self.y > player.y and self.vertical_speed >= 0:
+                if self.shade['y'] > player_shade['y'] and self.vertical_speed >= 0:
                     self.vertical_turn_around()
-                if self.y < player.y and self.vertical_speed < 0:
+                if self.shade['y'] < player_shade['y'] and self.vertical_speed < 0:
                     self.vertical_turn_around()
             else:
                 self.path_refresh_timer += 1
-            self.y += self.vertical_speed
-            self.x += self.speed
+            if BOTTOM_BORDER > self.y+self.vertical_speed > TOP_BORDER:
+                self.y += self.vertical_speed
+            if 0 < self.x+self.speed+self.width < background_width:
+                self.x += self.speed
 
     def draw_health_bar(self, window):
         x_axis_fix = 17 if self.speed > 0 else 5
