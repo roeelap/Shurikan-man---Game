@@ -1,5 +1,5 @@
 import pygame
-from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL
+from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH
 
 
 class Player:
@@ -82,10 +82,11 @@ class Player:
         self.hurt_counter -= 1
 
     def display_player_stats(self, window):
-        pygame.draw.rect(window, COLORS['red'], (120, 30, 650, 30))
+        pygame.draw.rect(window, COLORS['red'], (SCREEN_WIDTH * 2 // 20, 30, SCREEN_WIDTH * 17 // 20, 30))
         pygame.draw.rect(
-            window, COLORS['green'], (120, 30, 650 - (65 * (self.max_health - self.health)), 30))
-        window.blit(PLAYER_PORTRAIT, (40, 30))
+            window, COLORS['green'], (SCREEN_WIDTH * 2 // 20, 30, (SCREEN_WIDTH * 17 // 20) - ((SCREEN_WIDTH * 17 // 200) * (self.max_health - self.health)), 30))
+        pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH * 2 // 20, 30, SCREEN_WIDTH * 17 // 20, 30), width=3)
+        window.blit(PLAYER_PORTRAIT, (SCREEN_WIDTH // 30, 30))
 
         health = f'{self.health} / {self.max_health}'
         if self.health == 0:
