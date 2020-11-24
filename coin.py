@@ -1,4 +1,5 @@
-from consts import BRONZE_COINS, SILVER_COINS, GOLD_COINS
+from consts import BRONZE_COINS, SILVER_COINS, GOLD_COINS, COLORS
+from static_functions import draw_circle_alpha
 
 
 class Coin:
@@ -22,6 +23,10 @@ class Coin:
             window.blit(GOLD_COINS[self.spin_count // 2], (self.x, self.y))
 
         self.spin_count += 1
+
+        mid_bottom = (self.x+self.radius, self.y+self.radius+30)
+        draw_circle_alpha(
+            window, COLORS['black'], (mid_bottom), 35, 8)
 
     def move(self, player_speed, direction):
         self.x -= player_speed * direction

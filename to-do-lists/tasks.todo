@@ -4,6 +4,8 @@ Todo:
   ✔ When player is hit, make him transparent for sometime - changing the player image's opacity @done(20-11-20 15:01)
   ✔ Fix shuriken to bounce on floor until disappearing @done(20-11-23 22:39)
   ✔ Shuriken spinning @done(20-11-23 23:06)
+  ☐ Create shade for shuriken (floor)
+  ☐ Draw by shade instead of by height
   ☐ Fix shuriken hit and path
   ☐ Spawn enemies at end of map, make them follow you.
   ☐ Coin animation
