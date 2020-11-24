@@ -99,6 +99,10 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    win_at_the_moment = window.copy()
+                    start_menu(win_at_the_moment, True)
 
         check_player_enemy_collision(player, enemies)
         check_shuriken_enemy_collision(shurikens, enemies)
@@ -131,11 +135,7 @@ def main():
             shurikens.append(Shuriken(
                 shuriken_start_x, round(player.y + player.height / 2), SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3]))
             SOUNDS['shuriken_throw'].play()
-
-        if keys[pygame.K_ESCAPE]:
-            win_at_the_moment = window.copy()
-            start_menu(win_at_the_moment, True)
-
+            
         # Leave for testing
         if keys[pygame.K_d]:
             spawn_enemy(enemies, background)

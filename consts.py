@@ -1,4 +1,16 @@
 import pygame
+import json
+
+with open('player.json') as file:
+    PLAYER_DATA = json.load(file)
+
+print(PLAYER_DATA)
+PLAYER_DATA['coins'] = 20
+
+with open('player.json', 'w', encoding='utf-8') as file:
+    json.dump(PLAYER_DATA, file, ensure_ascii=False, indent=4)
+
+
 pygame.mixer.pre_init(44100, -16, 2, 1024)
 pygame.mixer.init()
 pygame.font.init()
@@ -18,7 +30,7 @@ PLAYER_INVINCIBLE_TIME = 1*FPS
 GOBLIN_WIDTH = 77
 GOBLIN_HEIGHT = 77
 GOBLIN_SPAWN_TIMEOUT = 1*FPS
-GOBLIN_PATH_TIMEOUT =  1*FPS
+GOBLIN_PATH_TIMEOUT = 1*FPS
 
 # text fonts
 PIXEL_FONT_SMALL = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
@@ -37,8 +49,8 @@ SHURIKEN_MAX_SHADE_WIDTH = 40
 
 # shuriken images
 SHURIKEN_IMAGES = {'grey_shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'golden_shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),
-                    'rainbow_shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'orange': pygame.image.load('./data/images/shurikens/orange.png'),
-                    'tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'grandma': pygame.image.load('./data/images/shurikens/grandma.png')}
+                   'rainbow_shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'orange': pygame.image.load('./data/images/shurikens/orange.png'),
+                   'tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'grandma': pygame.image.load('./data/images/shurikens/grandma.png')}
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),

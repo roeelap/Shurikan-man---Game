@@ -54,7 +54,10 @@ def start_menu(background, darken=False):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
+                exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    return
 
         if play_button.is_pressed(mouse, click):
             SOUNDS['transition'].play()

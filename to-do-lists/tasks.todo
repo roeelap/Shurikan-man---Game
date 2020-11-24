@@ -6,10 +6,10 @@ Todo:
   ✔ Shuriken spinning @done(20-11-23 23:06)
   ✔ Create shade for shuriken (floor) @done(20-11-24 22:36)
   ✔ Draw by shade instead of by height @done(20-11-24 22:36)
-  ☐ Fix shuriken hit and path
-  ☐ Spawn enemies at end of map, make them follow you.
+  ✔ Fix shuriken hit and path @done(20-11-24 23:53)
+  ✔ Spawn enemies at end of map, make them follow you. @done(20-11-24 23:53)
   ☐ Coin pickup animation
-  ☐ Main menu from escape button -> pauses the game
+  ✔ Main menu from escape button -> pauses the game @done(20-11-24 23:54)
   ☐ Save button
   ☐ Write stats to file
   ✔ Coin pickup sound @done(20-11-24 12:27)
