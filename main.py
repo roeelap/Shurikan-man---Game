@@ -1,4 +1,5 @@
 from operator import itemgetter
+from static_functions import is_shade_collision
 import pygame
 from player import Player
 from path import Path
@@ -76,15 +77,13 @@ def main():
         for coin in coins:
             objects_to_draw.append(coin)
         objects_to_draw.append(player)
-        objects_to_draw.sort(key=lambda object: object.y +
-                             object.height, reverse=False)
+        objects_to_draw.sort(
+            key=lambda object: object.shade['y'] + object.shade['h'], reverse=False)
         for object in objects_to_draw:
-            x, y, w, h = itemgetter('x', 'y', 'w', 'h')(object.shade)
+            x, y, h = itemgetter('x', 'y', 'h')(object.shade)
             object.draw(window)
             if(type(object) == Enemy):
-                if object.alive:
-                    object.can_hit = True if player.y - 15 <= object.y <= player.y + 15 else False
-                else:
+                if not object.alive:
                     enemies.remove(object)
                     coins.append(
                         Coin(x - 20, y - 4 * h, "bronze"))
