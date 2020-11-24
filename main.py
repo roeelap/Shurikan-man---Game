@@ -9,7 +9,7 @@ from player_movement import player_movement
 from collision_checks import *
 from sys import exit
 from random import randint, choice
-from consts import BACKGROUND_DUNGEON, GOBLIN_HEIGHT, MAX_SHURIKENS, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
+from consts import BACKGROUND_DUNGEON, GOBLIN_HEIGHT, MAX_SHURIKENS, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS
 from menu.start_menu import start_menu
 from coin import Coin
@@ -18,7 +18,7 @@ from coin import Coin
 def new_game():
     pygame.init()
     pygame.display.set_caption("Shuriken Man")
-    pygame.display.set_icon(SHURIKEN_IMAGE)
+    pygame.display.set_icon(SHURIKEN_IMAGES['grey_shuriken'])
     window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)

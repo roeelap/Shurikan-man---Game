@@ -1,5 +1,5 @@
 import pygame
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
+from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
 import sys
 from menu.button import Button
 from menu.options_menu import options_menu
@@ -8,7 +8,7 @@ from menu.shop_menu import shop_menu
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
-pygame.display.set_icon(SHURIKEN_IMAGE)
+pygame.display.set_icon(SHURIKEN_IMAGES['grey_shuriken'])
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 title_text = PIXEL_FONT_BIG.render("Shuriken Man", True,  COLORS['white'])

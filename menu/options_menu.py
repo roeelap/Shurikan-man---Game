@@ -1,12 +1,12 @@
 import pygame
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, CHECKBOX_HEIGHT, BUTTON_WIDTH_BIG
+from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, CHECKBOX_HEIGHT, BUTTON_WIDTH_BIG
 from menu.button import Button, Checkbox
 import sys
 
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
-pygame.display.set_icon(SHURIKEN_IMAGE)
+pygame.display.set_icon(SHURIKEN_IMAGES['grey_shuriken'])
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 

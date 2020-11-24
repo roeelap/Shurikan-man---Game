@@ -36,8 +36,9 @@ SHURIKEN_MIN_SHADE_WIDTH = 20
 SHURIKEN_MAX_SHADE_WIDTH = 40
 
 # shuriken images
-SHURIKEN_IMAGE = pygame.image.load('./data/images/shurikens/shuriken.png')
-ORANGE_IMAGE = pygame.image.load('./data/images/shurikens/orange.png')
+SHURIKEN_IMAGES = {'grey_shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'golden_shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),
+                    'rainbow_shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'orange': pygame.image.load('./data/images/shurikens/orange.png'),
+                    'tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'grandma': pygame.image.load('./data/images/shurikens/grandma.png')}
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
