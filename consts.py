@@ -22,7 +22,8 @@ GOBLIN_HEIGHT = 77
 PIXEL_FONT_SMALL = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
 PIXEL_FONT_MID = pygame.font.Font('./data/fonts/dpcomic.ttf', 50)
 PIXEL_FONT_BIG = pygame.font.Font('./data/fonts/dpcomic.ttf', 100)
-PIXEL_FONT_BUTTON = pygame.font.Font('./data/fonts/dpcomic.ttf', 30)
+PIXEL_FONT_BIG_BUTTON = pygame.font.Font('./data/fonts/dpcomic.ttf', 30)
+PIXEL_FONT_SMALL_BUTTON = pygame.font.Font('./data/fonts/dpcomic.ttf', 24)
 
 # shuriken consts
 SHURIKEN_TIMEOUT = 15
@@ -77,14 +78,20 @@ SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/player-hit.wav'), 'shu
           'shuriken_hits': [pygame.mixer.Sound('./data/sounds/shuriken-hit-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken-hit-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken-hit-3.wav')]}
 
 # button consts
-BUTTON_WIDTH = 227
-BUTTON_HEIGHT = 52
+BUTTON_WIDTH_BIG = 227
+BUTTON_HEIGHT_BIG = 52
+BUTTON_WIDTH_SMALL = 108
+BUTTON_HEIGHT_SMALL = 48
 CHECKBOX_WIDTH = 52
 CHECKBOX_HEIGHT = 48
-INACTIVE_BUTTON = pygame.image.load(
+INACTIVE_BUTTON_BIG = pygame.image.load(
     './data/images/buttons/button-inactive.png')
-ACTIVE_BUTTON = pygame.image.load(
+ACTIVE_BUTTON_BIG = pygame.image.load(
     './data/images/buttons/button-active.png')
+INACTIVE_BUTTON_SMALL = pygame.image.load(
+    './data/images/buttons/button-small-inactive.png')
+ACTIVE_BUTTON_SMALL = pygame.image.load(
+    './data/images/buttons/button-small-active.png')
 CHECKBOX_INACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-inactive.png')
 CHECKBOX_ACTIVE = pygame.image.load(
