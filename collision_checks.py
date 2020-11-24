@@ -1,3 +1,5 @@
+from consts import SOUNDS
+
 def check_player_enemy_collision(player, enemies):
     """Check player-enemy collision, the hurt counter is giving the player time to run away."""
     if player.hurt_counter == 0:
@@ -35,6 +37,7 @@ def check_player_coin_collision(player, coins):
             try:
                 player.coins += 1
                 coins.pop(coins.index(coin))
+                SOUNDS['coin_pickup'].play()
             except:
                 pass
             
