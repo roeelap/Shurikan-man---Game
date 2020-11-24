@@ -52,7 +52,8 @@ def main():
     start_menu(BACKGROUND_DUNGEON)
 
     window, background, player, enemies, shurikens, coins = new_game()
-    spawn_enemy(enemies, background)
+    enemies.append(Enemy(500, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, -1.4, 9,
+                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
 
     clock = pygame.time.Clock()
     shuriken_shootloop = 0
