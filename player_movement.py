@@ -1,5 +1,5 @@
 import pygame
-from consts import BOTTOM_BORDER, SOUNDS, SCREEN_WIDTH, SCREEN_MIDDLE, TOP_BORDER
+from consts import BOTTOM_BORDER, SCREEN_WIDTH, SCREEN_MIDDLE, TOP_BORDER
 
 
 def player_movement(player, enemies, coins, shurikens, background):
