@@ -90,11 +90,11 @@ class Enemy:
     def draw_health_bar(self, window):
         x_axis_fix = 17 if self.speed > 0 else 5
         pygame.draw.rect(window, COLORS['red'],
-                         (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 40, 50, 10))
+                         (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 30, 50, 10))
         pygame.draw.rect(
-            window, COLORS['green'], (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 40, 50 - (5 * (self.max_health - self.health)), 10))
+            window, COLORS['green'], (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 30, 50 - (5 * (self.max_health - self.health)), 10))
         pygame.draw.rect(window, COLORS['black'],
-                         (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 40, 50, 10), width=1)
+                         (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 30, 50, 10), width=1)
 
     def update_path_limits(self, player_speed, direction):
         self.path.start -= player_speed * direction

@@ -138,7 +138,7 @@ def main():
             SOUNDS['shuriken_throw'].play()
 
         # Leave for testing
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_s]:
             spawn_enemy(enemies, player.x, background)
 
         if keys[pygame.K_s]:
