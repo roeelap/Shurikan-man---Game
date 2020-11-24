@@ -5,7 +5,7 @@ from static_functions import draw_circle_alpha
 from menu.shop_menu import shurikens_shop_items
 
 
-def shuriken_image(shurikens_shop_items):
+def shuriken_image():
     for item in shurikens_shop_items:
         if item.is_equipped:
             return item.image
@@ -25,7 +25,7 @@ class Shuriken:
 
     def draw(self, window):
         self.distance_from_bottom = int(abs(self.bottom-self.y)/2)
-        window.blit(pygame.transform.rotate(shuriken_image(shurikens_shop_items),
+        window.blit(pygame.transform.rotate(shuriken_image(),
                                             self.rotation_angle), (self.x, self.y))
         self.rotation_angle -= self.speed * 5
         self.draw_shade(window)
