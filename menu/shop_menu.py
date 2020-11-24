@@ -62,7 +62,7 @@ def shop_menu():
 
 
 # Shuriken shop
-shurikens_shop_items = [ShopItem('Grey shuriken', 0, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGE, True, True), ShopItem('Orange', 10, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 3 // 6, ORANGE_IMAGE, False, False) ]
+shurikens_shop_items = [ShopItem('Grey shuriken', 0, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGE, True, True), ShopItem('Orange', 10, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 3 // 6, ORANGE_IMAGE, False, False)]
 quit_shuriken_shop_button = Button('Back', SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big')
 
 def redraw_shuriken_shop(mouse):
@@ -103,7 +103,6 @@ def shuriken_shop():
                 if shop_item.equip_button.is_pressed(mouse, click):
                     shop_item.is_equipped = True
                     equip_item(shop_item.name, shurikens_shop_items)
-                    print("equipped", shop_item.price)
 
         if quit_shuriken_shop_button.is_pressed(mouse, click):
             break
