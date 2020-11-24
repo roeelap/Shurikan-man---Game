@@ -111,6 +111,7 @@ def main():
                 exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
+                    SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
                     start_menu(win_at_the_moment, True)
 

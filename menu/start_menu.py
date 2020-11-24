@@ -25,10 +25,10 @@ quit_button = Button('Quit Game', (SCREEN_WIDTH * 2 // 3) -
                      (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 4, 'big')
 
 
-def redraw_start_menu(background, mouse, darken=False):
+def redraw_start_menu(background, mouse, pause_screen=False):
 
     window.blit(background, (0, 0))
-    if darken:
+    if pause_screen:
         target_rect = pygame.Rect((0, 0), (SCREEN_WIDTH, SCREEN_HEIGHT))
         shape_surf = pygame.Surface(window.get_size(), pygame.SRCALPHA)
         shape_surf.set_alpha(128)
@@ -44,7 +44,7 @@ def redraw_start_menu(background, mouse, darken=False):
     pygame.display.update()
 
 
-def start_menu(background, darken=False):
+def start_menu(background, pause_screen=False):
     while True:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
@@ -55,9 +55,11 @@ def start_menu(background, darken=False):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    return
+            if pause_screen:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        SOUNDS['transition'].play()
+                        return
 
         if play_button.is_pressed(mouse, click):
             SOUNDS['transition'].play()
@@ -73,4 +75,4 @@ def start_menu(background, darken=False):
         elif shop_button.is_pressed(mouse, click):
             shop_menu()
 
-        redraw_start_menu(background, mouse, darken)
+        redraw_start_menu(background, mouse, pause_screen)
