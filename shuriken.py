@@ -2,7 +2,6 @@ from operator import itemgetter
 from consts import COLORS, SHURIKEN_IMAGE, SCREEN_HEIGHT, SHURIKEN_MAX_SHADE_WIDTH, SHURIKEN_MIN_SHADE_WIDTH, SHURIKEN_STARTING_SLOPE
 import pygame
 from static_functions import draw_circle_alpha
-from math import sqrt
 
 
 class Shuriken:

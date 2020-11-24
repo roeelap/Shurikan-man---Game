@@ -33,7 +33,6 @@ class Enemy:
         if not self.alive:
             return
 
-        self.auto_path()
         correction = 0
 
         image_to_blit = self.walk_right_images[self.walk_count //
@@ -78,18 +77,19 @@ class Enemy:
         draw_circle_alpha(
             window, COLORS['black'], (x, y), w, h)
 
-    def auto_path(self):
-        left_limit = min(self.path.start, self.path.end)
-        right_limit = max(self.path.start, self.path.end)
-        inbound_left = self.x + self.speed > left_limit
-        inbound_right = self.x + self.speed < right_limit
-        going_left = self.speed < 0
-        going_right = self.speed >= 0
+    def auto_path(self, player):
         if self.movement_timer >= self.movement_timeout:
-            if inbound_left and going_left or inbound_right and going_right:
-                self.x += self.speed
-            else:
+            going_left = self.speed < 0
+            going_right = self.speed >= 0
+            if self.x > player.x and going_right:
                 self.turn_around()
+            if self.x < player.x and going_left:
+                self.turn_around()
+            if self.y > player.y:
+                self.y -= abs(self.speed)/2
+            if self.y < player.y:
+                self.y += abs(self.speed)/2
+            self.x += self.speed
 
     def draw_health_bar(self, window):
         x_axis_fix = 17 if self.speed > 0 else 5

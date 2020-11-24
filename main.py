@@ -1,5 +1,4 @@
 from operator import itemgetter
-from static_functions import is_shade_collision
 import pygame
 from player import Player
 from path import Path
@@ -83,6 +82,7 @@ def main():
             x, y, h = itemgetter('x', 'y', 'h')(object.shade)
             object.draw(window)
             if(type(object) == Enemy):
+                object.auto_path(player)
                 if not object.alive:
                     enemies.remove(object)
                     coins.append(
