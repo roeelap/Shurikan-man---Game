@@ -97,8 +97,11 @@ def shuriken_shop():
             for shop_item in shurikens_shop_items:
                 if shop_item.checkbox is not None:
                     if shop_item.checkbox.is_on:
+                        shop_item.is_owned = True
                         total_price += shop_item.price
-            print(total_price)
+            print(total_price, 'bought')
+
+            total_price = 0
             break
 
         elif quit_shuriken_shop_button.is_pressed(mouse, click):
