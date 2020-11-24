@@ -15,7 +15,7 @@ title_text = PIXEL_FONT_BIG.render("Shuriken Man", True,  COLORS['white'])
 title_textRect = title_text.get_rect()
 title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 4
 
-new_game_button = Button('New Game', (SCREEN_WIDTH // 3) - (BUTTON_WIDTH_BIG // 2) , SCREEN_HEIGHT // 2, 'big')
+play_button = Button('Play!', (SCREEN_WIDTH // 3) - (BUTTON_WIDTH_BIG // 2) , SCREEN_HEIGHT // 2, 'big')
 shop_button = Button('Shop', (SCREEN_WIDTH * 2 // 3) - (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT // 2, 'big')
 options_button = Button('Options', (SCREEN_WIDTH // 3) - (BUTTON_WIDTH_BIG // 2) , SCREEN_HEIGHT * 3 // 4, 'big')
 quit_button = Button('Quit Game', (SCREEN_WIDTH * 2 // 3) - (BUTTON_WIDTH_BIG // 2) , SCREEN_HEIGHT * 3 // 4, 'big')
@@ -24,7 +24,7 @@ quit_button = Button('Quit Game', (SCREEN_WIDTH * 2 // 3) - (BUTTON_WIDTH_BIG //
 def redraw_start_menu(mouse):
     window.blit(BACKGROUND_DUNGEON, (0, 0))
     window.blit(title_text, title_textRect)
-    new_game_button.show(window, mouse)
+    play_button.show(window, mouse)
     shop_button.show(window, mouse)
     options_button.show(window, mouse)
     quit_button.show(window, mouse)
@@ -43,7 +43,7 @@ def start_menu():
                 pygame.quit()
                 sys.exit()
 
-        if new_game_button.is_pressed(mouse, click):
+        if play_button.is_pressed(mouse, click):
             SOUNDS['transition'].play()
             break
 
