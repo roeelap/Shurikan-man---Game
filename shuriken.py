@@ -1,5 +1,5 @@
 from operator import itemgetter
-from consts import COLORS, SHURIKEN_IMAGE, SCREEN_HEIGHT, SHURIKEN_MIN_SHADE_WIDTH, SHURIKEN_STARTING_SLOPE
+from consts import COLORS, SHURIKEN_IMAGE, SCREEN_HEIGHT, SHURIKEN_MAX_SHADE_WIDTH, SHURIKEN_MIN_SHADE_WIDTH, SHURIKEN_STARTING_SLOPE
 import pygame
 from static_functions import draw_circle_alpha
 from math import sqrt
@@ -29,6 +29,8 @@ class Shuriken:
         shade_width = self.distance_from_bottom
         if shade_width < SHURIKEN_MIN_SHADE_WIDTH:
             shade_width = SHURIKEN_MIN_SHADE_WIDTH
+        if shade_width > SHURIKEN_MAX_SHADE_WIDTH:
+            shade_width = SHURIKEN_MAX_SHADE_WIDTH
         self.shade = {'x': self.x + self.radius,
                       'y': self.bottom, 'w': shade_width, 'h': 9}
         x, y, w, h = itemgetter('x', 'y', 'w', 'h')(self.shade)
