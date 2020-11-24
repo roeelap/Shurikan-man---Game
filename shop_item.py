@@ -1,4 +1,5 @@
-from consts import PIXEL_FONT_SMALL, SCREEN_HEIGHT, SCREEN_WIDTH, COLORS
+from consts import PIXEL_FONT_SMALL, SCREEN_HEIGHT, SCREEN_WIDTH, COLORS, CHECKBOX_WIDTH 
+from button import Checkbox
 
 
 class ShopItem:
@@ -10,8 +11,14 @@ class ShopItem:
         self.width = 18
         self.image = image
         self.is_owned = is_owned
-    
-    def show(self, window):
+        self.want_to_buy = False
+        self.checkbox = Checkbox(self.x - self.width - CHECKBOX_WIDTH, self.y)
+
+    def show(self, window, mouse):
+        if not self.is_owned:
+            self.checkbox.show(window, mouse)
+        else:
+            self.checkbox = None
         window.blit(self.image, (self.x, self.y))
         window.blit(self.name, (self.x + self.width * 2, self.y))
         if self.is_owned:

@@ -57,7 +57,8 @@ def shop_menu():
 
 # Shuriken shop
 shurikens_shop_items = [ShopItem('Grey shuriken', 0, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGE, True), ShopItem('Orange', 10, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 3 // 6, ORANGE_IMAGE, False) ]
-quit_shuriken_shop_button = Button('Back', SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 5// 6)
+buy_button = Button('Buy', SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 6 // 8)
+quit_shuriken_shop_button = Button('Back', SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8)
 
 def redraw_shuriken_shop(mouse):
     window.blit(BACKGROUND_DUNGEON, (0, 0))
@@ -65,14 +66,17 @@ def redraw_shuriken_shop(mouse):
     window.blit(shop_title_text, shop_textRect)
 
     for shop_item in shurikens_shop_items:
-        shop_item.show(window)
-
+        shop_item.show(window, mouse)
+    
+    buy_button.show(window, mouse)
     quit_shuriken_shop_button.show(window, mouse)
 
     pygame.display.update()
 
 
 def shuriken_shop():
+    total_price = 0
+
     while True:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
@@ -83,8 +87,21 @@ def shuriken_shop():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+        
+        for shop_item in shurikens_shop_items:
+            if shop_item.checkbox is not None:
+                if shop_item.checkbox.is_pressed(mouse, click):
+                    pass
 
-        if quit_shuriken_shop_button.is_pressed(mouse, click):
+        if buy_button.is_pressed(mouse,click):
+            for shop_item in shurikens_shop_items:
+                if shop_item.checkbox is not None:
+                    if shop_item.checkbox.is_on:
+                        total_price += shop_item.price
+            print(total_price)
+            break
+
+        elif quit_shuriken_shop_button.is_pressed(mouse, click):
             break
 
         redraw_shuriken_shop(mouse)
