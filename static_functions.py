@@ -28,6 +28,13 @@ def save_game(player, player_data):
     player_data['score'] = player.score
     with open('./player/player.json', 'w', encoding='utf-8') as file:
         json.dump(player_data, file, ensure_ascii=False, indent=4)
+    data = player.__dict__
+    new_dict = {}
+    for attr in data.keys():
+        if type(attr) is int or type(attr) is float or type(attr) is dict or type(attr) is tuple or type(attr) is bool:
+            new_dict[attr] = data[attr]
+    with open('./player/new_player.json', 'w', encoding='utf-8') as file:
+        json.dump(new_dict, file, ensure_ascii=False, indent=4)
 
 
 def load_game(player):
