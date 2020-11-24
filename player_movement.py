@@ -16,7 +16,6 @@ def player_movement(player, enemies, coins, shurikens, background):
             if background.x == 0 or SCREEN_WIDTH - background.width < background.x < 0:
                 background.move_left(player)
                 for enemy in enemies:
-                    enemy.update_path_limits(player.speed, 1)
                     enemy.move(player.speed, 1)
                 for coin in coins:
                     coin.move(player.speed, 1)
@@ -36,7 +35,6 @@ def player_movement(player, enemies, coins, shurikens, background):
             elif background.x == SCREEN_WIDTH - background.width or SCREEN_WIDTH - background.width < background.x < 0:
                 background.move_right(player)
                 for enemy in enemies:
-                    enemy.update_path_limits(player.speed, -1)
                     enemy.move(player.speed, -1)
                 for coin in coins:
                     coin.move(player.speed, -1)

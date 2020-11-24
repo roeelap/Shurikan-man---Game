@@ -1,7 +1,6 @@
 from operator import itemgetter
 import pygame
 from player import Player
-from path import Path
 from enemy import Enemy
 from shuriken import Shuriken
 from background import Background
@@ -9,8 +8,8 @@ from player_movement import player_movement
 from collision_checks import *
 from sys import exit
 from random import randint, choice
-from consts import BACKGROUND_DUNGEON, GOBLIN_HEIGHT, MAX_SHURIKENS, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
-    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS
+from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, MAX_SHURIKENS, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
+    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS, TOP_BORDER
 from menu.start_menu import start_menu
 from coin import Coin
 
@@ -29,27 +28,20 @@ def new_game():
 
 
 # Pilot for random enemy spawning
-def can_spawn_enemy(spawn_enemy_loop, enemies, player_x_pos, countdown, background):
+def can_spawn_enemy(spawn_enemy_loop, enemies, countdown, background):
     spawn_enemy_loop += 1
     if spawn_enemy_loop == int(countdown * FPS):
-        spawn_enemy(enemies, player_x_pos, background)
+        spawn_enemy(enemies, background)
         spawn_enemy_loop = 0
     return spawn_enemy_loop
 
 
-def spawn_enemy(enemies, player_x_pos, background):
-    start = background.x + \
-        randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
-    end = background.x + randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
-    while (abs(end - start) < 300 or abs(start - player_x_pos) < 100):
-        start = background.x + \
-            randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
-        end = background.x + \
-            randint(GOBLIN_WIDTH, background.width - GOBLIN_WIDTH)
-    direction = 1
-    if start > end:
-        direction = -1
-    new_enemy = Enemy(start, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, Path(start, end), 1.4 * direction, 9,
+def spawn_enemy(enemies, background):
+    start_x = background.x + \
+        randint(background.width-300, background.width - GOBLIN_WIDTH)
+    start_y = randint(TOP_BORDER, BOTTOM_BORDER)
+    direction = -1
+    new_enemy = Enemy(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.4 * direction, 9,
                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
     SOUNDS['enemy_spawn'].play()
     enemies.append(new_enemy)
@@ -60,7 +52,7 @@ def main():
     start_menu()
 
     window, background, player, enemies, shurikens, coins = new_game()
-    spawn_enemy(enemies, player.x, background)
+    spawn_enemy(enemies, background)
 
     clock = pygame.time.Clock()
     shuriken_shootloop = 0
@@ -82,10 +74,11 @@ def main():
             x, y, h = itemgetter('x', 'y', 'h')(object.shade)
             object.draw(window)
             if(type(object) == Enemy):
-                object.auto_path(player)
+                object.auto_path(player.shade, background.width)
                 if not object.alive:
                     enemies.remove(object)
-                    coins.append(Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
+                    coins.append(
+                        Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
                     player.score += 1
 
         player.display_player_stats(window)
@@ -98,7 +91,7 @@ def main():
 
         # Randomely spawn enemies every 5 seconds
         spawn_enemy_loop = can_spawn_enemy(
-            spawn_enemy_loop, enemies,  player.x, 5, background)
+            spawn_enemy_loop, enemies, 5, background)
 
         # Exit on quit button
         for event in pygame.event.get():
@@ -140,7 +133,7 @@ def main():
 
         # Leave for testing
         if keys[pygame.K_d]:
-            spawn_enemy(enemies, player.x, background)
+            spawn_enemy(enemies, background)
 
         if keys[pygame.K_s]:
             enemies.clear()

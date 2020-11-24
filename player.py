@@ -11,7 +11,7 @@ class Player:
         self.y = y
         self.width = 77
         self.height = 77
-        self.speed = 2
+        self.speed = 2.5
         self.left = False
         self.right = False
         self.standing = True
