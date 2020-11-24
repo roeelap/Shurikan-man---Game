@@ -1,16 +1,4 @@
 import pygame
-import json
-
-with open('player.json') as file:
-    PLAYER_DATA = json.load(file)
-
-print(PLAYER_DATA)
-PLAYER_DATA['coins'] = 20
-
-with open('player.json', 'w', encoding='utf-8') as file:
-    json.dump(PLAYER_DATA, file, ensure_ascii=False, indent=4)
-
-
 pygame.mixer.pre_init(44100, -16, 2, 1024)
 pygame.mixer.init()
 pygame.font.init()
@@ -25,6 +13,7 @@ SCREEN_MIDDLE = int(SCREEN_WIDTH / 2) - 80
 FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
 PLAYER_INVINCIBLE_TIME = 1*FPS
+SAVE_TIMEOUT = 1 * FPS
 
 # goblin
 GOBLIN_WIDTH = 77

@@ -1,4 +1,5 @@
 from operator import itemgetter
+from static_functions import load_game, save_game
 import pygame
 from player import Player
 from enemy import Enemy
@@ -8,7 +9,7 @@ from player_movement import player_movement
 from collision_checks import *
 from sys import exit
 from random import randint, choice
-from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, MAX_SHURIKENS, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
+from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, MAX_SHURIKENS, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS, TOP_BORDER
 from menu.start_menu import start_menu
 from coin import Coin
@@ -28,12 +29,12 @@ def new_game():
 
 
 # Pilot for random enemy spawning
-def can_spawn_enemy(spawn_enemy_loop, enemies, countdown, background):
-    spawn_enemy_loop += 1
-    if spawn_enemy_loop == int(countdown * FPS):
+def can_spawn_enemy(spawn_enemy_timer, enemies, countdown, background):
+    spawn_enemy_timer += 1
+    if spawn_enemy_timer == int(countdown * FPS):
         spawn_enemy(enemies, background)
-        spawn_enemy_loop = 0
-    return spawn_enemy_loop
+        spawn_enemy_timer = 0
+    return spawn_enemy_timer
 
 
 def spawn_enemy(enemies, background):
@@ -56,8 +57,11 @@ def main():
                          GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
 
     clock = pygame.time.Clock()
-    shuriken_shootloop = 0
-    spawn_enemy_loop = 0
+    shuriken_shoot_timer = 0
+    spawn_enemy_timer = 0
+    save_timer = 0
+
+    player_data = load_game(player)
 
     def redraw_window():
         background.draw(window)
@@ -87,12 +91,18 @@ def main():
 
     # Game loop
     while True:
-
         clock.tick(FPS)
 
+        # Save game every second (60 fps)
+        if save_timer == SAVE_TIMEOUT:
+            save_timer = 0
+            save_game(player, player_data)
+        else:
+            save_timer += 1
+
         # Randomely spawn enemies every 5 seconds
-        spawn_enemy_loop = can_spawn_enemy(
-            spawn_enemy_loop, enemies, 5, background)
+        spawn_enemy_timer = can_spawn_enemy(
+            spawn_enemy_timer, enemies, 5, background)
 
         # Exit on quit button
         for event in pygame.event.get():
@@ -119,14 +129,14 @@ def main():
         keys = pygame.key.get_pressed()
 
         # the shurikens won't be thrown together, the shoot loop needs to be reset before every throw
-        if shuriken_shootloop > 0:
-            shuriken_shootloop += 1
-        if shuriken_shootloop > SHURIKEN_TIMEOUT:
-            shuriken_shootloop = 0
+        if shuriken_shoot_timer > 0:
+            shuriken_shoot_timer += 1
+        if shuriken_shoot_timer > SHURIKEN_TIMEOUT:
+            shuriken_shoot_timer = 0
 
         # Throwing shurikens with space-bar. Only 3 shurikens allowed
-        if keys[pygame.K_SPACE] and shuriken_shootloop == 0 and len(shurikens) < MAX_SHURIKENS:
-            shuriken_shootloop = 1
+        if keys[pygame.K_SPACE] and shuriken_shoot_timer == 0 and len(shurikens) < MAX_SHURIKENS:
+            shuriken_shoot_timer = 1
             facing = 1
             shuriken_start_x = player.hitbox[0] + player.hitbox[2] - 5
             if player.left:
@@ -135,7 +145,7 @@ def main():
             shurikens.append(Shuriken(
                 shuriken_start_x, round(player.y + player.height / 2), SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3]))
             SOUNDS['shuriken_throw'].play()
-            
+
         # Leave for testing
         if keys[pygame.K_d]:
             spawn_enemy(enemies, background)

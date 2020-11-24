@@ -1,5 +1,6 @@
 from operator import itemgetter
 import pygame
+import json
 
 
 def draw_circle_alpha(surface, color, center, width, height):
@@ -20,3 +21,18 @@ def is_shade_collision(shade1, shade2):
     if inbound_x and inbound_y:
         return True
     return False
+
+
+def save_game(player, player_data):
+    player_data['coins'] = player.coins
+    player_data['score'] = player.score
+    with open('player.json', 'w', encoding='utf-8') as file:
+        json.dump(player_data, file, ensure_ascii=False, indent=4)
+
+
+def load_game(player):
+    with open('player.json') as file:
+        player_data = json.load(file)
+    player.coins = player_data['coins']
+    player.score = player_data['score']
+    return player_data
