@@ -10,6 +10,6 @@ Todo:
   ☐ Main menu from escape button -> pauses the game
   ☐ Save button
   ☐ Write stats to file
-  ☐ Coin pickup sound
+  ✔ Coin pickup sound @done(20-11-24 12:27)
   ☐ Animation for hitting enemy
   ☐ Player experience system (more exp = faster, stronger, shurikens faster)

@@ -1,7 +1,8 @@
 import pygame
 import sys
 from button import Button
-from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH
+from shop_item import ShopItem
+from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH, SHURIKEN_IMAGE, ORANGE_IMAGE
 
 
 pygame.init()
@@ -55,13 +56,16 @@ def shop_menu():
 
 
 # Shuriken shop
-
+shurikens_shop_items = [ShopItem('Grey shuriken', 0, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGE, True), ShopItem('Orange', 10, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 3 // 6, ORANGE_IMAGE, False) ]
 quit_shuriken_shop_button = Button('Back', SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 5// 6)
 
 def redraw_shuriken_shop(mouse):
     window.blit(BACKGROUND_DUNGEON, (0, 0))
 
     window.blit(shop_title_text, shop_textRect)
+
+    for shop_item in shurikens_shop_items:
+        shop_item.show(window)
 
     quit_shuriken_shop_button.show(window, mouse)
 

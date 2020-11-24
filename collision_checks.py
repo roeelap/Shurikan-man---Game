@@ -1,3 +1,5 @@
+from consts import SOUNDS
+
 def check_player_enemy_collision(player, enemies):
     """Check player-enemy collision, the hurt counter is giving the player time to run away."""
     if player.hurt_counter == 0:
@@ -27,14 +29,15 @@ def check_shuriken_enemy_collision(shurikens, enemies):
 
 def check_player_coin_collision(player, coins):
     for coin in coins:
-        inbound_x_left = coin.x + coin.radius > player.hitbox[0]
-        inbound_x_right = coin.x - coin.radius < player.hitbox[0] + player.hitbox[2]
-        inbound_y_up = coin.y -  coin.radius < player.hitbox[1] + player.hitbox[3]
-        inbound_y_down = coin.y + coin.radius > player.hitbox[1]
+        inbound_x_left = coin.x < player.hitbox[0] + player.hitbox[2]
+        inbound_x_right = coin.x + coin.radius * 2 > player.hitbox[0]
+        inbound_y_up = coin.y < player.hitbox[1] + player.hitbox[3]
+        inbound_y_down = coin.y + coin.radius * 2 > player.hitbox[1]
         if inbound_x_left and inbound_x_right and inbound_y_up and inbound_y_down:   
             try:
                 player.coins += 1
                 coins.pop(coins.index(coin))
+                SOUNDS['coin_pickup'].play()
             except:
                 pass
             

@@ -87,6 +87,8 @@ class Enemy:
                          (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 40, 50, 10))
         pygame.draw.rect(
             window, COLORS['green'], (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 40, 50 - (5 * (self.max_health - self.health)), 10))
+        pygame.draw.rect(window, COLORS['black'],
+                         (self.hitbox[0]-x_axis_fix, self.hitbox[1] - 40, 50, 10), width=1)
 
     def update_path_limits(self, player_speed, direction):
         self.path.start -= player_speed * direction
