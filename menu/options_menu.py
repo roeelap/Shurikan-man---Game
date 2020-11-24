@@ -23,8 +23,8 @@ sound_text = PIXEL_FONT_MID.render("Sound", True,  COLORS['white'])
 sound_textRect = options_title_text.get_rect()
 sound_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT * 3 // 4
 
-music_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT // 2 - CHECKBOX_HEIGHT)
-sound_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT * 3 // 4 - CHECKBOX_HEIGHT)
+music_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT // 2 - CHECKBOX_HEIGHT, True)
+sound_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT * 3 // 4 - CHECKBOX_HEIGHT, True)
 back_button = Button('Back', SCREEN_WIDTH // 2 - (BUTTON_WIDTH // 2), SCREEN_HEIGHT * 5 // 6)
 
 def set_all_volumes(all_sounds, new_volume):

@@ -11,14 +11,14 @@ class ShopItem:
         self.width = 18
         self.image = image
         self.is_owned = is_owned
-        self.want_to_buy = False
-        self.checkbox = Checkbox(self.x - self.width - CHECKBOX_WIDTH, self.y)
+        self.equipped = False
+        self.buy_checkbox = Checkbox(self.x - self.width - CHECKBOX_WIDTH, self.y, False)
 
     def show(self, window, mouse):
         if not self.is_owned:
-            self.checkbox.show(window, mouse)
+            self.buy_checkbox.show(window, mouse)
         else:
-            self.checkbox = None
+            self.buy_checkbox = None
         window.blit(self.image, (self.x, self.y))
         window.blit(self.name, (self.x + self.width * 2, self.y))
         if self.is_owned:

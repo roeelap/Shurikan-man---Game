@@ -46,12 +46,12 @@ class Button:
 
 
 class Checkbox(Button):
-    def __init__(self, x, y):
+    def __init__(self, x, y, is_on):
         self.x = x
         self.y = y
         self.width = CHECKBOX_WIDTH
         self.height = CHECKBOX_HEIGHT
-        self.is_on = True
+        self.is_on = is_on
         self.click_counter = 0
         self.inactive_image = CHECKBOX_INACTIVE
         self.active_image = CHECKBOX_ACTIVE
