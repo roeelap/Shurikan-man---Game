@@ -25,7 +25,12 @@ def check_player_coin_collision(player, coins):
     for coin in coins:
         if is_shade_collision(player.shade, coin.shade):
             try:
-                player.coins += 1
+                if coin.kind == "bronze":
+                    player.coins += 1
+                elif coin.kind == "silver":
+                    player.coins += 5
+                elif coin.kind == "gold":
+                    player.coins += 10
                 coins.pop(coins.index(coin))
                 SOUNDS['coin_pickup'].play()
             except:

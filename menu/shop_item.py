@@ -13,7 +13,7 @@ class ShopItem:
         self.is_owned = is_owned
         self.is_equipped = is_equipped
         self.buy_button = Button('Buy', self.x - BUTTON_WIDTH_SMALL - 10, self.y, 'small')
-        self.equip_button = Button('Equip', self.x + BUTTON_WIDTH_SMALL * 1.5, self.y, 'small')
+        self.equip_button = Button('Equip', self.x + BUTTON_WIDTH_SMALL * 1.75, self.y, 'small')
 
     def show(self, window, mouse):
         if not self.is_owned:

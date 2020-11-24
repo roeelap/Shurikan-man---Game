@@ -2,7 +2,7 @@ import pygame
 import sys
 from menu.button import Button
 from menu.shop_item import ShopItem
-from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH_BIG, SHURIKEN_IMAGE, ORANGE_IMAGE
+from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH_BIG, SHURIKEN_IMAGES
 
 
 def equip_item(shop_item_name, shop_item_list):
@@ -13,7 +13,7 @@ def equip_item(shop_item_name, shop_item_list):
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
-pygame.display.set_icon(SHURIKEN_IMAGE)
+pygame.display.set_icon(SHURIKEN_IMAGES['grey_shuriken'])
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
@@ -62,7 +62,13 @@ def shop_menu():
 
 
 # Shuriken shop
-shurikens_shop_items = [ShopItem('Grey shuriken', 0, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGE, True, True), ShopItem('Orange', 10, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 3 // 6, ORANGE_IMAGE, False, False)]
+shurikens_shop_items = [ShopItem('Grey shuriken', 0, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['grey_shuriken'], True, True), 
+                        ShopItem('Golden shuriken', 10, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['golden_shuriken'], False, False),
+                        ShopItem('Rainbow shuriken', 50, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 4 // 6, SHURIKEN_IMAGES['rainbow_shuriken'], False, False),
+                        ShopItem('Orange', 100, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 5 // 6, SHURIKEN_IMAGES['orange'], False, False),
+                        ShopItem('Tomato', 150, SCREEN_WIDTH // 2, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['tomato'], False, False),
+                        ShopItem('Granny', 200, SCREEN_WIDTH // 2, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['grandma'], False, False)]
+
 quit_shuriken_shop_button = Button('Back', SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big')
 
 def redraw_shuriken_shop(mouse):
