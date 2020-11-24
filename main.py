@@ -11,7 +11,7 @@ from sys import exit
 from random import randint
 from consts import BACKGROUND_DUNGEON, GOBLIN_HEIGHT, MAX_SHURIKENS, SHURIKEN_IMAGE, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS
-from start_menu import start_menu
+from menu.start_menu import start_menu
 from coin import Coin
 
 

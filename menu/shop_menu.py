@@ -1,7 +1,7 @@
 import pygame
 import sys
-from button import Button
-from shop_item import ShopItem
+from menu.button import Button
+from menu.shop_item import ShopItem
 from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH, SHURIKEN_IMAGE, ORANGE_IMAGE
 
 

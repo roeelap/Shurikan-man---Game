@@ -1,5 +1,5 @@
-from consts import PIXEL_FONT_SMALL, SCREEN_HEIGHT, SCREEN_WIDTH, COLORS, CHECKBOX_WIDTH 
-from button import Checkbox
+from consts import PIXEL_FONT_SMALL, COLORS, CHECKBOX_WIDTH 
+from menu.button import Checkbox
 
 
 class ShopItem:

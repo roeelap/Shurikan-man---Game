@@ -1,6 +1,6 @@
 import pygame
 from consts import SHURIKEN_IMAGE, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, CHECKBOX_HEIGHT, BUTTON_WIDTH
-from button import Button, Checkbox
+from menu.button import Button, Checkbox
 import sys
 
 
