@@ -12,11 +12,13 @@ BOTTOM_BORDER = 630
 SCREEN_MIDDLE = int(SCREEN_WIDTH / 2) - 80
 FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
-PLAYER_INVINCIBLE_TIME = 1
+PLAYER_INVINCIBLE_TIME = 1*FPS
 
 # goblin
 GOBLIN_WIDTH = 77
 GOBLIN_HEIGHT = 77
+GOBLIN_SPAWN_TIMEOUT = 1*FPS
+GOBLIN_PATH_TIMEOUT = 1*FPS
 
 # text fonts
 PIXEL_FONT_SMALL = pygame.font.Font('./data/fonts/dpcomic.ttf', 20)
