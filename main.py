@@ -53,15 +53,15 @@ def main():
     start_menu(BACKGROUND_DUNGEON)
 
     window, background, player, enemies, shurikens, coins = new_game()
-    enemies.append(Enemy(500, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, -1.4, 9,
-                         GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
+    # enemies.append(Enemy(500, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, -1.4, 9,
+    #                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
 
     clock = pygame.time.Clock()
     shuriken_shoot_timer = 0
     spawn_enemy_timer = 0
     save_timer = 0
 
-    player_data = load_game(player)
+    load_game(player, enemies,background)
 
     def redraw_window():
         background.draw(window)
@@ -96,7 +96,7 @@ def main():
         # Save game every second (60 fps)
         if save_timer == SAVE_TIMEOUT:
             save_timer = 0
-            save_game(player, player_data)
+            save_game(player, enemies, background)
         else:
             save_timer += 1
 

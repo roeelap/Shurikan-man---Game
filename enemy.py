@@ -1,8 +1,8 @@
 import pygame
 from consts import BOTTOM_BORDER, COLORS, GOBLIN_PATH_TIMEOUT, GOBLIN_SPAWN_TIMEOUT, SOUNDS, TOP_BORDER
 from random import choice
-from static_functions import draw_circle_alpha
 from operator import itemgetter
+from static_functions import draw_circle_alpha
 
 
 class Enemy:

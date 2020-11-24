@@ -8,7 +8,6 @@ def player_movement(player, enemies, coins, shurikens, background):
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.speed - player.width:
-
         if player.x < SCREEN_MIDDLE and background.x == 0 or player.x > SCREEN_MIDDLE and background.x == SCREEN_WIDTH - background.width:
             player.move_right()
 

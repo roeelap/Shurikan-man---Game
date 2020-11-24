@@ -10,8 +10,8 @@ Todo:
   ✔ Spawn enemies at end of map, make them follow you. @done(20-11-24 23:53)
   ☐ Coin pickup animation
   ✔ Main menu from escape button -> pauses the game @done(20-11-24 23:54)
-  ☐ Save button
-  ☐ Write stats to file
+  ✘ Save button @cancelled(20-11-25 01:55)
+  ✔ Write stats to file @done(20-11-25 01:55)
   ✔ Coin pickup sound @done(20-11-24 12:27)
   ☐ Animation for hitting enemy
   ☐ Player experience system (more exp = faster, stronger, shurikens faster)

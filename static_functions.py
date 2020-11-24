@@ -1,3 +1,4 @@
+from consts import GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES
 from operator import itemgetter
 import pygame
 import json
@@ -23,24 +24,63 @@ def is_shade_collision(shade1, shade2):
     return False
 
 
-def save_game(player, player_data):
-    player_data['coins'] = player.coins
-    player_data['score'] = player.score
-    with open('./player/player.json', 'w', encoding='utf-8') as file:
-        json.dump(player_data, file, ensure_ascii=False, indent=4)
-    data = player.__dict__
-    new_dict = {}
-    for attr, value in data.items():
-        if type(value) is int or type(value) is float or type(value) is dict or type(value) is tuple or type(value) is bool:
-            new_dict[attr] = value
-    with open('./player/player.json', 'w', encoding='utf-8') as file:
-        json.dump(new_dict, file, ensure_ascii=False, indent=4)
+def save_game(player, enemies, background):
+    save_object_status(player, 'player')
+    save_object_status(background, 'background')
+    save_objects_status(enemies, 'enemies')
 
 
-def load_game(player):
-    with open('./player/player.json') as file:
-        player_data = json.load(file)
-    for attr, value in player_data.items():
-        if type(value) is int or type(value) is float or type(value) is dict or type(value) is tuple or type(value) is bool:
-            setattr(player, attr, value)
-    return player_data
+def load_game(player, enemies, background):
+    from enemy import Enemy
+    load_object_status(player, 'player')
+    load_object_status(background, 'background')
+    load_objects_status(enemies, 'enemies', Enemy)
+
+
+def save_objects_status(objects, name):
+    objects_data = []
+    for object in objects:
+        object_data = object.__dict__
+        object_dict = {}
+        for attr, value in object_data.items():
+            if is_valid_type(value):
+                object_dict[attr] = value
+        objects_data.append(object_dict)
+    with open(f'./status/{name}.json', 'w', encoding='utf-8') as file:
+        json.dump(objects_data, file, ensure_ascii=False, indent=4)
+
+
+def save_object_status(object, name):
+    object_data = object.__dict__
+    object_dict = {}
+    for attr, value in object_data.items():
+        if is_valid_type(value):
+            object_dict[attr] = value
+    with open(f'./status/{name}.json', 'w', encoding='utf-8') as file:
+        json.dump(object_dict, file, ensure_ascii=False, indent=4)
+
+
+def load_object_status(object, name):
+    with open(f'./status/{name}.json') as file:
+        object_data = json.load(file)
+    for attr, value in object_data.items():
+        if is_valid_type(value):
+            setattr(object, attr, value)
+
+
+def load_objects_status(objects, name, type):
+    with open(f'./status/{name}.json') as file:
+        objects_data = json.load(file)
+    for object in objects_data:
+        new_object = type(0, 0, 0, 0, 0, 0,
+                          GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
+        for attr, value in object.items():
+            if is_valid_type(value):
+                setattr(new_object, attr, value)
+        objects.append(new_object)
+
+
+def is_valid_type(value):
+    if type(value) is int or type(value) is float or type(value) is dict or type(value) is tuple or type(value) is bool:
+        return True
+    return False
