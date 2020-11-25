@@ -11,7 +11,7 @@ class ShopItem:
         self.width = 18
         self.image = image
         self.buy_button = Button(
-            'Buy', self.x - BUTTON_WIDTH_SMALL - 10, self.y - BUTTON_HEIGHT_SMALL / 2, 'small')
+            str(self.price) + '$', self.x - BUTTON_WIDTH_SMALL - 10, self.y - BUTTON_HEIGHT_SMALL / 2, 'small')
         self.equip_button = Button(
             'Equip', self.x - BUTTON_WIDTH_SMALL - 10, self.y + BUTTON_HEIGHT_SMALL / 2, 'small')
 
@@ -41,15 +41,8 @@ class ShopItem:
         self.buy_button.show(window, mouse)
         self.equip_button.show(window, mouse)
 
-        window.blit(self.image, (self.x, self.y))
+        window.blit(self.image, (self.x + self.width, self.y + self.width * 2))
+
         name = PIXEL_FONT_SMALL.render(str(self.name), True,  COLORS['white'])
-        window.blit(name, (self.x + self.width * 2, self.y))
-        if owned and not equipped:
-            price_text = 'Bought'
-        elif equipped:
-            price_text = 'Equipped'
-        else:
-            price_text = f'Price: {str(self.price)} coins'
-        price_text = PIXEL_FONT_SMALL.render(
-            (price_text), True,  COLORS['white'])
-        window.blit(price_text, (self.x, self.y + self.width * 2))
+        window.blit(name, (self.x, self.y))
+        
