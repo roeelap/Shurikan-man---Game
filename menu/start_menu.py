@@ -47,7 +47,6 @@ def redraw_start_menu(background, mouse, pause_screen=False):
 def start_menu(background, player, pause_screen=False):
     while True:
         mouse = pygame.mouse.get_pos()
-        click = pygame.mouse.get_pressed()
 
         clock.tick(FPS)
 
@@ -60,19 +59,21 @@ def start_menu(background, player, pause_screen=False):
                     if event.key == pygame.K_ESCAPE:
                         SOUNDS['transition'].play()
                         return
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                click = pygame.mouse.get_pressed()
 
-        if play_button.is_pressed(mouse, click):
-            SOUNDS['transition'].play()
-            return
+                if play_button.is_pressed(mouse, click):
+                    SOUNDS['transition'].play()
+                    return
 
-        elif quit_button.is_pressed(mouse, click):
-            pygame.quit()
-            sys.exit()
+                elif quit_button.is_pressed(mouse, click):
+                    pygame.quit()
+                    sys.exit()
 
-        elif options_button.is_pressed(mouse, click):
-            options_menu()
+                elif options_button.is_pressed(mouse, click):
+                    options_menu()
 
-        elif shop_button.is_pressed(mouse, click):
-            shop_menu(player)
+                elif shop_button.is_pressed(mouse, click):
+                    shop_menu(player)
 
         redraw_start_menu(background, mouse, pause_screen)

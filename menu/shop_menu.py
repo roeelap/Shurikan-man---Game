@@ -87,7 +87,6 @@ def redraw_shuriken_shop(mouse, player):
 def shuriken_shop(player):
     while True:
         mouse = pygame.mouse.get_pos()
-        click = pygame.mouse.get_pressed()
 
         clock.tick(FPS)
 
@@ -95,19 +94,21 @@ def shuriken_shop(player):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                click = pygame.mouse.get_pressed()
 
-        for shuriken in shurikens_shop:
-            if shuriken.name not in player.shurikens_owned:
-                if shuriken.buy_button.is_pressed(mouse, click):
-                    player.shurikens_owned.append(shuriken.name)
-                    print("bought", shuriken.price)
+                for shuriken in shurikens_shop:
+                    if shuriken.name not in player.shurikens_owned:
+                        if shuriken.buy_button.is_pressed(mouse, click):
+                            player.shurikens_owned.append(shuriken.name)
+                            print("bought", shuriken.price)
 
-        for shuriken in shurikens_shop:
-            if shuriken.name != player.shuriken_equipped and shuriken.name in player.shurikens_owned:
-                if shuriken.equip_button.is_pressed(mouse, click):
-                    player.shuriken_equipped = shuriken.name
+                for shuriken in shurikens_shop:
+                    if shuriken.name != player.shuriken_equipped and shuriken.name in player.shurikens_owned:
+                        if shuriken.equip_button.is_pressed(mouse, click):
+                            player.shuriken_equipped = shuriken.name
 
-        if quit_shuriken_shop_button.is_pressed(mouse, click):
-            return
+                if quit_shuriken_shop_button.is_pressed(mouse, click):
+                    return
 
         redraw_shuriken_shop(mouse, player)
