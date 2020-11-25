@@ -1,4 +1,4 @@
-from consts import SHURIKEN_SMALL, SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS, INACTIVE_BUTTON_BIG, ACTIVE_BUTTON_BIG, INACTIVE_BUTTON_SMALL, ACTIVE_BUTTON_SMALL, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE,\
+from consts import SHURIKEN_SMALL, SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS, INACTIVE_BUTTON_BIG, ACTIVE_BUTTON_BIG, DISABLED_BUTTON_BIG, INACTIVE_BUTTON_SMALL, ACTIVE_BUTTON_SMALL, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE,\
     BUTTON_HEIGHT_BIG, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, CHECKBOX_WIDTH, CHECKBOX_HEIGHT
 from static_functions import draw_rotated
 
@@ -13,6 +13,7 @@ class Button:
             self.height = BUTTON_HEIGHT_BIG
             self.inactive_image = INACTIVE_BUTTON_BIG
             self.active_image = ACTIVE_BUTTON_BIG
+            self.disabled_image = DISABLED_BUTTON_BIG
             self.inactive_text = PIXEL_FONT_BIG_BUTTON.render(
                 str(text), True,  COLORS['black'])
             self.active_text = PIXEL_FONT_BIG_BUTTON.render(
@@ -29,6 +30,7 @@ class Button:
         self.center = self.x + self.width // 2, self.y + self.height // 2
         self.over = False
         self.shuriken_rotation_angle = 0
+        self.disabled = False
 
     def play_hover_sound(self):
         if not self.over:
@@ -41,22 +43,29 @@ class Button:
         return False
 
     def show(self, window, mouse):
-        if self.is_mouse_over(mouse):
-            self.play_hover_sound()
-            window.blit(self.active_image, (self.x, self.y))
-            textRect = self.active_text.get_rect()
-            textRect.center = self.center
-            window.blit(self.active_text, textRect)
-            self.shuriken_rotate_animation(window, (self.x-30, self.y+12))
-            self.shuriken_rotate_animation(
-                window, (self.x+self.width+5, self.y+12))
-
-        else:
-            self.over = False
-            window.blit(self.inactive_image, (self.x, self.y))
+        if self.disabled:
+            window.blit(self.disabled_image, (self.x, self.y))
             textRect = self.inactive_text.get_rect()
             textRect.center = self.center
             window.blit(self.inactive_text, textRect)
+
+        else:
+            if self.is_mouse_over(mouse):
+                self.play_hover_sound()
+                window.blit(self.active_image, (self.x, self.y))
+                textRect = self.active_text.get_rect()
+                textRect.center = self.center
+                window.blit(self.active_text, textRect)
+                self.shuriken_rotate_animation(window, (self.x-30, self.y+12))
+                self.shuriken_rotate_animation(
+                    window, (self.x+self.width+5, self.y+12))
+
+            else:
+                self.over = False
+                window.blit(self.inactive_image, (self.x, self.y))
+                textRect = self.inactive_text.get_rect()
+                textRect.center = self.center
+                window.blit(self.inactive_text, textRect)
 
     def shuriken_rotate_animation(self, window, center):
         draw_rotated(window, SHURIKEN_SMALL, center,
@@ -64,10 +73,11 @@ class Button:
         self.shuriken_rotation_angle += 3
 
     def is_pressed(self, mouse, click, action=None):
-        if self.is_mouse_over(mouse):
-            if click[0] == 1:
-                SOUNDS['button_click'].play()
-                return True
+        if not self.disabled:
+            if self.is_mouse_over(mouse):
+                if click[0] == 1:
+                    SOUNDS['button_click'].play()
+                    return True
 
 
 class Checkbox(Button):
