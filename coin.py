@@ -1,4 +1,4 @@
-from consts import BRONZE_COINS, SILVER_COINS, GOLD_COINS, COLORS
+from consts import BRONZE_COINS_IMAGES, GOLD_COINS_IMAGES, COLORS, SILVER_COINS_IMAGES, SMALL_COINS_IMAGES
 from static_functions import draw_circle_alpha
 from operator import itemgetter
 
@@ -13,20 +13,39 @@ class Coin:
         self.kind = kind
         self.spin_count = 0
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
+        self.taken = False
+        self.stored = False
 
     def draw(self, window):
-        if self.spin_count + 1 >= 16:
-            self.spin_count = 0
-        if self.kind == "bronze":
-            window.blit(BRONZE_COINS[self.spin_count // 2], (self.x, self.y))
-        elif self.kind == "silver":
-            window.blit(SILVER_COINS[self.spin_count // 2], (self.x, self.y))
-        elif self.kind == "gold":
-            window.blit(GOLD_COINS[self.spin_count // 2], (self.x, self.y))
+        if not self.taken:
+            if self.spin_count + 1 >= 16:
+                self.spin_count = 0
+            if self.kind == "bronze":
+                window.blit(
+                    BRONZE_COINS_IMAGES[self.spin_count // 2], (self.x, self.y))
+            elif self.kind == "silver":
+                window.blit(
+                    SILVER_COINS_IMAGES[self.spin_count // 2], (self.x, self.y))
+            elif self.kind == "gold":
+                window.blit(
+                    GOLD_COINS_IMAGES[self.spin_count // 2], (self.x, self.y))
 
-        self.spin_count += 1
+            self.spin_count += 1
 
-        self.draw_shade(window)
+            self.draw_shade(window)
+        else:
+            self.radius = 7
+            self.pickup_animation(window)
+            if self.x <= 100 and self.y <= 100:
+                self.stored = True
+
+    def pickup_animation(self, window):
+        if self.x > 100:
+            self.x -= 5
+        if self.y > 100:
+            self.y -= 5
+        window.blit(
+            SMALL_COINS_IMAGES[self.kind], (self.x, self.y))
 
     def draw_shade(self, window):
         self.shade = {'x': self.x+self.radius,

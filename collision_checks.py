@@ -1,5 +1,5 @@
-from static_functions import is_shade_collision
-from consts import SOUNDS
+from consts import COIN_VALUE, SOUNDS
+from operator import itemgetter
 
 
 def check_player_enemy_collision(player, enemies):
@@ -23,15 +23,17 @@ def check_shuriken_enemy_collision(shurikens, enemies):
 
 def check_player_coin_collision(player, coins):
     for coin in coins:
-        if is_shade_collision(player.shade, coin.shade):
-            try:
-                if coin.kind == "bronze":
-                    player.coins += 1
-                elif coin.kind == "silver":
-                    player.coins += 5
-                elif coin.kind == "gold":
-                    player.coins += 10
-                coins.pop(coins.index(coin))
-                SOUNDS['coin_pickup'].play()
-            except:
-                pass
+        if is_shade_collision(player.shade, coin.shade) and not coin.taken:
+            SOUNDS['coin_pickup'].play()
+            player.coins += COIN_VALUE[coin.kind]
+            coin.taken = True
+
+
+def is_shade_collision(shade1, shade2):
+    x1, y1, w1, h1 = itemgetter('x', 'y', 'w', 'h')(shade1)
+    x2, y2, w2, h2 = itemgetter('x', 'y', 'w', 'h')(shade2)
+    inbound_x = x1 + w1 > x2 and x1 < x2 + w2
+    inbound_y = y1 + h1 > y2 and y1 < y2 + h2
+    if inbound_x and inbound_y:
+        return True
+    return False

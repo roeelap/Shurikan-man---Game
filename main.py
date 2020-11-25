@@ -67,24 +67,28 @@ def main():
         objects_to_draw = []
         for shuriken in shurikens:
             objects_to_draw.append(shuriken)
+            if not shuriken.is_in_screen(background):
+                shurikens.remove(shuriken)
         for enemy in enemies:
+            x, y, h = itemgetter('x', 'y', 'h')(enemy.shade)
             objects_to_draw.append(enemy)
+            enemy.auto_path(player.shade, background.width)
+            if not enemy.alive:
+                enemies.remove(enemy)
+                coins.append(
+                    Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
+                player.score += 1
         for coin in coins:
             objects_to_draw.append(coin)
+            if coin.stored:
+                coins.remove(coin)
+
         objects_to_draw.append(player)
         objects_to_draw.sort(
             key=lambda object: object.shade['y'] + object.shade['h'], reverse=False)
         for object in objects_to_draw:
             x, y, h = itemgetter('x', 'y', 'h')(object.shade)
             object.draw(window)
-            if(type(object) == Enemy):
-                object.auto_path(player.shade, background.width)
-                if not object.alive:
-                    enemies.remove(object)
-                    coins.append(
-                        Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
-                    player.score += 1
-
         player.display_player_stats(window)
         pygame.display.update()
 
@@ -112,19 +116,11 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
-                    start_menu(win_at_the_moment, player,True)
+                    start_menu(win_at_the_moment, player, True)
 
         check_player_enemy_collision(player, enemies)
         check_shuriken_enemy_collision(shurikens, enemies)
         check_player_coin_collision(player, coins)
-
-        # Remove shuriken when out of screen
-        for shuriken in shurikens:
-            if not shuriken.is_in_screen(background):
-                try:
-                    shurikens.pop(shurikens.index(shuriken))
-                except:
-                    pass
 
         keys = pygame.key.get_pressed()
 
