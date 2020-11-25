@@ -1,5 +1,6 @@
-from consts import SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS, INACTIVE_BUTTON_BIG, ACTIVE_BUTTON_BIG, INACTIVE_BUTTON_SMALL, ACTIVE_BUTTON_SMALL, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE,\
+from consts import SHURIKEN_SMALL, SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS, INACTIVE_BUTTON_BIG, ACTIVE_BUTTON_BIG, INACTIVE_BUTTON_SMALL, ACTIVE_BUTTON_SMALL, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE,\
     BUTTON_HEIGHT_BIG, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, CHECKBOX_WIDTH, CHECKBOX_HEIGHT
+from static_functions import draw_rotated
 
 
 class Button:
@@ -27,7 +28,7 @@ class Button:
                 str(text), True,  COLORS['orange'])
         self.center = self.x + self.width // 2, self.y + self.height // 2
         self.over = False
-        self.rotation_angle = 0
+        self.shuriken_rotation_angle = 0
 
     def play_hover_sound(self):
         if not self.over:
@@ -46,6 +47,10 @@ class Button:
             textRect = self.active_text.get_rect()
             textRect.center = self.center
             window.blit(self.active_text, textRect)
+            self.shuriken_rotate_animation(window, (self.x-30, self.y+12))
+            self.shuriken_rotate_animation(
+                window, (self.x+self.width+5, self.y+12))
+
         else:
             self.over = False
             window.blit(self.inactive_image, (self.x, self.y))
@@ -53,6 +58,10 @@ class Button:
             textRect.center = self.center
             window.blit(self.inactive_text, textRect)
 
+    def shuriken_rotate_animation(self, window, center):
+        draw_rotated(window, SHURIKEN_SMALL, center,
+                     self.shuriken_rotation_angle)
+        self.shuriken_rotation_angle += 3
 
     def is_pressed(self, mouse, click, action=None):
         if self.is_mouse_over(mouse):
