@@ -108,8 +108,9 @@ class Player:
             window, COLORS['green'], (health_bar_x, 30, (health_bar_width) - ((health_bar_width // 10) * (self.max_health - self.health)), 30), border_radius=15)
         pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH *
                                                    2 // 20, 30, health_bar_width, 30), width=3, border_radius=15)
-        pygame.draw.rect(
-            window, COLORS['orange'], (health_bar_x, 60, (health_bar_width) * (self.xp / self.xp_to_next_lvl), 20), border_radius=15)  
+        if self.xp > 0:
+            pygame.draw.rect(
+                window, COLORS['orange'], (health_bar_x, 60, (health_bar_width) * (self.xp / self.xp_to_next_lvl), 20), border_radius=15)                                           
         pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH *
                                                    2 // 20, 60, health_bar_width, 20), width=2, border_radius=15)
         for i in range(1, 4):
@@ -129,17 +130,15 @@ class Player:
 
         level = f'Level: {self.level}'
         level_text = PIXEL_FONT_SMALL.render(level, True,  COLORS['white'])
-        window.blit(level_text, (25, 80))
+        window.blit(level_text, (health_bar_x + health_bar_width - level_text.get_rect()[2] - 10, 61))
 
         score = f'Score: {self.score}'
         score_text = PIXEL_FONT_SMALL.render(score, True,  COLORS['white'])
-        window.blit(score_text, (25, 100))
+        window.blit(score_text, (25, 80))
 
         coins = f'Coins: {self.coins}'
         coins_text = PIXEL_FONT_SMALL.render(coins, True,  COLORS['white'])
-        window.blit(coins_text, (25, 120))
-
-        
+        window.blit(coins_text, (25, 100))
 
     def level_up(self):
         self.level += 1
@@ -150,4 +149,3 @@ class Player:
             self.xp -= self.xp_to_next_lvl
             self.level_up()
             self.xp_to_next_lvl = self.level ** 2 * 10
-        print(self.xp, self.xp_to_next_lvl)
