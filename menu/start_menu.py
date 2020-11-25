@@ -45,15 +45,17 @@ def redraw_start_menu(background, mouse, rotation_angle, pause_screen=False):
     shop_button.show(window, mouse)
     options_button.show(window, mouse)
     quit_button.show(window, mouse)
-    draw_rotated(window, SHURIKEN_LARGE, (0.75*SCREEN_WIDTH, SCREEN_HEIGHT // 20), rotation_angle)
-    draw_rotated(window, SHURIKEN_LARGE, (0.17*SCREEN_WIDTH, SCREEN_HEIGHT // 20), rotation_angle)
+    draw_rotated(window, SHURIKEN_LARGE, (0.75*SCREEN_WIDTH,
+                                          SCREEN_HEIGHT // 20), rotation_angle)
+    draw_rotated(window, SHURIKEN_LARGE, (0.17*SCREEN_WIDTH,
+                                          SCREEN_HEIGHT // 20), rotation_angle)
     pygame.display.update()
 
 
 def start_menu(background_image, player, enemies, background, pause_screen=False):
     rotation_angle = 0
     save_button.disabled = False
-    
+
     while True:
         rotation_angle += 1
         mouse = pygame.mouse.get_pos()
@@ -77,7 +79,7 @@ def start_menu(background_image, player, enemies, background, pause_screen=False
                     return
 
                 elif save_button.is_pressed(mouse, click):
-                    save_button.disabled = True
+                    save_button.clicked = True
                     save_game(player, enemies, background)
 
                 elif quit_button.is_pressed(mouse, click):
@@ -90,4 +92,5 @@ def start_menu(background_image, player, enemies, background, pause_screen=False
                 elif shop_button.is_pressed(mouse, click):
                     shop_menu(player)
 
-        redraw_start_menu(background_image, mouse, rotation_angle, pause_screen)
+        redraw_start_menu(background_image, mouse,
+                          rotation_angle, pause_screen)

@@ -31,6 +31,8 @@ class Button:
         self.over = False
         self.shuriken_rotation_angle = 0
         self.disabled = False
+        self.clicked = False
+        self.shuriken_x = [self.x-30, self.x+self.width+5]
 
     def play_hover_sound(self):
         if not self.over:
@@ -50,27 +52,36 @@ class Button:
             window.blit(self.inactive_text, textRect)
 
         else:
-            if self.is_mouse_over(mouse):
+            if self.is_mouse_over(mouse) or self.clicked:
                 self.play_hover_sound()
                 window.blit(self.active_image, (self.x, self.y))
                 textRect = self.active_text.get_rect()
                 textRect.center = self.center
                 window.blit(self.active_text, textRect)
-                self.shuriken_rotate_animation(window, (self.x-30, self.y+12))
                 self.shuriken_rotate_animation(
-                    window, (self.x+self.width+5, self.y+12))
-
+                    window, (self.shuriken_x[0], self.y+12))
+                self.shuriken_rotate_animation(
+                    window, (self.shuriken_x[1], self.y+12))
             else:
                 self.over = False
                 window.blit(self.inactive_image, (self.x, self.y))
                 textRect = self.inactive_text.get_rect()
                 textRect.center = self.center
                 window.blit(self.inactive_text, textRect)
+            if self.clicked:
+                self.update_shuriken_x()
 
     def shuriken_rotate_animation(self, window, center):
         draw_rotated(window, SHURIKEN_SMALL, center,
                      self.shuriken_rotation_angle)
         self.shuriken_rotation_angle += 3
+
+    def update_shuriken_x(self):
+        if self.shuriken_x[1] >= self.x-30 and self.shuriken_x[0] <= self.x+self.width+5:
+            self.shuriken_x[0] += 10
+            self.shuriken_x[1] -= 10
+        else:
+            self.disabled = True
 
     def is_pressed(self, mouse, click, action=None):
         if not self.disabled:
