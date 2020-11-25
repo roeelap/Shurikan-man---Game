@@ -38,9 +38,9 @@ SHURIKEN_MIN_SHADE_WIDTH = 20
 SHURIKEN_MAX_SHADE_WIDTH = 40
 
 # shuriken images
-SHURIKEN_IMAGES = {'grey_shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'golden_shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),
-                   'rainbow_shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'orange': pygame.image.load('./data/images/shurikens/orange.png'),
-                   'tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'grandma': pygame.image.load('./data/images/shurikens/grandma.png')}
+SHURIKEN_IMAGES = {'Grey shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'Golden shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),
+                   'Rainbow shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'Orange': pygame.image.load('./data/images/shurikens/orange.png'),
+                   'Tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'Granny': pygame.image.load('./data/images/shurikens/grandma.png')}
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
@@ -106,17 +106,17 @@ CHECKBOX_ACTIVE = pygame.image.load(
 
 # coin images
 BRONZE_COINS_IMAGES = [pygame.image.load('./data/images/coins/bronze/bronze1.png'), pygame.image.load('./data/images/coins/bronze/bronze2.png'), pygame.image.load('./data/images/coins/bronze/bronze3.png'),
-                pygame.image.load('./data/images/coins/bronze/bronze4.png'), pygame.image.load(
-                    './data/images/coins/bronze/bronze5.png'), pygame.image.load('./data/images/coins/bronze/bronze6.png'),
-                pygame.image.load('./data/images/coins/bronze/bronze7.png'), pygame.image.load('./data/images/coins/bronze/bronze8.png')]
+                       pygame.image.load('./data/images/coins/bronze/bronze4.png'), pygame.image.load(
+    './data/images/coins/bronze/bronze5.png'), pygame.image.load('./data/images/coins/bronze/bronze6.png'),
+    pygame.image.load('./data/images/coins/bronze/bronze7.png'), pygame.image.load('./data/images/coins/bronze/bronze8.png')]
 SILVER_COINS_IMAGES = [pygame.image.load('./data/images/coins/silver/silver1.png'), pygame.image.load('./data/images/coins/silver/silver2.png'), pygame.image.load('./data/images/coins/silver/silver3.png'),
-                pygame.image.load('./data/images/coins/silver/silver4.png'), pygame.image.load(
-                    './data/images/coins/silver/silver5.png'), pygame.image.load('./data/images/coins/silver/silver6.png'),
-                pygame.image.load('./data/images/coins/silver/silver7.png'), pygame.image.load('./data/images/coins/silver/silver8.png')]
+                       pygame.image.load('./data/images/coins/silver/silver4.png'), pygame.image.load(
+    './data/images/coins/silver/silver5.png'), pygame.image.load('./data/images/coins/silver/silver6.png'),
+    pygame.image.load('./data/images/coins/silver/silver7.png'), pygame.image.load('./data/images/coins/silver/silver8.png')]
 GOLD_COINS_IMAGES = [pygame.image.load('./data/images/coins/gold/gold1.png'), pygame.image.load('./data/images/coins/gold/gold2.png'), pygame.image.load('./data/images/coins/gold/gold3.png'),
-              pygame.image.load('./data/images/coins/gold/gold4.png'), pygame.image.load(
-                  './data/images/coins/gold/gold5.png'), pygame.image.load('./data/images/coins/gold/gold6.png'),
-              pygame.image.load('./data/images/coins/gold/gold7.png'), pygame.image.load('./data/images/coins/gold/gold8.png')]
+                     pygame.image.load('./data/images/coins/gold/gold4.png'), pygame.image.load(
+    './data/images/coins/gold/gold5.png'), pygame.image.load('./data/images/coins/gold/gold6.png'),
+    pygame.image.load('./data/images/coins/gold/gold7.png'), pygame.image.load('./data/images/coins/gold/gold8.png')]
 
 SMALL_COINS_IMAGES = {'bronze': pygame.image.load('./data/images/coins/small/bronze.png'), 'silver': pygame.image.load(
     './data/images/coins/small/silver.png'), 'gold': pygame.image.load('./data/images/coins/small/gold.png')}
