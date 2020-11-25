@@ -27,6 +27,7 @@ def check_player_coin_collision(player, coins):
             SOUNDS['coin_pickup'].play()
             player.coins += COIN_VALUE[coin.kind]
             coin.taken = True
+            coin.set_pickup_delta()
 
 
 def is_shade_collision(shade1, shade2):

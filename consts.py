@@ -15,6 +15,8 @@ BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
 PLAYER_INVINCIBLE_TIME = 1*FPS
 SAVE_TIMEOUT = 1 * FPS
 COIN_VALUE = {'bronze': 1, 'silver': 5, 'gold': 10}
+COIN_END_PATH_X = 200
+COIN_END_PATH_Y = 200
 
 # goblin
 GOBLIN_WIDTH = 77

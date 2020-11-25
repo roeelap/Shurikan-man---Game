@@ -8,7 +8,7 @@ Todo:
   ✔ Draw by shade instead of by height @done(20-11-24 22:36)
   ✔ Fix shuriken hit and path @done(20-11-24 23:53)
   ✔ Spawn enemies at end of map, make them follow you. @done(20-11-24 23:53)
-  ☐ Coin pickup animation
+  ✔ Coin pickup animation @done(20-11-25 15:42)
   ✔ Main menu from escape button -> pauses the game @done(20-11-24 23:54)
   ✘ Save button @cancelled(20-11-25 01:55)
   ✔ Write stats to file @done(20-11-25 01:55)
