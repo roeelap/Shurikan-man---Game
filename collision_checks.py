@@ -25,7 +25,7 @@ def check_shuriken_enemy_collision(shurikens, enemies, coins):
 def check_player_coin_collision(player, coins):
     for coin in coins:
         if is_shade_collision(player.shade, coin.shade) and not coin.taken:
-            SOUNDS['coin_pickup'].play()
+            SOUNDS['bronze_pickup'].play()
             player.coins += COIN_VALUE[coin.kind]
             coin.taken = True
             coin.set_pickup_delta()
