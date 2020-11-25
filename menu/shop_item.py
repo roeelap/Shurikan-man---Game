@@ -10,8 +10,6 @@ class ShopItem:
         self.y = y
         self.width = 18
         self.image = image
-        self.is_owned = is_owned
-        self.is_equipped = is_equipped
         self.buy_button = Button(
             'Buy', self.x - BUTTON_WIDTH_SMALL - 10, self.y, 'small')
         self.equip_button = Button(
