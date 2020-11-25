@@ -73,6 +73,7 @@ def main():
             if not enemy.alive:
                 enemies.remove(enemy)
                 player.score += 1
+                player.earn_xp(1)
         for coin in coins:
             objects_to_draw.append(coin)
             if coin.stored:
