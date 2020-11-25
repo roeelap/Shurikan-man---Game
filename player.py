@@ -25,6 +25,7 @@ class Player:
         self.coins = 0
         self.throw_speed = 12
         self.shade = {'x': 0,'y': 0, 'w': 0, 'h': 0}
+        self.shurikens_owned = []
 
     def draw(self, window):
         if self.walk_count + 1 >= 54:

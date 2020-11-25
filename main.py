@@ -50,8 +50,6 @@ def spawn_enemy(enemies, background):
 
 def main():
 
-    start_menu(BACKGROUND_DUNGEON)
-
     window, background, player, enemies, shurikens, coins = new_game()
     # enemies.append(Enemy(500, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, -1.4, 9,
     #                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
@@ -61,7 +59,9 @@ def main():
     spawn_enemy_timer = 0
     save_timer = 0
 
-    load_game(player, enemies,background)
+    load_game(player, enemies, background)
+    owned = start_menu(BACKGROUND_DUNGEON)
+    print(owned)
 
     def redraw_window():
         background.draw(window)
