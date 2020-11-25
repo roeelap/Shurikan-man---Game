@@ -1,3 +1,4 @@
+from random import choice
 from consts import COIN_VALUE, SOUNDS
 from operator import itemgetter
 
@@ -14,7 +15,7 @@ def check_shuriken_enemy_collision(shurikens, enemies, coins):
     for shuriken in shurikens:
         for enemy in enemies:
             if is_shade_collision(enemy.shade, shuriken.shade) and not shuriken.has_hit:
-                enemy.hit(shuriken.speed, coins)
+                enemy.hit(shuriken.speed, coins, shuriken.name)
                 shuriken.hit()
                 # try:
                 #     shurikens.remove(shuriken)
@@ -25,7 +26,7 @@ def check_shuriken_enemy_collision(shurikens, enemies, coins):
 def check_player_coin_collision(player, coins):
     for coin in coins:
         if is_shade_collision(player.shade, coin.shade) and not coin.taken:
-            SOUNDS['bronze_pickup'].play()
+            choice(SOUNDS['bronze_pickup']).play()
             player.coins += COIN_VALUE[coin.kind]
             coin.taken = True
             coin.set_pickup_delta()

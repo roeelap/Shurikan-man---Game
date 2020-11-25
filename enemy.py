@@ -128,10 +128,10 @@ class Enemy:
     def move(self, player_speed, direction):
         self.x -= player_speed * direction
 
-    def hit(self, shuriken_speed, coins):
+    def hit(self, shuriken_speed, coins, shuriken_type):
         if self.health > 1:
             self.hit_timer = 3
-            choice(SOUNDS['shuriken_hits']).play()
+            choice(SOUNDS[f'{shuriken_type}_hits']).play()
             self.health -= 1
             self.x += int(shuriken_speed / 2)
             print(self.health)
