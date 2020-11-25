@@ -52,7 +52,7 @@ BROKEN_SHURIKENS = {"shuriken": [pygame.image.load('./data/images/shurikens/brok
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
-          'red': (255, 0, 0), 'green': (0, 128, 0), 'orange': (255, 201, 14)}
+          'red': (255, 0, 0), 'green': (0, 128, 0), 'orange': (255, 201, 14), 'cyan': (1, 185, 224)}
 
 # characters images
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/goblin/R1E.png'), pygame.image.load('./data/images/goblin/R2E.png'), pygame.image.load('./data/images/goblin/R3E.png'),
