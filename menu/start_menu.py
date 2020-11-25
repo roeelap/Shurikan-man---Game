@@ -52,6 +52,8 @@ def redraw_start_menu(background, mouse, rotation_angle, pause_screen=False):
 
 def start_menu(background_image, player, enemies, background, pause_screen=False):
     rotation_angle = 0
+    save_button.disabled = False
+    
     while True:
         rotation_angle += 1
         mouse = pygame.mouse.get_pos()
@@ -75,7 +77,7 @@ def start_menu(background_image, player, enemies, background, pause_screen=False
                     return
 
                 elif save_button.is_pressed(mouse, click):
-                    
+                    save_button.disabled = True
                     save_game(player, enemies, background)
 
                 elif quit_button.is_pressed(mouse, click):
