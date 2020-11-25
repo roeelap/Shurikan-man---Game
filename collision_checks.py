@@ -10,15 +10,16 @@ def check_player_enemy_collision(player, enemies):
                 player.hit()
 
 
-def check_shuriken_enemy_collision(shurikens, enemies):
+def check_shuriken_enemy_collision(shurikens, enemies, coins):
     for shuriken in shurikens:
         for enemy in enemies:
-            if is_shade_collision(enemy.shade, shuriken.shade):
-                enemy.hit(shuriken.speed)
-                try:
-                    shurikens.pop(shurikens.index(shuriken))
-                except:
-                    pass
+            if is_shade_collision(enemy.shade, shuriken.shade) and not shuriken.has_hit:
+                enemy.hit(shuriken.speed, coins)
+                shuriken.hit()
+                # try:
+                #     shurikens.remove(shuriken)
+                # except:
+                #     pass
 
 
 def check_player_coin_collision(player, coins):
@@ -28,6 +29,12 @@ def check_player_coin_collision(player, coins):
             player.coins += COIN_VALUE[coin.kind]
             coin.taken = True
             coin.set_pickup_delta()
+
+
+def check_collision(player, enemies, shurikens, coins):
+    check_player_enemy_collision(player, enemies)
+    check_shuriken_enemy_collision(shurikens, enemies, coins)
+    check_player_coin_collision(player, coins)
 
 
 def is_shade_collision(shade1, shade2):

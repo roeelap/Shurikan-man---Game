@@ -120,11 +120,15 @@ class Enemy:
     def move(self, player_speed, direction):
         self.x -= player_speed * direction
 
-    def hit(self, shuriken_speed):
+    def hit(self, shuriken_speed, coins):
         if self.health > 0:
             choice(SOUNDS['shuriken_hits']).play()
             self.health -= 1
             self.x += int(shuriken_speed / 2)
         else:
+            from coin import Coin
             choice(SOUNDS['goblin_deaths']).play()
+            x, y, h = itemgetter('x', 'y', 'h')(self.shade)
+            coins.append(
+                Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
             self.alive = False

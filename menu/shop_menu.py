@@ -7,7 +7,7 @@ from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BAC
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
-pygame.display.set_icon(SHURIKEN_IMAGES['Grey shuriken'])
+pygame.display.set_icon(SHURIKEN_IMAGES['shuriken'])
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
@@ -60,7 +60,7 @@ def shop_menu(player):
 
 
 # Shuriken shop
-shurikens_shop = [ShopItem('Grey shuriken', 0, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['Grey shuriken']),
+shurikens_shop = [ShopItem('shuriken', 0, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['shuriken']),
                 ShopItem('Golden shuriken', 10, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['Golden shuriken']),              
                 ShopItem('Rainbow shuriken', 50, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 4 // 6, SHURIKEN_IMAGES['Rainbow shuriken']),    
                 ShopItem('Orange', 100, SCREEN_WIDTH // 8, SCREEN_HEIGHT * 5 // 6, SHURIKEN_IMAGES['Orange']),

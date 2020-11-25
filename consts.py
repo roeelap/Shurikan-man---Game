@@ -3,17 +3,19 @@ pygame.mixer.pre_init(44100, -16, 2, 1024)
 pygame.mixer.init()
 pygame.font.init()
 
-# screen consts
+# general
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 720
 TOP_BORDER = 500
 BOTTOM_BORDER = 630
-
 SCREEN_MIDDLE = int(SCREEN_WIDTH / 2) - 80
 FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
+
 PLAYER_INVINCIBLE_TIME = 1*FPS
 SAVE_TIMEOUT = 1 * FPS
+
+# coins
 COIN_VALUE = {'bronze': 1, 'silver': 5, 'gold': 10}
 COIN_END_PATH_X = 200
 COIN_END_PATH_Y = 200
@@ -31,7 +33,7 @@ PIXEL_FONT_BIG = pygame.font.Font('./data/fonts/dpcomic.ttf', 100)
 PIXEL_FONT_BIG_BUTTON = pygame.font.Font('./data/fonts/dpcomic.ttf', 30)
 PIXEL_FONT_SMALL_BUTTON = pygame.font.Font('./data/fonts/dpcomic.ttf', 24)
 
-# shuriken consts
+# shuriken
 SHURIKEN_TIMEOUT = 15
 MAX_SHURIKENS = 3
 SHURIKEN_RADIUS = 9
@@ -40,15 +42,17 @@ SHURIKEN_MIN_SHADE_WIDTH = 20
 SHURIKEN_MAX_SHADE_WIDTH = 40
 
 # shuriken images
-SHURIKEN_IMAGES = {'Grey shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'Golden shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),
+SHURIKEN_IMAGES = {'shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'Golden shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),
                    'Rainbow shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'Orange': pygame.image.load('./data/images/shurikens/orange.png'),
                    'Tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'Granny': pygame.image.load('./data/images/shurikens/grandma.png')}
+BROKEN_SHURIKENS = {"shuriken": [pygame.image.load('./data/images/shurikens/broken/shuriken/s1.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s2.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s3.png'),
+                                  pygame.image.load('./data/images/shurikens/broken/shuriken/s4.png')]}
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
           'red': (255, 0, 0), 'green': (0, 128, 0), 'orange': (255, 201, 14)}
 
-# character images
+# characters images
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/goblin/R1E.png'), pygame.image.load('./data/images/goblin/R2E.png'), pygame.image.load('./data/images/goblin/R3E.png'),
                             pygame.image.load('./data/images/goblin/R4E.png'), pygame.image.load(
     './data/images/goblin/R5E.png'), pygame.image.load('./data/images/goblin/R6E.png'),

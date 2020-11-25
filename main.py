@@ -1,4 +1,3 @@
-from operator import itemgetter
 from static_functions import load_game, save_game
 import pygame
 from player import Player
@@ -8,17 +7,16 @@ from background import Background
 from player_movement import player_movement
 from collision_checks import *
 from sys import exit
-from random import randint, choice
+from random import randint
 from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, MAX_SHURIKENS, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS, TOP_BORDER
 from menu.start_menu import start_menu
-from coin import Coin
 
 
 def new_game():
     pygame.init()
     pygame.display.set_caption("Shuriken Man")
-    pygame.display.set_icon(SHURIKEN_IMAGES['Grey shuriken'])
+    pygame.display.set_icon(SHURIKEN_IMAGES['shuriken'])
     window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
@@ -70,28 +68,21 @@ def main():
             if not shuriken.is_in_screen(background):
                 shurikens.remove(shuriken)
         for enemy in enemies:
-            x, y, h = itemgetter('x', 'y', 'h')(enemy.shade)
             objects_to_draw.append(enemy)
             enemy.auto_path(player.shade, background.width)
             if not enemy.alive:
                 enemies.remove(enemy)
-                coins.append(
-                    Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
                 player.score += 1
         for coin in coins:
             objects_to_draw.append(coin)
             if coin.stored:
                 coins.remove(coin)
-
         objects_to_draw.append(player)
         objects_to_draw.sort(
             key=lambda object: object.shade['y'] + object.shade['h'], reverse=False)
         for object in objects_to_draw:
-            x, y, h = itemgetter('x', 'y', 'h')(object.shade)
-            if type(object) == Shuriken:
-                object.draw(window, player)
-            else:
-                object.draw(window)
+            object.draw(window)
+
         player.display_player_stats(window)
         pygame.display.update()
 
@@ -121,9 +112,7 @@ def main():
                     win_at_the_moment = window.copy()
                     start_menu(win_at_the_moment, player, True)
 
-        check_player_enemy_collision(player, enemies)
-        check_shuriken_enemy_collision(shurikens, enemies)
-        check_player_coin_collision(player, coins)
+        check_collision(player, enemies, shurikens, coins)
 
         keys = pygame.key.get_pressed()
 
@@ -141,8 +130,8 @@ def main():
             if player.left:
                 facing = -1
                 shuriken_start_x = player.hitbox[0] + 5
-            shurikens.append(Shuriken(
-                shuriken_start_x, round(player.y + player.height / 2), SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3]))
+            shurikens.append(Shuriken(shuriken_start_x, round(player.y + player.height / 2),
+                                      SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3], SHURIKEN_IMAGES[player.shuriken_equipped], 'shuriken'))
             SOUNDS['shuriken_throw'].play()
 
         # Leave for testing

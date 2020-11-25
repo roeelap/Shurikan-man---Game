@@ -6,7 +6,7 @@ import sys
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
-pygame.display.set_icon(SHURIKEN_IMAGES['Grey shuriken'])
+pygame.display.set_icon(SHURIKEN_IMAGES['shuriken'])
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 

@@ -1,6 +1,6 @@
 from consts import BRONZE_COINS_IMAGES, COIN_END_PATH_X, COIN_END_PATH_Y, GOLD_COINS_IMAGES, COLORS, SILVER_COINS_IMAGES, SMALL_COINS_IMAGES
 from static_functions import draw_circle_alpha
-from operator import itemgetter, xor
+from operator import itemgetter
 from math import sqrt, pow
 
 
