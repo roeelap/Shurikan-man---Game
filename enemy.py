@@ -33,19 +33,25 @@ class Enemy:
             return
 
         correction = 0
+        timeout_image = None
 
         image_to_blit = self.walk_right_images[self.walk_count //
                                                6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
 
-        if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT:
+        if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT or self.hit_timer > 0:
             timeout_image = image_to_blit.copy()
             timeout_image.fill(
                 COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
+        if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT:
             self.spawn_timer += 1
             if 0 <= self.spawn_timer % 6 <= 1:
                 image_to_blit = timeout_image
         else:
             self.walk_count += 1
+
+        if self.hit_timer > 0:
+            image_to_blit = timeout_image
+            self.hit_timer -= 1
 
         # Slow enemy down when punching
         self.speed = self.max_speed if self.speed > 0 else self.max_speed * -1
@@ -123,6 +129,7 @@ class Enemy:
 
     def hit(self, shuriken_speed, coins):
         if self.health > 0:
+            self.hit_timer = 3
             choice(SOUNDS['shuriken_hits']).play()
             self.health -= 1
             self.x += int(shuriken_speed / 2)

@@ -32,7 +32,7 @@ class Shuriken:
             self.rotation_angle -= self.speed * 5
             self.draw_shade(window)
         else:
-            if self.hit_animation_counter < 5:
+            if self.hit_animation_counter < 10:
                 self.hit_animation_counter += 1
                 new_info = []
                 for broken_shuriken in self.broken_info:
