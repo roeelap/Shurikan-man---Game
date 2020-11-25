@@ -13,7 +13,7 @@ FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
 
 PLAYER_INVINCIBLE_TIME = 1*FPS
-SAVE_TIMEOUT = 1 * FPS
+SAVE_TIMEOUT = 5 * FPS
 
 # coins
 COIN_VALUE = {'bronze': 1, 'silver': 5, 'gold': 10}
