@@ -141,6 +141,7 @@ class Player:
         window.blit(coins_text, (25, 100))
 
     def level_up(self):
+        SOUNDS['level-up'].play()
         self.level += 1
     
     def earn_xp(self, xp_amount):

@@ -51,7 +51,6 @@ class Button:
             textRect = self.inactive_text.get_rect()
             textRect.center = self.center
             window.blit(self.inactive_text, textRect)
-
         else:
             if self.is_mouse_over(mouse) or self.clicked:
                 self.play_hover_sound()
@@ -82,6 +81,8 @@ class Button:
             self.shuriken_x[0] += 10
             self.shuriken_x[1] -= 10
         else:
+            self.shuriken_x = [self.x-30, self.x+self.width+5]
+            self.clicked = False
             self.disabled = True
 
     def is_pressed(self, mouse, click, action=None):

@@ -147,6 +147,7 @@ def main():
 
         # if the player dies, the game stops (not a real feature, just to check if things are working properly)
         if player.health == 0:
+            SOUNDS['player_death'].play()
             pygame.time.delay(1000)
             window, background, player, enemies, shurikens, coins = new_game()
 

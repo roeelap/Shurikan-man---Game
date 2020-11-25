@@ -21,3 +21,4 @@ Todo:
   ✔ Enemies going out of borders @done(20-11-24 22:35)
   ✔ Escape when on first screen - starts the game @done(20-11-25 01:54)
   ✔ There is no track of shurikens owned by player (create an attribute inside player.py) @done(20-11-25 15:39)
+  ☐ Add broken shuriken images for rest of shurikens

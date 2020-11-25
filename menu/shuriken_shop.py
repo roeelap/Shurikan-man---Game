@@ -2,7 +2,7 @@ import pygame
 from menu.button import Button
 from menu.shop_item import ShopItem
 from sys import exit
-from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, PIXEL_FONT_BIG_BUTTON, BUTTON_WIDTH_BIG, GOLD_COINS_IMAGES
+from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, PIXEL_FONT_BIG_BUTTON, BUTTON_WIDTH_BIG, GOLD_COINS_IMAGES, SOUNDS
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
@@ -62,6 +62,7 @@ def shuriken_shop(player):
                     if shuriken.name not in player.shurikens_owned:
                         if shuriken.buy_button.is_pressed(mouse, click):
                             shuriken.buy_button.disabled = True
+                            SOUNDS['purchase'].play()
                             player.shurikens_owned.append(shuriken.name)
                             player.coins -= shuriken.price
 
@@ -69,6 +70,7 @@ def shuriken_shop(player):
                     if shuriken.name != player.shuriken_equipped and shuriken.name in player.shurikens_owned:
                         if shuriken.equip_button.is_pressed(mouse, click):
                             shuriken.equip_button.disabled = True
+                            SOUNDS['item_equip'].play()
                             player.shuriken_equipped = shuriken.name
 
                 if quit_shuriken_shop_button.is_pressed(mouse, click):

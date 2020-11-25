@@ -15,4 +15,5 @@ Todo:
   ✔ Coin pickup sound @done(20-11-24 12:27)
   ✔ Animation for hitting enemy @done(20-11-25 20:57)
   ☐ Player experience system (more exp = faster, stronger, shurikens faster)
-  ☐ Sounds: grandma, level up, player death, buying, save button,equip, coin pickup (silver, gold=many coins)
+  ✔ Sounds: grandma, level up, player death, buying, save button,equip, coin pickup (silver, gold=many coins) @done(20-11-26 00:45)
+  ☐ Add sounds 
