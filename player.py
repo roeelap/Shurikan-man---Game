@@ -109,7 +109,7 @@ class Player:
         pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH *
                                                    2 // 20, 30, health_bar_width, 30), width=3, border_radius=15)
         pygame.draw.rect(
-            window, COLORS['orange'], (health_bar_x, 60, (health_bar_width) * (self.xp / self.xp_to_next_lvl), 20), border_radius=15)                                           
+            window, COLORS['orange'], (health_bar_x, 60, (health_bar_width) * (self.xp / self.xp_to_next_lvl), 20), border_radius=15)  
         pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH *
                                                    2 // 20, 60, health_bar_width, 20), width=2, border_radius=15)
         for i in range(1, 4):

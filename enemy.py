@@ -109,12 +109,13 @@ class Enemy:
         x_axis_fix = 17 if self.speed > 0 else 5
         x, y = self.hitbox[0]-x_axis_fix, self.hitbox[1] - 18
         w, h = 50, 10
+        border_radius = int(h/2)
         pygame.draw.rect(window, COLORS['red'],
-                         (x, y, w, h))
+                         (x, y, w, h), border_radius=border_radius)
         pygame.draw.rect(
-            window, COLORS['green'], (x, y, w - (5 * (self.max_health - self.health)), h))
+            window, COLORS['green'], (x, y, w - (5 * (self.max_health - self.health)), h), border_radius=border_radius)
         pygame.draw.rect(window, COLORS['black'],
-                         (x, y, w, h), width=1)
+                         (x, y, w, h), width=1, border_radius=border_radius)
 
     def horizontal_turn_around(self):
         self.speed *= -1
