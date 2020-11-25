@@ -129,11 +129,12 @@ class Enemy:
         self.x -= player_speed * direction
 
     def hit(self, shuriken_speed, coins):
-        if self.health > 0:
+        if self.health > 1:
             self.hit_timer = 3
             choice(SOUNDS['shuriken_hits']).play()
             self.health -= 1
             self.x += int(shuriken_speed / 2)
+            print(self.health)
         else:
             from coin import Coin
             choice(SOUNDS['goblin_deaths']).play()

@@ -29,6 +29,9 @@ class Button:
         self.center = self.x + self.width // 2, self.y + self.height // 2
         self.over = False
         self.shuriken_rotation_angle = 0
+        self.shuriken_y = self.y+12
+        self.shuriken_x = []
+        self.shuriken_x_cache = []
 
     def play_hover_sound(self):
         if not self.over:
@@ -47,10 +50,7 @@ class Button:
             textRect = self.active_text.get_rect()
             textRect.center = self.center
             window.blit(self.active_text, textRect)
-            self.shuriken_rotate_animation(window, (self.x-30, self.y+12))
-            self.shuriken_rotate_animation(
-                window, (self.x+self.width+5, self.y+12))
-
+            self.shuriken_rotate_animation(window)
         else:
             self.over = False
             window.blit(self.inactive_image, (self.x, self.y))
@@ -58,8 +58,10 @@ class Button:
             textRect.center = self.center
             window.blit(self.inactive_text, textRect)
 
-    def shuriken_rotate_animation(self, window, center):
-        draw_rotated(window, SHURIKEN_SMALL, center,
+    def shuriken_rotate_animation(self, window):
+        draw_rotated(window, SHURIKEN_SMALL, (self.x-30, self.y+12),
+                     self.shuriken_rotation_angle)
+        draw_rotated(window, SHURIKEN_SMALL, (self.x+self.width+5, self.y+12),
                      self.shuriken_rotation_angle)
         self.shuriken_rotation_angle += 3
 

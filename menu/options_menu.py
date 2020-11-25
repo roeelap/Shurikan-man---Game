@@ -12,21 +12,21 @@ clock = pygame.time.Clock()
 
 options_title_text = PIXEL_FONT_BIG.render("Options", True,  COLORS['white'])
 options_textRect = options_title_text.get_rect()
-options_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 4
+options_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 8
 
 music_text = PIXEL_FONT_MID.render("Music", True,  COLORS['white'])
 music_textRect = options_title_text.get_rect()
-music_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2
+music_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3
 
 
 sound_text = PIXEL_FONT_MID.render("Sound", True,  COLORS['white'])
 sound_textRect = options_title_text.get_rect()
-sound_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT * 3 // 4
+sound_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT * 3 // 7
 
 music_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7,
-                          SCREEN_HEIGHT // 2 - CHECKBOX_HEIGHT, True)
+                          SCREEN_HEIGHT // 3 - CHECKBOX_HEIGHT, True)
 sound_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7,
-                          SCREEN_HEIGHT * 3 // 4 - CHECKBOX_HEIGHT, True)
+                          SCREEN_HEIGHT * 3 // 7 - CHECKBOX_HEIGHT, True)
 back_button = Button('Back', SCREEN_WIDTH // 2 -
                      (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 6, 'big')
 
