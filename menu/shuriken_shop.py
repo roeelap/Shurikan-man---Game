@@ -16,11 +16,11 @@ shurikens_title_textRect = shurikens_title_text.get_rect()
 shurikens_title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 7
 
 shurikens_shop = [ShopItem('shuriken', 0, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['shuriken']),
-                ShopItem('Golden shuriken', 10, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['Golden shuriken']),              
-                ShopItem('Rainbow shuriken', 50, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 4 // 6, SHURIKEN_IMAGES['Rainbow shuriken']),    
-                ShopItem('Orange', 100, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 5 // 6, SHURIKEN_IMAGES['Orange']),
-                ShopItem('Tomato', 150, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['Tomato']),
-                ShopItem('Granny', 200, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['granny'])]
+                ShopItem('golden_shuriken', 10, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['golden_shuriken']),              
+                ShopItem('rainbow_shuriken', 50, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 4 // 6, SHURIKEN_IMAGES['rainbow_shuriken']),    
+                ShopItem('orange', 100, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 5 // 6, SHURIKEN_IMAGES['orange']),
+                ShopItem('tomato', 150, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['tomato']),
+                ShopItem('granny', 200, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['granny'])]
 
 quit_shuriken_shop_button = Button(
     'Back', SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big')

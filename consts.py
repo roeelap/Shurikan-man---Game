@@ -42,9 +42,9 @@ SHURIKEN_MIN_SHADE_WIDTH = 20
 SHURIKEN_MAX_SHADE_WIDTH = 40
 
 # shuriken images
-SHURIKEN_IMAGES = {'shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'Golden shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),
-                   'Rainbow shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'Orange': pygame.image.load('./data/images/shurikens/orange.png'),
-                   'Tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'granny': pygame.image.load('./data/images/shurikens/grandma.png')}
+SHURIKEN_IMAGES = {'shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'golden_shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),
+                   'rainbow_shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'orange': pygame.image.load('./data/images/shurikens/orange.png'),
+                   'tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'granny': pygame.image.load('./data/images/shurikens/grandma.png')}
 BROKEN_SHURIKENS = {"shuriken": [pygame.image.load('./data/images/shurikens/broken/shuriken/s1.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s2.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s3.png'),
                                  pygame.image.load('./data/images/shurikens/broken/shuriken/s4.png')],
                     "granny": [pygame.image.load('./data/images/shurikens/broken/granny/g1.png'), pygame.image.load('./data/images/shurikens/broken/granny/g2.png'), pygame.image.load('./data/images/shurikens/broken/granny/g3.png'),

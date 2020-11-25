@@ -111,7 +111,8 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
-                    start_menu(win_at_the_moment, player, enemies,background, True)
+                    start_menu(win_at_the_moment, player,
+                               enemies, background, True)
 
         check_collision(player, enemies, shurikens, coins)
 
