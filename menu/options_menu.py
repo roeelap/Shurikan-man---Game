@@ -6,7 +6,7 @@ import sys
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
-pygame.display.set_icon(SHURIKEN_IMAGES['grey_shuriken'])
+pygame.display.set_icon(SHURIKEN_IMAGES['Grey shuriken'])
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
@@ -23,9 +23,13 @@ sound_text = PIXEL_FONT_MID.render("Sound", True,  COLORS['white'])
 sound_textRect = options_title_text.get_rect()
 sound_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT * 3 // 4
 
-music_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT // 2 - CHECKBOX_HEIGHT, True)
-sound_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7 , SCREEN_HEIGHT * 3 // 4 - CHECKBOX_HEIGHT, True)
-back_button = Button('Back', SCREEN_WIDTH // 2 - (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 6, 'big')
+music_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7,
+                          SCREEN_HEIGHT // 2 - CHECKBOX_HEIGHT, True)
+sound_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7,
+                          SCREEN_HEIGHT * 3 // 4 - CHECKBOX_HEIGHT, True)
+back_button = Button('Back', SCREEN_WIDTH // 2 -
+                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 6, 'big')
+
 
 def set_all_volumes(all_sounds, new_volume):
     for sound in all_sounds:
@@ -34,6 +38,7 @@ def set_all_volumes(all_sounds, new_volume):
                 sound.set_volume(new_volume)
         else:
             sound.set_volume(new_volume)
+
 
 def redraw_options_menu(mouse):
     window.blit(BACKGROUND_DUNGEON, (0, 0))

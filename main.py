@@ -18,7 +18,7 @@ from coin import Coin
 def new_game():
     pygame.init()
     pygame.display.set_caption("Shuriken Man")
-    pygame.display.set_icon(SHURIKEN_IMAGES['grey_shuriken'])
+    pygame.display.set_icon(SHURIKEN_IMAGES['Grey shuriken'])
     window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
@@ -88,7 +88,10 @@ def main():
             key=lambda object: object.shade['y'] + object.shade['h'], reverse=False)
         for object in objects_to_draw:
             x, y, h = itemgetter('x', 'y', 'h')(object.shade)
-            object.draw(window)
+            if type(object) == Shuriken:
+                object.draw(window, player)
+            else:
+                object.draw(window)
         player.display_player_stats(window)
         pygame.display.update()
 

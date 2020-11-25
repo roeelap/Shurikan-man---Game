@@ -1,14 +1,8 @@
 from operator import itemgetter
-from consts import COLORS, SCREEN_HEIGHT, SHURIKEN_MAX_SHADE_WIDTH, SHURIKEN_MIN_SHADE_WIDTH, SHURIKEN_STARTING_SLOPE
+from consts import COLORS, SCREEN_HEIGHT, SHURIKEN_MAX_SHADE_WIDTH, SHURIKEN_MIN_SHADE_WIDTH, SHURIKEN_STARTING_SLOPE, SHURIKEN_IMAGES
 import pygame
 from static_functions import draw_circle_alpha
-from menu.shop_menu import shurikens_shop_items
 
-
-def shuriken_image():
-    for item in shurikens_shop_items:
-        if item.is_equipped:
-            return item.image
 
 class Shuriken:
     def __init__(self, x, y, radius, speed, bottom):
@@ -23,9 +17,9 @@ class Shuriken:
         self.distance_from_bottom = abs(self.bottom-self.y)/2
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
 
-    def draw(self, window):
+    def draw(self, window, player):
         self.distance_from_bottom = int(abs(self.bottom-self.y)/2)
-        window.blit(pygame.transform.rotate(shuriken_image(),
+        window.blit(pygame.transform.rotate(SHURIKEN_IMAGES[player.shuriken_equipped],
                                             self.rotation_angle), (self.x, self.y))
         self.rotation_angle -= self.speed * 5
         self.draw_shade(window)

@@ -71,7 +71,7 @@ def load_objects_status(objects, name, type):
 
 def is_valid_type(value, instance):
     from enemy import Enemy
-    if type(value) is int or type(value) is float or type(value) is dict or type(value) is tuple or type(value) is bool:
+    if type(value) is int or type(value) is float or type(value) is dict or type(value) is tuple or type(value) is bool or type(value) is str:
         return True
     if type(instance) != Enemy and type(value) is list:
         return True
