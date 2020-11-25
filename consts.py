@@ -44,15 +44,15 @@ SHURIKEN_MAX_SHADE_WIDTH = 40
 # shuriken images
 SHURIKEN_IMAGES = {'shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'Golden shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),
                    'Rainbow shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'Orange': pygame.image.load('./data/images/shurikens/orange.png'),
-                   'Tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'Granny': pygame.image.load('./data/images/shurikens/grandma.png')}
+                   'Tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'granny': pygame.image.load('./data/images/shurikens/grandma.png')}
 BROKEN_SHURIKENS = {"shuriken": [pygame.image.load('./data/images/shurikens/broken/shuriken/s1.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s2.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s3.png'),
                                  pygame.image.load('./data/images/shurikens/broken/shuriken/s4.png')],
-                    "Granny": [pygame.image.load('./data/images/shurikens/broken/granny/g1.png'), pygame.image.load('./data/images/shurikens/broken/granny/g2.png'), pygame.image.load('./data/images/shurikens/broken/granny/g3.png'),
+                    "granny": [pygame.image.load('./data/images/shurikens/broken/granny/g1.png'), pygame.image.load('./data/images/shurikens/broken/granny/g2.png'), pygame.image.load('./data/images/shurikens/broken/granny/g3.png'),
                                pygame.image.load('./data/images/shurikens/broken/granny/g4.png')]}
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
-          'red': (255, 51, 51), 'green': (60,179,113), 'orange': (255, 201, 14), 'cyan': (1, 185, 224)}
+          'red': (255, 51, 51), 'green': (60, 179, 113), 'orange': (255, 201, 14), 'cyan': (1, 185, 224)}
 
 # characters images
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/goblin/R1E.png'), pygame.image.load('./data/images/goblin/R2E.png'), pygame.image.load('./data/images/goblin/R3E.png'),
@@ -88,10 +88,16 @@ PLAYER_PORTRAIT = pygame.image.load(
 SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/combat/player-hit.wav'), 'shuriken_throw': pygame.mixer.Sound('./data/sounds/shuriken/shuriken-throw.wav'),
           'enemy_spawn': pygame.mixer.Sound('./data/sounds/combat/enemy-spawn.wav'), 'pause': pygame.mixer.Sound('./data/sounds/general/pause.wav'),
           'transition': pygame.mixer.Sound('./data/sounds/general/whoosh-1.wav'), 'button_click': pygame.mixer.Sound('./data/sounds/general/button-click.wav'),
-          'button_hover': pygame.mixer.Sound('./data/sounds/general/button-hover.wav'), 'bronze_pickup': pygame.mixer.Sound('./data/sounds/coin/bronze-pickup-1.wav'),
+          'button_hover': pygame.mixer.Sound('./data/sounds/general/button-hover.wav'),
+          'bronze_pickup': [pygame.mixer.Sound('./data/sounds/coin/bronze-pickup-1.wav'), pygame.mixer.Sound('./data/sounds/coin/bronze-pickup-2.wav')],
+          'silver_pickup': pygame.mixer.Sound('./data/sounds/coin/silver-pickup.wav'), 'gold_pickup': pygame.mixer.Sound('./data/sounds/coin/gold-pickup.wav'),
           'goblin_deaths': [pygame.mixer.Sound('./data/sounds/combat/goblin-death-1.wav'), pygame.mixer.Sound('./data/sounds/combat/goblin-death-2.wav')],
           'shuriken_hits': [pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-2.wav'),
-           pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-3.wav')]}
+                            pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-3.wav')],
+          'granny_hits': [pygame.mixer.Sound('./data/sounds/shuriken/granny-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken/granny-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken/granny-3.wav')],
+          'item_equip': pygame.mixer.Sound('./data/sounds/general/item-equip.wav'), 'purchase': pygame.mixer.Sound('./data/sounds/general/purchase.wav'),
+          'sword_draw': pygame.mixer.Sound('./data/sounds/general/sword-draw.wav'), 'level_up': pygame.mixer.Sound('./data/sounds/combat/level-up.wav'),
+          'level_up_human': pygame.mixer.Sound('./data/sounds/combat/level-up-human.wav')}
 
 # button consts
 BUTTON_WIDTH_BIG = 227
