@@ -1,9 +1,10 @@
 import pygame
-from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
+from consts import LOADING_IMAGE, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
 import sys
 from menu.button import Button
 from menu.options_menu import options_menu
 from menu.shop_menu import shop_menu
+from static_functions import save_game, draw_rotated
 
 
 pygame.init()
@@ -21,7 +22,7 @@ save_button = Button('Save', (SCREEN_WIDTH // 2) -
                      (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 7, 'big')
 shop_button = Button('Shop', (SCREEN_WIDTH // 2) -
                      (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 4 // 7, 'big')
-options_button = Button('Options', (SCREEN_WIDTH  // 2) -
+options_button = Button('Options', (SCREEN_WIDTH // 2) -
                         (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 7, 'big')
 quit_button = Button('Quit Game', (SCREEN_WIDTH // 2) -
                      (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 6 // 7, 'big')
@@ -47,7 +48,7 @@ def redraw_start_menu(background, mouse, pause_screen=False):
     pygame.display.update()
 
 
-def start_menu(background, player, pause_screen=False):
+def start_menu(background_image, player, enemies, background, pause_screen=False):
     while True:
         mouse = pygame.mouse.get_pos()
 
@@ -68,9 +69,9 @@ def start_menu(background, player, pause_screen=False):
                 if play_button.is_pressed(mouse, click):
                     SOUNDS['transition'].play()
                     return
-                
+
                 elif save_button.is_pressed(mouse, click):
-                    pass
+                    save_game(player, enemies, background)
 
                 elif quit_button.is_pressed(mouse, click):
                     pygame.quit()
@@ -82,4 +83,4 @@ def start_menu(background, player, pause_screen=False):
                 elif shop_button.is_pressed(mouse, click):
                     shop_menu(player)
 
-        redraw_start_menu(background, mouse, pause_screen)
+        redraw_start_menu(background_image, mouse, pause_screen)
