@@ -25,6 +25,7 @@ class Enemy:
         self.walk_left_images = walk_left_images
         self.spawn_timer = 0
         self.path_refresh_timer = GOBLIN_PATH_TIMEOUT
+        self.hit_timer = 0
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
 
     def draw(self, window):
