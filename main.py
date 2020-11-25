@@ -60,8 +60,7 @@ def main():
     save_timer = 0
 
     load_game(player, enemies, background)
-    owned = start_menu(BACKGROUND_DUNGEON)
-    print(owned)
+    start_menu(BACKGROUND_DUNGEON, player)
 
     def redraw_window():
         background.draw(window)
@@ -113,7 +112,7 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
-                    start_menu(win_at_the_moment, True)
+                    start_menu(win_at_the_moment, player,True)
 
         check_player_enemy_collision(player, enemies)
         check_shuriken_enemy_collision(shurikens, enemies)

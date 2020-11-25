@@ -44,8 +44,7 @@ def redraw_shop_menu(mouse):
     pygame.display.update()
 
 
-def shop_menu():
-    shurikens_owned = []
+def shop_menu(player):
     while True:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
@@ -58,10 +57,10 @@ def shop_menu():
                 sys.exit()
 
         if shurikens_button.is_pressed(mouse, click):
-            shurikens_owned = shuriken_shop()
+            shuriken_shop(player)
 
         elif quit_shop_button.is_pressed(mouse, click):
-            return shurikens_owned
+            return
 
         redraw_shop_menu(mouse)
 
@@ -95,8 +94,7 @@ def redraw_shuriken_shop(mouse):
     pygame.display.update()
 
 
-def shuriken_shop():
-    shurikens_owned = []
+def shuriken_shop(player):
     while True:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
@@ -112,7 +110,7 @@ def shuriken_shop():
             if not shop_item.is_owned:
                 if shop_item.buy_button.is_pressed(mouse, click):
                     shop_item.is_owned = True
-                    shurikens_owned.append(shop_item.name)
+                    player.shurikens_owned.append(shop_item.name)
                     print("bought", shop_item.price)
 
         for shop_item in shurikens_shop_items:
@@ -122,6 +120,6 @@ def shuriken_shop():
                     equip_item(shop_item.name, shurikens_shop_items)
 
         if quit_shuriken_shop_button.is_pressed(mouse, click):
-            return shurikens_owned
+            return 
 
         redraw_shuriken_shop(mouse)

@@ -44,8 +44,7 @@ def redraw_start_menu(background, mouse, pause_screen=False):
     pygame.display.update()
 
 
-def start_menu(background, pause_screen=False):
-    shurikens_owned = []
+def start_menu(background, player, pause_screen=False):
     while True:
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
@@ -64,7 +63,7 @@ def start_menu(background, pause_screen=False):
 
         if play_button.is_pressed(mouse, click):
             SOUNDS['transition'].play()
-            return shurikens_owned
+            return
 
         elif quit_button.is_pressed(mouse, click):
             pygame.quit()
@@ -74,6 +73,6 @@ def start_menu(background, pause_screen=False):
             options_menu()
 
         elif shop_button.is_pressed(mouse, click):
-            shurkens_owned = shop_menu()
+            shop_menu(player)
 
         redraw_start_menu(background, mouse, pause_screen)
