@@ -4,7 +4,7 @@ from menu.button import Button
 
 class ShopItem:
     def __init__(self, name, price, x, y, image):
-        self.name = name
+        self.name = name.replace('_',' ').capitalize()
         self.price = price
         self.x = x
         self.y = y

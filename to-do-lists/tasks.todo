@@ -1,5 +1,4 @@
 Todo:
-  ☐ figure out what to do if the player dies
   ✔ display the player's health near his health bar (in numbers) @done(20-11-18 23:30)
   ✔ When player is hit, make him transparent for sometime - changing the player image's opacity @done(20-11-20 15:01)
   ✔ Fix shuriken to bounce on floor until disappearing @done(20-11-23 22:39)
@@ -15,7 +14,9 @@ Todo:
   ✔ Coin pickup sound @done(20-11-24 12:27)
   ✔ Animation for hitting enemy @done(20-11-25 20:57)
   ✔ Player experience system (more exp = faster, stronger, shurikens faster) @done(20-11-26 00:27)
-  ☐ Sounds: grandma, level up, player death, buying, save button,equip, coin pickup (silver, gold=many coins)
+  ✔ Sounds: grandma, level up, player death, buying, save button,equip, coin pickup (silver, gold=many coins) @done(20-11-26 01:01)
   ☐ change the shuriken animations (near the buttons and the start screen title) according to the equipped shuriken
   ☐ delete shuriken animation on shop buttons (buy and equip)
   ☐ shuriken shop - spin the coin on the bottom right corner 
+  ☐ When player dies - Show dead on screen, popup main menu.
+  ☐ Stats menu -> strength, throw speed, speed, max health, coin, exp, level, score -> make like an upgrade store, each level gives a point to 'spend'
