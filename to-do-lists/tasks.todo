@@ -14,5 +14,8 @@ Todo:
   ✔ Write stats to file @done(20-11-25 01:55)
   ✔ Coin pickup sound @done(20-11-24 12:27)
   ✔ Animation for hitting enemy @done(20-11-25 20:57)
-  ☐ Player experience system (more exp = faster, stronger, shurikens faster)
+  ✔ Player experience system (more exp = faster, stronger, shurikens faster) @done(20-11-26 00:27)
   ☐ Sounds: grandma, level up, player death, buying, save button,equip, coin pickup (silver, gold=many coins)
+  ☐ change the shuriken animations (near the buttons and the start screen title) according to the equipped shuriken
+  ☐ delete shuriken animation on shop buttons (buy and equip)
+  ☐ shuriken shop - spin the coin on the bottom right corner 
