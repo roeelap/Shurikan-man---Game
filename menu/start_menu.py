@@ -79,18 +79,20 @@ def start_menu(background_image, player, enemies, background, pause_screen=False
                     return
 
                 elif save_button.is_pressed(mouse, click):
+                    save_game(player, enemies, background)
                     save_button.clicked = True
                     SOUNDS['sword_draw'].play()
-                    save_game(player, enemies, background)
 
                 elif quit_button.is_pressed(mouse, click):
                     pygame.quit()
                     sys.exit()
 
                 elif options_button.is_pressed(mouse, click):
+                    save_button.disabled = False
                     options_menu()
 
                 elif shop_button.is_pressed(mouse, click):
+                    save_button.disabled = False
                     shop_menu(player)
 
         redraw_start_menu(background_image, mouse,

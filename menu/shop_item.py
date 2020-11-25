@@ -4,7 +4,7 @@ from menu.button import Button
 
 class ShopItem:
     def __init__(self, name, price, x, y, image):
-        self.name = name.replace('_',' ').capitalize()
+        self.name = name
         self.price = price
         self.x = x
         self.y = y
@@ -28,7 +28,7 @@ class ShopItem:
         elif owned:
             self.buy_button.disabled = True
             self.buy_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
-            'Bought', True,  COLORS['black'])
+                'Bought', True,  COLORS['black'])
             if not equipped:
                 self.equip_button.disabled = False
         elif not owned:
@@ -37,12 +37,12 @@ class ShopItem:
         if self.price > player.coins and not owned:
             self.buy_button.disabled = True
             self.equip_button.disabled = True
-        
+
         self.buy_button.show(window, mouse)
         self.equip_button.show(window, mouse)
 
         window.blit(self.image, (self.x + self.width, self.y + self.width * 2))
 
-        name = PIXEL_FONT_SMALL.render(str(self.name), True,  COLORS['white'])
+        name = PIXEL_FONT_SMALL.render(str(self.name).replace(
+            '_', ' ').capitalize(), True,  COLORS['white'])
         window.blit(name, (self.x, self.y))
-        
