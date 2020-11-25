@@ -13,16 +13,18 @@ window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 title_text = PIXEL_FONT_BIG.render("Shuriken Man", True,  COLORS['white'])
 title_textRect = title_text.get_rect()
-title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 4
+title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 7
 
-play_button = Button('Play!', (SCREEN_WIDTH // 3) -
-                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT // 2, 'big')
-shop_button = Button('Shop', (SCREEN_WIDTH * 2 // 3) -
-                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT // 2, 'big')
-options_button = Button('Options', (SCREEN_WIDTH // 3) -
-                        (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 4, 'big')
-quit_button = Button('Quit Game', (SCREEN_WIDTH * 2 // 3) -
-                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 4, 'big')
+play_button = Button('Play!', (SCREEN_WIDTH // 2) -
+                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 2 // 7, 'big')
+save_button = Button('Save', (SCREEN_WIDTH // 2) -
+                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 7, 'big')
+shop_button = Button('Shop', (SCREEN_WIDTH // 2) -
+                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 4 // 7, 'big')
+options_button = Button('Options', (SCREEN_WIDTH  // 2) -
+                        (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 7, 'big')
+quit_button = Button('Quit Game', (SCREEN_WIDTH // 2) -
+                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 6 // 7, 'big')
 
 
 def redraw_start_menu(background, mouse, pause_screen=False):
@@ -38,6 +40,7 @@ def redraw_start_menu(background, mouse, pause_screen=False):
 
     window.blit(title_text, title_textRect)
     play_button.show(window, mouse)
+    save_button.show(window, mouse)
     shop_button.show(window, mouse)
     options_button.show(window, mouse)
     quit_button.show(window, mouse)
@@ -65,6 +68,9 @@ def start_menu(background, player, pause_screen=False):
                 if play_button.is_pressed(mouse, click):
                     SOUNDS['transition'].play()
                     return
+                
+                elif save_button.is_pressed(mouse, click):
+                    pass
 
                 elif quit_button.is_pressed(mouse, click):
                     pygame.quit()
