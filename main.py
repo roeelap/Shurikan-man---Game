@@ -8,7 +8,7 @@ from player_movement import player_movement
 from collision_checks import *
 from sys import exit
 from random import randint
-from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, MAX_SHURIKENS, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
+from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, LOADING_IMAGE, MAX_SHURIKENS, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, BACKGROUND_DUNGEON, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS, TOP_BORDER
 from menu.start_menu import start_menu
 
@@ -58,7 +58,7 @@ def main():
     save_timer = 0
 
     load_game(player, enemies, background)
-    start_menu(BACKGROUND_DUNGEON, player)
+    start_menu(BACKGROUND_DUNGEON, player, enemies, background)
 
     def redraw_window():
         background.draw(window)
@@ -111,7 +111,7 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
-                    start_menu(win_at_the_moment, player, True)
+                    start_menu(win_at_the_moment, player, enemies,background, True)
 
         check_collision(player, enemies, shurikens, coins)
 

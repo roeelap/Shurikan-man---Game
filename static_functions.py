@@ -12,6 +12,11 @@ def draw_circle_alpha(surface, color, center, width, height):
                         (width / 2, 4, width, height), width)
     surface.blit(shape_surf, target_rect)
 
+def draw_rotated(window, image, topleft, angle):
+    rotated_image = pygame.transform.rotate(image, angle)
+    new_rect = rotated_image.get_rect(center = image.get_rect(topleft = topleft).center)
+    window.blit(rotated_image, new_rect.topleft)
+
 
 def save_game(player, enemies, background):
     save_object_status(player, 'player')

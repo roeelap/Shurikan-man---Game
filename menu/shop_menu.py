@@ -1,7 +1,6 @@
 import pygame
 from sys import exit
 from menu.button import Button
-from menu.shop_item import ShopItem
 from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH_BIG, SHURIKEN_IMAGES
 from menu.shuriken_shop import shuriken_shop
 

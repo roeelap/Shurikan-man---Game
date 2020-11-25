@@ -46,9 +46,9 @@ SHURIKEN_IMAGES = {'shuriken': pygame.image.load('./data/images/shurikens/shurik
                    'Rainbow shuriken': pygame.image.load('./data/images/shurikens/rainbow-shuriken.png'), 'Orange': pygame.image.load('./data/images/shurikens/orange.png'),
                    'Tomato': pygame.image.load('./data/images/shurikens/tomato.png'), 'Granny': pygame.image.load('./data/images/shurikens/grandma.png')}
 BROKEN_SHURIKENS = {"shuriken": [pygame.image.load('./data/images/shurikens/broken/shuriken/s1.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s2.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s3.png'),
-                                  pygame.image.load('./data/images/shurikens/broken/shuriken/s4.png')],
+                                 pygame.image.load('./data/images/shurikens/broken/shuriken/s4.png')],
                     "Granny": [pygame.image.load('./data/images/shurikens/broken/granny/g1.png'), pygame.image.load('./data/images/shurikens/broken/granny/g2.png'), pygame.image.load('./data/images/shurikens/broken/granny/g3.png'),
-                                  pygame.image.load('./data/images/shurikens/broken/granny/g4.png')]}
+                               pygame.image.load('./data/images/shurikens/broken/granny/g4.png')]}
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
@@ -111,6 +111,7 @@ CHECKBOX_INACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-inactive.png')
 CHECKBOX_ACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-active.png')
+LOADING_IMAGE = pygame.image.load('./data/images/loading.png')
 
 # coin images
 BRONZE_COINS_IMAGES = [pygame.image.load('./data/images/coins/bronze/bronze1.png'), pygame.image.load('./data/images/coins/bronze/bronze2.png'), pygame.image.load('./data/images/coins/bronze/bronze3.png'),
