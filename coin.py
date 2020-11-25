@@ -1,6 +1,7 @@
 from consts import BRONZE_COINS_IMAGES, GOLD_COINS_IMAGES, COLORS, SILVER_COINS_IMAGES, SMALL_COINS_IMAGES
 from static_functions import draw_circle_alpha
 from operator import itemgetter
+from math import sqrt, pow
 
 
 class Coin:
@@ -40,10 +41,12 @@ class Coin:
                 self.stored = True
 
     def pickup_animation(self, window):
+        delta = sqrt(pow(abs(self.y - 100), 2)+pow(abs(self.x - 100), 2))
+        speed = 1000000 / pow(delta, 2)
         if self.x > 100:
-            self.x -= 5
+            self.x -= speed
         if self.y > 100:
-            self.y -= 5
+            self.y -= speed
         window.blit(
             SMALL_COINS_IMAGES[self.kind], (self.x, self.y))
 
@@ -55,4 +58,5 @@ class Coin:
             window, COLORS['black'], (x, y), w, h)
 
     def move(self, player_speed, direction):
-        self.x -= player_speed * direction
+        if not self.taken:
+            self.x -= player_speed * direction
