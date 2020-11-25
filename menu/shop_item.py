@@ -1,4 +1,4 @@
-from consts import PIXEL_FONT_SMALL, COLORS, BUTTON_WIDTH_SMALL
+from consts import PIXEL_FONT_SMALL, COLORS, BUTTON_WIDTH_SMALL, BUTTON_HEIGHT_SMALL, PIXEL_FONT_SMALL_BUTTON
 from menu.button import Button
 
 
@@ -11,28 +11,41 @@ class ShopItem:
         self.width = 18
         self.image = image
         self.buy_button = Button(
-            'Buy', self.x - BUTTON_WIDTH_SMALL - 10, self.y, 'small')
+            'Buy', self.x - BUTTON_WIDTH_SMALL - 10, self.y - BUTTON_HEIGHT_SMALL / 2, 'small')
         self.equip_button = Button(
-            'Equip', self.x + BUTTON_WIDTH_SMALL * 1.75, self.y, 'small')
+            'Equip', self.x - BUTTON_WIDTH_SMALL - 10, self.y + BUTTON_HEIGHT_SMALL / 2, 'small')
 
     def show(self, window, mouse, player):
         owned = self.name in player.shurikens_owned
         equipped = self.name == player.shuriken_equipped
 
-        if self.price > player.coins:
+        if owned and equipped:
             self.buy_button.disabled = True
-        
-        if not owned:
-            self.buy_button.show(window, mouse)
+            self.equip_button.disabled = True
+            self.equip_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
+                'Equipped', True,  COLORS['black'])
 
-        if not equipped and owned:
-            self.equip_button.show(window, mouse)
+        elif owned:
+            self.buy_button.disabled = True
+            self.buy_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
+            'Bought', True,  COLORS['black'])
+            if not equipped:
+                self.equip_button.disabled = False
+        elif not owned:
+            self.equip_button.disabled = True
+
+        if self.price > player.coins and not owned:
+            self.buy_button.disabled = True
+            self.equip_button.disabled = True
+        
+        self.buy_button.show(window, mouse)
+        self.equip_button.show(window, mouse)
 
         window.blit(self.image, (self.x, self.y))
         name = PIXEL_FONT_SMALL.render(str(self.name), True,  COLORS['white'])
         window.blit(name, (self.x + self.width * 2, self.y))
         if owned and not equipped:
-            price_text = 'Owned'
+            price_text = 'Bought'
         elif equipped:
             price_text = 'Equipped'
         else:
