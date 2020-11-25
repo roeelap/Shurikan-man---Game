@@ -111,7 +111,7 @@ CHECKBOX_INACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-inactive.png')
 CHECKBOX_ACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-active.png')
-LOADING_IMAGE = pygame.image.load('./data/images/loading.png')
+SHURIKEN_LARGE = pygame.image.load('./data/images/shuriken_large.png')
 
 # coin images
 BRONZE_COINS_IMAGES = [pygame.image.load('./data/images/coins/bronze/bronze1.png'), pygame.image.load('./data/images/coins/bronze/bronze2.png'), pygame.image.load('./data/images/coins/bronze/bronze3.png'),

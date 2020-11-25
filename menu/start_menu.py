@@ -1,5 +1,5 @@
 import pygame
-from consts import LOADING_IMAGE, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
+from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SHURIKEN_LARGE, SOUNDS, COLORS, BUTTON_WIDTH_BIG
 import sys
 from menu.button import Button
 from menu.options_menu import options_menu
@@ -28,7 +28,7 @@ quit_button = Button('Quit Game', (SCREEN_WIDTH // 2) -
                      (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 6 // 7, 'big')
 
 
-def redraw_start_menu(background, mouse, pause_screen=False):
+def redraw_start_menu(background, mouse, rotation_angle, pause_screen=False):
 
     window.blit(background, (0, 0))
     if pause_screen:
@@ -45,11 +45,15 @@ def redraw_start_menu(background, mouse, pause_screen=False):
     shop_button.show(window, mouse)
     options_button.show(window, mouse)
     quit_button.show(window, mouse)
+    draw_rotated(window, SHURIKEN_LARGE, (0.75*SCREEN_WIDTH, SCREEN_HEIGHT // 20), rotation_angle)
+    draw_rotated(window, SHURIKEN_LARGE, (0.17*SCREEN_WIDTH, SCREEN_HEIGHT // 20), rotation_angle)
     pygame.display.update()
 
 
 def start_menu(background_image, player, enemies, background, pause_screen=False):
+    rotation_angle = 0
     while True:
+        rotation_angle += 1
         mouse = pygame.mouse.get_pos()
 
         clock.tick(FPS)
@@ -83,4 +87,4 @@ def start_menu(background_image, player, enemies, background, pause_screen=False
                 elif shop_button.is_pressed(mouse, click):
                     shop_menu(player)
 
-        redraw_start_menu(background_image, mouse, pause_screen)
+        redraw_start_menu(background_image, mouse, rotation_angle, pause_screen)
