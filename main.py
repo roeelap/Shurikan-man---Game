@@ -131,7 +131,7 @@ def main():
                 facing = -1
                 shuriken_start_x = player.hitbox[0] + 5
             shurikens.append(Shuriken(shuriken_start_x, round(player.y + player.height / 2),
-                                      SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3], SHURIKEN_IMAGES[player.shuriken_equipped], 'shuriken'))
+                                      SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3], SHURIKEN_IMAGES[player.shuriken_equipped], player.shuriken_equipped))
             SOUNDS['shuriken_throw'].play()
 
         # Leave for testing
