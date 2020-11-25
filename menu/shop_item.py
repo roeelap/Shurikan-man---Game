@@ -18,6 +18,9 @@ class ShopItem:
     def show(self, window, mouse, player):
         owned = self.name in player.shurikens_owned
         equipped = self.name == player.shuriken_equipped
+
+        if self.price > player.coins:
+            self.buy_button.disabled = True
         
         if not owned:
             self.buy_button.show(window, mouse)

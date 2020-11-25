@@ -103,12 +103,14 @@ INACTIVE_BUTTON_BIG = pygame.image.load(
     './data/images/buttons/button-inactive.png')
 ACTIVE_BUTTON_BIG = pygame.image.load(
     './data/images/buttons/button-active.png')
+DISABLED_BUTTON_BIG = pygame.image.load(
+    './data/images/buttons/button-disabled.png')
 INACTIVE_BUTTON_SMALL = pygame.image.load(
     './data/images/buttons/button-small-inactive.png')
 ACTIVE_BUTTON_SMALL = pygame.image.load(
     './data/images/buttons/button-small-active.png')
-DISABLED_BUTTON_BIG = pygame.image.load(
-    './data/images/buttons/button-disabled.png')
+DISABLED_BUTTON_SMALL = pygame.image.load(
+    './data/images/buttons/button-small-disabled.png')
 CHECKBOX_INACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-inactive.png')
 CHECKBOX_ACTIVE = pygame.image.load(
