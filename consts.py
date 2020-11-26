@@ -92,10 +92,13 @@ PLAYER_STANDING_IMAGE = pygame.image.load('./data/images/player/standing.png')
 PLAYER_PORTRAIT = pygame.image.load(
     './data/images/player/character-portrait.png')
 
+SPLAT_SOUNDS = [pygame.mixer.Sound('./data/sounds/shuriken/splat-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken/splat-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken/splat-3.wav'),
+                pygame.mixer.Sound('./data/sounds/shuriken/splat-4.wav'), pygame.mixer.Sound('./data/sounds/shuriken/splat-5.wav'), pygame.mixer.Sound('./data/sounds/shuriken/splat-6.wav')]
+
 # Sounds
-SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/combat/player-hit.wav'), 'shuriken_throw': pygame.mixer.Sound('./data/sounds/shuriken/shuriken-throw.wav'),
+SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/combat/player-hit.wav'), 'shuriken_throw': [pygame.mixer.Sound('./data/sounds/shuriken/shuriken-throw-1.wav'),pygame.mixer.Sound('./data/sounds/shuriken/shuriken-throw-2.wav')],
           'enemy_spawn': pygame.mixer.Sound('./data/sounds/combat/enemy-spawn.wav'), 'pause': pygame.mixer.Sound('./data/sounds/general/pause.wav'),
-          'transition': pygame.mixer.Sound('./data/sounds/general/whoosh-1.wav'), 'button_click': pygame.mixer.Sound('./data/sounds/general/button-click.wav'),
+          'transition': pygame.mixer.Sound('./data/sounds/general/transition.wav'), 'button_click': pygame.mixer.Sound('./data/sounds/general/button-click.wav'),
           'button_hover': pygame.mixer.Sound('./data/sounds/general/button-hover.wav'), 'player_death': pygame.mixer.Sound('./data/sounds/combat/player-death.wav'),
           'bronze_pickup': [pygame.mixer.Sound('./data/sounds/coin/bronze-pickup.wav')], 'gold_pickup': [pygame.mixer.Sound('./data/sounds/coin/gold-pickup.wav')],
           'silver_pickup': [pygame.mixer.Sound('./data/sounds/coin/silver-pickup-1.wav'), pygame.mixer.Sound('./data/sounds/coin/silver-pickup-2.wav')],
@@ -103,6 +106,7 @@ SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/combat/player-hit.wav'
           'shuriken_hits': [pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-2.wav'),
                             pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-3.wav')],
           'granny_hits': [pygame.mixer.Sound('./data/sounds/shuriken/granny-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken/granny-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken/granny-3.wav')],
+          'tomato_hits': SPLAT_SOUNDS, 'orange_hits': SPLAT_SOUNDS,
           'item_equip': pygame.mixer.Sound('./data/sounds/general/item-equip.wav'), 'purchase': pygame.mixer.Sound('./data/sounds/general/purchase.wav'),
           'sword_draw': pygame.mixer.Sound('./data/sounds/general/sword-draw.wav'), 'level_up': pygame.mixer.Sound('./data/sounds/combat/level-up.wav'),
           'level_up_human': pygame.mixer.Sound('./data/sounds/combat/level-up-human.wav')}
