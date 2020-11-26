@@ -48,7 +48,15 @@ SHURIKEN_IMAGES = {'shuriken': pygame.image.load('./data/images/shurikens/shurik
 BROKEN_SHURIKENS = {"shuriken": [pygame.image.load('./data/images/shurikens/broken/shuriken/s1.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s2.png'), pygame.image.load('./data/images/shurikens/broken/shuriken/s3.png'),
                                  pygame.image.load('./data/images/shurikens/broken/shuriken/s4.png')],
                     "granny": [pygame.image.load('./data/images/shurikens/broken/granny/g1.png'), pygame.image.load('./data/images/shurikens/broken/granny/g2.png'), pygame.image.load('./data/images/shurikens/broken/granny/g3.png'),
-                               pygame.image.load('./data/images/shurikens/broken/granny/g4.png')]}
+                               pygame.image.load('./data/images/shurikens/broken/granny/g4.png')],
+                    "golden_shuriken": [pygame.image.load('./data/images/shurikens/broken/golden-shuriken/g1.png'), pygame.image.load('./data/images/shurikens/broken/golden-shuriken/g2.png'), pygame.image.load('./data/images/shurikens/broken/golden-shuriken/g3.png'),
+                                        pygame.image.load('./data/images/shurikens/broken/golden-shuriken/g4.png')],
+                    "rainbow_shuriken": [pygame.image.load('./data/images/shurikens/broken/rainbow-shuriken/r1.png'), pygame.image.load('./data/images/shurikens/broken/rainbow-shuriken/r2.png'), pygame.image.load('./data/images/shurikens/broken/rainbow-shuriken/r3.png'),
+                                         pygame.image.load('./data/images/shurikens/broken/rainbow-shuriken/r4.png')],
+                    "tomato": [pygame.image.load('./data/images/shurikens/broken/tomato/t1.png'), pygame.image.load('./data/images/shurikens/broken/tomato/t2.png'), pygame.image.load('./data/images/shurikens/broken/tomato/t3.png'),
+                               pygame.image.load('./data/images/shurikens/broken/tomato/t4.png')],
+                    "orange": [pygame.image.load('./data/images/shurikens/broken/orange/o1.png'), pygame.image.load('./data/images/shurikens/broken/orange/o2.png'), pygame.image.load('./data/images/shurikens/broken/orange/o3.png'),
+                               pygame.image.load('./data/images/shurikens/broken/orange/o4.png')]}
 
 # colors dict
 COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
