@@ -33,7 +33,7 @@ class PlayerStat:
             level_text = PIXEL_FONT_SMALL.render(('Level: ' + str(self.level)), True,  COLORS['white'])
         window.blit(level_text, (self.x, self.y - name.get_rect()[3] + ARROW_BUTTON_HEIGHT + 10))
         
-        if player.upgrade_points == 0:
+        if player.upgrade_points == 0 or self.level == 10:
             self.up_button.disabled = True
         else:
             self.up_button.disabled = False
