@@ -106,22 +106,25 @@ BUTTON_WIDTH_SMALL = 108
 BUTTON_HEIGHT_SMALL = 48
 CHECKBOX_WIDTH = 52
 CHECKBOX_HEIGHT = 48
-INACTIVE_BUTTON_BIG = pygame.image.load(
-    './data/images/buttons/button-inactive.png')
-ACTIVE_BUTTON_BIG = pygame.image.load(
-    './data/images/buttons/button-active.png')
-DISABLED_BUTTON_BIG = pygame.image.load(
-    './data/images/buttons/button-disabled.png')
-INACTIVE_BUTTON_SMALL = pygame.image.load(
-    './data/images/buttons/button-small-inactive.png')
-ACTIVE_BUTTON_SMALL = pygame.image.load(
-    './data/images/buttons/button-small-active.png')
-DISABLED_BUTTON_SMALL = pygame.image.load(
-    './data/images/buttons/button-small-disabled.png')
-CHECKBOX_INACTIVE = pygame.image.load(
-    './data/images/buttons/checkbox-inactive.png')
-CHECKBOX_ACTIVE = pygame.image.load(
-    './data/images/buttons/checkbox-active.png')
+ARROW_BUTTON_WIDTH = 30
+ARROW_BUTTON_HEIGHT = ARROW_BUTTON_WIDTH
+
+BUTTON_IMAGES = {'inactive_button_big': pygame.image.load('./data/images/buttons/button-inactive.png'),
+                'active_button_big': pygame.image.load('./data/images/buttons/button-active.png'),
+                'disabled_button_big': pygame.image.load('./data/images/buttons/button-disabled.png'),
+                'inactive_button_small': pygame.image.load('./data/images/buttons/button-small-inactive.png'),
+                'active_button_small': pygame.image.load('./data/images/buttons/button-small-active.png'),
+                'disabled_button_small': pygame.image.load('./data/images/buttons/button-small-disabled.png'),
+                'checkbox_inactive': pygame.image.load('./data/images/buttons/checkbox-inactive.png'),
+                'checkbox_active': pygame.image.load('./data/images/buttons/checkbox-active.png'),
+                'up_arrow_button_inactive': pygame.image.load('./data/images/buttons/up-arrow-inactive.png'),
+                'up_arrow_button_active': pygame.image.load('./data/images/buttons/up-arrow-active.png'),
+                'up_arrow_button_disabled': pygame.image.load('./data/images/buttons/up-arrow-disabled.png'),
+                'down_arrow_button_inactive': pygame.image.load('./data/images/buttons/down-arrow-inactive.png'),
+                'down_arrow_button_active': pygame.image.load('./data/images/buttons/down-arrow-active.png'),
+                'down_arrow_button_disabled': pygame.image.load('./data/images/buttons/down-arrow-disabled.png')}
+
+
 SHURIKEN_LARGE = pygame.image.load('./data/images/shuriken_large.png')
 SHURIKEN_SMALL = pygame.image.load('./data/images/shuriken_small.png')
 

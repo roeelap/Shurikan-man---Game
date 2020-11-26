@@ -10,10 +10,8 @@ class ShopItem:
         self.y = y
         self.width = 18
         self.image = image
-        self.buy_button = Button(
-            str(self.price) + '$', self.x - BUTTON_WIDTH_SMALL - 10, self.y - BUTTON_HEIGHT_SMALL / 2, 'small')
-        self.equip_button = Button(
-            'Equip', self.x - BUTTON_WIDTH_SMALL - 10, self.y + BUTTON_HEIGHT_SMALL / 2, 'small')
+        self.buy_button = Button(self.x - BUTTON_WIDTH_SMALL - 10, self.y - BUTTON_HEIGHT_SMALL / 2, 'small', str(self.price) + '$')
+        self.equip_button = Button(self.x - BUTTON_WIDTH_SMALL - 10, self.y + BUTTON_HEIGHT_SMALL / 2, 'small', 'Equip')
 
     def show(self, window, mouse, player):
         owned = self.name in player.shurikens_owned
