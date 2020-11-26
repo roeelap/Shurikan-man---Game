@@ -18,12 +18,14 @@ player_stats = [PlayerStat('max_health', SCREEN_WIDTH * 1 // 7, SCREEN_HEIGHT * 
                 PlayerStat('strength', SCREEN_WIDTH * 3 // 7, SCREEN_HEIGHT * 8 // 10),
                 PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 7, SCREEN_HEIGHT * 8 // 10)]
 
+confirm_button = Button( SCREEN_WIDTH * 5 // 7, SCREEN_HEIGHT * 7 // 10, 'big', 'Confirm')
+
 back_button = Button(
     SCREEN_WIDTH * 5 // 7, SCREEN_HEIGHT * 8 // 10, 'big', 'Back')
 
 
 def redraw_upgrades_shop(mouse, player):
-    window.blit(BACKGROUND_DUNGEON, (-500, 0))
+    window.blit(BACKGROUND_DUNGEON, (-400, 0))
 
     window.blit(upgrades_title_text, upgrades_title_textRect)
 
@@ -32,7 +34,10 @@ def redraw_upgrades_shop(mouse, player):
 
     upgrade_points = str(player.upgrade_points)
     upgrade_points_text = PIXEL_FONT_BIG_BUTTON.render('Points: ' + upgrade_points, True, COLORS['white'])
-    window.blit(upgrade_points_text, (back_button.x, SCREEN_HEIGHT * 7 // 10 + 40))
+    window.blit(upgrade_points_text, (back_button.x, SCREEN_HEIGHT * 6 // 10 + 30))
+
+    confirm_button.show(window, mouse)
+
     back_button.show(window, mouse)
 
     pygame.display.update()
@@ -54,10 +59,16 @@ def upgrades_shop(player):
                 for player_stat in player_stats:
                     if player_stat.up_button.is_pressed(mouse, click):
                         player_stat.upgrade_stat(player)
+                        player_stat.is_confirmed = False
 
                 for player_stat in player_stats:
                     if player_stat.down_button.is_pressed(mouse, click):
                         player_stat.downgrade_stat(player)
+                        player_stat.is_confirmed = False
+
+                if confirm_button.is_pressed(mouse, click):
+                    for player_stat in player_stats:
+                        player_stat.is_confirmed = True
 
                 if back_button.is_pressed(mouse, click):
                     return

@@ -1,6 +1,7 @@
 import pygame
-from consts import COLORS, ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT, PIXEL_FONT_SMALL
+from consts import COLORS, ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT, PIXEL_FONT_SMALL, FPS
 from menu.button import Button
+from static_functions import draw_rect_with_alpha
 
 
 class PlayerStat:
@@ -11,18 +12,25 @@ class PlayerStat:
         self.level = 0
         self.up_button = Button(self.x, self.y - ARROW_BUTTON_HEIGHT , 'up_arrow')
         self.down_button = Button(self.x + ARROW_BUTTON_WIDTH + 5, self.y - ARROW_BUTTON_HEIGHT , 'down_arrow')
+        self.is_confirmed = False
+        self.bar_timer = 0
     
     def upgrade_stat(self, player):
         if self.level < 20 or player.upgrade_points > 0:
             self.level += 1
             player.upgrade_points -= 1
-    
+
     def downgrade_stat(self, player):
         if self.level > 0:
             self.level -= 1
-            player.upgrade_points += 1
+            player.upgrade_points -= 1
 
     def show(self, window, mouse, player):
+        if self.bar_timer + 1 <= FPS:
+            self.bar_timer += 1
+        else:
+            self.bar_timer = 0
+
         name = PIXEL_FONT_SMALL.render(str(self.name).replace(
             '_', ' ').capitalize(), True,  COLORS['white'])
         window.blit(name, (self.x, self.y))
@@ -46,12 +54,12 @@ class PlayerStat:
         self.up_button.show(window, mouse)
         self.down_button.show(window, mouse)
 
-        for i in range(self.level):
-            pygame.draw.rect(window, (180, i * 9, i * 9), [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15])
-            pygame.draw.rect(window, COLORS['black'], [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15], width=2)
-
-
-
-
-
-
+        if self.is_confirmed:
+            for i in range(self.level):
+                pygame.draw.rect(window, (180, i * 9, i * 9), [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15])
+                pygame.draw.rect(window, COLORS['black'], [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15], width=1)
+        else:
+            if self.bar_timer <= FPS * 4 / 5:
+                for i in range(self.level):
+                    pygame.draw.rect(window, COLORS['black'], [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15], width=1)
+                    draw_rect_with_alpha(self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15, (180, i * 9, i * 9), 200, window)
