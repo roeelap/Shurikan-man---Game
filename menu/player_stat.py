@@ -5,25 +5,31 @@ from static_functions import draw_rect_with_alpha
 
 
 class PlayerStat:
-    def __init__(self, name, x, y):
+    def __init__(self, name, x, y, upgrade_dict):
         self.name = name
         self.x = x
         self.y = y
-        self.level = 0
+        self.level = upgrade_dict[self.name]
+        self.level_delta = 0
+        self.next_rect_y = self.y - 50
         self.up_button = Button(self.x, self.y - ARROW_BUTTON_HEIGHT , 'up_arrow')
         self.down_button = Button(self.x + ARROW_BUTTON_WIDTH + 5, self.y - ARROW_BUTTON_HEIGHT , 'down_arrow')
-        self.is_confirmed = False
+        self.is_confirmed = True
         self.bar_timer = 0
     
-    def upgrade_stat(self, player):
-        if self.level < 20 or player.upgrade_points > 0:
-            self.level += 1
+    def upgrade_stat(self, player, window):
+        if self.level + self.level_delta <= 20 or player.upgrade_points > 0:
+            self.is_confirmed = False
             player.upgrade_points -= 1
+            self.level_delta += 1
 
     def downgrade_stat(self, player):
-        if self.level > 0:
-            self.level -= 1
-            player.upgrade_points -= 1
+        if self.level_delta > 0:
+            self.level_delta -= 1
+            player.upgrade_points += 1
+        else:
+            if self.level > 0:
+                self.level -= 1
 
     def show(self, window, mouse, player):
         if self.bar_timer + 1 <= FPS:
@@ -41,12 +47,12 @@ class PlayerStat:
             level_text = PIXEL_FONT_SMALL.render(('Level: ' + str(self.level)), True,  COLORS['white'])
         window.blit(level_text, (self.x, self.y - name.get_rect()[3] + ARROW_BUTTON_HEIGHT + 10))
         
-        if player.upgrade_points == 0 or self.level == 20:
+        if player.upgrade_points == 0 or self.level + self.level_delta == 20:
             self.up_button.disabled = True
         else:
             self.up_button.disabled = False
 
-        if self.level == 0:
+        if self.level == 0 and self.level_delta == 0:
             self.down_button.disabled = True
         else:
             self.down_button.disabled = False
@@ -54,12 +60,15 @@ class PlayerStat:
         self.up_button.show(window, mouse)
         self.down_button.show(window, mouse)
 
-        if self.is_confirmed:
-            for i in range(self.level):
-                pygame.draw.rect(window, (180, i * 9, i * 9), [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15])
-                pygame.draw.rect(window, COLORS['black'], [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15], width=1)
-        else:
+        for i in range(self.level):
+            pygame.draw.rect(window, (180, i * 9, i * 9), [self.x, self.y - 50 - i * 15, ARROW_BUTTON_WIDTH * 2, 15])
+            pygame.draw.rect(window, COLORS['black'], [self.x, self.y - 50 - i * 15, ARROW_BUTTON_WIDTH * 2, 15], width=1)
+
+        for i in range(self.level_delta):
             if self.bar_timer <= FPS * 4 / 5:
-                for i in range(self.level):
-                    pygame.draw.rect(window, COLORS['black'], [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15], width=1)
-                    draw_rect_with_alpha(self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15, (180, i * 9, i * 9), 200, window)
+                draw_rect_with_alpha(self.x, self.y - 50 - (self.level + i) * 15, ARROW_BUTTON_WIDTH * 2, 15, (180, i * 9, i * 9), 128, window)
+                pygame.draw.rect(window, COLORS['black'], [self.x, self.y - 50 - (self.level + i) * 15, ARROW_BUTTON_WIDTH * 2, 15], width=1)
+
+        if self.is_confirmed:
+            self.level += self.level_delta
+            self.level_delta = 0
