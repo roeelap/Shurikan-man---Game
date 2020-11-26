@@ -27,7 +27,7 @@ class PlayerStat:
             '_', ' ').capitalize(), True,  COLORS['white'])
         window.blit(name, (self.x, self.y))
 
-        if self.level == 10:   
+        if self.level == 20:   
             level_text = PIXEL_FONT_SMALL.render(('Level: Max'), True,  COLORS['white'])
         else:
             level_text = PIXEL_FONT_SMALL.render(('Level: ' + str(self.level)), True,  COLORS['white'])
