@@ -131,31 +131,28 @@ CHECKBOX_INACTIVE = pygame.image.load(
 CHECKBOX_ACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-active.png')
 
-MENU_SHURIKENS = {'shuriken': pygame.image.load(
-    './data/images/menu-shurikens/shuriken-large.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/granny.png')}
+MENU_SHURIKENS = {'shuriken': pygame.image.load('./data/images/menu-shurikens/shuriken-large.png'), 'orange': pygame.image.load('./data/images/menu-shurikens/orange.png'),
+                  'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/granny.png'),
+                  'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/tomato.png'), }
 MENU_SHURIKEN_SMALL = pygame.image.load(
     './data/images/menu-shurikens/shuriken-small.png')
 ARROW_BUTTON_WIDTH = 30
 ARROW_BUTTON_HEIGHT = ARROW_BUTTON_WIDTH
 
 BUTTON_IMAGES = {'inactive_button_big': pygame.image.load('./data/images/buttons/button-inactive.png'),
-                'active_button_big': pygame.image.load('./data/images/buttons/button-active.png'),
-                'disabled_button_big': pygame.image.load('./data/images/buttons/button-disabled.png'),
-                'inactive_button_small': pygame.image.load('./data/images/buttons/button-small-inactive.png'),
-                'active_button_small': pygame.image.load('./data/images/buttons/button-small-active.png'),
-                'disabled_button_small': pygame.image.load('./data/images/buttons/button-small-disabled.png'),
-                'checkbox_inactive': pygame.image.load('./data/images/buttons/checkbox-inactive.png'),
-                'checkbox_active': pygame.image.load('./data/images/buttons/checkbox-active.png'),
-                'up_arrow_button_inactive': pygame.image.load('./data/images/buttons/up-arrow-inactive.png'),
-                'up_arrow_button_active': pygame.image.load('./data/images/buttons/up-arrow-active.png'),
-                'up_arrow_button_disabled': pygame.image.load('./data/images/buttons/up-arrow-disabled.png'),
-                'down_arrow_button_inactive': pygame.image.load('./data/images/buttons/down-arrow-inactive.png'),
-                'down_arrow_button_active': pygame.image.load('./data/images/buttons/down-arrow-active.png'),
-                'down_arrow_button_disabled': pygame.image.load('./data/images/buttons/down-arrow-disabled.png')}
-
-
-SHURIKEN_LARGE = pygame.image.load('./data/images/menu-shurikens/shuriken-large.png')
-SHURIKEN_SMALL = pygame.image.load('./data/images/menu-shurikens/shuriken-small.png')
+                 'active_button_big': pygame.image.load('./data/images/buttons/button-active.png'),
+                 'disabled_button_big': pygame.image.load('./data/images/buttons/button-disabled.png'),
+                 'inactive_button_small': pygame.image.load('./data/images/buttons/button-small-inactive.png'),
+                 'active_button_small': pygame.image.load('./data/images/buttons/button-small-active.png'),
+                 'disabled_button_small': pygame.image.load('./data/images/buttons/button-small-disabled.png'),
+                 'checkbox_inactive': pygame.image.load('./data/images/buttons/checkbox-inactive.png'),
+                 'checkbox_active': pygame.image.load('./data/images/buttons/checkbox-active.png'),
+                 'up_arrow_button_inactive': pygame.image.load('./data/images/buttons/up-arrow-inactive.png'),
+                 'up_arrow_button_active': pygame.image.load('./data/images/buttons/up-arrow-active.png'),
+                 'up_arrow_button_disabled': pygame.image.load('./data/images/buttons/up-arrow-disabled.png'),
+                 'down_arrow_button_inactive': pygame.image.load('./data/images/buttons/down-arrow-inactive.png'),
+                 'down_arrow_button_active': pygame.image.load('./data/images/buttons/down-arrow-active.png'),
+                 'down_arrow_button_disabled': pygame.image.load('./data/images/buttons/down-arrow-disabled.png')}
 
 # coin images
 BRONZE_COINS_IMAGES = [pygame.image.load('./data/images/coins/bronze/bronze1.png'), pygame.image.load('./data/images/coins/bronze/bronze2.png'), pygame.image.load('./data/images/coins/bronze/bronze3.png'),
