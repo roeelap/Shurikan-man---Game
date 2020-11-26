@@ -1,7 +1,4 @@
-from consts import MENU_SHURIKEN_SMALL, SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS,\
-    BUTTON_HEIGHT_BIG, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, CHECKBOX_WIDTH, CHECKBOX_HEIGHT
-from consts import SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS, BUTTON_HEIGHT_BIG, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL,\
-    CHECKBOX_WIDTH, CHECKBOX_HEIGHT, ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT, BUTTON_IMAGES
+from consts import MENU_SHURIKEN_SMALL, SOUNDS, BUTTON_PIXEL_FONTS, COLORS, BUTTON_IMAGES, BUTTON_HEIGHTS, BUTTON_WIDTHS
 from static_functions import draw_rotated
 
 
@@ -11,47 +8,72 @@ class Button:
         self.x = x
         self.y = y
         self.kind = kind
-        if kind == 'big':
-            self.width = BUTTON_WIDTH_BIG
-            self.height = BUTTON_HEIGHT_BIG
-            self.inactive_image = BUTTON_IMAGES['inactive_button_big']
-            self.active_image = BUTTON_IMAGES['active_button_big']
-            self.disabled_image = BUTTON_IMAGES['disabled_button_big']
-            self.inactive_text = PIXEL_FONT_BIG_BUTTON.render(
-                str(text), True,  COLORS['black'])
-            self.active_text = PIXEL_FONT_BIG_BUTTON.render(
-                str(text), True,  COLORS['orange'])
-        elif kind == 'small':
-            self.width = BUTTON_WIDTH_SMALL
-            self.height = BUTTON_HEIGHT_BIG
-            self.inactive_image = BUTTON_IMAGES['inactive_button_small']
-            self.active_image = BUTTON_IMAGES['active_button_small']
-            self.disabled_image = BUTTON_IMAGES['disabled_button_small']
-            self.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
-                str(text), True,  COLORS['black'])
-            self.active_text = PIXEL_FONT_SMALL_BUTTON.render(
-                str(text), True,  COLORS['orange'])
-        elif kind == 'up_arrow':
-            self.width = ARROW_BUTTON_WIDTH
-            self.height = ARROW_BUTTON_HEIGHT
-            self.inactive_image = BUTTON_IMAGES['up_arrow_button_inactive']
-            self.active_image = BUTTON_IMAGES['up_arrow_button_active']
-            self.disabled_image = BUTTON_IMAGES['up_arrow_button_disabled']
-        elif kind == 'down_arrow':
-            self.width = ARROW_BUTTON_WIDTH
-            self.height = ARROW_BUTTON_HEIGHT
-            self.inactive_image = BUTTON_IMAGES['down_arrow_button_inactive']
-            self.active_image = BUTTON_IMAGES['down_arrow_button_active']
-            self.disabled_image = BUTTON_IMAGES['down_arrow_button_disabled']
 
+        self.width = BUTTON_WIDTHS[kind]
+        self.height = BUTTON_HEIGHTS[kind]
         self.center = self.x + self.width // 2, self.y + self.height // 2
+
+        self.inactive_image = BUTTON_IMAGES[kind]['inactive']
+        self.active_image = BUTTON_IMAGES[kind]['active']
+        self.disabled_image = BUTTON_IMAGES[kind]['disabled']
+
+        if text == None:
+            self.text = None
+
+        else:
+            self.text = text
+            self.inactive_text = BUTTON_PIXEL_FONTS[kind].render(
+                    str(text), True,  COLORS['black'])
+            self.active_text = BUTTON_PIXEL_FONTS[kind].render(
+                    str(text), True,  COLORS['orange'])
+        
         self.over = False
-        self.shuriken_rotation_angle = 0
-        self.disabled = False
         self.clicked = False
+        self.disabled = False
+
+        self.shuriken_rotation_angle = 0
         self.shuriken_x = [self.x-30, self.x+self.width+5]
         self.display_shurikens = True if self.kind is 'big' else False
 
+    def show(self, window, mouse):
+        if self.disabled:
+            window.blit(self.disabled_image, (self.x, self.y))
+            if self.text != None:
+                self.display_button_text(window, 'disabled')
+
+        else:
+            if self.is_mouse_over(mouse) or self.clicked:
+                self.play_hover_sound()
+                window.blit(self.active_image, (self.x, self.y))
+
+                if self.text != None:
+                    self.display_button_text(window, 'active')
+
+                if self.display_shurikens:
+                    self.shuriken_rotate_animation(
+                        window, (self.shuriken_x[0], self.y+12))
+                    self.shuriken_rotate_animation(
+                        window, (self.shuriken_x[1], self.y+12))
+            else:
+                self.over = False
+                window.blit(self.inactive_image, (self.x, self.y))
+
+                if self.text != None:
+                    self.display_button_text(window, 'inactive')
+
+            if self.clicked:
+                self.update_shuriken_x()
+
+    def display_button_text(self, window, state):
+        if state == 'disabled' or state == 'inactive':
+            textRect = self.inactive_text.get_rect()
+            textRect.center = self.center
+            window.blit(self.inactive_text, textRect)
+        elif state == 'active':
+            textRect = self.active_text.get_rect()
+            textRect.center = self.center
+            window.blit(self.active_text, textRect)
+    
     def play_hover_sound(self):
         if not self.over:
             SOUNDS['button_hover'].play()
@@ -62,35 +84,12 @@ class Button:
             return True
         return False
 
-    def show(self, window, mouse):
-        if self.disabled:
-            window.blit(self.disabled_image, (self.x, self.y))
-            if self.kind == 'big' or self.kind == 'small':
-                textRect = self.inactive_text.get_rect()
-                textRect.center = self.center
-                window.blit(self.inactive_text, textRect)
-        else:
-            if self.is_mouse_over(mouse) or self.clicked:
-                self.play_hover_sound()
-                window.blit(self.active_image, (self.x, self.y))
-                if self.kind == 'big' or self.kind == 'small':
-                    textRect = self.active_text.get_rect()
-                    textRect.center = self.center
-                    window.blit(self.active_text, textRect)
-                if self.display_shurikens:
-                    self.shuriken_rotate_animation(
-                        window, (self.shuriken_x[0], self.y+12))
-                    self.shuriken_rotate_animation(
-                        window, (self.shuriken_x[1], self.y+12))
-            else:
-                self.over = False
-                window.blit(self.inactive_image, (self.x, self.y))
-                if self.kind == 'big' or self.kind == 'small':
-                    textRect = self.inactive_text.get_rect()
-                    textRect.center = self.center
-                    window.blit(self.inactive_text, textRect)
-            if self.clicked:
-                self.update_shuriken_x()
+    def is_pressed(self, mouse, click, action=None):
+        if not self.disabled:
+            if self.is_mouse_over(mouse):
+                if click[0] == 1:
+                    SOUNDS['button_click'].play()
+                    return True
 
     def shuriken_rotate_animation(self, window, center):
         draw_rotated(window, MENU_SHURIKEN_SMALL, center,
@@ -106,24 +105,17 @@ class Button:
             self.clicked = False
             self.disabled = True
 
-    def is_pressed(self, mouse, click, action=None):
-        if not self.disabled:
-            if self.is_mouse_over(mouse):
-                if click[0] == 1:
-                    SOUNDS['button_click'].play()
-                    return True
-
-
+    
 class Checkbox(Button):
     def __init__(self, x, y, is_on):
         self.x = x
         self.y = y
-        self.width = CHECKBOX_WIDTH
-        self.height = CHECKBOX_HEIGHT
+        self.width = BUTTON_WIDTHS['checkbox']
+        self.height = BUTTON_HEIGHTS['checkbox']
         self.is_on = is_on
         self.click_counter = 0
-        self.inactive_image = BUTTON_IMAGES['checkbox_inactive']
-        self.active_image = BUTTON_IMAGES['checkbox_active']
+        self.inactive_image = BUTTON_IMAGES['checkbox']['inactive']
+        self.active_image = BUTTON_IMAGES['checkbox']['active']
 
     def show(self, window, mouse):
         if self.click_counter > 0:
