@@ -13,7 +13,7 @@ class PlayerStat:
         self.down_button = Button(self.x + ARROW_BUTTON_WIDTH + 5, self.y - ARROW_BUTTON_HEIGHT , 'down_arrow')
     
     def upgrade_stat(self, player):
-        if self.level < 10 or player.upgrade_points > 0:
+        if self.level < 20 or player.upgrade_points > 0:
             self.level += 1
             player.upgrade_points -= 1
     
@@ -33,7 +33,7 @@ class PlayerStat:
             level_text = PIXEL_FONT_SMALL.render(('Level: ' + str(self.level)), True,  COLORS['white'])
         window.blit(level_text, (self.x, self.y - name.get_rect()[3] + ARROW_BUTTON_HEIGHT + 10))
         
-        if player.upgrade_points == 0 or self.level == 10:
+        if player.upgrade_points == 0 or self.level == 20:
             self.up_button.disabled = True
         else:
             self.up_button.disabled = False
@@ -47,8 +47,8 @@ class PlayerStat:
         self.down_button.show(window, mouse)
 
         for i in range(self.level):
-            pygame.draw.rect(window, (180, i * 18, i * 18), [self.x, self.y - name.get_rect()[3] * 3 - i * 20, ARROW_BUTTON_WIDTH * 2, 20])
-            pygame.draw.rect(window, COLORS['black'], [self.x, self.y - name.get_rect()[3] * 3 - i * 20, ARROW_BUTTON_WIDTH * 2, 20], width=2)
+            pygame.draw.rect(window, (180, i * 9, i * 9), [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15])
+            pygame.draw.rect(window, COLORS['black'], [self.x, self.y - name.get_rect()[3] * 3 - i * 15, ARROW_BUTTON_WIDTH * 2, 15], width=2)
 
 
 

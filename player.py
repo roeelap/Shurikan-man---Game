@@ -144,7 +144,7 @@ class Player:
     def level_up(self):
         SOUNDS['level_up'].play()
         self.level += 1
-        self.upgrade_points += 1
+        self.upgrade_points += 2
     
     def earn_xp(self, xp_amount):
         self.xp += xp_amount
