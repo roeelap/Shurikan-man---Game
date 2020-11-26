@@ -88,6 +88,7 @@ PLAYER_WALK_LEFT_IMAGES = [pygame.image.load('./data/images/player/L1.png'), pyg
     pygame.image.load('./data/images/player/L7.png'), pygame.image.load('./data/images/player/L8.png'), pygame.image.load('./data/images/player/L9.png')]
 
 PLAYER_STANDING_IMAGE = pygame.image.load('./data/images/player/standing.png')
+ENEMY_SPAWN_IMAGE = pygame.image.load('./data/images/goblin/spawn.png')
 
 PLAYER_PORTRAIT = pygame.image.load(
     './data/images/player/character-portrait.png')

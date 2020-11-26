@@ -1,7 +1,7 @@
 from consts import MENU_SHURIKEN_SMALL, SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS,\
     BUTTON_HEIGHT_BIG, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, CHECKBOX_WIDTH, CHECKBOX_HEIGHT
 from consts import SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS, BUTTON_HEIGHT_BIG, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL,\
-    CHECKBOX_WIDTH, CHECKBOX_HEIGHT, ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT,BUTTON_IMAGES
+    CHECKBOX_WIDTH, CHECKBOX_HEIGHT, ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT, BUTTON_IMAGES
 from static_functions import draw_rotated
 
 
@@ -50,6 +50,7 @@ class Button:
         self.disabled = False
         self.clicked = False
         self.shuriken_x = [self.x-30, self.x+self.width+5]
+        self.display_shurikens = True if self.kind is 'big' else False
 
     def play_hover_sound(self):
         if not self.over:
@@ -76,10 +77,11 @@ class Button:
                     textRect = self.active_text.get_rect()
                     textRect.center = self.center
                     window.blit(self.active_text, textRect)
-                self.shuriken_rotate_animation(
-                    window, (self.shuriken_x[0], self.y+12))
-                self.shuriken_rotate_animation(
-                    window, (self.shuriken_x[1], self.y+12))
+                if self.display_shurikens:
+                    self.shuriken_rotate_animation(
+                        window, (self.shuriken_x[0], self.y+12))
+                    self.shuriken_rotate_animation(
+                        window, (self.shuriken_x[1], self.y+12))
             else:
                 self.over = False
                 window.blit(self.inactive_image, (self.x, self.y))

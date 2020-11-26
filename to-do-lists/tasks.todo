@@ -15,9 +15,9 @@ Todo:
   ✔ Animation for hitting enemy @done(20-11-25 20:57)
   ✔ Player experience system (more exp = faster, stronger, shurikens faster) @done(20-11-26 00:27)
   ✔ Sounds: grandma, level up, player death, buying, save button,equip, coin pickup (silver, gold=many coins) @done(20-11-26 01:01)
-  ☐ change the shuriken animations (near the buttons and the start screen title) according to the equipped shuriken
-  ☐ delete shuriken animation on shop buttons (buy and equip)
-  ☐ shuriken shop - spin the coin on the bottom right corner 
+  ✔ change the shuriken animations (near the buttons and the start screen title) according to the equipped shuriken @done(20-11-26 18:41)
+  ✔ delete shuriken animation on shop buttons (buy and equip) @done(20-11-26 18:41)
+  ✔ shuriken shop - spin the coin on the bottom right corner @done(20-11-26 18:41)
   ☐ When player dies - Show dead on screen, popup main menu.
   ☐ Stats menu -> strength, throw speed, speed, max health, coin, exp, level, score -> make like an upgrade store, each level gives a point to 'spend'
   ☐ cleaning the button class - repeations
