@@ -1,4 +1,4 @@
-from consts import SHURIKEN_SMALL, SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS, INACTIVE_BUTTON_BIG, ACTIVE_BUTTON_BIG, DISABLED_BUTTON_BIG, INACTIVE_BUTTON_SMALL, ACTIVE_BUTTON_SMALL, DISABLED_BUTTON_SMALL, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE,\
+from consts import MENU_SHURIKEN_SMALL, SOUNDS, PIXEL_FONT_BIG_BUTTON, PIXEL_FONT_SMALL_BUTTON, COLORS, INACTIVE_BUTTON_BIG, ACTIVE_BUTTON_BIG, DISABLED_BUTTON_BIG, INACTIVE_BUTTON_SMALL, ACTIVE_BUTTON_SMALL, DISABLED_BUTTON_SMALL, CHECKBOX_ACTIVE, CHECKBOX_INACTIVE,\
     BUTTON_HEIGHT_BIG, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, CHECKBOX_WIDTH, CHECKBOX_HEIGHT
 from static_functions import draw_rotated
 
@@ -72,7 +72,7 @@ class Button:
                 self.update_shuriken_x()
 
     def shuriken_rotate_animation(self, window, center):
-        draw_rotated(window, SHURIKEN_SMALL, center,
+        draw_rotated(window, MENU_SHURIKEN_SMALL, center,
                      self.shuriken_rotation_angle)
         self.shuriken_rotation_angle += 3
 

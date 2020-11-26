@@ -130,8 +130,11 @@ CHECKBOX_INACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-inactive.png')
 CHECKBOX_ACTIVE = pygame.image.load(
     './data/images/buttons/checkbox-active.png')
-SHURIKEN_LARGE = pygame.image.load('./data/images/shuriken_large.png')
-SHURIKEN_SMALL = pygame.image.load('./data/images/shuriken_small.png')
+
+MENU_SHURIKENS = {'shuriken': pygame.image.load(
+    './data/images/menu-shurikens/shuriken-large.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/granny.png')}
+MENU_SHURIKEN_SMALL = pygame.image.load(
+    './data/images/menu-shurikens/shuriken-small.png')
 
 # coin images
 BRONZE_COINS_IMAGES = [pygame.image.load('./data/images/coins/bronze/bronze1.png'), pygame.image.load('./data/images/coins/bronze/bronze2.png'), pygame.image.load('./data/images/coins/bronze/bronze3.png'),

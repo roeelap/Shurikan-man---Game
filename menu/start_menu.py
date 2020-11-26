@@ -1,5 +1,5 @@
 import pygame
-from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SHURIKEN_LARGE, SOUNDS, COLORS, BUTTON_WIDTH_BIG
+from consts import MENU_SHURIKENS, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
 import sys
 from menu.button import Button
 from menu.options_menu import options_menu
@@ -28,7 +28,7 @@ quit_button = Button('Quit Game', (SCREEN_WIDTH // 2) -
                      (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 6 // 7, 'big')
 
 
-def redraw_start_menu(background, mouse, rotation_angle, pause_screen=False):
+def redraw_start_menu(background, mouse, rotation_angle, player, pause_screen=False):
 
     window.blit(background, (0, 0))
     if pause_screen:
@@ -45,9 +45,13 @@ def redraw_start_menu(background, mouse, rotation_angle, pause_screen=False):
     shop_button.show(window, mouse)
     options_button.show(window, mouse)
     quit_button.show(window, mouse)
-    draw_rotated(window, SHURIKEN_LARGE, (0.75*SCREEN_WIDTH,
+    try:
+        rotating_image = MENU_SHURIKENS[player.shuriken_equipped]
+    except:
+        rotating_image = MENU_SHURIKENS['shuriken']
+    draw_rotated(window, rotating_image, (0.75*SCREEN_WIDTH,
                                           SCREEN_HEIGHT // 20), rotation_angle)
-    draw_rotated(window, SHURIKEN_LARGE, (0.17*SCREEN_WIDTH,
+    draw_rotated(window, rotating_image, (0.17*SCREEN_WIDTH,
                                           SCREEN_HEIGHT // 20), rotation_angle)
     pygame.display.update()
 
@@ -96,4 +100,4 @@ def start_menu(background_image, player, enemies, background, pause_screen=False
                     shop_menu(player)
 
         redraw_start_menu(background_image, mouse,
-                          rotation_angle, pause_screen)
+                          rotation_angle, player, pause_screen)
