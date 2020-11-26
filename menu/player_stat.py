@@ -1,5 +1,5 @@
 import pygame
-from consts import COLORS, BUTTON_IMAGES, ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT, PIXEL_FONT_SMALL
+from consts import COLORS, ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT, PIXEL_FONT_SMALL
 from menu.button import Button
 
 

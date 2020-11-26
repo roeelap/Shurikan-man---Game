@@ -1,6 +1,5 @@
 import pygame
 from consts import MENU_SHURIKENS, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
-import sys
 from menu.button import Button
 from menu.options_menu import options_menu
 from menu.shop_menu import shop_menu

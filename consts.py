@@ -154,8 +154,8 @@ BUTTON_IMAGES = {'inactive_button_big': pygame.image.load('./data/images/buttons
                 'down_arrow_button_disabled': pygame.image.load('./data/images/buttons/down-arrow-disabled.png')}
 
 
-SHURIKEN_LARGE = pygame.image.load('./data/images/shuriken_large.png')
-SHURIKEN_SMALL = pygame.image.load('./data/images/shuriken_small.png')
+SHURIKEN_LARGE = pygame.image.load('./data/images/menu-shurikens/shuriken-large.png')
+SHURIKEN_SMALL = pygame.image.load('./data/images/menu-shurikens/shuriken-small.png')
 
 # coin images
 BRONZE_COINS_IMAGES = [pygame.image.load('./data/images/coins/bronze/bronze1.png'), pygame.image.load('./data/images/coins/bronze/bronze2.png'), pygame.image.load('./data/images/coins/bronze/bronze3.png'),
