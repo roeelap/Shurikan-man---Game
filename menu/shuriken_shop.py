@@ -1,3 +1,4 @@
+from static_functions import draw_rotated
 import pygame
 from menu.button import Button
 from menu.shop_item import ShopItem
@@ -30,7 +31,7 @@ quit_shuriken_shop_button = Button(
     SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big', 'Back')
 
 
-def redraw_shuriken_shop(mouse, player):
+def redraw_shuriken_shop(mouse, player, spin_count):
     window.blit(BACKGROUND_DUNGEON, (0, 0))
 
     window.blit(shurikens_title_text, shurikens_title_textRect)
@@ -43,15 +44,15 @@ def redraw_shuriken_shop(mouse, player):
     window.blit(coins_text, (quit_shuriken_shop_button.x +
                              BUTTON_WIDTH_BIG / 3, SCREEN_HEIGHT * 6 // 8 + 40))
 
-    window.blit(GOLD_COINS_IMAGES[0], (quit_shuriken_shop_button.x + BUTTON_WIDTH_BIG /
-                                       3 + coins_text.get_rect()[2] + 10, SCREEN_HEIGHT * 6 // 8 + 30))
-
+    window.blit(GOLD_COINS_IMAGES[spin_count//2], (quit_shuriken_shop_button.x + BUTTON_WIDTH_BIG /
+                                                   3 + coins_text.get_rect()[2] + 10, SCREEN_HEIGHT * 6 // 8 + 30))
     quit_shuriken_shop_button.show(window, mouse)
 
     pygame.display.update()
 
 
 def shuriken_shop(player):
+    spin_count = 0
     while True:
         mouse = pygame.mouse.get_pos()
 
@@ -81,5 +82,8 @@ def shuriken_shop(player):
 
                 if quit_shuriken_shop_button.is_pressed(mouse, click):
                     return
+        if spin_count + 1 >= 16:
+            spin_count = 0
+        spin_count += 1
 
-        redraw_shuriken_shop(mouse, player)
+        redraw_shuriken_shop(mouse, player, spin_count)

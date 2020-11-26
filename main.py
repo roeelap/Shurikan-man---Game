@@ -84,8 +84,13 @@ def main():
         for object in objects_to_draw:
             object.draw(window)
 
+
         player.display_player_stats(window)
+
+
         pygame.display.update()
+
+
 
     # Game loop
     while True:
@@ -134,7 +139,7 @@ def main():
                 shuriken_start_x = player.hitbox[0] + 5
             shurikens.append(Shuriken(shuriken_start_x, round(player.y + player.height / 2),
                                       SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3], SHURIKEN_IMAGES[player.shuriken_equipped], player.shuriken_equipped))
-            SOUNDS['shuriken_throw'].play()
+            choice(SOUNDS['shuriken_throw']).play()
 
         # Leave for testing
         if keys[pygame.K_d]:

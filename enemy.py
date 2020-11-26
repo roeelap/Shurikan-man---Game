@@ -1,5 +1,6 @@
+from os import spawnl
 import pygame
-from consts import BOTTOM_BORDER, COLORS, GOBLIN_PATH_TIMEOUT, GOBLIN_SPAWN_TIMEOUT, SOUNDS, TOP_BORDER
+from consts import BOTTOM_BORDER, COLORS, ENEMY_SPAWN_IMAGE, GOBLIN_PATH_TIMEOUT, GOBLIN_SPAWN_TIMEOUT, SOUNDS, TOP_BORDER
 from random import choice
 from operator import itemgetter
 from static_functions import draw_circle_alpha
@@ -43,6 +44,7 @@ class Enemy:
             timeout_image.fill(
                 COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
         if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT:
+            window.blit(ENEMY_SPAWN_IMAGE, (self.shade['x']-self.shade['w']/2, self.shade['y']-10))
             self.spawn_timer += 1
             if 0 <= self.spawn_timer % 6 <= 1:
                 image_to_blit = timeout_image
