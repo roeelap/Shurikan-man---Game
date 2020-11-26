@@ -84,8 +84,13 @@ def main():
         for object in objects_to_draw:
             object.draw(window)
 
+
         player.display_player_stats(window)
+
+
         pygame.display.update()
+
+
 
     # Game loop
     while True:
