@@ -23,7 +23,7 @@ Todo:
   ☐ cleaning the button class - duplicated code 
   ☐ Downgrading stat staging until confirm
   ☐ Show points cost next to points owned (green - receive, red - spend)
-  ☐ Update current level on stat when staging
+  ✔ Update current level on stat when staging @done(20-11-26 20:41)
   ☐ Make inventory tab, fix shop tab.
   ☐ update player stats function (function of upgrades)
   ☐ Add new upgrades - max shurikens, reload speed, group damage
