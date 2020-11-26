@@ -4,7 +4,7 @@ from menu.button import Button
 from menu.options_menu import options_menu
 from menu.shop_menu import shop_menu
 from menu.upgrades import upgrades_shop
-from static_functions import save_game, draw_rotated
+from static_functions import darken, save_game, draw_rotated
 
 
 pygame.init()
@@ -34,12 +34,7 @@ def redraw_start_menu(background, mouse, rotation_angle, player, pause_screen=Fa
 
     window.blit(background, (0, 0))
     if pause_screen:
-        target_rect = pygame.Rect((0, 0), (SCREEN_WIDTH, SCREEN_HEIGHT))
-        shape_surf = pygame.Surface(window.get_size(), pygame.SRCALPHA)
-        shape_surf.set_alpha(128)
-        pygame.draw.rect(
-            shape_surf, COLORS['black'], (0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))
-        window.blit(shape_surf, target_rect)
+        darken(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,COLORS['black'],128,window)
 
     window.blit(title_text, title_textRect)
     play_button.show(window, mouse)

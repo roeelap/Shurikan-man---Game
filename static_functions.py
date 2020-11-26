@@ -12,9 +12,20 @@ def draw_circle_alpha(surface, color, center, width, height):
                         (width / 2, 4, width, height), width)
     surface.blit(shape_surf, target_rect)
 
+
+def darken(x, y, width, height, color, alpha, window):
+    target_rect = pygame.Rect((x, y), (width, height))
+    shape_surf = pygame.Surface(window.get_size(), pygame.SRCALPHA)
+    shape_surf.set_alpha(alpha)
+    pygame.draw.rect(
+        shape_surf, color, (x, y, width, height))
+    window.blit(shape_surf, target_rect)
+
+
 def draw_rotated(window, image, topleft, angle):
     rotated_image = pygame.transform.rotate(image, angle)
-    new_rect = rotated_image.get_rect(center = image.get_rect(topleft = topleft).center)
+    new_rect = rotated_image.get_rect(
+        center=image.get_rect(topleft=topleft).center)
     window.blit(rotated_image, new_rect.topleft)
 
 
