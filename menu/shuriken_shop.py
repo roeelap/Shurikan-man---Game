@@ -10,20 +10,24 @@ pygame.display.set_icon(SHURIKEN_IMAGES['shuriken'])
 window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 
-
-shurikens_title_text = PIXEL_FONT_BIG.render("Shurikens", True,  COLORS['white'])
+shurikens_title_text = PIXEL_FONT_BIG.render(
+    "Shurikens", True,  COLORS['white'])
 shurikens_title_textRect = shurikens_title_text.get_rect()
 shurikens_title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 7
 
 shurikens_shop = [ShopItem('shuriken', 0, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['shuriken']),
-                ShopItem('golden_shuriken', 10, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['golden_shuriken']),              
-                ShopItem('rainbow_shuriken', 50, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 4 // 6, SHURIKEN_IMAGES['rainbow_shuriken']),    
-                ShopItem('orange', 100, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 5 // 6, SHURIKEN_IMAGES['orange']),
-                ShopItem('tomato', 150, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['tomato']),
-                ShopItem('granny', 200, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['granny'])]
+                  ShopItem('golden_shuriken', 10, SCREEN_WIDTH // 6,
+                           SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['golden_shuriken']),
+                  ShopItem('rainbow_shuriken', 50, SCREEN_WIDTH // 6,
+                           SCREEN_HEIGHT * 4 // 6, SHURIKEN_IMAGES['rainbow_shuriken']),
+                  ShopItem('orange', 100, SCREEN_WIDTH // 6,
+                           SCREEN_HEIGHT * 5 // 6, SHURIKEN_IMAGES['orange']),
+                  ShopItem('tomato', 150, SCREEN_WIDTH * 2 // 5,
+                           SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['tomato']),
+                  ShopItem('granny', 200, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['granny'])]
 
 quit_shuriken_shop_button = Button(
-    'Back', SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big')
+    SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big', 'Back')
 
 
 def redraw_shuriken_shop(mouse, player):
@@ -36,9 +40,11 @@ def redraw_shuriken_shop(mouse, player):
 
     coins = str(player.coins)
     coins_text = PIXEL_FONT_BIG_BUTTON.render(coins, True, COLORS['white'])
-    window.blit(coins_text, (quit_shuriken_shop_button.x + BUTTON_WIDTH_BIG / 3, SCREEN_HEIGHT * 6 // 8 + 40))
+    window.blit(coins_text, (quit_shuriken_shop_button.x +
+                             BUTTON_WIDTH_BIG / 3, SCREEN_HEIGHT * 6 // 8 + 40))
 
-    window.blit(GOLD_COINS_IMAGES[0], (quit_shuriken_shop_button.x + BUTTON_WIDTH_BIG / 3 + coins_text.get_rect()[2] + 10, SCREEN_HEIGHT * 6 // 8 + 30))
+    window.blit(GOLD_COINS_IMAGES[0], (quit_shuriken_shop_button.x + BUTTON_WIDTH_BIG /
+                                       3 + coins_text.get_rect()[2] + 10, SCREEN_HEIGHT * 6 // 8 + 30))
 
     quit_shuriken_shop_button.show(window, mouse)
 

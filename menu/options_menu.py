@@ -27,8 +27,8 @@ music_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7,
                           SCREEN_HEIGHT // 3 - CHECKBOX_HEIGHT, True)
 sound_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7,
                           SCREEN_HEIGHT * 3 // 7 - CHECKBOX_HEIGHT, True)
-back_button = Button('Back', SCREEN_WIDTH // 2 -
-                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 6, 'big')
+back_button = Button(SCREEN_WIDTH // 2 -
+                     (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 6, 'big', 'Back')
 
 
 def set_all_volumes(all_sounds, new_volume):

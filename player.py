@@ -24,6 +24,7 @@ class Player:
         self.xp = 0
         self.level = 1
         self.xp_to_next_lvl = self.level ** 2 * 10
+        self.upgrade_points = 10
         self.score = 0
         self.coins = 0
         self.throw_speed = 12
@@ -143,6 +144,7 @@ class Player:
     def level_up(self):
         SOUNDS['level_up'].play()
         self.level += 1
+        self.upgrade_points += 2
     
     def earn_xp(self, xp_amount):
         self.xp += xp_amount

@@ -20,3 +20,4 @@ Todo:
   ☐ shuriken shop - spin the coin on the bottom right corner 
   ☐ When player dies - Show dead on screen, popup main menu.
   ☐ Stats menu -> strength, throw speed, speed, max health, coin, exp, level, score -> make like an upgrade store, each level gives a point to 'spend'
+  ☐ cleaning the button class - repeations
