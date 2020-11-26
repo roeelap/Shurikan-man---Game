@@ -31,6 +31,7 @@ class Player:
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
         self.shurikens_owned = ['shuriken']
         self.shuriken_equipped = 'shuriken'
+        self.upgrades = {'max_health': 0, 'speed': 0, 'strength': 0, 'throw_speed': 0}
 
     def draw(self, window):
         if self.walk_count + 1 >= 54:

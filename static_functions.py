@@ -18,7 +18,7 @@ def draw_rect_with_alpha(x, y, width, height, color, alpha, window):
     shape_surf = pygame.Surface((width, height), pygame.SRCALPHA)
     shape_surf.set_alpha(alpha)
     pygame.draw.rect(
-        shape_surf, color, (x, y, width, height))
+        shape_surf, color, (0, 0, width, height))
     window.blit(shape_surf, target_rect)
 
 

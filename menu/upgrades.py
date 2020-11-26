@@ -13,18 +13,13 @@ upgrades_title_text = PIXEL_FONT_BIG.render("Upgrades", True,  COLORS['white'])
 upgrades_title_textRect = upgrades_title_text.get_rect()
 upgrades_title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 7
 
-player_stats = [PlayerStat('max_health', SCREEN_WIDTH * 1 // 7, SCREEN_HEIGHT * 8 // 10),
-                PlayerStat('speed', SCREEN_WIDTH * 2 // 7, SCREEN_HEIGHT * 8 // 10),
-                PlayerStat('strength', SCREEN_WIDTH * 3 // 7, SCREEN_HEIGHT * 8 // 10),
-                PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 7, SCREEN_HEIGHT * 8 // 10)]
-
 confirm_button = Button( SCREEN_WIDTH * 5 // 7, SCREEN_HEIGHT * 7 // 10, 'big', 'Confirm')
 
 back_button = Button(
     SCREEN_WIDTH * 5 // 7, SCREEN_HEIGHT * 8 // 10, 'big', 'Back')
 
 
-def redraw_upgrades_shop(mouse, player):
+def redraw_upgrades_shop(mouse, player, player_stats):
     window.blit(BACKGROUND_DUNGEON, (-400, 0))
 
     window.blit(upgrades_title_text, upgrades_title_textRect)
@@ -44,6 +39,11 @@ def redraw_upgrades_shop(mouse, player):
 
 
 def upgrades_shop(player):
+    player_stats = [PlayerStat('max_health', SCREEN_WIDTH * 1 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                PlayerStat('speed', SCREEN_WIDTH * 2 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                PlayerStat('strength', SCREEN_WIDTH * 3 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
+
     while True:
         mouse = pygame.mouse.get_pos()
 
@@ -58,13 +58,11 @@ def upgrades_shop(player):
 
                 for player_stat in player_stats:
                     if player_stat.up_button.is_pressed(mouse, click):
-                        player_stat.upgrade_stat(player)
-                        player_stat.is_confirmed = False
+                        player_stat.upgrade_stat(player, window)
 
                 for player_stat in player_stats:
                     if player_stat.down_button.is_pressed(mouse, click):
                         player_stat.downgrade_stat(player)
-                        player_stat.is_confirmed = False
 
                 if confirm_button.is_pressed(mouse, click):
                     for player_stat in player_stats:
@@ -73,4 +71,4 @@ def upgrades_shop(player):
                 if back_button.is_pressed(mouse, click):
                     return
 
-        redraw_upgrades_shop(mouse, player)
+        redraw_upgrades_shop(mouse, player, player_stats)
