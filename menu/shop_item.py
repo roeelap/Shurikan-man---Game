@@ -19,24 +19,25 @@ class ShopItem:
         owned = self.name in player.shurikens_owned
         equipped = self.name == player.shuriken_equipped
 
-        if owned and equipped:
-            self.buy_button.disabled = True
+        if not owned:
             self.equip_button.disabled = True
-            self.equip_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
-                'Equipped', True,  COLORS['black'])
-
+            if self.price > player.coins:
+                self.buy_button.disabled = True
+            else:
+                self.buy_button.disabled = False
+        
         elif owned:
             self.buy_button.disabled = True
             self.buy_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
                 'Bought', True,  COLORS['black'])
-            if not equipped:
+            if equipped:
+                self.equip_button.disabled = True
+                self.equip_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
+                'Equipped', True,  COLORS['black'])
+            else:
                 self.equip_button.disabled = False
-        elif not owned:
-            self.equip_button.disabled = True
-
-        if self.price > player.coins and not owned:
-            self.buy_button.disabled = True
-            self.equip_button.disabled = True
+                self.equip_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
+                'Equip', True,  COLORS['black'])
 
         self.buy_button.show(window, mouse)
         self.equip_button.show(window, mouse)
