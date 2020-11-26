@@ -23,3 +23,4 @@ Todo:
   ✔ There is no track of shurikens owned by player (create an attribute inside player.py) @done(20-11-25 15:39)
   ✔ Add broken shuriken images for rest of shurikens @done(20-11-26 18:30)
   ✔ Bug - when having enough coins, the shurikens buy buttons are still disabled @done(20-11-26 12:52)
+  ☐ Player points to spend is not a function of it's current level (only adds when level up)

@@ -51,7 +51,7 @@ def save_objects_status(objects, name):
             if is_valid_type(value, object):
                 object_dict[attr] = value
         objects_data.append(object_dict)
-    with open(f'./status/{name}.json', 'w', encoding='utf-8') as file:
+    with open(f'./saves/{name}.json', 'w', encoding='utf-8') as file:
         json.dump(objects_data, file, ensure_ascii=False, indent=4)
 
 
@@ -61,12 +61,12 @@ def save_object_status(object, name):
     for attr, value in object_data.items():
         if is_valid_type(value, object):
             object_dict[attr] = value
-    with open(f'./status/{name}.json', 'w', encoding='utf-8') as file:
+    with open(f'./saves/{name}.json', 'w', encoding='utf-8') as file:
         json.dump(object_dict, file, ensure_ascii=False, indent=4)
 
 
 def load_object_status(object, name):
-    with open(f'./status/{name}.json') as file:
+    with open(f'./saves/{name}.json') as file:
         object_data = json.load(file)
     for attr, value in object_data.items():
         if is_valid_type(value, object):
@@ -74,7 +74,7 @@ def load_object_status(object, name):
 
 
 def load_objects_status(objects, name, type):
-    with open(f'./status/{name}.json') as file:
+    with open(f'./saves/{name}.json') as file:
         objects_data = json.load(file)
     for object in objects_data:
         new_object = type(0, 0, 0, 0, 0, 0,

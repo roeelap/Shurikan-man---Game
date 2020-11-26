@@ -1,0 +1,71 @@
+[
+    {
+        "x": 533.1800000000037,
+        "y": 583.5999999999995,
+        "width": 77,
+        "height": 77,
+        "walk_count": 3,
+        "walk_count_limit": 66,
+        "speed": 1.4,
+        "vertical_speed": 0.7,
+        "max_speed": 1.4,
+        "health": 9,
+        "max_health": 9,
+        "alive": true,
+        "spawn_timer": 60,
+        "path_refresh_timer": 2,
+        "hit_timer": 0,
+        "shade": {
+            "x": 566.6800000000037,
+            "y": 658.5999999999995,
+            "w": 38,
+            "h": 12
+        }
+    },
+    {
+        "x": 659.0800000000031,
+        "y": 598.6000000000056,
+        "width": 77,
+        "height": 77,
+        "walk_count": 4,
+        "walk_count_limit": 66,
+        "speed": -1.4,
+        "vertical_speed": 0.7,
+        "max_speed": 1.4,
+        "health": 9,
+        "max_health": 9,
+        "alive": true,
+        "spawn_timer": 60,
+        "path_refresh_timer": 7,
+        "hit_timer": 0,
+        "shade": {
+            "x": 707.5800000000031,
+            "y": 673.6000000000056,
+            "w": 38,
+            "h": 12
+        }
+    },
+    {
+        "x": 1075.0,
+        "y": 557,
+        "width": 77,
+        "height": 77,
+        "walk_count": 0,
+        "walk_count_limit": 66,
+        "speed": -1.4,
+        "vertical_speed": -0.7,
+        "max_speed": 1.4,
+        "health": 9,
+        "max_health": 9,
+        "alive": true,
+        "spawn_timer": 12,
+        "path_refresh_timer": 60,
+        "hit_timer": 0,
+        "shade": {
+            "x": 1123.5,
+            "y": 632,
+            "w": 38,
+            "h": 12
+        }
+    }
+]

@@ -1,5 +1,5 @@
 Todo:
-  ✔ display the player's health near his health bar (in numbers) @done(20-11-18 23:30)
+  ✔ Display the player's health near his health bar (in numbers) @done(20-11-18 23:30)
   ✔ When player is hit, make him transparent for sometime - changing the player image's opacity @done(20-11-20 15:01)
   ✔ Fix shuriken to bounce on floor until disappearing @done(20-11-23 22:39)
   ✔ Shuriken spinning @done(20-11-23 23:06)
@@ -19,5 +19,16 @@ Todo:
   ✔ delete shuriken animation on shop buttons (buy and equip) @done(20-11-26 18:41)
   ✔ shuriken shop - spin the coin on the bottom right corner @done(20-11-26 18:41)
   ☐ When player dies - Show dead on screen, popup main menu.
-  ☐ Stats menu -> strength, throw speed, speed, max health, coin, exp, level, score -> make like an upgrade store, each level gives a point to 'spend'
-  ☐ cleaning the button class - repeations
+  ✔ Stats menu -> strength, throw speed, speed, max health, coin, exp, level, score -> make like an upgrade store, each level gives a point to 'spend' @done(20-11-26 19:33)
+  ☐ cleaning the button class - duplicated code 
+  ☐ Downgrading stat staging until confirm
+  ☐ Show points cost next to points owned (green - receive, red - spend)
+  ☐ Update current level on stat when staging
+  ☐ Make inventory tab, fix shop tab.
+  ☐ update player stats function (function of upgrades)
+  ☐ Add new upgrades - max shurikens, reload speed, group damage
+  ☐ Popup - save on exit (cancel save every 5 seconds)
+  ☐ Option to set volume
+  ☐ Save options status
+  ☐ Load options from saves
+  ☐ Back to game on escape from any menu
