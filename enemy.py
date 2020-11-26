@@ -1,4 +1,3 @@
-from os import spawnl
 import pygame
 from consts import BOTTOM_BORDER, COLORS, ENEMY_SPAWN_IMAGE, GOBLIN_PATH_TIMEOUT, GOBLIN_SPAWN_TIMEOUT, SOUNDS, TOP_BORDER
 from random import choice

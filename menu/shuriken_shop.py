@@ -1,4 +1,3 @@
-from static_functions import draw_rotated
 import pygame
 from menu.button import Button
 from menu.shop_item import ShopItem
