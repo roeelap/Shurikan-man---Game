@@ -43,7 +43,8 @@ class Enemy:
             timeout_image.fill(
                 COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
         if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT:
-            window.blit(ENEMY_SPAWN_IMAGE, (self.shade['x']-self.shade['w']/2, self.shade['y']-10))
+            window.blit(ENEMY_SPAWN_IMAGE,
+                        (self.shade['x']-self.shade['w']/2-5, self.shade['y']-5))
             self.spawn_timer += 1
             if 0 <= self.spawn_timer % 6 <= 1:
                 image_to_blit = timeout_image
