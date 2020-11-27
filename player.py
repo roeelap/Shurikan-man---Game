@@ -142,22 +142,24 @@ class Player:
                                                    2 // 20, 30, health_bar_width, 30), width=3, border_radius=15)
 
     def display_xp_bar(self, window):
-        health_bar_x = SCREEN_WIDTH * 2 // 20
-        health_bar_width = SCREEN_WIDTH * 17 // 20
-        xp_owned_width = (health_bar_width) * (self.xp / self.xp_to_next_lvl)
+        xp_bar_x = SCREEN_WIDTH * 2 // 20
+        xp_bar_width = SCREEN_WIDTH * 17 // 20
+        xp_owned_width = (xp_bar_width) * (self.xp / self.xp_to_next_lvl)
+        xp_owned_height_max = 20
+        xp_owned_height = xp_owned_height_max
         border_radius = 15
-
-        # if xp_owned_width < border_radius:
-        #     border_radius = int(xp_owned_width)
+        xp_owned_y_correction = 0
+        if xp_owned_width // 2 <= border_radius:
+            xp_owned_height = min(xp_owned_width, xp_owned_height_max)
+            xp_owned_y_correction = abs(xp_owned_height_max-xp_owned_height)/2
         if self.xp > 0:
-            pygame.draw.rect(window, COLORS['orange'], (health_bar_x + abs(xp_owned_width - border_radius), 60, xp_owned_width, 20), border_radius=20)
+            pygame.draw.rect(window, COLORS['orange'], (
+                xp_bar_x, 60 + xp_owned_y_correction, xp_owned_width, xp_owned_height), border_radius=border_radius)
         pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH *
-                                                   2 // 20, 60, health_bar_width, 20), width=2, border_radius=15)
+                                                   2 // 20, 60, xp_bar_width, 20), width=2, border_radius=border_radius)
         for i in range(1, 4):
-            pygame.draw.line(window, COLORS['black'], (health_bar_x + (
-                health_bar_width * i / 4), 60), (health_bar_x + (health_bar_width * i / 4), 80), width=2)
-        print((
-            health_bar_width) * (self.xp / self.xp_to_next_lvl))
+            pygame.draw.line(window, COLORS['black'], (xp_bar_x + (
+                xp_bar_width * i / 4), 60), (xp_bar_x + (xp_bar_width * i / 4), 80), width=2)
 
     def display_coins_text(self, window):
         coins = f'Coins: {self.coins}'

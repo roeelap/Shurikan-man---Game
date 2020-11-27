@@ -133,10 +133,8 @@ class Enemy:
     def hit(self, shuriken_speed, coins, shuriken_type):
         if self.health > 1:
             self.hit_timer = 3
-            try:
-                choice(SOUNDS[f'{shuriken_type}_hits']).play()
-            except KeyError:
-                choice(SOUNDS['shuriken_hits']).play()
+            choice(SOUNDS.get(f'{shuriken_type}_hits',
+                              SOUNDS['shuriken_hits'])).play()
             self.health -= 1
             self.x += int(shuriken_speed / 2)
         else:
