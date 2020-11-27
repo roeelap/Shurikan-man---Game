@@ -20,9 +20,8 @@ Todo:
   ✔ shuriken shop - spin the coin on the bottom right corner @done(20-11-26 18:41)
   ☐ When player dies - Show dead on screen, popup main menu.
   ✔ Stats menu -> strength, throw speed, speed, max health, coin, exp, level, score -> make like an upgrade store, each level gives a point to 'spend' @done(20-11-26 19:33)
-  ☐ cleaning the button class - duplicated code 
-  ☐ Downgrading stat staging until confirm
-  ☐ Show points cost next to points owned (green - receive, red - spend)
+  ✔ cleaning the button class - duplicated code @done(20-11-27 19:49)
+  ☐ Disable 
   ✔ Update current level on stat when staging @done(20-11-26 20:41)
   ☐ Make inventory tab, fix shop tab.
   ☐ update player stats function (function of upgrades)

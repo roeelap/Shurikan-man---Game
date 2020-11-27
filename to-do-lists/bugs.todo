@@ -24,5 +24,6 @@ Todo:
   ✔ Add broken shuriken images for rest of shurikens @done(20-11-26 18:30)
   ✔ Bug - when having enough coins, the shurikens buy buttons are still disabled @done(20-11-26 12:52)
   ☐ Player points to spend is not a function of it's current level (only adds when level up)
+  ☐ Confirm button is active even when there is no change.
   ☐ Can be hit by many enemies at the same time
   ☐ Can hit many enemies at the same time if they're closer together (without group damage)

@@ -33,7 +33,7 @@ class Button:
 
         self.shuriken_rotation_angle = 0
         self.shuriken_x = [self.x-30, self.x+self.width+5]
-        self.display_shurikens = True if self.kind is 'big' else False
+        self.display_shurikens = True if self.kind == 'big' else False
 
     def show(self, window, mouse):
         if self.disabled:
