@@ -1,6 +1,6 @@
 import pygame
 from consts import COLORS, ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT, PIXEL_FONT_SMALL, FPS
-from menu.button import Button
+from menu.button import ArrowButton
 from static_functions import draw_rect_with_alpha
 
 
@@ -12,8 +12,8 @@ class PlayerStat:
         self.level = upgrade_dict[self.name]
         self.level_delta = 0
         self.next_rect_y = self.y - 50
-        self.up_button = Button(self.x, self.y - ARROW_BUTTON_HEIGHT - 5 , 'up_arrow')
-        self.down_button = Button(self.x + ARROW_BUTTON_WIDTH + 5, self.y - ARROW_BUTTON_HEIGHT - 5, 'down_arrow')
+        self.up_button = ArrowButton(self.x, self.y - ARROW_BUTTON_HEIGHT - 5 , 'up_arrow')
+        self.down_button = ArrowButton(self.x + ARROW_BUTTON_WIDTH + 5, self.y - ARROW_BUTTON_HEIGHT - 5, 'down_arrow')
         self.is_confirmed = True
         self.bar_timer = 0
     
