@@ -24,11 +24,9 @@ class PlayerStat:
             self.level_delta += 1
 
     def downgrade_stat(self, player):
-        if self.level >= 0 and self.level_delta > 0:  
+        if self.level_delta > 0:  
             self.level_delta -= 1
             player.upgrade_points += 1
-        elif self.level > 0 and self.level_delta == 0:
-            self.level -= 1
 
     def show(self, window, mouse, player):
         if self.bar_timer + 1 <= FPS:
@@ -43,7 +41,7 @@ class PlayerStat:
         else:
             self.up_button.disabled = False
 
-        if self.level == 0 and self.level_delta == 0:
+        if self.level_delta == 0:
             self.down_button.disabled = True
         else:
             self.down_button.disabled = False

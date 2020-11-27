@@ -39,10 +39,13 @@ def redraw_upgrades_shop(mouse, player, player_stats):
 
 
 def upgrades_shop(player):
-    player_stats = [PlayerStat('max_health', SCREEN_WIDTH * 1 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                PlayerStat('speed', SCREEN_WIDTH * 2 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                PlayerStat('strength', SCREEN_WIDTH * 3 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
+    player_stats = [PlayerStat('max_health', SCREEN_WIDTH * 1 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                PlayerStat('speed', SCREEN_WIDTH * 2 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                PlayerStat('strength', SCREEN_WIDTH * 3 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
+                # PlayerStat('max_shurikens', SCREEN_WIDTH * 5 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                # PlayerStat('reload speed', SCREEN_WIDTH * 6 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                # PlayerStat('group damage', SCREEN_WIDTH * 7 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)
 
     while True:
         mouse = pygame.mouse.get_pos()
