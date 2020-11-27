@@ -1,6 +1,6 @@
 from operator import itemgetter
 import pygame
-from consts import PLAYER_STANDING_IMAGE, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH
+from consts import PLAYER_STANDING_IMAGE, PLAYER_STARTING_MAX_HEALTH, PLAYER_STARTING_SPEED, PLAYER_STARTING_STRENGTH, PLAYER_STARTING_THROW_SPEED, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH
 from static_functions import draw_circle_alpha
 
 
@@ -13,7 +13,11 @@ class Player:
         self.width = 77
         self.height = 77
 
-        self.speed = 2.5
+        self.max_health = PLAYER_STARTING_MAX_HEALTH
+        self.speed = PLAYER_STARTING_SPEED
+        self.strength = PLAYER_STARTING_STRENGTH
+        self.throw_speed = PLAYER_STARTING_THROW_SPEED
+
         self.left = False
         self.right = False
         self.standing = True
@@ -23,7 +27,6 @@ class Player:
         self.hitbox = (0, 0, 0, 0)
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
 
-        self.max_health = 10
         self.health = self.max_health
         self.hurt_counter = 0
 
@@ -31,14 +34,13 @@ class Player:
         self.level = 1
         self.xp_to_next_lvl = self.level ** 2 * 10
 
-        self.upgrade_points = 10
+        self.upgrade_points = self.level - 1
         self.upgrades = {'max_health': 0, 'speed': 0, 'strength': 0,
-                         'throw_speed': 0, 'max_shurikens': 0, 'reload speed': 0, 'group damage': 0}
+                         'throw_speed': 0, 'max_shurikens': 0, 'reload_speed': 0, 'group_damage': 0}
 
         self.score = 0
         self.coins = 0
 
-        self.throw_speed = 12
         self.shurikens_owned = ['shuriken']
         self.shuriken_equipped = 'shuriken'
 
@@ -65,6 +67,12 @@ class Player:
         self.walk_count += 1
         self.hitbox = (self.x + 23, self.y + 16, 29, 58)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+
+    def update_stats(self):
+        self.max_health = PLAYER_STARTING_MAX_HEALTH + self.upgrades['max_health'] * 10
+        self.speed = PLAYER_STARTING_SPEED + self.upgrades['speed'] / 5
+        self.strength = PLAYER_STARTING_STRENGTH + self.upgrades['strength']
+        self.throw_speed = PLAYER_STARTING_THROW_SPEED + self.upgrades['throw_speed'] * 2
 
     def draw_shade(self, window):
         self.shade = {'x': self.x + self.width / 2,
@@ -93,11 +101,11 @@ class Player:
         self.y += self.speed
         self.standing = False
 
-    def hit(self):
+    def hit(self, damage):
         SOUNDS['player_hit'].play()
         self.hurt_counter = PLAYER_INVINCIBLE_TIME
         if self.health > 0:
-            self.health -= 1
+            self.health -= damage
 
     def hurt_animation(self, window):
         if 0 <= self.hurt_counter % 6 <= 1:
@@ -122,7 +130,7 @@ class Player:
     def level_up(self):
         SOUNDS['level_up'].play()
         self.level += 1
-        self.upgrade_points += 2
+        self.upgrade_points += 1
 
     def earn_xp(self, xp_amount):
         self.xp += xp_amount
@@ -137,7 +145,7 @@ class Player:
         pygame.draw.rect(
             window, COLORS['red'], (health_bar_x, 30, health_bar_width, 30), border_radius=15)
         pygame.draw.rect(
-            window, COLORS['green'], (health_bar_x, 30, (health_bar_width) - ((health_bar_width // 10) * (self.max_health - self.health)), 30), border_radius=15)
+            window, COLORS['green'], (health_bar_x, 30, (health_bar_width) - ((health_bar_width // self.max_health) * (self.max_health - self.health)), 30), border_radius=15)
         pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH *
                                                    2 // 20, 30, health_bar_width, 30), width=3, border_radius=15)
 

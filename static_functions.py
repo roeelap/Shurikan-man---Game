@@ -77,7 +77,7 @@ def load_objects_status(objects, name, type):
     with open(f'./saves/{name}.json') as file:
         objects_data = json.load(file)
     for object in objects_data:
-        new_object = type(0, 0, 0, 0, 0, 0,
+        new_object = type(0, 0, 0, 0, 0, 0, 0,
                           GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
         for attr, value in object.items():
             if is_valid_type(value, object):

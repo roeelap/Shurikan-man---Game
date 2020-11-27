@@ -1,5 +1,5 @@
 from sys import exit
-from random import randint,choice
+from random import randint, choice
 import pygame
 from static_functions import load_game, save_game
 from player import Player
@@ -8,8 +8,8 @@ from shuriken import Shuriken
 from background import Background
 from player_movement import player_movement
 from collision_checks import check_collision
-from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, MAX_SHURIKENS, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, GOBLIN_WIDTH, FPS, \
-    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SHURIKEN_TIMEOUT, SOUNDS, TOP_BORDER
+from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, STARTING_MAX_SHURIKENS, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, GOBLIN_WIDTH, FPS, \
+    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, STARTING_SHURIKEN_TIMEOUT, SOUNDS, TOP_BORDER
 from menu.start_menu import start_menu
 
 
@@ -40,7 +40,7 @@ def spawn_enemy(enemies, background):
         randint(background.width-300, background.width - GOBLIN_WIDTH)
     start_y = randint(TOP_BORDER, BOTTOM_BORDER)
     direction = -1
-    new_enemy = Enemy(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.4 * direction, 9,
+    new_enemy = Enemy(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.4 * direction, 9, 10,
                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
     SOUNDS['enemy_spawn'].play()
     enemies.append(new_enemy)
@@ -84,13 +84,10 @@ def main():
         for object in objects_to_draw:
             object.draw(window)
 
-
+        player.update_stats()
         player.display_player_stats(window)
 
-
         pygame.display.update()
-
-
 
     # Game loop
     while True:
@@ -126,11 +123,11 @@ def main():
         # the shurikens won't be thrown together, the shoot loop needs to be reset before every throw
         if shuriken_shoot_timer > 0:
             shuriken_shoot_timer += 1
-        if shuriken_shoot_timer > SHURIKEN_TIMEOUT:
+        if shuriken_shoot_timer > STARTING_SHURIKEN_TIMEOUT:
             shuriken_shoot_timer = 0
 
         # Throwing shurikens with space-bar. Only 3 shurikens allowed
-        if keys[pygame.K_SPACE] and shuriken_shoot_timer == 0 and len(shurikens) < MAX_SHURIKENS:
+        if keys[pygame.K_SPACE] and shuriken_shoot_timer == 0 and len(shurikens) < STARTING_MAX_SHURIKENS:
             shuriken_shoot_timer = 1
             facing = 1
             shuriken_start_x = player.hitbox[0] + player.hitbox[2] - 5
@@ -138,7 +135,7 @@ def main():
                 facing = -1
                 shuriken_start_x = player.hitbox[0] + 5
             shurikens.append(Shuriken(shuriken_start_x, round(player.y + player.height / 2),
-                                      SHURIKEN_RADIUS, player.throw_speed * facing, player.hitbox[1] + player.hitbox[3], SHURIKEN_IMAGES[player.shuriken_equipped], player.shuriken_equipped))
+                                      SHURIKEN_RADIUS, player.throw_speed * facing, player.strength, player.hitbox[1] + player.hitbox[3], SHURIKEN_IMAGES[player.shuriken_equipped], player.shuriken_equipped))
             choice(SOUNDS['shuriken_throw']).play()
 
         # Leave for testing

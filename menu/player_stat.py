@@ -67,6 +67,7 @@ class PlayerStat:
         if self.is_confirmed:
             self.level += self.level_delta
             self.level_delta = 0
+            player.upgrades[self.name]=self.level
 
     def show_name_and_level(self, window):
         name = PIXEL_FONT_SMALL.render(str(self.name).replace(

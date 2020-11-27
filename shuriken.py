@@ -6,7 +6,7 @@ from static_functions import draw_circle_alpha
 
 class Shuriken:
 
-    def __init__(self, x, y, radius, speed, bottom, image, name):
+    def __init__(self, x, y, radius, speed, strength, bottom, image, name):
         self.x = x
         self.y = y
         self.radius = radius
@@ -14,6 +14,7 @@ class Shuriken:
         self.image = image
         self.name = name
         self.speed = speed
+        self.strength = strength
         self.slope = SHURIKEN_STARTING_SLOPE
         self.rotation_angle = 0
         self.bottom = bottom
@@ -82,8 +83,6 @@ class Shuriken:
                 self.y -= int((self.slope * abs(self.slope)) * 0.05)
                 self.slope -= 0.5
             return True
-        else:
-            if not self.has_hit or self.broken:
-                return False
-            else:
-                return True
+        if not self.has_hit or self.broken:
+            return False
+        return True

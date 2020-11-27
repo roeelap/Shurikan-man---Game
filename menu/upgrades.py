@@ -48,10 +48,13 @@ def upgrades_shop(player):
                                SCREEN_HEIGHT * 8 // 10, player.upgrades),
                     PlayerStat('strength', SCREEN_WIDTH * 3 // 12,
                                SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                    PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
-    # PlayerStat('max_shurikens', SCREEN_WIDTH * 5 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-    # PlayerStat('reload speed', SCREEN_WIDTH * 6 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-    # PlayerStat('group damage', SCREEN_WIDTH * 7 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)
+                    PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 12,
+                               SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                    PlayerStat('max_shurikens', SCREEN_WIDTH * 5 //
+                               12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                    PlayerStat('reload_speed', SCREEN_WIDTH * 6 //
+                               12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                    PlayerStat('group_damage', SCREEN_WIDTH * 7 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
 
     confirm_button.disabled = True
 

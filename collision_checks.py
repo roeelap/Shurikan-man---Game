@@ -8,19 +8,15 @@ def check_player_enemy_collision(player, enemies):
     if player.hurt_counter == 0:
         for enemy in enemies:
             if is_shade_collision(enemy.shade, player.shade):
-                player.hit()
+                player.hit(enemy.damage)
 
 
 def check_shuriken_enemy_collision(shurikens, enemies, coins):
     for shuriken in shurikens:
         for enemy in enemies:
             if is_shade_collision(enemy.shade, shuriken.shade) and not shuriken.has_hit:
-                enemy.hit(shuriken.speed, coins, shuriken.name)
+                enemy.hit(shuriken.strength, coins, shuriken.name)
                 shuriken.hit()
-                # try:
-                #     shurikens.remove(shuriken)
-                # except:
-                #     pass
 
 
 def check_player_coin_collision(player, coins):

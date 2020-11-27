@@ -11,11 +11,17 @@ BOTTOM_BORDER = 630
 SCREEN_MIDDLE = int(SCREEN_WIDTH / 2) - 80
 FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
-
-PLAYER_INVINCIBLE_TIME = 1*FPS
 SAVE_TIMEOUT = 5 * FPS
-
 ALLOWED_SAVE_TYPES = (int,float,str,bool,list,dict,tuple)
+
+# player
+PLAYER_STARTING_MAX_HEALTH = 100
+PLAYER_STARTING_SPEED = 2.5
+PLAYER_STARTING_THROW_SPEED = 12
+PLAYER_STARTING_STRENGTH = 1
+PLAYER_INVINCIBLE_TIME = 1*FPS
+STARTING_SHURIKEN_TIMEOUT = 15
+STARTING_MAX_SHURIKENS = 3
 
 # coins
 COIN_VALUE = {'bronze': 1, 'silver': 5, 'gold': 10}
@@ -39,8 +45,6 @@ BUTTON_PIXEL_FONTS = {'big': pygame.font.Font('./data/fonts/dpcomic.ttf', 30),
                       'small': pygame.font.Font('./data/fonts/dpcomic.ttf', 24)}
 
 # shuriken
-SHURIKEN_TIMEOUT = 15
-MAX_SHURIKENS = 3
 SHURIKEN_RADIUS = 9
 SHURIKEN_STARTING_SLOPE = 9.5
 SHURIKEN_MIN_SHADE_WIDTH = 20
