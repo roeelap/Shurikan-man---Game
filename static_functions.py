@@ -13,12 +13,12 @@ def draw_circle_alpha(surface, color, center, width, height):
     surface.blit(shape_surf, target_rect)
 
 
-def draw_rect_with_alpha(x, y, width, height, color, alpha, window):
+def draw_rect_with_alpha(x, y, width, height, color, alpha, window,border_radius=0):
     target_rect = pygame.Rect((x, y), (width, height))
     shape_surf = pygame.Surface((width, height), pygame.SRCALPHA)
     shape_surf.set_alpha(alpha)
     pygame.draw.rect(
-        shape_surf, color, (0, 0, width, height))
+        shape_surf, color, (0, 0, width, height),border_radius=border_radius)
     window.blit(shape_surf, target_rect)
 
 
