@@ -4,7 +4,7 @@ from static_functions import draw_rotated
 
 class Button:
 
-    def __init__(self, x, y, kind, text=None):
+    def __init__(self, x, y, kind, text):
         self.x = x
         self.y = y
         self.kind = kind
@@ -17,15 +17,10 @@ class Button:
         self.active_image = BUTTON_IMAGES[kind]['active']
         self.disabled_image = BUTTON_IMAGES[kind]['disabled']
 
-        if text == None:
-            self.text = None
-
-        else:
-            self.text = text
-            self.inactive_text = BUTTON_PIXEL_FONTS[kind].render(
-                    str(text), True,  COLORS['black'])
-            self.active_text = BUTTON_PIXEL_FONTS[kind].render(
-                    str(text), True,  COLORS['orange'])
+        self.inactive_text = BUTTON_PIXEL_FONTS[kind].render(
+                str(text), True,  COLORS['black'])
+        self.active_text = BUTTON_PIXEL_FONTS[kind].render(
+                str(text), True,  COLORS['orange'])
         
         self.over = False
         self.clicked = False
@@ -38,16 +33,13 @@ class Button:
     def show(self, window, mouse):
         if self.disabled:
             window.blit(self.disabled_image, (self.x, self.y))
-            if self.text != None:
-                self.display_button_text(window, 'disabled')
+            self.display_button_text(window, 'disabled')
 
         else:
             if self.is_mouse_over(mouse) or self.clicked:
                 self.play_hover_sound()
                 window.blit(self.active_image, (self.x, self.y))
-
-                if self.text != None:
-                    self.display_button_text(window, 'active')
+                self.display_button_text(window, 'active')
 
                 if self.display_shurikens:
                     self.shuriken_rotate_animation(
@@ -57,9 +49,7 @@ class Button:
             else:
                 self.over = False
                 window.blit(self.inactive_image, (self.x, self.y))
-
-                if self.text != None:
-                    self.display_button_text(window, 'inactive')
+                self.display_button_text(window, 'inactive')
 
             if self.clicked:
                 self.update_shuriken_x()
@@ -105,7 +95,40 @@ class Button:
             self.clicked = False
             self.disabled = True
 
-    
+
+class ArrowButton(Button):
+
+    def __init__(self, x, y, kind):
+        self.x = x
+        self.y = y
+        self.kind = kind
+
+        self.width = BUTTON_WIDTHS[kind]
+        self.height = BUTTON_HEIGHTS[kind]
+        self.center = self.x + self.width // 2, self.y + self.height // 2
+
+        self.inactive_image = BUTTON_IMAGES[kind]['inactive']
+        self.active_image = BUTTON_IMAGES[kind]['active']
+        self.disabled_image = BUTTON_IMAGES[kind]['disabled']
+
+        self.over = False
+        self.clicked = False
+        self.disabled = False
+
+    def show(self, window, mouse):
+        if self.disabled:
+            window.blit(self.disabled_image, (self.x, self.y))
+
+        else:
+            if self.is_mouse_over(mouse) or self.clicked:
+                self.play_hover_sound()
+                window.blit(self.active_image, (self.x, self.y))
+
+            else:
+                self.over = False
+                window.blit(self.inactive_image, (self.x, self.y))
+
+
 class Checkbox(Button):
     def __init__(self, x, y, is_on):
         self.x = x

@@ -39,10 +39,15 @@ def redraw_upgrades_shop(mouse, player, player_stats):
 
 
 def upgrades_shop(player):
-    player_stats = [PlayerStat('max_health', SCREEN_WIDTH * 1 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                PlayerStat('speed', SCREEN_WIDTH * 2 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                PlayerStat('strength', SCREEN_WIDTH * 3 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 7, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
+    player_stats = [PlayerStat('max_health', SCREEN_WIDTH * 1 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                PlayerStat('speed', SCREEN_WIDTH * 2 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                PlayerStat('strength', SCREEN_WIDTH * 3 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
+                # PlayerStat('max_shurikens', SCREEN_WIDTH * 5 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                # PlayerStat('reload speed', SCREEN_WIDTH * 6 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                # PlayerStat('group damage', SCREEN_WIDTH * 7 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)
+
+    confirm_button.disabled = True
 
     while True:
         mouse = pygame.mouse.get_pos()
@@ -59,16 +64,25 @@ def upgrades_shop(player):
                 for player_stat in player_stats:
                     if player_stat.up_button.is_pressed(mouse, click):
                         player_stat.upgrade_stat(player, window)
+                        confirm_button.disabled = False
 
                 for player_stat in player_stats:
                     if player_stat.down_button.is_pressed(mouse, click):
                         player_stat.downgrade_stat(player)
+                        confirm_button.disabled = False
 
                 if confirm_button.is_pressed(mouse, click):
+                    confirm_button.disabled = True
                     for player_stat in player_stats:
                         player_stat.is_confirmed = True
 
                 if back_button.is_pressed(mouse, click):
                     return
+        
+        # disabling the confirm button if no upgrades were made
+        if len([player_stat for player_stat in player_stats if player_stat.level_delta == 0]) == len(player_stats):
+            confirm_button.disabled = True
+        else:
+            confirm_button.disabled = False
 
         redraw_upgrades_shop(mouse, player, player_stats)
