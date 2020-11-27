@@ -1,7 +1,7 @@
+from sys import exit
 import pygame
 from menu.button import Button
 from menu.shop_item import ShopItem
-from sys import exit
 from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, PIXEL_FONT_BIG_BUTTON, BUTTON_WIDTH_BIG, GOLD_COINS_IMAGES, SOUNDS
 
 pygame.init()

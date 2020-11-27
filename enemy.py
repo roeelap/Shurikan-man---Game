@@ -1,7 +1,7 @@
-import pygame
-from consts import BOTTOM_BORDER, COLORS, ENEMY_SPAWN_IMAGE, GOBLIN_PATH_TIMEOUT, GOBLIN_SPAWN_TIMEOUT, SOUNDS, TOP_BORDER
 from random import choice
 from operator import itemgetter
+import pygame
+from consts import BOTTOM_BORDER, COLORS, ENEMY_SPAWN_IMAGE, GOBLIN_PATH_TIMEOUT, GOBLIN_SPAWN_TIMEOUT, SOUNDS, TOP_BORDER
 from static_functions import draw_circle_alpha
 
 
@@ -135,7 +135,7 @@ class Enemy:
             self.hit_timer = 3
             try:
                 choice(SOUNDS[f'{shuriken_type}_hits']).play()
-            except:
+            except KeyError:
                 choice(SOUNDS['shuriken_hits']).play()
             self.health -= 1
             self.x += int(shuriken_speed / 2)

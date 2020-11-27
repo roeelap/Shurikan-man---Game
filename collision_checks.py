@@ -1,6 +1,6 @@
+from operator import itemgetter
 from random import choice
 from consts import COIN_VALUE, SOUNDS
-from operator import itemgetter
 
 
 def check_player_enemy_collision(player, enemies):

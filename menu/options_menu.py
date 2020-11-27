@@ -1,7 +1,7 @@
+import sys
 import pygame
 from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, CHECKBOX_HEIGHT, BUTTON_WIDTH_BIG
 from menu.button import Button, Checkbox
-import sys
 
 
 pygame.init()
@@ -34,8 +34,8 @@ back_button = Button(SCREEN_WIDTH // 2 -
 def set_all_volumes(all_sounds, new_volume):
     for sound in all_sounds:
         if isinstance(sound, list):
-            for sound in sound:
-                sound.set_volume(new_volume)
+            for inner_sound in sound:
+                inner_sound.set_volume(new_volume)
         else:
             sound.set_volume(new_volume)
 

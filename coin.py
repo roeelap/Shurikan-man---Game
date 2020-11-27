@@ -1,7 +1,8 @@
-from consts import BRONZE_COINS_IMAGES, COIN_END_PATH_X, COIN_END_PATH_Y, GOLD_COINS_IMAGES, COLORS, SILVER_COINS_IMAGES, SMALL_COINS_IMAGES
-from static_functions import draw_circle_alpha
 from operator import itemgetter
 from math import sqrt, pow
+from consts import BRONZE_COINS_IMAGES, COIN_END_PATH_X, COIN_END_PATH_Y, GOLD_COINS_IMAGES, COLORS, SILVER_COINS_IMAGES, SMALL_COINS_IMAGES
+from static_functions import draw_circle_alpha
+
 
 
 class Coin:
@@ -9,6 +10,8 @@ class Coin:
     def __init__(self, x, y, kind):
         self.x = x
         self.y = y
+        self.pickup_x = x,
+        self.pickup_y = y
         self.pickup_x_delta = self.x
         self.pickup_y_delta = self.y
         self.radius = 20
@@ -43,7 +46,8 @@ class Coin:
                 self.stored = True
 
     def pickup_animation(self, window):
-        delta = sqrt(pow(abs(self.y - COIN_END_PATH_Y), 2)+pow(abs(self.x - COIN_END_PATH_X), 2))
+        delta = sqrt(pow(abs(self.y - COIN_END_PATH_Y), 2) +
+                     pow(abs(self.x - COIN_END_PATH_X), 2))
         if self.x > COIN_END_PATH_X:
             self.x -= pow(self.pickup_x_delta, 1.3) / delta
         if self.y > COIN_END_PATH_Y:

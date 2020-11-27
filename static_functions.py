@@ -1,6 +1,6 @@
-from consts import GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES
-import pygame
 import json
+import pygame
+from consts import ALLOWED_SAVE_TYPES, GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES
 
 
 def draw_circle_alpha(surface, color, center, width, height):
@@ -13,12 +13,12 @@ def draw_circle_alpha(surface, color, center, width, height):
     surface.blit(shape_surf, target_rect)
 
 
-def draw_rect_with_alpha(x, y, width, height, color, alpha, window,border_radius=0):
+def draw_rect_with_alpha(x, y, width, height, color, alpha, window, border_radius=0):
     target_rect = pygame.Rect((x, y), (width, height))
     shape_surf = pygame.Surface((width, height), pygame.SRCALPHA)
     shape_surf.set_alpha(alpha)
     pygame.draw.rect(
-        shape_surf, color, (0, 0, width, height),border_radius=border_radius)
+        shape_surf, color, (0, 0, width, height), border_radius=border_radius)
     window.blit(shape_surf, target_rect)
 
 
@@ -87,8 +87,8 @@ def load_objects_status(objects, name, type):
 
 def is_valid_type(value, instance):
     from enemy import Enemy
-    if type(value) is int or type(value) is float or type(value) is dict or type(value) is tuple or type(value) is bool or type(value) is str:
-        return True
-    if type(instance) != Enemy and type(value) is list:
+    if isinstance(value, ALLOWED_SAVE_TYPES):
+        if isinstance(instance, Enemy) and isinstance(value, list):
+            return False
         return True
     return False

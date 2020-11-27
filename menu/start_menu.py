@@ -45,7 +45,7 @@ def redraw_start_menu(background, mouse, rotation_angle, player, pause_screen=Fa
     quit_button.show(window, mouse)
     try:
         rotating_image = MENU_SHURIKENS[player.shuriken_equipped]
-    except:
+    except KeyError:
         rotating_image = MENU_SHURIKENS['shuriken']
     draw_rotated(window, rotating_image, (0.75*SCREEN_WIDTH,
                                           SCREEN_HEIGHT // 20), rotation_angle)

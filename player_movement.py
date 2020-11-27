@@ -47,5 +47,3 @@ def player_movement(player, enemies, coins, shurikens, background):
 
     elif keys[pygame.K_DOWN] and player.y < BOTTOM_BORDER:
         player.move_down()
-
- 

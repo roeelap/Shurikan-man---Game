@@ -19,7 +19,7 @@ class PlayerStat:
         self.is_confirmed = True
         self.bar_timer = 0
 
-    def upgrade_stat(self, player, window):
+    def upgrade_stat(self, player):
         if self.level + self.level_delta <= 20 or player.upgrade_points > 0:
             self.is_confirmed = False
             player.upgrade_points -= 1

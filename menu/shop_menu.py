@@ -1,8 +1,8 @@
-import pygame
 from sys import exit
+import pygame
 from menu.button import Button
-from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH_BIG, SHURIKEN_IMAGES
 from menu.shuriken_shop import shuriken_shop
+from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH_BIG, SHURIKEN_IMAGES
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")

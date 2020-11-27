@@ -18,10 +18,10 @@ class Button:
         self.disabled_image = BUTTON_IMAGES[kind]['disabled']
 
         self.inactive_text = BUTTON_PIXEL_FONTS[kind].render(
-                str(text), True,  COLORS['black'])
+            str(text), True,  COLORS['black'])
         self.active_text = BUTTON_PIXEL_FONTS[kind].render(
-                str(text), True,  COLORS['orange'])
-        
+            str(text), True,  COLORS['orange'])
+
         self.over = False
         self.clicked = False
         self.disabled = False
@@ -56,14 +56,14 @@ class Button:
 
     def display_button_text(self, window, state):
         if state == 'disabled' or state == 'inactive':
-            textRect = self.inactive_text.get_rect()
-            textRect.center = self.center
-            window.blit(self.inactive_text, textRect)
+            text_rect = self.inactive_text.get_rect()
+            text_rect.center = self.center
+            window.blit(self.inactive_text, text_rect)
         elif state == 'active':
-            textRect = self.active_text.get_rect()
-            textRect.center = self.center
-            window.blit(self.active_text, textRect)
-    
+            text_rect = self.active_text.get_rect()
+            text_rect.center = self.center
+            window.blit(self.active_text, text_rect)
+
     def play_hover_sound(self):
         if not self.over:
             SOUNDS['button_hover'].play()
@@ -74,7 +74,7 @@ class Button:
             return True
         return False
 
-    def is_pressed(self, mouse, click, action=None):
+    def is_pressed(self, mouse, click):
         if not self.disabled:
             if self.is_mouse_over(mouse):
                 if click[0] == 1:
@@ -97,7 +97,6 @@ class Button:
 
 
 class ArrowButton(Button):
-
     def __init__(self, x, y, kind):
         self.x = x
         self.y = y
@@ -152,7 +151,7 @@ class Checkbox(Button):
         if not self.is_mouse_over(mouse):
             self.over = False
 
-    def is_pressed(self, mouse, click, action=None):
+    def is_pressed(self, mouse, click):
         if self.is_mouse_over(mouse):
             if click[0] == 1 and self.click_counter == 0:
                 if self.is_on:
