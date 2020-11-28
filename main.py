@@ -8,8 +8,8 @@ from shuriken import Shuriken
 from background import Background
 from player_movement import player_movement
 from collision_checks import check_collision
-from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, STARTING_MAX_SHURIKENS, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, GOBLIN_WIDTH, FPS, \
-    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, STARTING_SHURIKEN_TIMEOUT, SOUNDS, TOP_BORDER
+from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, GOBLIN_WIDTH, FPS, \
+    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SOUNDS, TOP_BORDER
 from menu.start_menu import start_menu
 
 
@@ -123,11 +123,11 @@ def main():
         # the shurikens won't be thrown together, the shoot loop needs to be reset before every throw
         if shuriken_shoot_timer > 0:
             shuriken_shoot_timer += 1
-        if shuriken_shoot_timer > STARTING_SHURIKEN_TIMEOUT:
+        if shuriken_shoot_timer > player.reload_speed:
             shuriken_shoot_timer = 0
 
         # Throwing shurikens with space-bar. Only 3 shurikens allowed
-        if keys[pygame.K_SPACE] and shuriken_shoot_timer == 0 and len(shurikens) < STARTING_MAX_SHURIKENS:
+        if keys[pygame.K_SPACE] and shuriken_shoot_timer == 0 and len(shurikens) < player.max_shurikens:
             shuriken_shoot_timer = 1
             facing = 1
             shuriken_start_x = player.hitbox[0] + player.hitbox[2] - 5

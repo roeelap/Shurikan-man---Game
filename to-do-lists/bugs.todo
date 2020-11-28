@@ -29,4 +29,4 @@ Todo:
   ✔ Can hit many enemies at the same time if they're closer together (without group damage) @done(20-11-28 02:29)
   ✔ Enemy can't reach 0 hp, he's a maniac @done(20-11-28 15:24)
   ☐ Player stats blit on top of each other
-  ☐ Images too small at shop menu.
+  ✔ Images too small at shop menu. @done(20-11-28 15:37)

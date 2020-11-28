@@ -1,6 +1,6 @@
 from operator import itemgetter
 import pygame
-from consts import PLAYER_STANDING_IMAGE, PLAYER_STARTING_MAX_HEALTH, PLAYER_STARTING_SPEED, PLAYER_STARTING_STRENGTH, PLAYER_STARTING_THROW_SPEED, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH
+from consts import PLAYER_STANDING_IMAGE, PLAYER_STARTING_MAX_HEALTH, PLAYER_STARTING_MAX_SHURIKENS, PLAYER_STARTING_RELOAD_SPEED, PLAYER_STARTING_SPEED, PLAYER_STARTING_STRENGTH, PLAYER_STARTING_THROW_SPEED, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH
 from static_functions import draw_circle_alpha
 
 
@@ -17,6 +17,8 @@ class Player:
         self.speed = PLAYER_STARTING_SPEED
         self.strength = PLAYER_STARTING_STRENGTH
         self.throw_speed = PLAYER_STARTING_THROW_SPEED
+        self.reload_speed = PLAYER_STARTING_RELOAD_SPEED
+        self.max_shurikens = PLAYER_STARTING_MAX_SHURIKENS
 
         self.left = False
         self.right = False
@@ -75,6 +77,10 @@ class Player:
         self.strength = PLAYER_STARTING_STRENGTH + self.upgrades['strength']
         self.throw_speed = PLAYER_STARTING_THROW_SPEED + \
             self.upgrades['throw_speed'] * 2
+        self.reload_speed = PLAYER_STARTING_RELOAD_SPEED + \
+            self.upgrades['reload_speed'] * 0.5
+        self.max_shurikens = PLAYER_STARTING_MAX_SHURIKENS + \
+            self.upgrades['max_shurikens']
 
     def draw_shade(self, window):
         self.shade = {'x': self.x + self.width / 2,
