@@ -126,9 +126,8 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
-                    state = start_menu(win_at_the_moment, game_objects)
+                    state = start_menu(win_at_the_moment, game_objects,True)
                     if state == 'new_game':
-                        print(state)
                         game_objects = new_game()
 
         check_collision(player, enemies, shurikens, coins)

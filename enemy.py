@@ -65,11 +65,11 @@ class Enemy:
         if self.walk_count + 1 >= self.walk_count_limit:
             self.walk_count = 0
 
-        if self.speed > 0:
-            window.blit(image_to_blit, (self.x, self.y))
-        else:
+        if self.speed < 0:
             correction = 15
-            window.blit(image_to_blit, (self.x, self.y))
+
+        image_to_blit =  pygame.transform.chop(image_to_blit, (0, 0, 0, 77))
+        window.blit(image_to_blit, (self.x, self.y))
 
         # drawing the health bar
         self.hitbox = (self.x + 20 + correction,
