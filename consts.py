@@ -16,11 +16,12 @@ ALLOWED_SAVE_TYPES = (int,float,str,bool,list,dict,tuple)
 
 # player
 PLAYER_STARTING_MAX_HEALTH = 100
-PLAYER_STARTING_SPEED = 3.5
+PLAYER_STARTING_SPEED = 2.5
 PLAYER_STARTING_THROW_SPEED = 12
 PLAYER_STARTING_STRENGTH = 1
 PLAYER_STARTING_RELOAD_SPEED = 15
 PLAYER_STARTING_MAX_SHURIKENS = 3
+PLAYER_STARTING_SHURIKEN_DURABILITY = 1
 
 PLAYER_INVINCIBLE_TIME = 1*FPS
 
@@ -120,7 +121,7 @@ SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/combat/player-hit.wav'
           'tomato_hits': SPLAT_SOUNDS, 'orange_hits': SPLAT_SOUNDS,
           'item_equip': pygame.mixer.Sound('./data/sounds/general/item-equip.wav'), 'purchase': pygame.mixer.Sound('./data/sounds/general/purchase.wav'),
           'sword_draw': pygame.mixer.Sound('./data/sounds/general/sword-draw.wav'), 'level_up': pygame.mixer.Sound('./data/sounds/combat/level-up.wav'),
-          'level_up_human': pygame.mixer.Sound('./data/sounds/combat/level-up-human.wav')}
+          'level_up_human': pygame.mixer.Sound('./data/sounds/combat/level-up-human.wav'),'ninja':pygame.mixer.Sound('./data/sounds/general/ninja.wav')}
 
 # button consts
 BUTTON_WIDTH_BIG = 227

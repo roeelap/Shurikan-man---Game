@@ -24,7 +24,7 @@ Todo:
   ✔ update player stats function (function of upgrades) @done(20-11-28 02:42)
   ☐ When player dies - Show dead on screen, popup main menu.
   ☐ Make inventory tab, fix shop tab.
-  ☐ Finish player stats function - reload speed, max shurikens, group damage
+  ✔ Finish player stats function - reload speed, max shurikens, shuriken durability @done(20-11-28 18:04)
   ☐ Popup - save on exit (cancel save every 5 seconds)
   ☐ Option to set volume
   ☐ Save options status
