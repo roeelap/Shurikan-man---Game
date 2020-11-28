@@ -3,7 +3,7 @@ import pygame
 from menu.button import Button, ArrowButton
 from menu.inventory_item import InventoryItem
 from static_functions import draw_rect_with_alpha
-from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, PIXEL_FONT_MID, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, BUTTON_WIDTH_BIG, SOUNDS
+from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, PIXEL_FONT_MID, PIXEL_FONT_BIG_BUTTON, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, BUTTON_WIDTH_BIG, SOUNDS
 
 
 pygame.init()
@@ -17,14 +17,8 @@ inventory_title_text = PIXEL_FONT_BIG.render(
 inventory_title_textRect = inventory_title_text.get_rect()
 inventory_title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 7
 
-shurikens_subtitle_text = PIXEL_FONT_MID.render(
-    "Shurikens", True,  COLORS['white'])
-shurikens_subtitle_textRect = shurikens_subtitle_text.get_rect()
-shurikens_subtitle_textRect.center = SCREEN_WIDTH // 4 - 30, SCREEN_HEIGHT * 2 // 7
-
 shurikens_up_button = ArrowButton(120, 342, 'up_arrow')
-shurikens_down_button = ArrowButton(120, 569, 'down_arrow')
-
+shurikens_down_button = ArrowButton(120, 594, 'down_arrow')
 
 quit_inventory_button = Button(
     SCREEN_WIDTH // 2 - BUTTON_WIDTH_BIG / 2, SCREEN_HEIGHT * 7 // 8, 'big', 'Back')
@@ -34,15 +28,10 @@ def redraw_inventory(mouse, player, shuriken_inventory, shuriken_equipped):
     window.blit(BACKGROUND_DUNGEON, (-200, 0))
 
     window.blit(inventory_title_text, inventory_title_textRect)
-    window.blit(shurikens_subtitle_text, shurikens_subtitle_textRect)
-    draw_rect_with_alpha(100, 250, 350, 350, COLORS['white'], 50, window,15)
-    pygame.draw.rect(window, COLORS['white'],(100, 250, 350, 350), width=2, border_radius=15)
-    pygame.draw.line(window, COLORS['white'], (100, 340), (449, 340), width=2)
+
+    draw_inventory_bg(window, mouse, 'Shurikens')
 
     show_shuriken_inventory(shuriken_inventory, shuriken_equipped, window, mouse, player)
-
-    shurikens_up_button.show(window, mouse)
-    shurikens_down_button.show(window, mouse)
 
     quit_inventory_button.show(window, mouse)
 
@@ -130,4 +119,21 @@ def move_items_down(inventory):
 def update_inventory_item_locations(inventory, x):
     for item in inventory:
         item.update_location(x, SCREEN_HEIGHT * (inventory.index(item) + 4) // 8)
+
+
+def draw_inventory_bg(window, mouse, subtitle):
+    subtitle_text = PIXEL_FONT_MID.render(subtitle, True,  COLORS['white'])
+    subtitle_textRect = subtitle_text.get_rect()
+    subtitle_textRect.center = SCREEN_WIDTH // 4 - 30, SCREEN_HEIGHT * 2 // 7
+    window.blit(subtitle_text, subtitle_textRect)
+
+    draw_rect_with_alpha(subtitle_textRect[0] - 82, subtitle_textRect[1] + subtitle_textRect[3] + 23, 350, 375, COLORS['white'], 50, window,15)
+    pygame.draw.rect(window, COLORS['white'],(subtitle_textRect[0] - 82, subtitle_textRect[1] + subtitle_textRect[3] + 23, 350, 375), width=2, border_radius=15)
+    pygame.draw.line(window, COLORS['white'], (100, 340), (449, 340), width=2)
+
+    equipped_text = PIXEL_FONT_BIG_BUTTON.render('Equipped:', True,  COLORS['white'])
+    window.blit(equipped_text, (subtitle_textRect[0]- 40, subtitle_textRect[1] + subtitle_textRect[3] + 50))
+
+    shurikens_up_button.show(window, mouse)
+    shurikens_down_button.show(window, mouse)
 
