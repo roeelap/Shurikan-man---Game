@@ -29,17 +29,19 @@ def draw_rotated(window, image, topleft, angle):
     window.blit(rotated_image, new_rect.topleft)
 
 
-def save_game(player, enemies, background):
+def save_game(player, enemies, background, settings):
     save_object_status(player, 'player')
     save_object_status(background, 'background')
     save_objects_status(enemies, 'enemies')
+    save_dict(settings, 'settings')
 
 
-def load_game(player, enemies, background):
+def load_game(player, enemies, background, settings):
     from enemy import Enemy
     load_object_status(player, 'player')
     load_object_status(background, 'background')
     load_objects_status(enemies, 'enemies', Enemy)
+    load_dict(settings, 'settings')
 
 
 def save_objects_status(objects, name):
@@ -65,6 +67,11 @@ def save_object_status(object, name):
         json.dump(object_dict, file, ensure_ascii=False, indent=4)
 
 
+def save_dict(dict, dict_name):
+    with open(f'./saves/{dict_name}.json', 'w', encoding='utf-8') as file:
+        json.dump(dict, file, ensure_ascii=False, indent=4)
+
+
 def load_object_status(object, name):
     with open(f'./saves/{name}.json') as file:
         object_data = json.load(file)
@@ -83,6 +90,13 @@ def load_objects_status(objects, name, type):
             if is_valid_type(value, object):
                 setattr(new_object, attr, value)
         objects.append(new_object)
+
+
+def load_dict(dict, dict_name):
+    with open(f'./saves/{dict_name}.json') as file:
+        data = json.load(file)
+    for key, value in data.items():
+        dict[key] = value
 
 
 def is_valid_type(value, instance):

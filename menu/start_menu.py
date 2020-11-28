@@ -1,7 +1,7 @@
 import pygame
 from consts import MENU_SHURIKENS_LARGE, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
 from menu.button import Button
-from menu.options_menu import options_menu
+from menu.settings_menu import settings_menu
 from menu.shop_menu import shop_menu
 from menu.upgrades import upgrades_shop
 from static_functions import draw_rect_with_alpha, save_game, draw_rotated
@@ -24,8 +24,8 @@ upgrades_button = Button((SCREEN_WIDTH // 2) -
                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 4 // 8, 'big', 'Upgrades')
 save_button = Button((SCREEN_WIDTH // 2) -
                      (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 8, 'big', 'Save')
-options_button = Button((SCREEN_WIDTH // 2) -
-                        (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 6 // 8, 'big', 'Options')
+settings_button = Button((SCREEN_WIDTH // 2) -
+                        (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 6 // 8, 'big', 'Settings')
 quit_button = Button((SCREEN_WIDTH // 2) -
                      (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 7 // 8, 'big', 'Quit Game')
 
@@ -34,17 +34,19 @@ def redraw_start_menu(background, mouse, rotation_angle, player, pause_screen=Fa
 
     window.blit(background, (0, 0))
     if pause_screen:
-        draw_rect_with_alpha(0,0,SCREEN_WIDTH,SCREEN_HEIGHT,COLORS['black'],128,window)
+        draw_rect_with_alpha(0, 0, SCREEN_WIDTH,
+                             SCREEN_HEIGHT, COLORS['black'], 128, window)
 
     window.blit(title_text, title_textRect)
     play_button.show(window, mouse)
     upgrades_button.show(window, mouse)
     shop_button.show(window, mouse)
     save_button.show(window, mouse)
-    options_button.show(window, mouse)
+    settings_button.show(window, mouse)
     quit_button.show(window, mouse)
 
-    rotating_image = MENU_SHURIKENS_LARGE.get(player.shuriken_equipped,'shuriken')
+    rotating_image = MENU_SHURIKENS_LARGE.get(
+        player.shuriken_equipped, 'shuriken')
     draw_rotated(window, rotating_image, (0.75*SCREEN_WIDTH,
                                           SCREEN_HEIGHT // 20), rotation_angle)
     draw_rotated(window, rotating_image, (0.17*SCREEN_WIDTH,
@@ -52,7 +54,7 @@ def redraw_start_menu(background, mouse, rotation_angle, player, pause_screen=Fa
     pygame.display.update()
 
 
-def start_menu(background_image, player, enemies, background, pause_screen=False):
+def start_menu(background_image, player, enemies, background, settings, pause_screen=False):
     rotation_angle = 0
     save_button.disabled = False
 
@@ -87,13 +89,13 @@ def start_menu(background_image, player, enemies, background, pause_screen=False
                     shop_menu(player)
 
                 elif save_button.is_pressed(mouse, click):
-                    save_game(player, enemies, background)
+                    save_game(player, enemies, background, settings)
                     save_button.clicked = True
                     SOUNDS['sword_draw'].play()
 
-                elif options_button.is_pressed(mouse, click):
+                elif settings_button.is_pressed(mouse, click):
                     save_button.disabled = False
-                    options_menu()
+                    settings_menu(settings)
 
                 elif quit_button.is_pressed(mouse, click):
                     pygame.quit()

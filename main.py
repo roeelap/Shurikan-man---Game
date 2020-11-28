@@ -23,7 +23,8 @@ def new_game():
     enemies = []
     coins = []
     player = Player(10, 630)
-    return window, background, player, enemies, shurikens, coins
+    settings = {'sound': True, 'music': True}
+    return window, background, player, enemies, shurikens, coins, settings
 
 
 # Pilot for random enemy spawning
@@ -46,9 +47,17 @@ def spawn_enemy(enemies, background):
     enemies.append(new_enemy)
 
 
+def set_settings(settings):
+    from menu.settings_menu import set_all_volumes
+    volume = 0
+    if settings['sound']:
+        volume = 1
+    set_all_volumes(SOUNDS.values(), volume)
+
+
 def main():
 
-    window, background, player, enemies, shurikens, coins = new_game()
+    window, background, player, enemies, shurikens, coins, settings = new_game()
     # enemies.append(Enemy(500, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, -1.4, 9,
     #                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
 
@@ -57,8 +66,10 @@ def main():
     spawn_enemy_timer = 0
     save_timer = 0
 
-    load_game(player, enemies, background)
-    start_menu(BACKGROUND_DUNGEON, player, enemies, background)
+    load_game(player, enemies, background, settings)
+    print(settings)
+    set_settings(settings)
+    start_menu(BACKGROUND_DUNGEON, player, enemies, background, settings)
 
     def redraw_window():
         background.draw(window)
@@ -96,7 +107,7 @@ def main():
         # Save game every second (60 fps)
         if save_timer == SAVE_TIMEOUT:
             save_timer = 0
-            save_game(player, enemies, background)
+            save_game(player, enemies, background, settings)
         else:
             save_timer += 1
 
@@ -114,7 +125,7 @@ def main():
                     SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
                     start_menu(win_at_the_moment, player,
-                               enemies, background, True)
+                               enemies, background, settings, True)
 
         check_collision(player, enemies, shurikens, coins)
 
@@ -152,7 +163,7 @@ def main():
         if player.health == 0:
             SOUNDS['player_death'].play()
             pygame.time.delay(1000)
-            window, background, player, enemies, shurikens, coins = new_game()
+            window, background, player, enemies, shurikens, coins, settings = new_game()
 
 
 if __name__ == "__main__":
