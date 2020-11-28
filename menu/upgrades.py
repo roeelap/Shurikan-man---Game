@@ -54,7 +54,7 @@ def upgrades_shop(player):
                                12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
                     PlayerStat('reload_speed', SCREEN_WIDTH * 6 //
                                12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                    PlayerStat('group_damage', SCREEN_WIDTH * 7 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
+                    PlayerStat('shuriken_durability', SCREEN_WIDTH * 7 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
 
     confirm_button.disabled = True
 

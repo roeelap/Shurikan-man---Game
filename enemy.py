@@ -28,6 +28,7 @@ class Enemy:
         self.hit_timer = 0
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
         self.damage = damage
+        self.was_hit_by = None
 
     def draw(self, window):
         if not self.alive:
@@ -131,11 +132,10 @@ class Enemy:
     def move(self, player_speed, direction):
         self.x -= player_speed * direction
 
-    def hit(self, shuriken_strength, coins, shuriken_type):
+    def hit(self, shuriken_strength, shuriken_id, coins):
+        self.was_hit_by= shuriken_id
         if self.health > shuriken_strength:
             self.hit_timer = 3
-            choice(SOUNDS.get(f'{shuriken_type}_hits',
-                              SOUNDS['shuriken_hits'])).play()
             self.health -= shuriken_strength
             self.x += shuriken_strength
         else:

@@ -14,10 +14,17 @@ def check_player_enemy_collision(player, enemies):
 def check_shuriken_enemy_collision(shurikens, enemies, coins):
     for shuriken in shurikens:
         for enemy in enemies:
-            if is_shade_collision(enemy.shade, shuriken.shade) and not shuriken.has_hit:
-                enemy.hit(shuriken.strength, coins, shuriken.name)
+            if is_shade_collision(enemy.shade, shuriken.shade) and shuriken.durability > 0 and shuriken.id != enemy.was_hit_by:
+                enemy.hit(shuriken.strength,shuriken.id, coins)
                 shuriken.hit()
-                break
+                # if shuriken.durability > 0:
+                #     group_damage(shurikens, shuriken)
+                # break
+
+
+# def group_damage(shurikens, shuriken):
+#     from shuriken import Shuriken
+
 
 
 def check_player_coin_collision(player, coins):
