@@ -34,3 +34,7 @@ class InventoryItem:
         name = PIXEL_FONT_SMALL.render(str(self.name).replace(
             '_', ' ').capitalize(), True,  COLORS['white'])
         window.blit(name, (self.x, self.y))
+    
+    def update_y_value(self, y):
+        self.y = y
+        self.equip_button.update_y_value(y)

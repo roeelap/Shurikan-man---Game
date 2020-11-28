@@ -94,6 +94,10 @@ class Button:
             self.shuriken_x = [self.x-30, self.x+self.width+5]
             self.clicked = False
             self.disabled = True
+    
+    def update_y_value(self, y):
+        self.y = y
+        self.center = self.x + self.width // 2, self.y + self.height // 2
 
 
 class ArrowButton(Button):
