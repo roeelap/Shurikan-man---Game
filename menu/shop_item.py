@@ -31,7 +31,7 @@ class ShopItem:
         self.buy_button.show(window, mouse)
 
         draw_rotated(window, self.image, (self.x + self.width,
-                                          self.y + self.width * 2), self.rotation_angle)
+                                          self.y + self.width*1.5), self.rotation_angle)
         self.rotation_angle += 5
 
         name = PIXEL_FONT_SMALL.render(str(self.name).replace(

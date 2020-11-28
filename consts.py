@@ -19,9 +19,10 @@ PLAYER_STARTING_MAX_HEALTH = 100
 PLAYER_STARTING_SPEED = 3.5
 PLAYER_STARTING_THROW_SPEED = 12
 PLAYER_STARTING_STRENGTH = 1
+PLAYER_STARTING_RELOAD_SPEED = 15
+PLAYER_STARTING_MAX_SHURIKENS = 3
+
 PLAYER_INVINCIBLE_TIME = 1*FPS
-STARTING_SHURIKEN_TIMEOUT = 15
-STARTING_MAX_SHURIKENS = 3
 
 # coins
 COIN_VALUE = {'bronze': 1, 'silver': 5, 'gold': 10}
@@ -152,11 +153,14 @@ BUTTON_IMAGES = {
                    'disabled': pygame.image.load('./data/images/buttons/down-arrow-disabled.png')}
 }
 
-MENU_SHURIKENS = {'shuriken': pygame.image.load('./data/images/menu-shurikens/shuriken-large.png'), 'orange': pygame.image.load('./data/images/menu-shurikens/orange.png'),
-                  'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/granny.png'),
-                  'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/tomato.png'), }
+MENU_SHURIKENS_LARGE = {'shuriken': pygame.image.load('./data/images/menu-shurikens/large/shuriken.png'), 'orange': pygame.image.load('./data/images/menu-shurikens/large/orange.png'),
+                  'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/large/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/large/granny.png'),
+                  'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/large/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/large/tomato.png')}
 MENU_SHURIKEN_SMALL = pygame.image.load(
     './data/images/menu-shurikens/shuriken-small.png')
+MENU_SHURIKENS_MEDIUM = {'shuriken': pygame.image.load('./data/images/menu-shurikens/medium/shuriken.png'), 'orange': pygame.image.load('./data/images/menu-shurikens/medium/orange.png'),
+                  'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/medium/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/medium/granny.png'),
+                  'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/medium/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/medium/tomato.png')}
 
 
 # coin images
