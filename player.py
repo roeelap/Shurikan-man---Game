@@ -179,7 +179,7 @@ class Player:
                                                    2 // 20, 60, xp_bar_width, 20), width=2, border_radius=border_radius)
         for i in range(1, 4):
             pygame.draw.line(window, COLORS['black'], (xp_bar_x + (
-                xp_bar_width * i / 4), 60), (xp_bar_x + (xp_bar_width * i / 4), 80), width=2)
+                xp_bar_width * i / 4), 60), (xp_bar_x + (xp_bar_width * i / 4), 79), width=2)
 
     def display_coins_text(self, window):
         coins = f'Coins: {self.coins}'

@@ -13,6 +13,7 @@ class InventoryItem:
         self.equip_button = Button(
             self.x - BUTTON_WIDTH_SMALL - 10, self.y, 'small', 'Equip')
         self.rotation_angle = 0
+        self.is_shown = True
 
     def show(self, window, mouse, player):
         equipped = self.name == player.shuriken_equipped
