@@ -29,9 +29,9 @@ Todo:
   ☐ Option to set volume
   ☐ Save options status
   ☐ Load options from saves
-  ☐ Back to game on escape from any menu
+  ✘ Back to game on escape from any menu @cancelled(20-11-28 18:31)
   ☐ Think about spawning pit (animation?)
-  ☐ Add ninja sound and animation to confirm
+  ✔ Add ninja sound and animation to confirm @done(20-11-28 18:25)
   ☐ Add objects to list and loop through instead of hard coding.
   ☐ Health packs spawn.
   

@@ -63,17 +63,17 @@ def options_menu():
                 pygame.quit()
                 sys.exit()
 
-        # modify this when we add real music into the game
-        if music_checkbox.is_pressed(mouse, click):
-            pass
+            # modify this when we add real music into the game
+            if music_checkbox.is_pressed(mouse, click):
+                pass
 
-        elif sound_checkbox.is_pressed(mouse, click):
-            if sound_checkbox.is_on:
-                set_all_volumes(SOUNDS.values(), 1.0)
-            else:
-                set_all_volumes(SOUNDS.values(), 0.0)
+            elif sound_checkbox.is_pressed(mouse, click):
+                if sound_checkbox.is_on:
+                    set_all_volumes(SOUNDS.values(), 1.0)
+                else:
+                    set_all_volumes(SOUNDS.values(), 0.0)
 
-        elif back_button.is_pressed(mouse, click):
-            break
+            elif back_button.is_pressed(mouse, click):
+                break
 
         redraw_options_menu(mouse)
