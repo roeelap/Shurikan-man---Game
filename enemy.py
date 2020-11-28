@@ -23,7 +23,7 @@ class Enemy:
         self.alive = True
         self.walk_right_images = walk_right_images
         self.walk_left_images = walk_left_images
-        self.spawn_timer = 0
+        self.spawn_timer = GOBLIN_SPAWN_TIMEOUT
         self.path_refresh_timer = GOBLIN_PATH_TIMEOUT
         self.hit_timer = 0
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
@@ -40,19 +40,16 @@ class Enemy:
         image_to_blit = self.walk_right_images[self.walk_count //
                                                6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
 
-        if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT or self.hit_timer > 0:
+        if  self.hit_timer > 0:
             timeout_image = image_to_blit.copy()
             timeout_image.fill(
                 COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
-        if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT:
+        if self.spawn_timer > 0:
             window.blit(ENEMY_SPAWN_IMAGE,
-                        (self.shade['x']-self.shade['w']/2-5, self.shade['y']-5))
-            self.spawn_timer += 1
-            if 0 <= self.spawn_timer % 6 <= 1:
-                image_to_blit = timeout_image
+                        (self.x+self.width/2-13, self.y+self.height-5))
+            self.spawn_timer -= 1
         else:
             self.walk_count += 1
-
         if self.hit_timer > 0:
             image_to_blit = timeout_image
             self.hit_timer -= 1
@@ -65,17 +62,19 @@ class Enemy:
         if self.walk_count + 1 >= self.walk_count_limit:
             self.walk_count = 0
 
-        if self.speed > 0:
-            window.blit(image_to_blit, (self.x, self.y))
-        else:
+        if self.speed < 0:
             correction = 15
-            window.blit(image_to_blit, (self.x, self.y))
+
+        image_to_blit = pygame.transform.chop(
+            image_to_blit, (0, abs(self.spawn_timer-77), 0, self.spawn_timer))
+        window.blit(image_to_blit, (self.x, self.y+self.spawn_timer))
 
         # drawing the health bar
         self.hitbox = (self.x + 20 + correction,
                        self.y + 15, 31, 60)
-        self.draw_health_bar(window)
-        self.draw_shade(window, correction)
+        if self.spawn_timer == 0:
+            self.draw_health_bar(window)
+            self.draw_shade(window, correction)
 
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
@@ -87,7 +86,7 @@ class Enemy:
             window, COLORS['black'], (x, y), w, h)
 
     def auto_path(self, player_shade, background_width):
-        if self.spawn_timer >= GOBLIN_SPAWN_TIMEOUT:
+        if self.spawn_timer <= 0:
             if self.path_refresh_timer >= GOBLIN_PATH_TIMEOUT:
                 self.path_refresh_timer = 0
                 if self.shade['x'] > player_shade['x'] and self.speed >= 0:
@@ -133,7 +132,7 @@ class Enemy:
         self.x -= player_speed * direction
 
     def hit(self, shuriken_strength, shuriken_id, coins):
-        self.was_hit_by= shuriken_id
+        self.was_hit_by = shuriken_id
         if self.health > shuriken_strength:
             self.hit_timer = 3
             self.health -= shuriken_strength

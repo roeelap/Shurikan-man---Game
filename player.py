@@ -116,8 +116,8 @@ class Player:
         if self.hurt_counter == 0:
             if self.health > 0:
                 self.health -= damage
-        SOUNDS['player_hit'].play()
-        self.hurt_counter = PLAYER_INVINCIBLE_TIME
+            SOUNDS['player_hit'].play()
+            self.hurt_counter = PLAYER_INVINCIBLE_TIME
 
     def hurt_animation(self, window):
         if 0 <= self.hurt_counter % 6 <= 1:
