@@ -1,5 +1,5 @@
 import pygame
-from consts import MENU_SHURIKENS, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
+from consts import MENU_SHURIKENS_LARGE, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
 from menu.button import Button
 from menu.options_menu import options_menu
 from menu.shop_menu import shop_menu
@@ -44,7 +44,7 @@ def redraw_start_menu(background, mouse, rotation_angle, player, pause_screen=Fa
     options_button.show(window, mouse)
     quit_button.show(window, mouse)
 
-    rotating_image = MENU_SHURIKENS.get(player.shuriken_equipped,'shuriken')
+    rotating_image = MENU_SHURIKENS_LARGE.get(player.shuriken_equipped,'shuriken')
     draw_rotated(window, rotating_image, (0.75*SCREEN_WIDTH,
                                           SCREEN_HEIGHT // 20), rotation_angle)
     draw_rotated(window, rotating_image, (0.17*SCREEN_WIDTH,

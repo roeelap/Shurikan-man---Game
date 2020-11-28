@@ -2,7 +2,7 @@ from sys import exit
 import pygame
 from menu.button import Button
 from menu.shop_item import ShopItem
-from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, PIXEL_FONT_BIG_BUTTON, BUTTON_WIDTH_BIG, GOLD_COINS_IMAGES, SOUNDS
+from consts import MENU_SHURIKENS_MEDIUM, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, PIXEL_FONT_BIG_BUTTON, BUTTON_WIDTH_BIG, GOLD_COINS_IMAGES, SOUNDS
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
@@ -15,16 +15,16 @@ shurikens_title_text = PIXEL_FONT_BIG.render(
 shurikens_title_textRect = shurikens_title_text.get_rect()
 shurikens_title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 7
 
-shurikens_shop = [ShopItem('shuriken', 0, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['shuriken']),
+shurikens_shop = [ShopItem('shuriken', 0, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 2 // 6, MENU_SHURIKENS_MEDIUM['shuriken']),
                   ShopItem('golden_shuriken', 10, SCREEN_WIDTH // 6,
-                           SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['golden_shuriken']),
+                           SCREEN_HEIGHT * 3 // 6, MENU_SHURIKENS_MEDIUM['golden_shuriken']),
                   ShopItem('rainbow_shuriken', 50, SCREEN_WIDTH // 6,
-                           SCREEN_HEIGHT * 4 // 6, SHURIKEN_IMAGES['rainbow_shuriken']),
+                           SCREEN_HEIGHT * 4 // 6, MENU_SHURIKENS_MEDIUM['rainbow_shuriken']),
                   ShopItem('orange', 100, SCREEN_WIDTH // 6,
-                           SCREEN_HEIGHT * 5 // 6, SHURIKEN_IMAGES['orange']),
+                           SCREEN_HEIGHT * 5 // 6, MENU_SHURIKENS_MEDIUM['orange']),
                   ShopItem('tomato', 150, SCREEN_WIDTH * 2 // 5,
-                           SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['tomato']),
-                  ShopItem('granny', 200, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['granny'])]
+                           SCREEN_HEIGHT * 2 // 6, MENU_SHURIKENS_MEDIUM['tomato']),
+                  ShopItem('granny', 200, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 3 // 6, MENU_SHURIKENS_MEDIUM['granny'])]
 
 quit_shuriken_shop_button = Button(
     SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big', 'Back')

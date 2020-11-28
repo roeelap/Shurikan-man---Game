@@ -132,7 +132,7 @@ class Enemy:
         self.x -= player_speed * direction
 
     def hit(self, shuriken_strength, coins, shuriken_type):
-        if self.health > 1:
+        if self.health > shuriken_strength:
             self.hit_timer = 3
             choice(SOUNDS.get(f'{shuriken_type}_hits',
                               SOUNDS['shuriken_hits'])).play()

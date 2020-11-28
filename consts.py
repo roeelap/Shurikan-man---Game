@@ -152,11 +152,14 @@ BUTTON_IMAGES = {
                    'disabled': pygame.image.load('./data/images/buttons/down-arrow-disabled.png')}
 }
 
-MENU_SHURIKENS = {'shuriken': pygame.image.load('./data/images/menu-shurikens/shuriken-large.png'), 'orange': pygame.image.load('./data/images/menu-shurikens/orange.png'),
-                  'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/granny.png'),
-                  'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/tomato.png'), }
+MENU_SHURIKENS_LARGE = {'shuriken': pygame.image.load('./data/images/menu-shurikens/large/shuriken.png'), 'orange': pygame.image.load('./data/images/menu-shurikens/large/orange.png'),
+                  'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/large/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/large/granny.png'),
+                  'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/large/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/large/tomato.png')}
 MENU_SHURIKEN_SMALL = pygame.image.load(
     './data/images/menu-shurikens/shuriken-small.png')
+MENU_SHURIKENS_MEDIUM = {'shuriken': pygame.image.load('./data/images/menu-shurikens/medium/shuriken.png'), 'orange': pygame.image.load('./data/images/menu-shurikens/medium/orange.png'),
+                  'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/medium/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/medium/granny.png'),
+                  'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/medium/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/medium/tomato.png')}
 
 
 # coin images
