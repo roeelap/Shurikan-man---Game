@@ -17,16 +17,11 @@ class InventoryItem:
     def show(self, window, mouse, player):
         equipped = self.name == player.shuriken_equipped
 
-        if equipped:
-            self.equip_button.disabled = True
-            self.equip_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
-                'Equipped', True,  COLORS['black'])
-        else:
+        if not equipped:
             self.equip_button.disabled = False
             self.equip_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
                 'Equip', True,  COLORS['black'])
-
-        self.equip_button.show(window, mouse)
+            self.equip_button.show(window, mouse)
 
         draw_rotated(window, self.image, (self.x + self.width,
                                           self.y + self.width * 2), self.rotation_angle)
@@ -36,6 +31,7 @@ class InventoryItem:
             '_', ' ').capitalize(), True,  COLORS['white'])
         window.blit(name, (self.x, self.y))
 
-    def update_y_value(self, y):
+    def update_location(self, x, y):
+        self.x = x
         self.y = y
-        self.equip_button.update_y_value(y)
+        self.equip_button.update_location(x - BUTTON_WIDTH_SMALL - 10, y)

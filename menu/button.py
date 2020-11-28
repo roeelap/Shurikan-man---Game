@@ -96,7 +96,8 @@ class Button:
             self.clicked = False
 
     
-    def update_y_value(self, y):
+    def update_location(self, x, y):
+        self.x = x
         self.y = y
         self.center = self.x + self.width // 2, self.y + self.height // 2
 
