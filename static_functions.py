@@ -1,3 +1,4 @@
+import os
 import json
 import pygame
 from consts import ALLOWED_SAVE_TYPES, GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES
@@ -27,6 +28,16 @@ def draw_rotated(window, image, topleft, angle):
     new_rect = rotated_image.get_rect(
         center=image.get_rect(topleft=topleft).center)
     window.blit(rotated_image, new_rect.topleft)
+
+def reset_game():
+    files = os.listdir('./saves')
+    for file in files:
+        with open(f'./saves/{file}', 'w', encoding='utf-8') as file:
+            if file == 'enemies.json':
+                file.write('[]')
+            else:
+                file.write('{}')
+
 
 
 def save_game(player, enemies, background, settings):

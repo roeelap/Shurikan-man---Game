@@ -17,6 +17,13 @@ def new_game():
     pygame.init()
     pygame.display.set_caption("Shuriken Man")
     pygame.display.set_icon(SHURIKEN_IMAGES['shuriken'])
+    game_objects = {'window': pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)),
+                    'shurikens': [],
+                    'background': Background(0, 0, 1650, 610, BACKGROUND_DUNGEON),
+                    'enemies': [],
+                    'coins': [],
+                    'player': Player(10, 630),
+                    'settings': {'sound': True, 'music': True}}
     window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     shurikens = []
     background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
@@ -67,7 +74,6 @@ def main():
     save_timer = 0
 
     load_game(player, enemies, background, settings)
-    print(settings)
     set_settings(settings)
     start_menu(BACKGROUND_DUNGEON, player, enemies, background, settings)
 
