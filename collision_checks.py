@@ -17,6 +17,7 @@ def check_shuriken_enemy_collision(shurikens, enemies, coins):
             if is_shade_collision(enemy.shade, shuriken.shade) and not shuriken.has_hit:
                 enemy.hit(shuriken.strength, coins, shuriken.name)
                 shuriken.hit()
+                break
 
 
 def check_player_coin_collision(player, coins):

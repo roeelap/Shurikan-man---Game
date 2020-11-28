@@ -69,10 +69,12 @@ class Player:
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
     def update_stats(self):
-        self.max_health = PLAYER_STARTING_MAX_HEALTH + self.upgrades['max_health'] * 10
+        self.max_health = PLAYER_STARTING_MAX_HEALTH + \
+            self.upgrades['max_health'] * 10
         self.speed = PLAYER_STARTING_SPEED + self.upgrades['speed'] / 5
         self.strength = PLAYER_STARTING_STRENGTH + self.upgrades['strength']
-        self.throw_speed = PLAYER_STARTING_THROW_SPEED + self.upgrades['throw_speed'] * 2
+        self.throw_speed = PLAYER_STARTING_THROW_SPEED + \
+            self.upgrades['throw_speed'] * 2
 
     def draw_shade(self, window):
         self.shade = {'x': self.x + self.width / 2,
@@ -102,10 +104,11 @@ class Player:
         self.standing = False
 
     def hit(self, damage):
+        if self.hurt_counter == 0:
+            if self.health > 0:
+                self.health -= damage
         SOUNDS['player_hit'].play()
         self.hurt_counter = PLAYER_INVINCIBLE_TIME
-        if self.health > 0:
-            self.health -= damage
 
     def hurt_animation(self, window):
         if 0 <= self.hurt_counter % 6 <= 1:

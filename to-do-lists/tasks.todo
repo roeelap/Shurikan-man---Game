@@ -9,7 +9,7 @@ Todo:
   ✔ Spawn enemies at end of map, make them follow you. @done(20-11-24 23:53)
   ✔ Coin pickup animation @done(20-11-25 15:42)
   ✔ Main menu from escape button -> pauses the game @done(20-11-24 23:54)
-  ✘ Save button @cancelled(20-11-25 01:55)
+  ✔ Save button @done(20-11-28 02:47)
   ✔ Write stats to file @done(20-11-25 01:55)
   ✔ Coin pickup sound @done(20-11-24 12:27)
   ✔ Animation for hitting enemy @done(20-11-25 20:57)
@@ -18,16 +18,20 @@ Todo:
   ✔ change the shuriken animations (near the buttons and the start screen title) according to the equipped shuriken @done(20-11-26 18:41)
   ✔ delete shuriken animation on shop buttons (buy and equip) @done(20-11-26 18:41)
   ✔ shuriken shop - spin the coin on the bottom right corner @done(20-11-26 18:41)
-  ☐ When player dies - Show dead on screen, popup main menu.
   ✔ Stats menu -> strength, throw speed, speed, max health, coin, exp, level, score -> make like an upgrade store, each level gives a point to 'spend' @done(20-11-26 19:33)
   ✔ cleaning the button class - duplicated code @done(20-11-27 19:49)
-  ☐ Disable 
   ✔ Update current level on stat when staging @done(20-11-26 20:41)
+  ✔ update player stats function (function of upgrades) @done(20-11-28 02:42)
+  ☐ When player dies - Show dead on screen, popup main menu.
   ☐ Make inventory tab, fix shop tab.
-  ☐ update player stats function (function of upgrades)
-  ☐ Add new upgrades - max shurikens, reload speed, group damage
+  ☐ Finish player stats function - reload speed, max shurikens, group damage
   ☐ Popup - save on exit (cancel save every 5 seconds)
   ☐ Option to set volume
   ☐ Save options status
   ☐ Load options from saves
   ☐ Back to game on escape from any menu
+  ☐ Think about spawning pit (animation?)
+  ☐ Add ninja sound and animation to confirm
+  ☐ Add objects to list and loop through instead of hard coding.
+  ☐ Health packs spawn.
+  
