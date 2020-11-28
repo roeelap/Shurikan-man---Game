@@ -1,6 +1,7 @@
 from static_functions import draw_rotated
-from consts import PIXEL_FONT_SMALL, COLORS, BUTTON_WIDTH_SMALL, BUTTON_HEIGHT_SMALL, PIXEL_FONT_SMALL_BUTTON
+from consts import PIXEL_FONT_SMALL, COLORS, BUTTON_WIDTH_SMALL, PIXEL_FONT_SMALL_BUTTON
 from menu.button import Button
+
 
 class InventoryItem:
     def __init__(self, x, y, name, image):
@@ -12,7 +13,7 @@ class InventoryItem:
         self.equip_button = Button(
             self.x - BUTTON_WIDTH_SMALL - 10, self.y, 'small', 'Equip')
         self.rotation_angle = 0
-    
+
     def show(self, window, mouse, player):
         equipped = self.name == player.shuriken_equipped
 
@@ -34,7 +35,7 @@ class InventoryItem:
         name = PIXEL_FONT_SMALL.render(str(self.name).replace(
             '_', ' ').capitalize(), True,  COLORS['white'])
         window.blit(name, (self.x, self.y))
-    
+
     def update_y_value(self, y):
         self.y = y
         self.equip_button.update_y_value(y)

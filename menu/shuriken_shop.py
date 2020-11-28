@@ -2,6 +2,7 @@ from sys import exit
 import pygame
 from menu.button import Button
 from menu.shop_item import ShopItem
+from menu.inventory import inventory
 from consts import MENU_SHURIKENS_MEDIUM, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, PIXEL_FONT_BIG_BUTTON, BUTTON_WIDTH_BIG, GOLD_COINS_IMAGES, SOUNDS
 
 pygame.init()
@@ -26,9 +27,11 @@ shurikens_shop = [ShopItem('shuriken', 0, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 2 /
                            SCREEN_HEIGHT * 2 // 6, MENU_SHURIKENS_MEDIUM['tomato']),
                   ShopItem('granny', 200, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 3 // 6, MENU_SHURIKENS_MEDIUM['granny'])]
 
-inventory_button = Button(SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 6 // 8 + 30, 'big', 'Inventory')
+inventory_button = Button(SCREEN_WIDTH * 3 // 4,
+                          SCREEN_HEIGHT * 6 // 8 + 30, 'big', 'Inventory')
 
-quit_shuriken_shop_button = Button(SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big', 'Back')
+quit_shuriken_shop_button = Button(
+    SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big', 'Back')
 
 
 def redraw_shuriken_shop(mouse, player, spin_count):
@@ -47,7 +50,7 @@ def redraw_shuriken_shop(mouse, player, spin_count):
     window.blit(GOLD_COINS_IMAGES[spin_count//2], (quit_shuriken_shop_button.x + BUTTON_WIDTH_BIG /
                                                    3 + coins_text.get_rect()[2] + 10, SCREEN_HEIGHT * 6 // 8 - 20))
     inventory_button.show(window, mouse)
-    
+
     quit_shuriken_shop_button.show(window, mouse)
 
     pygame.display.update()

@@ -1,8 +1,10 @@
 from sys import exit
 import pygame
 from menu.button import Button, ArrowButton
-from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, PIXEL_FONT_MID, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, PIXEL_FONT_BIG_BUTTON, BUTTON_WIDTH_BIG, SOUNDS
 from menu.inventory_item import InventoryItem
+from static_functions import draw_rect_with_alpha
+from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, PIXEL_FONT_MID, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, BUTTON_WIDTH_BIG, SOUNDS
+
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
@@ -20,8 +22,10 @@ shurikens_subtitle_text = PIXEL_FONT_MID.render(
 shurikens_subtitle_textRect = shurikens_subtitle_text.get_rect()
 shurikens_subtitle_textRect.center = SCREEN_WIDTH // 4, SCREEN_HEIGHT * 2 // 7
 
-shurikens_up_button = ArrowButton(shurikens_subtitle_textRect[0] - 80, SCREEN_HEIGHT // 2, 'up_arrow')
-shurikens_down_button = ArrowButton(shurikens_subtitle_textRect[0] - 80, SCREEN_HEIGHT // 2 + 60, 'down_arrow')
+shurikens_up_button = ArrowButton(
+    shurikens_subtitle_textRect[0] - 80, SCREEN_HEIGHT // 2, 'up_arrow')
+shurikens_down_button = ArrowButton(
+    shurikens_subtitle_textRect[0] - 80, SCREEN_HEIGHT // 2 + 60, 'down_arrow')
 
 
 quit_inventory_button = Button(
@@ -30,6 +34,9 @@ quit_inventory_button = Button(
 
 def redraw_inventory(mouse, player, shuriken_inventory):
     window.blit(BACKGROUND_DUNGEON, (-200, 0))
+    draw_rect_with_alpha(100, 250, 350, 350, COLORS['white'], 50, window,15)
+    pygame.draw.rect(window, COLORS['white'],
+                         (100, 250, 350, 350), width=1, border_radius=15)
 
     window.blit(inventory_title_text, inventory_title_textRect)
     window.blit(shurikens_subtitle_text, shurikens_subtitle_textRect)
@@ -44,7 +51,7 @@ def redraw_inventory(mouse, player, shuriken_inventory):
             shuriken.show(window, mouse, player)
             shurikens_up_button.disabled = False
             shurikens_down_button.disabled = False
-    
+
     shurikens_up_button.show(window, mouse)
     shurikens_down_button.show(window, mouse)
 
@@ -75,7 +82,7 @@ def inventory(player):
                             shuriken.equip_button.disabled = True
                             SOUNDS['item_equip'].play()
                             player.shuriken_equipped = shuriken.name
-                
+
                 if shurikens_up_button.is_pressed(mouse, click):
                     move_items_up(shuriken_inventory)
 

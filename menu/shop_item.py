@@ -1,5 +1,5 @@
 from static_functions import draw_rotated
-from consts import PIXEL_FONT_SMALL, COLORS, BUTTON_WIDTH_SMALL, BUTTON_HEIGHT_SMALL, PIXEL_FONT_SMALL_BUTTON
+from consts import PIXEL_FONT_SMALL, COLORS, BUTTON_WIDTH_SMALL, PIXEL_FONT_SMALL_BUTTON
 from menu.button import Button
 
 
