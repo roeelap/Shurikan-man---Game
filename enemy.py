@@ -29,6 +29,7 @@ class Enemy:
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
         self.damage = damage
         self.was_hit_by = None
+        self.chop = 77
 
     def draw(self, window):
         if not self.alive:
@@ -40,17 +41,17 @@ class Enemy:
         image_to_blit = self.walk_right_images[self.walk_count //
                                                6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
 
-        if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT or self.hit_timer > 0:
+        if  self.hit_timer > 0:
             timeout_image = image_to_blit.copy()
             timeout_image.fill(
                 COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
         if self.spawn_timer < GOBLIN_SPAWN_TIMEOUT:
+            self.chop -= 1
             window.blit(ENEMY_SPAWN_IMAGE,
                         (self.shade['x']-self.shade['w']/2-5, self.shade['y']-5))
             self.spawn_timer += 1
-            if 0 <= self.spawn_timer % 6 <= 1:
-                image_to_blit = timeout_image
         else:
+            self.chop = 0
             self.walk_count += 1
 
         if self.hit_timer > 0:
@@ -68,8 +69,9 @@ class Enemy:
         if self.speed < 0:
             correction = 15
 
-        image_to_blit =  pygame.transform.chop(image_to_blit, (0, 0, 0, 77))
-        window.blit(image_to_blit, (self.x, self.y))
+        image_to_blit = pygame.transform.chop(
+            image_to_blit, (0, abs(self.chop-77), 0, self.chop))
+        window.blit(image_to_blit, (self.x, self.y+self.chop))
 
         # drawing the health bar
         self.hitbox = (self.x + 20 + correction,
@@ -133,7 +135,7 @@ class Enemy:
         self.x -= player_speed * direction
 
     def hit(self, shuriken_strength, shuriken_id, coins):
-        self.was_hit_by= shuriken_id
+        self.was_hit_by = shuriken_id
         if self.health > shuriken_strength:
             self.hit_timer = 3
             self.health -= shuriken_strength
