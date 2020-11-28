@@ -36,6 +36,7 @@ class InventoryItem:
             '_', ' ').capitalize(), True,  COLORS['white'])
         window.blit(name, (self.x, self.y))
 
-    def update_y_value(self, y):
+    def update_location(self, x, y):
+        self.x = x
         self.y = y
-        self.equip_button.update_y_value(y)
+        self.equip_button.update_location(x - BUTTON_WIDTH_SMALL - 10, y)
