@@ -2,6 +2,7 @@ from sys import exit
 import pygame
 from menu.button import Button
 from menu.shuriken_shop import shuriken_shop
+from menu.inventory import inventory
 from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH_BIG, SHURIKEN_IMAGES
 
 pygame.init()
@@ -12,16 +13,18 @@ clock = pygame.time.Clock()
 
 shop_title_text = PIXEL_FONT_BIG.render("Shop", True,  COLORS['white'])
 shop_textRect = shop_title_text.get_rect()
-shop_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 6
+shop_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 7
 
 shurikens_button = Button((SCREEN_WIDTH // 2) -
-                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 2 // 6, 'big', 'Shurikens')
+                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 2 // 7, 'big', 'Shurikens')
 weapons_button = Button((SCREEN_WIDTH // 2) -
-                        (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 6, 'big', 'Special Weapons')
+                        (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 7, 'big', 'Special Weapons')
 backgrounds_button = Button((SCREEN_WIDTH // 2) -
-                            (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 4 // 6, 'big', 'Backgrounds')
+                            (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 4 // 7, 'big', 'Backgrounds')
+inventory_button = Button((SCREEN_WIDTH // 2) -
+                            (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 7, 'big', 'Inventory')
 quit_shop_button = Button((SCREEN_WIDTH // 2) -
-                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 6, 'big', 'Back')
+                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 6 // 7, 'big', 'Back')
 
 
 def redraw_shop_menu(mouse):
@@ -32,6 +35,7 @@ def redraw_shop_menu(mouse):
     shurikens_button.show(window, mouse)
     weapons_button.show(window, mouse)
     backgrounds_button.show(window, mouse)
+    inventory_button.show(window, mouse)
     quit_shop_button.show(window, mouse)
 
     pygame.display.update()
@@ -49,8 +53,12 @@ def shop_menu(player):
                 exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 click = pygame.mouse.get_pressed()
+
                 if shurikens_button.is_pressed(mouse, click):
                     shuriken_shop(player)
+                
+                elif inventory_button.is_pressed(mouse, click):
+                    inventory(player)
 
                 elif quit_shop_button.is_pressed(mouse, click):
                     return

@@ -3,6 +3,7 @@ import pygame
 from menu.button import Button
 from menu.shop_item import ShopItem
 from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, PIXEL_FONT_BIG_BUTTON, BUTTON_WIDTH_BIG, GOLD_COINS_IMAGES, SOUNDS
+from menu.inventory import inventory
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
@@ -26,8 +27,9 @@ shurikens_shop = [ShopItem('shuriken', 0, SCREEN_WIDTH // 6, SCREEN_HEIGHT * 2 /
                            SCREEN_HEIGHT * 2 // 6, SHURIKEN_IMAGES['tomato']),
                   ShopItem('granny', 200, SCREEN_WIDTH * 2 // 5, SCREEN_HEIGHT * 3 // 6, SHURIKEN_IMAGES['granny'])]
 
-quit_shuriken_shop_button = Button(
-    SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big', 'Back')
+inventory_button = Button(SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 6 // 8 + 30, 'big', 'Inventory')
+
+quit_shuriken_shop_button = Button(SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 7 // 8, 'big', 'Back')
 
 
 def redraw_shuriken_shop(mouse, player, spin_count):
@@ -41,10 +43,12 @@ def redraw_shuriken_shop(mouse, player, spin_count):
     coins = str(player.coins)
     coins_text = PIXEL_FONT_BIG_BUTTON.render(coins, True, COLORS['white'])
     window.blit(coins_text, (quit_shuriken_shop_button.x +
-                             BUTTON_WIDTH_BIG / 3, SCREEN_HEIGHT * 6 // 8 + 40))
+                             BUTTON_WIDTH_BIG / 3, SCREEN_HEIGHT * 6 // 8 - 10))
 
     window.blit(GOLD_COINS_IMAGES[spin_count//2], (quit_shuriken_shop_button.x + BUTTON_WIDTH_BIG /
-                                                   3 + coins_text.get_rect()[2] + 10, SCREEN_HEIGHT * 6 // 8 + 30))
+                                                   3 + coins_text.get_rect()[2] + 10, SCREEN_HEIGHT * 6 // 8 - 20))
+    inventory_button.show(window, mouse)
+    
     quit_shuriken_shop_button.show(window, mouse)
 
     pygame.display.update()
@@ -72,12 +76,8 @@ def shuriken_shop(player):
                             player.shurikens_owned.append(shuriken.name)
                             player.coins -= shuriken.price
 
-                for shuriken in shurikens_shop:
-                    if shuriken.name != player.shuriken_equipped and shuriken.name in player.shurikens_owned:
-                        if shuriken.equip_button.is_pressed(mouse, click):
-                            shuriken.equip_button.disabled = True
-                            SOUNDS['item_equip'].play()
-                            player.shuriken_equipped = shuriken.name
+                if inventory_button.is_pressed(mouse, click):
+                    inventory(player)
 
                 if quit_shuriken_shop_button.is_pressed(mouse, click):
                     return
