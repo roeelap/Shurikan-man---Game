@@ -79,6 +79,7 @@ def start_menu(background_image, player, enemies, background, pause_screen=False
                     return
 
                 elif upgrades_button.is_pressed(mouse, click):
+                    save_button.disabled = False
                     upgrades_shop(player)
 
                 elif shop_button.is_pressed(mouse, click):

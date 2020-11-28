@@ -2,7 +2,7 @@ import sys
 import pygame
 from menu.player_stat import PlayerStat
 from menu.button import Button
-from consts import SCREEN_WIDTH, SCREEN_HEIGHT, SHURIKEN_IMAGES, BACKGROUND_DUNGEON, FPS, PIXEL_FONT_BIG, COLORS, PIXEL_FONT_BIG_BUTTON
+from consts import SCREEN_WIDTH, SCREEN_HEIGHT, SHURIKEN_IMAGES, BACKGROUND_DUNGEON, FPS, PIXEL_FONT_BIG, COLORS, PIXEL_FONT_BIG_BUTTON, SOUNDS
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
@@ -81,7 +81,8 @@ def upgrades_shop(player):
                         confirm_button.disabled = False
 
                 if confirm_button.is_pressed(mouse, click):
-                    confirm_button.disabled = True
+                    SOUNDS['ninja'].play()
+                    confirm_button.clicked = True
                     for player_stat in player_stats:
                         player_stat.is_confirmed = True
 
@@ -89,7 +90,7 @@ def upgrades_shop(player):
                     return
 
         # disabling the confirm button if no upgrades were made
-        if len([player_stat for player_stat in player_stats if player_stat.level_delta == 0]) == len(player_stats):
+        if len([player_stat for player_stat in player_stats if player_stat.level_delta == 0]) == len(player_stats) and not confirm_button.clicked:
             confirm_button.disabled = True
         else:
             confirm_button.disabled = False

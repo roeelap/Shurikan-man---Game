@@ -121,7 +121,7 @@ SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/combat/player-hit.wav'
           'tomato_hits': SPLAT_SOUNDS, 'orange_hits': SPLAT_SOUNDS,
           'item_equip': pygame.mixer.Sound('./data/sounds/general/item-equip.wav'), 'purchase': pygame.mixer.Sound('./data/sounds/general/purchase.wav'),
           'sword_draw': pygame.mixer.Sound('./data/sounds/general/sword-draw.wav'), 'level_up': pygame.mixer.Sound('./data/sounds/combat/level-up.wav'),
-          'level_up_human': pygame.mixer.Sound('./data/sounds/combat/level-up-human.wav')}
+          'level_up_human': pygame.mixer.Sound('./data/sounds/combat/level-up-human.wav'),'ninja':pygame.mixer.Sound('./data/sounds/general/ninja.wav')}
 
 # button consts
 BUTTON_WIDTH_BIG = 227

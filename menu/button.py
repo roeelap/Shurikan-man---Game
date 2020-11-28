@@ -31,7 +31,7 @@ class Button:
         self.display_shurikens = True if self.kind == 'big' else False
 
     def show(self, window, mouse):
-        if self.disabled:
+        if self.disabled and not self.clicked:
             window.blit(self.disabled_image, (self.x, self.y))
             self.display_button_text(window, 'disabled')
 
@@ -87,13 +87,14 @@ class Button:
         self.shuriken_rotation_angle += 3
 
     def update_shuriken_x(self):
+        self.disabled = True
         if self.shuriken_x[1] >= self.x-30 and self.shuriken_x[0] <= self.x+self.width+5:
             self.shuriken_x[0] += 10
             self.shuriken_x[1] -= 10
         else:
             self.shuriken_x = [self.x-30, self.x+self.width+5]
             self.clicked = False
-            self.disabled = True
+
     
     def update_y_value(self, y):
         self.y = y
