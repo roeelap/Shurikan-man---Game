@@ -22,7 +22,7 @@ weapons_button = Button((SCREEN_WIDTH // 2) -
 backgrounds_button = Button((SCREEN_WIDTH // 2) -
                             (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 4 // 7, 'big', 'Backgrounds')
 inventory_button = Button((SCREEN_WIDTH // 2) -
-                            (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 7, 'big', 'Inventory')
+                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 7, 'big', 'Inventory')
 quit_shop_button = Button((SCREEN_WIDTH // 2) -
                           (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 6 // 7, 'big', 'Back')
 
@@ -56,7 +56,7 @@ def shop_menu(player):
 
                 if shurikens_button.is_pressed(mouse, click):
                     shuriken_shop(player)
-                
+
                 elif inventory_button.is_pressed(mouse, click):
                     inventory(player)
 

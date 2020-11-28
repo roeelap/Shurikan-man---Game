@@ -26,7 +26,7 @@ class ShopItem:
         elif owned:
             self.buy_button.disabled = True
             self.buy_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
-                'Bought', True,  COLORS['black'])
+                'Owned', True,  COLORS['black'])
 
         self.buy_button.show(window, mouse)
 

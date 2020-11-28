@@ -1,4 +1,5 @@
 from sys import exit
+from operator import itemgetter
 from random import randint, choice
 import pygame
 from static_functions import load_game, save_game
@@ -17,13 +18,14 @@ def new_game():
     pygame.init()
     pygame.display.set_caption("Shuriken Man")
     pygame.display.set_icon(SHURIKEN_IMAGES['shuriken'])
-    window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    shurikens = []
-    background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
-    enemies = []
-    coins = []
-    player = Player(10, 630)
-    return window, background, player, enemies, shurikens, coins
+    game_objects = {'window': pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)),
+                    'shurikens': [],
+                    'background': Background(0, 0, 1650, 610, BACKGROUND_DUNGEON),
+                    'enemies': [],
+                    'coins': [],
+                    'player': Player(10, 630),
+                    'settings': {'sound': True, 'music': True}}
+    return game_objects
 
 
 # Pilot for random enemy spawning
@@ -46,19 +48,28 @@ def spawn_enemy(enemies, background):
     enemies.append(new_enemy)
 
 
+def set_settings(settings):
+    from menu.settings_menu import set_all_volumes
+    volume = 0
+    if settings['sound']:
+        volume = 1
+    set_all_volumes(SOUNDS.values(), volume)
+
+
 def main():
 
-    window, background, player, enemies, shurikens, coins = new_game()
-    # enemies.append(Enemy(500, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, -1.4, 9,
-    #                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
+    game_objects = new_game()
 
     clock = pygame.time.Clock()
     shuriken_shoot_timer = 0
     spawn_enemy_timer = 0
     save_timer = 0
-
-    load_game(player, enemies, background)
-    start_menu(BACKGROUND_DUNGEON, player, enemies, background)
+    window, background, player, enemies, shurikens, coins, settings = itemgetter(
+        'window', 'background', 'player', 'enemies', 'shurikens', 'coins', 'settings')(game_objects)
+    load_game(player, enemies, background, settings)
+    set_settings(settings)
+    if start_menu(BACKGROUND_DUNGEON, game_objects) == 'new_game':
+        game_objects = new_game()
 
     def redraw_window():
         background.draw(window)
@@ -91,12 +102,14 @@ def main():
 
     # Game loop
     while True:
+        window, background, player, enemies, shurikens, coins, settings = itemgetter(
+        'window', 'background', 'player', 'enemies', 'shurikens', 'coins', 'settings')(game_objects)
         clock.tick(FPS)
 
         # Save game every second (60 fps)
         if save_timer == SAVE_TIMEOUT:
             save_timer = 0
-            save_game(player, enemies, background)
+            save_game(player, enemies, background, settings)
         else:
             save_timer += 1
 
@@ -113,8 +126,10 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
-                    start_menu(win_at_the_moment, player,
-                               enemies, background, True)
+                    state = start_menu(win_at_the_moment, game_objects)
+                    if state == 'new_game':
+                        print(state)
+                        game_objects = new_game()
 
         check_collision(player, enemies, shurikens, coins)
 
@@ -152,7 +167,7 @@ def main():
         if player.health == 0:
             SOUNDS['player_death'].play()
             pygame.time.delay(1000)
-            window, background, player, enemies, shurikens, coins = new_game()
+            game_objects = new_game()
 
 
 if __name__ == "__main__":
