@@ -1,4 +1,5 @@
 from sys import exit
+from operator import itemgetter
 from random import randint, choice
 import pygame
 from static_functions import load_game, save_game
@@ -24,14 +25,7 @@ def new_game():
                     'coins': [],
                     'player': Player(10, 630),
                     'settings': {'sound': True, 'music': True}}
-    window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    shurikens = []
-    background = Background(0, 0, 1650, 610, BACKGROUND_DUNGEON)
-    enemies = []
-    coins = []
-    player = Player(10, 630)
-    settings = {'sound': True, 'music': True}
-    return window, background, player, enemies, shurikens, coins, settings
+    return game_objects
 
 
 # Pilot for random enemy spawning
@@ -64,18 +58,18 @@ def set_settings(settings):
 
 def main():
 
-    window, background, player, enemies, shurikens, coins, settings = new_game()
-    # enemies.append(Enemy(500, 600, GOBLIN_WIDTH, GOBLIN_HEIGHT, -1.4, 9,
-    #                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES))
+    game_objects = new_game()
 
     clock = pygame.time.Clock()
     shuriken_shoot_timer = 0
     spawn_enemy_timer = 0
     save_timer = 0
-
+    window, background, player, enemies, shurikens, coins, settings = itemgetter(
+        'window', 'background', 'player', 'enemies', 'shurikens', 'coins', 'settings')(game_objects)
     load_game(player, enemies, background, settings)
     set_settings(settings)
-    start_menu(BACKGROUND_DUNGEON, player, enemies, background, settings)
+    if start_menu(BACKGROUND_DUNGEON, game_objects) == 'new_game':
+        game_objects = new_game()
 
     def redraw_window():
         background.draw(window)
@@ -108,6 +102,8 @@ def main():
 
     # Game loop
     while True:
+        window, background, player, enemies, shurikens, coins, settings = itemgetter(
+        'window', 'background', 'player', 'enemies', 'shurikens', 'coins', 'settings')(game_objects)
         clock.tick(FPS)
 
         # Save game every second (60 fps)
@@ -130,8 +126,10 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
-                    start_menu(win_at_the_moment, player,
-                               enemies, background, settings, True)
+                    state = start_menu(win_at_the_moment, game_objects)
+                    if state == 'new_game':
+                        print(state)
+                        game_objects = new_game()
 
         check_collision(player, enemies, shurikens, coins)
 
@@ -169,7 +167,7 @@ def main():
         if player.health == 0:
             SOUNDS['player_death'].play()
             pygame.time.delay(1000)
-            window, background, player, enemies, shurikens, coins, settings = new_game()
+            game_objects = new_game()
 
 
 if __name__ == "__main__":

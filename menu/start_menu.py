@@ -1,3 +1,4 @@
+from operator import itemgetter
 import sys
 import pygame
 from consts import MENU_SHURIKENS_LARGE, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
@@ -5,7 +6,7 @@ from menu.button import Button
 from menu.settings_menu import settings_menu
 from menu.shop_menu import shop_menu
 from menu.upgrades import upgrades_shop
-from static_functions import draw_rect_with_alpha, load_game, save_game, draw_rotated, reset_game
+from static_functions import draw_rect_with_alpha, reset_game, save_game, draw_rotated
 
 
 pygame.init()
@@ -38,20 +39,19 @@ def redraw_start_menu(menu_buttons, background, mouse, rotation_angle, player, p
     pygame.display.update()
 
 
-def check_for_button_press(buttons, mouse, click, player, enemies, background, settings):
+def check_for_button_press(buttons, mouse, click, game_objects):
+    player, enemies, background, settings = itemgetter(
+        'player', 'enemies', 'background', 'settings')(game_objects)
     for name, button in buttons.items():
         if button.is_pressed(mouse, click):
             buttons['save'].disabled = False
             if name == 'play':
                 SOUNDS['transition'].play()
-                return False
+                return True
             if name == 'new_game':
-                reset_game()
-                pygame.time.wait(1000)
-                load_game(player, enemies, background, settings)
-                pygame.time.wait(1000)
                 SOUNDS['transition'].play()
-                return False
+                reset_game()
+                return 'new_game'
             if name == 'upgrades':
                 upgrades_shop(player)
             elif name == 'shop':
@@ -65,10 +65,11 @@ def check_for_button_press(buttons, mouse, click, player, enemies, background, s
             elif name == 'quit':
                 pygame.quit()
                 sys.exit()
-            return True
+            return False
 
 
-def start_menu(background_image, player, enemies, background, settings, pause_screen=False):
+def start_menu(background_image, game_objects, pause_screen=False):
+    player = game_objects['player']
     menu_buttons = {'play': Button((SCREEN_WIDTH // 2) - (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 2 // 9, 'big', 'Play!'),
                     'new_game': Button((SCREEN_WIDTH // 2) - (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 9, 'big', 'New Game'),
                     'shop': Button((SCREEN_WIDTH // 2) - (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 4 // 9, 'big', 'Shop'),
@@ -96,9 +97,10 @@ def start_menu(background_image, player, enemies, background, settings, pause_sc
                         return
             if event.type == pygame.MOUSEBUTTONDOWN:
                 click = pygame.mouse.get_pressed()
-                if not check_for_button_press(
-                        menu_buttons, mouse, click, player, enemies, background, settings):
-                    return
+                state = check_for_button_press(
+                    menu_buttons, mouse, click, game_objects)
+                if state:
+                    return state
 
         redraw_start_menu(menu_buttons, background_image, mouse,
                           rotation_angle, player, pause_screen)
