@@ -31,7 +31,7 @@ def check_player_health_pack_collision(player, health_packs):
     for health_pack in health_packs:
         if is_shade_collision(player.shade, health_pack.shade):
             health_pack.taken = True
-            choice(SOUNDS[f'gold_pickup']).play()
+            SOUNDS[f'health_pack'].play()
             if player.health + HEALTH_PACK_HEAL >= player.max_health:
                 player.health = player.max_health
             else:
