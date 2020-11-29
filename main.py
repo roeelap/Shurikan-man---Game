@@ -141,7 +141,7 @@ def main():
 
         # Randomely spawn an health pack every 60 seconds
         spawn_health_pack_timer = can_spawn_health_pack(
-            spawn_health_pack_timer, health_packs, 60, background)
+            spawn_health_pack_timer, health_packs, 10, background)
 
         # Exit on quit button
         for event in pygame.event.get():

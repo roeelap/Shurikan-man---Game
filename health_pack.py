@@ -11,16 +11,19 @@ class HealthPack:
         self.hight = HEALTH_PACK_HEIGHT
         self.image = HEALTH_PACK_IMAGE
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
-        self.timer = FPS * 60
+        self.timer = FPS * 10
         self.is_shown = True
         self.taken = False
 
     def draw(self, window):
         self.timer -= 1
 
-        if FPS * 3 < self.timer < FPS * 60 or self.timer <= FPS * 3 and self.timer % 10 != 0 and not self.taken:
+        if FPS * 3 < self.timer < FPS * 10 or self.timer <= FPS * 3 and self.timer % 7 != 0 and not self.taken:
             window.blit(self.image, (self.x, self.y))
             self.draw_shade(window)
+        
+        if self.timer == 0:
+            self.taken = True
 
     def draw_shade(self, window):
         self.shade = {'x': self.x + self.width // 2,
