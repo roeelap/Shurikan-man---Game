@@ -82,7 +82,6 @@ def inventory_menu(player):
 
                 elif shuriken_scroll_bar.is_pressed(mouse, click):
                     shuriken_scroll_bar.is_dragged = True
-                    offset_y = shuriken_scroll_bar.y - mouse[1]
 
                 elif quit_inventory_button.is_pressed(mouse, click):
                     return

@@ -95,7 +95,6 @@ class Button:
             self.shuriken_x = [self.x-30, self.x+self.width+5]
             self.clicked = False
 
-    
     def update_location(self, x, y):
         self.x = x
         self.y = y
@@ -183,9 +182,11 @@ class ScrollBar:
 
     def show(self, window, mouse):
         if self.is_mouse_over(mouse) or self.clicked:
-            draw_rect_with_alpha(self.x, self.y, self.width, self.height, self.color, 255, window, 15)
+            draw_rect_with_alpha(self.x, self.y, self.width,
+                                 self.height, self.color, 255, window, 15)
         else:
-            draw_rect_with_alpha(self.x, self.y, self.width, self.height, self.color, 128, window, 15)
+            draw_rect_with_alpha(self.x, self.y, self.width,
+                                 self.height, self.color, 128, window, 15)
 
     def is_mouse_over(self, mouse):
         if self.x < mouse[0] < self.x + self.width and self.y < mouse[1] < self.y + self.height:
@@ -197,6 +198,6 @@ class ScrollBar:
             if self.is_mouse_over(mouse):
                 if click[0] == 1:
                     self.clicked = True
-                    return True 
+                    return True
             else:
-                self.clicked = False      
+                self.clicked = False
