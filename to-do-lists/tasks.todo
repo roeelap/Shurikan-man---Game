@@ -34,9 +34,9 @@ Todo:
   ☐ Option to set volume
   ☐ Popup - save on exit (cancel save every 5 seconds)
   ☐ Player hold shuriken in hand (blit shuriken image, behind the player -> half reveal)
-  ☐ Scroll bar (mouse input)
+  ✔ Scroll bar (mouse input) @done(20-11-29 15:18)
   ☐ Make vertical energy bar
-  ☐ When losing hp, don't blit red
+  ✔ When losing hp, don't blit red @done(20-11-29 15:20)
   ☐ Special attacks (shuriken rain, large shuriken with high durability, shuriken bomb, etc...)
   ☐ Rounds.
   ☐ New enemy (long range)

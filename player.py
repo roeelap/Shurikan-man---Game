@@ -165,8 +165,6 @@ class Player:
         health_bar_x = SCREEN_WIDTH * 2 // 20
         health_bar_width = SCREEN_WIDTH * 17 // 20
         pygame.draw.rect(
-            window, COLORS['red'], (health_bar_x, 30, health_bar_width, 30), border_radius=15)
-        pygame.draw.rect(
             window, COLORS['green'], (health_bar_x, 30, (health_bar_width) - ((health_bar_width // self.max_health) * (self.max_health - self.health)), 30), border_radius=15)
         pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH *
                                                    2 // 20, 30, health_bar_width, 30), width=3, border_radius=15)

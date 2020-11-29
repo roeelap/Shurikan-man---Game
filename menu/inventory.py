@@ -80,19 +80,20 @@ def inventory_menu(player):
                     move_items_up(shuriken_inventory)
                     shuriken_scroll_bar.y += 300 * 1 / len(shuriken_inventory)
 
-                elif shuriken_scroll_bar.is_pressed(mouse, click):            
+                elif shuriken_scroll_bar.is_pressed(mouse, click):
                     shuriken_scroll_bar.is_dragged = True
                     offset_y = shuriken_scroll_bar.y - mouse[1]
 
                 elif quit_inventory_button.is_pressed(mouse, click):
                     return
-            
-            elif event.type == pygame.MOUSEBUTTONUP:          
+
+            elif event.type == pygame.MOUSEBUTTONUP:
                 shuriken_scroll_bar.is_dragged = False
                 shuriken_scroll_bar.clicked = False
-            
+
             elif event.type == pygame.MOUSEMOTION:
-                scroll_bar_movement(shuriken_scroll_bar, mouse, shurikens_up_button, shurikens_down_button, shuriken_inventory)
+                scroll_bar_movement(
+                    shuriken_scroll_bar, mouse, shurikens_up_button, shurikens_down_button, shuriken_inventory)
 
         redraw_inventory_menu(
             mouse, player, shuriken_inventory, player.shuriken_equipped, shuriken_scroll_bar)
@@ -156,9 +157,10 @@ def scroll_bar_movement(scroll_bar, mouse, up_button, down_button, inventory):
         if mouse[1] > scroll_bar.y + scroll_bar.height * 3 / 4 and scroll_bar.y + scroll_bar.height < down_button.y:
             scroll_bar.y += 300 * 1 / len(inventory)
             move_items_up(inventory)
-        elif mouse[1] < scroll_bar.y + scroll_bar.height / 4 and scroll_bar.y > shurikens_up_button.y + up_button.height :
+        elif mouse[1] < scroll_bar.y + scroll_bar.height / 4 and scroll_bar.y > shurikens_up_button.y + up_button.height:
             scroll_bar.y -= 300 * 1 / len(inventory)
             move_items_down(inventory)
+
 
 def update_inventory_item_locations(inventory, x):
     for item in inventory:
