@@ -30,3 +30,4 @@ Todo:
   ✔ Enemy can't reach 0 hp, he's a maniac @done(20-11-28 15:24)
   ☐ Player stats blit on top of each other
   ✔ Images too small at shop menu. @done(20-11-28 15:37)
+  ☐ Enemy and player hp bar - same bug like xp bar (border radius)

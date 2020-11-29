@@ -3,7 +3,7 @@ import pygame
 from menu.button import Button, ArrowButton
 from menu.inventory_classes import InventoryItem, ScrollBar
 from static_functions import draw_rect_with_alpha
-from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_SMALL, PIXEL_FONT_BIG, PIXEL_FONT_MID, PIXEL_FONT_BIG_BUTTON, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, ARROW_BUTTON_WIDTH, SOUNDS
+from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, PIXEL_FONT_MID, PIXEL_FONT_BIG_BUTTON, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, ARROW_BUTTON_WIDTH, SOUNDS
 
 
 pygame.init()
@@ -50,7 +50,8 @@ def inventory_menu(player):
     update_inventory_item_locations(shuriken_inventory, SCREEN_WIDTH // 4)
 
     if len(shuriken_inventory) > 4:
-            shuriken_scroll_bar = ScrollBar(120, 270, 30, 300 * 4 / len(shuriken_inventory), COLORS['white'])
+        shuriken_scroll_bar = ScrollBar(
+            120, 270, 30, 300 * 4 / len(shuriken_inventory), COLORS['white'])
     else:
         shuriken_scroll_bar = ScrollBar(120, 270, 30, 300, COLORS['white'])
 
