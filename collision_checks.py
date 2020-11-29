@@ -1,6 +1,6 @@
 from operator import itemgetter
 from random import choice
-from consts import COIN_VALUE, SOUNDS
+from consts import COIN_VALUE, SOUNDS, HEALTH_PACK_HEAL
 
 
 def check_player_enemy_collision(player, enemies):
@@ -27,11 +27,21 @@ def check_player_coin_collision(player, coins):
             coin.taken = True
             coin.set_pickup_delta()
 
+def check_player_health_pack_collision(player, health_packs):
+    for health_pack in health_packs:
+        if is_shade_collision(player.shade, health_pack.shade):
+            health_pack.taken = True
+            choice(SOUNDS[f'gold_pickup']).play()
+            if player.health + HEALTH_PACK_HEAL >= player.max_health:
+                player.health = player.max_health
+            else:
+                player.health += HEALTH_PACK_HEAL
 
-def check_collision(player, enemies, shurikens, coins):
+def check_collision(player, enemies, shurikens, coins, health_packs):
     check_player_enemy_collision(player, enemies)
     check_shuriken_enemy_collision(shurikens, enemies, coins)
     check_player_coin_collision(player, coins)
+    check_player_health_pack_collision(player, health_packs)
 
 
 def is_shade_collision(shade1, shade2):
