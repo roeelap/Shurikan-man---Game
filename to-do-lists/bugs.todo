@@ -28,6 +28,6 @@ Todo:
   ✔ Can be hit by many enemies at the same time @done(20-11-28 02:27)
   ✔ Can hit many enemies at the same time if they're closer together (without group damage) @done(20-11-28 02:29)
   ✔ Enemy can't reach 0 hp, he's a maniac @done(20-11-28 15:24)
-  ☐ Player stats blit on top of each other
+  ✔ Player stats blit on top of each other @done(20-11-29 13:07)
   ✔ Images too small at shop menu. @done(20-11-28 15:37)
   ☐ Enemy and player hp bar - same bug like xp bar (border radius)

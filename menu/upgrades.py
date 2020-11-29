@@ -14,11 +14,11 @@ upgrades_title_text = PIXEL_FONT_BIG.render("Upgrades", True,  COLORS['white'])
 upgrades_title_textRect = upgrades_title_text.get_rect()
 upgrades_title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 7
 
-confirm_button = Button(SCREEN_WIDTH * 5 // 7,
+confirm_button = Button(SCREEN_WIDTH * 3 // 4,
                         SCREEN_HEIGHT * 7 // 10, 'big', 'Confirm')
 
 back_button = Button(
-    SCREEN_WIDTH * 5 // 7, SCREEN_HEIGHT * 8 // 10, 'big', 'Back')
+    SCREEN_WIDTH * 3 // 4, SCREEN_HEIGHT * 8 // 10, 'big', 'Back')
 
 
 def redraw_upgrades_shop(mouse, player, player_stats):
@@ -43,18 +43,17 @@ def redraw_upgrades_shop(mouse, player, player_stats):
 
 
 def upgrades_shop(player):
-    player_stats = [PlayerStat('max_health', SCREEN_WIDTH * 1 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                    PlayerStat('speed', SCREEN_WIDTH * 2 // 12,
+    distance = 120
+    player_stats = [PlayerStat('max_health', 30, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                    PlayerStat('speed', 30 + distance,
                                SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                    PlayerStat('strength', SCREEN_WIDTH * 3 // 12,
+                    PlayerStat('strength', 30 + distance * 2,
                                SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                    PlayerStat('throw_speed', SCREEN_WIDTH * 4 // 12,
+                    PlayerStat('throw_speed', 30 + distance * 3,
                                SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                    PlayerStat('max_shurikens', SCREEN_WIDTH * 5 //
-                               12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                    PlayerStat('reload_speed', SCREEN_WIDTH * 6 //
-                               12, SCREEN_HEIGHT * 8 // 10, player.upgrades),
-                    PlayerStat('shuriken_durability', SCREEN_WIDTH * 7 // 12, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
+                    PlayerStat('max_shurikens', 30 + distance * 4, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                    PlayerStat('reload_speed', 30 + distance * 5, SCREEN_HEIGHT * 8 // 10, player.upgrades),
+                    PlayerStat('shuriken_durability',  30 + distance * 6, SCREEN_HEIGHT * 8 // 10, player.upgrades)]
 
     confirm_button.disabled = True
 

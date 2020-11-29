@@ -16,15 +16,13 @@ shop_textRect = shop_title_text.get_rect()
 shop_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 7
 
 shurikens_button = Button((SCREEN_WIDTH // 2) -
-                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 2 // 7, 'big', 'Shurikens')
-weapons_button = Button((SCREEN_WIDTH // 2) -
-                        (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 7, 'big', 'Special Weapons')
+                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 2 // 6, 'big', 'Shurikens')
 backgrounds_button = Button((SCREEN_WIDTH // 2) -
-                            (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 4 // 7, 'big', 'Backgrounds')
+                            (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 6, 'big', 'Backgrounds')
 inventory_button = Button((SCREEN_WIDTH // 2) -
-                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 7, 'big', 'Inventory')
+                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 4 // 6, 'big', 'Inventory')
 quit_shop_button = Button((SCREEN_WIDTH // 2) -
-                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 6 // 7, 'big', 'Back')
+                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 6, 'big', 'Back')
 
 
 def redraw_shop_menu(mouse):
@@ -33,7 +31,6 @@ def redraw_shop_menu(mouse):
     window.blit(shop_title_text, shop_textRect)
 
     shurikens_button.show(window, mouse)
-    weapons_button.show(window, mouse)
     backgrounds_button.show(window, mouse)
     inventory_button.show(window, mouse)
     quit_shop_button.show(window, mouse)
