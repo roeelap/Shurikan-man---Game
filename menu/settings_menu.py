@@ -53,31 +53,34 @@ def settings_menu(game_objects):
                          (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 5 // 6, 'big', 'Back')
     while True:
         mouse = pygame.mouse.get_pos()
-        click = pygame.mouse.get_pressed()
-
+        
         clock.tick(FPS)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 popup(window.copy(), game_objects)
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
 
-            # modify this when we add real music into the game
-            if music_checkbox.is_pressed(mouse, click):
-                if music_checkbox.is_on:
-                    settings['music'] = True
-                else:
-                    settings['music'] = False
+                click = pygame.mouse.get_pressed()
 
-            elif sound_checkbox.is_pressed(mouse, click):
-                if sound_checkbox.is_on:
-                    set_all_volumes(SOUNDS.values(), 1.0)
-                    settings['sound'] = True
-                else:
-                    set_all_volumes(SOUNDS.values(), 0.0)
-                    settings['sound'] = False
+                # modify this when we add real music into the game
+                if music_checkbox.is_pressed(mouse, click):
+                    if music_checkbox.is_on:
+                        settings['music'] = True
+                    else:
+                        settings['music'] = False
 
-            elif back_button.is_pressed(mouse, click):
-                return
+                elif sound_checkbox.is_pressed(mouse, click):
+                    if sound_checkbox.is_on:
+                        set_all_volumes(SOUNDS.values(), 1.0)
+                        settings['sound'] = True
+                    else:
+                        set_all_volumes(SOUNDS.values(), 0.0)
+                        settings['sound'] = False
+
+                elif back_button.is_pressed(mouse, click):
+                    return
 
         redraw_settings_menu(mouse, music_checkbox,
                              sound_checkbox, back_button)
