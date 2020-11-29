@@ -22,7 +22,10 @@ class InventoryItem:
             self.equip_button.disabled = False
             self.equip_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
                 'Equip', True,  COLORS['black'])
-            self.equip_button.show(window, mouse)
+        else:
+            self.equip_button.disabled = True
+            
+        self.equip_button.show(window, mouse)
 
         draw_rotated(window, self.image, (self.x + self.width,
                                           self.y + self.width * 2), self.rotation_angle)
@@ -36,3 +39,13 @@ class InventoryItem:
         self.x = x
         self.y = y
         self.equip_button.update_location(x - BUTTON_WIDTH_SMALL - 10, y)
+    
+    def show_without_button(self, x, y, window):
+        draw_rotated(window, self.image, (x + self.width,
+                                          y + self.width * 2), self.rotation_angle)
+        self.rotation_angle += 5
+
+        name = PIXEL_FONT_SMALL.render(str(self.name).replace(
+            '_', ' ').capitalize(), True,  COLORS['white'])
+        window.blit(name, (x, y))
+

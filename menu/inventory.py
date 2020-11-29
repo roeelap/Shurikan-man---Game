@@ -3,7 +3,7 @@ import pygame
 from menu.button import Button, ArrowButton
 from menu.inventory_item import InventoryItem
 from static_functions import draw_rect_with_alpha
-from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, PIXEL_FONT_MID, PIXEL_FONT_BIG_BUTTON, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, ARROW_BUTTON_WIDTH, SOUNDS
+from consts import SCREEN_WIDTH, SCREEN_HEIGHT,PIXEL_FONT_SMALL, PIXEL_FONT_BIG, PIXEL_FONT_MID, PIXEL_FONT_BIG_BUTTON, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, ARROW_BUTTON_WIDTH, SOUNDS
 
 
 pygame.init()
@@ -29,29 +29,27 @@ def redraw_inventory_menu(mouse, player, shuriken_inventory, shuriken_equipped):
 
     window.blit(inventory_title_text, inventory_title_textRect)
 
-    draw_inventory_bg(window, mouse, 'Shurikens', SCREEN_WIDTH // 4 - 30, SCREEN_HEIGHT // 6)
+    draw_inventory_bg('Shurikens', SCREEN_WIDTH // 4 - 30, SCREEN_HEIGHT // 6)
     shurikens_up_button.show(window, mouse)
     shurikens_down_button.show(window, mouse)
-    pygame.draw.rect(window, COLORS['white'], (120, 272, ARROW_BUTTON_WIDTH + 1, 270 * 4 / len(shuriken_inventory)))
-
-    draw_inventory_bg(window, mouse, 'Backgrounds', SCREEN_WIDTH * 3 // 4 + 30, SCREEN_HEIGHT // 6)
-
     show_shuriken_inventory(
-        shuriken_inventory, shuriken_equipped, window, mouse, player)
+        shuriken_inventory, mouse, player)
+    for shuriken in shuriken_inventory:
+        if shuriken.name == shuriken_equipped:
+            shuriken.show_without_button(SCREEN_WIDTH // 4, SCREEN_HEIGHT * 2 // 9, window)
+    
+    draw_inventory_bg('Backgrounds', SCREEN_WIDTH * 3 // 4 + 30, SCREEN_HEIGHT // 6)
 
     quit_inventory_button.show(window, mouse)
 
     pygame.display.update()
 
 
-def inventory(player):
+def inventory_menu(player):
 
     shuriken_inventory = [InventoryItem(0, 0, shuriken, SHURIKEN_IMAGES[shuriken])
-                          for shuriken in player.shurikens_owned if shuriken != player.shuriken_equipped]
+                          for shuriken in player.shurikens_owned]
     update_inventory_item_locations(shuriken_inventory, SCREEN_WIDTH // 4)
-
-    shuriken_equipped = InventoryItem(SCREEN_WIDTH // 4, SCREEN_HEIGHT * 2 //
-                                      9, player.shuriken_equipped, SHURIKEN_IMAGES[player.shuriken_equipped])
 
     while True:
         mouse = pygame.mouse.get_pos()
@@ -67,8 +65,7 @@ def inventory(player):
 
                 for shuriken in shuriken_inventory:
                     if shuriken.equip_button.is_pressed(mouse, click):
-                        shuriken_equipped = equip_shuriken(
-                            shuriken, shuriken_inventory, shuriken_equipped, player)
+                        equip_shuriken(shuriken, player)
 
                 if shurikens_up_button.is_pressed(mouse, click):
                     move_items_down(shuriken_inventory)
@@ -79,31 +76,18 @@ def inventory(player):
                 elif quit_inventory_button.is_pressed(mouse, click):
                     return
 
-        redraw_inventory_menu(mouse, player, shuriken_inventory, shuriken_equipped)
+        redraw_inventory_menu(
+            mouse, player, shuriken_inventory, player.shuriken_equipped)
 
 
-def equip_shuriken(shuriken, shuriken_inventory, previous_shuriken, player):
-    # returning the previous shuriken to the inventory
-    shuriken_inventory.append(previous_shuriken)
-    update_inventory_item_locations(shuriken_inventory, SCREEN_WIDTH // 4)
-
+def equip_shuriken(shuriken, player):
     # changing the equipped shuriken
-    shuriken_equipped = shuriken_inventory.pop(
-        shuriken_inventory.index(shuriken))
-    update_inventory_item_locations(shuriken_inventory, SCREEN_WIDTH // 4)
-    shuriken_equipped.update_location(
-        SCREEN_WIDTH // 4, SCREEN_HEIGHT * 2 // 9)
     player.shuriken_equipped = shuriken.name
-
     shuriken.equip_button.disabled = True
     SOUNDS['item_equip'].play()
 
-    return shuriken_equipped
 
-
-def show_shuriken_inventory(shuriken_inventory, shuriken_equipped, window, mouse, player):
-    shuriken_equipped.show(window, mouse, player)
-
+def show_shuriken_inventory(shuriken_inventory, mouse, player):
     if len(shuriken_inventory) <= 3:
         shurikens_up_button.disabled = True
         shurikens_down_button.disabled = True
@@ -120,12 +104,13 @@ def show_shuriken_inventory(shuriken_inventory, shuriken_equipped, window, mouse
                 shuriken.is_shown = True
             else:
                 shuriken.is_shown = False
-    
-    if shuriken_inventory[0].is_shown:  
-        shurikens_up_button.disabled = True
 
-    elif shuriken_inventory[-1].is_shown:  
-        shurikens_down_button.disabled = True
+        if shuriken_inventory[0].is_shown:
+            shurikens_up_button.disabled = True
+
+        elif shuriken_inventory[-1].is_shown:
+            shurikens_down_button.disabled = True
+
 
 def move_items_up(inventory):
     for item in inventory:
@@ -147,7 +132,7 @@ def update_inventory_item_locations(inventory, x):
                              (inventory.index(item) + 3) // 8)
 
 
-def draw_inventory_bg(window, mouse, subtitle, subtitle_center_x, subtitle_center_y):
+def draw_inventory_bg(subtitle, subtitle_center_x, subtitle_center_y):
     subtitle_text = PIXEL_FONT_MID.render(subtitle, True,  COLORS['white'])
     subtitle_textRect = subtitle_text.get_rect()
     subtitle_textRect.center = subtitle_center_x, subtitle_center_y
