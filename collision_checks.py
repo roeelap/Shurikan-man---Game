@@ -5,7 +5,7 @@ from consts import COIN_VALUE, SOUNDS
 
 def check_player_enemy_collision(player, enemies):
     """Check player-enemy collision, the hurt counter is giving the player time to run away."""
-    if player.hurt_counter == 0:
+    if player.hurt_timer == 0:
         for enemy in enemies:
             if is_shade_collision(enemy.shade, player.shade):
                 player.hit(enemy.damage)

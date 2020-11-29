@@ -103,7 +103,7 @@ def main():
     # Game loop
     while True:
         window, background, player, enemies, shurikens, coins, settings = itemgetter(
-        'window', 'background', 'player', 'enemies', 'shurikens', 'coins', 'settings')(game_objects)
+            'window', 'background', 'player', 'enemies', 'shurikens', 'coins', 'settings')(game_objects)
         clock.tick(FPS)
 
         # Save game every second (60 fps)
@@ -126,7 +126,7 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     SOUNDS['pause'].play()
                     win_at_the_moment = window.copy()
-                    state = start_menu(win_at_the_moment, game_objects,True)
+                    state = start_menu(win_at_the_moment, game_objects, True)
                     if state == 'new_game':
                         game_objects = new_game()
 
@@ -148,6 +148,7 @@ def main():
             if player.left:
                 facing = -1
                 shuriken_start_x = player.hitbox[0] + 5
+            player.shoot()
             shurikens.append(Shuriken(shuriken_start_x, round(player.y + player.height / 2),
                                       SHURIKEN_RADIUS, player.throw_speed * facing, player.strength, player.shuriken_durability, player.hitbox[1] + player.hitbox[3], SHURIKEN_IMAGES[player.shuriken_equipped], player.shuriken_equipped))
             choice(SOUNDS['shuriken_throw']).play()

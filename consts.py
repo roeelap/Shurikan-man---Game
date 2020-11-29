@@ -12,7 +12,7 @@ SCREEN_MIDDLE = int(SCREEN_WIDTH / 2) - 80
 FPS = 60
 BACKGROUND_DUNGEON = pygame.image.load('./data/images/backgrounds/dungeon.png')
 SAVE_TIMEOUT = 5 * FPS
-ALLOWED_SAVE_TYPES = (int,float,str,bool,list,dict,tuple)
+ALLOWED_SAVE_TYPES = (int, float, str, bool, list, dict, tuple)
 
 # player
 PLAYER_STARTING_MAX_HEALTH = 100
@@ -99,6 +99,8 @@ PLAYER_WALK_LEFT_IMAGES = [pygame.image.load('./data/images/player/L1.png'), pyg
     pygame.image.load('./data/images/player/L7.png'), pygame.image.load('./data/images/player/L8.png'), pygame.image.load('./data/images/player/L9.png')]
 
 PLAYER_STANDING_IMAGE = pygame.image.load('./data/images/player/standing.png')
+PLAYER_SHOOT_IMAGES = [pygame.image.load('./data/images/player/S2.png'), pygame.image.load(
+    './data/images/player/S1.png')]
 ENEMY_SPAWN_IMAGE = pygame.image.load('./data/images/goblin/spawn.png')
 
 PLAYER_PORTRAIT = pygame.image.load(
@@ -121,7 +123,7 @@ SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/combat/player-hit.wav'
           'tomato_hits': SPLAT_SOUNDS, 'orange_hits': SPLAT_SOUNDS,
           'item_equip': pygame.mixer.Sound('./data/sounds/general/item-equip.wav'), 'purchase': pygame.mixer.Sound('./data/sounds/general/purchase.wav'),
           'sword_draw': pygame.mixer.Sound('./data/sounds/general/sword-draw.wav'), 'level_up': pygame.mixer.Sound('./data/sounds/combat/level-up.wav'),
-          'level_up_human': pygame.mixer.Sound('./data/sounds/combat/level-up-human.wav'),'ninja':pygame.mixer.Sound('./data/sounds/general/ninja.wav')}
+          'level_up_human': pygame.mixer.Sound('./data/sounds/combat/level-up-human.wav'), 'ninja': pygame.mixer.Sound('./data/sounds/general/ninja.wav')}
 
 # button consts
 BUTTON_WIDTH_BIG = 227
@@ -133,9 +135,11 @@ CHECKBOX_HEIGHT = 48
 ARROW_BUTTON_WIDTH = 30
 ARROW_BUTTON_HEIGHT = 30
 
-BUTTON_WIDTHS = {'big': 227, 'small': 108, 'checkbox': 52, 'up_arrow': 30, 'down_arrow': 30}
+BUTTON_WIDTHS = {'big': 227, 'small': 108,
+                 'checkbox': 52, 'up_arrow': 30, 'down_arrow': 30}
 
-BUTTON_HEIGHTS = {'big': 52, 'small': 48, 'checkbox': 48, 'up_arrow': 30, 'down_arrow': 30}
+BUTTON_HEIGHTS = {'big': 52, 'small': 48,
+                  'checkbox': 48, 'up_arrow': 30, 'down_arrow': 30}
 
 BUTTON_IMAGES = {
     'big': {'inactive': pygame.image.load('./data/images/buttons/button-inactive.png'),
@@ -155,13 +159,13 @@ BUTTON_IMAGES = {
 }
 
 MENU_SHURIKENS_LARGE = {'shuriken': pygame.image.load('./data/images/menu-shurikens/large/shuriken.png'), 'orange': pygame.image.load('./data/images/menu-shurikens/large/orange.png'),
-                  'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/large/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/large/granny.png'),
-                  'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/large/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/large/tomato.png')}
+                        'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/large/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/large/granny.png'),
+                        'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/large/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/large/tomato.png')}
 MENU_SHURIKEN_SMALL = pygame.image.load(
     './data/images/menu-shurikens/shuriken-small.png')
 MENU_SHURIKENS_MEDIUM = {'shuriken': pygame.image.load('./data/images/menu-shurikens/medium/shuriken.png'), 'orange': pygame.image.load('./data/images/menu-shurikens/medium/orange.png'),
-                  'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/medium/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/medium/granny.png'),
-                  'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/medium/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/medium/tomato.png')}
+                         'golden_shuriken': pygame.image.load('./data/images/menu-shurikens/medium/golden-shuriken.png'), 'granny': pygame.image.load('./data/images/menu-shurikens/medium/granny.png'),
+                         'rainbow_shuriken': pygame.image.load('./data/images/menu-shurikens/medium/rainbow-shuriken.png'), 'tomato': pygame.image.load('./data/images/menu-shurikens/medium/tomato.png')}
 
 
 # coin images

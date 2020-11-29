@@ -23,15 +23,14 @@ Todo:
   ✔ Update current level on stat when staging @done(20-11-26 20:41)
   ✔ update player stats function (function of upgrades) @done(20-11-28 02:42)
   ☐ When player dies - Show dead on screen, popup main menu.
-  ☐ Make inventory tab, fix shop tab.
+  ✔ Make inventory tab, fix shop tab. @done(20-11-29 01:36)
   ✔ Finish player stats function - reload speed, max shurikens, shuriken durability @done(20-11-28 18:04)
   ☐ Popup - save on exit (cancel save every 5 seconds)
   ☐ Option to set volume
-  ☐ Save options status
-  ☐ Load options from saves
+  ✔ Save settings status @done(20-11-29 01:36)
+  ✔ Load settings from saves @done(20-11-29 01:36)
   ✘ Back to game on escape from any menu @cancelled(20-11-28 18:31)
-  ☐ Think about spawning pit (animation?)
+  ✔ Think about spawning pit (animation?) @done(20-11-29 01:36)
   ✔ Add ninja sound and animation to confirm @done(20-11-28 18:25)
-  ☐ Add objects to list and loop through instead of hard coding.
   ☐ Health packs spawn.
   

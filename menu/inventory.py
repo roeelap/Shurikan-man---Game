@@ -29,12 +29,14 @@ def redraw_inventory_menu(mouse, player, shuriken_inventory, shuriken_equipped):
 
     window.blit(inventory_title_text, inventory_title_textRect)
 
-    draw_inventory_bg(window, mouse, 'Shurikens', SCREEN_WIDTH // 4 - 30, SCREEN_HEIGHT // 6)
+    draw_inventory_bg(window, mouse, 'Shurikens',
+                      SCREEN_WIDTH // 4 - 30, SCREEN_HEIGHT // 6)
     shurikens_up_button.show(window, mouse)
     shurikens_down_button.show(window, mouse)
-    pygame.draw.rect(window, COLORS['white'], (120, 272, ARROW_BUTTON_WIDTH + 1, 270 * 4 / len(shuriken_inventory)))
+    # pygame.draw.rect(window, COLORS['white'], (120, 272, ARROW_BUTTON_WIDTH + 1, 270 * 4 / len(shuriken_inventory)))
 
-    draw_inventory_bg(window, mouse, 'Backgrounds', SCREEN_WIDTH * 3 // 4 + 30, SCREEN_HEIGHT // 6)
+    draw_inventory_bg(window, mouse, 'Backgrounds',
+                      SCREEN_WIDTH * 3 // 4 + 30, SCREEN_HEIGHT // 6)
 
     show_shuriken_inventory(
         shuriken_inventory, shuriken_equipped, window, mouse, player)
@@ -79,7 +81,8 @@ def inventory(player):
                 elif quit_inventory_button.is_pressed(mouse, click):
                     return
 
-        redraw_inventory_menu(mouse, player, shuriken_inventory, shuriken_equipped)
+        redraw_inventory_menu(
+            mouse, player, shuriken_inventory, shuriken_equipped)
 
 
 def equip_shuriken(shuriken, shuriken_inventory, previous_shuriken, player):
@@ -120,12 +123,13 @@ def show_shuriken_inventory(shuriken_inventory, shuriken_equipped, window, mouse
                 shuriken.is_shown = True
             else:
                 shuriken.is_shown = False
-    
-    if shuriken_inventory[0].is_shown:  
-        shurikens_up_button.disabled = True
 
-    elif shuriken_inventory[-1].is_shown:  
-        shurikens_down_button.disabled = True
+        if shuriken_inventory[0].is_shown:
+            shurikens_up_button.disabled = True
+
+        elif shuriken_inventory[-1].is_shown:
+            shurikens_down_button.disabled = True
+
 
 def move_items_up(inventory):
     for item in inventory:

@@ -1,6 +1,6 @@
 from operator import itemgetter
 import pygame
-from consts import PLAYER_STANDING_IMAGE, PLAYER_STARTING_MAX_HEALTH, PLAYER_STARTING_MAX_SHURIKENS, PLAYER_STARTING_RELOAD_SPEED, PLAYER_STARTING_SHURIKEN_DURABILITY, PLAYER_STARTING_SPEED, PLAYER_STARTING_STRENGTH, PLAYER_STARTING_THROW_SPEED, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH
+from consts import PLAYER_SHOOT_IMAGES, PLAYER_STANDING_IMAGE, PLAYER_STARTING_MAX_HEALTH, PLAYER_STARTING_MAX_SHURIKENS, PLAYER_STARTING_RELOAD_SPEED, PLAYER_STARTING_SHURIKEN_DURABILITY, PLAYER_STARTING_SPEED, PLAYER_STARTING_STRENGTH, PLAYER_STARTING_THROW_SPEED, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH
 from static_functions import draw_circle_alpha
 
 
@@ -31,7 +31,8 @@ class Player:
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
 
         self.health = self.max_health
-        self.hurt_counter = 0
+        self.hurt_timer = 0
+        self.shot_timer = -6
 
         self.xp = 0
         self.level = 1
@@ -60,7 +61,13 @@ class Player:
         if self.right:
             self.image = PLAYER_WALK_RIGHT_IMAGES[self.walk_count // 6]
 
-        if self.hurt_counter > 0:
+        if self.shot_timer > -3:
+            self.shot_timer -= 1
+            self.image = PLAYER_SHOOT_IMAGES[self.shot_timer//4]
+            if self.left:
+                self.image = pygame.transform.flip(self.image,True,False)
+
+        if self.hurt_timer > 0:
             self.hurt_animation(window)
         else:
             window.blit(self.image, (self.x, self.y))
@@ -70,6 +77,9 @@ class Player:
         self.walk_count += 1
         self.hitbox = (self.x + 23, self.y + 16, 29, 58)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+
+    def shoot(self):
+        self.shot_timer = 5
 
     def update_stats(self):
         self.max_health = PLAYER_STARTING_MAX_HEALTH + \
@@ -113,21 +123,21 @@ class Player:
         self.standing = False
 
     def hit(self, damage):
-        if self.hurt_counter == 0:
+        if self.hurt_timer == 0:
             if self.health > 0:
                 self.health -= damage
             SOUNDS['player_hit'].play()
-            self.hurt_counter = PLAYER_INVINCIBLE_TIME
+            self.hurt_timer = PLAYER_INVINCIBLE_TIME
 
     def hurt_animation(self, window):
-        if 0 <= self.hurt_counter % 6 <= 1:
+        if 0 <= self.hurt_timer % 6 <= 1:
             window.blit(self.image, (self.x, self.y))
         else:
             hurt_image = self.image.copy()
             hurt_image.fill(
                 (255, 255, 255, 128), special_flags=pygame.BLEND_RGBA_MULT)
             window.blit(hurt_image, (self.x, self.y))
-        self.hurt_counter -= 1
+        self.hurt_timer -= 1
 
     def display_player_stats(self, window):
         self.display_health_bar(window)
