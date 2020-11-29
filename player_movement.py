@@ -2,7 +2,7 @@ import pygame
 from consts import BOTTOM_BORDER, SCREEN_WIDTH, SCREEN_MIDDLE, TOP_BORDER
 
 
-def player_movement(player, enemies, coins, shurikens, background):
+def player_movement(player, enemies, coins, health_packs, shurikens, background):
     """The main character movement system"""
 
     keys = pygame.key.get_pressed()
@@ -19,6 +19,8 @@ def player_movement(player, enemies, coins, shurikens, background):
                 enemy.move(player.speed, -1)
             for coin in coins:
                 coin.move(player.speed, -1)
+            for health_pack in health_packs:
+                health_pack.move(player.speed, -1)
             for shuriken in shurikens:
                 shuriken.x += player.speed
 
@@ -34,6 +36,8 @@ def player_movement(player, enemies, coins, shurikens, background):
                 enemy.move(player.speed, 1)
             for coin in coins:
                 coin.move(player.speed, 1)
+            for health_pack in health_packs:
+                health_pack.move(player.speed, 1)
             for shuriken in shurikens:
                 shuriken.x -= player.speed
 

@@ -184,3 +184,10 @@ GOLD_COINS_IMAGES = [pygame.image.load('./data/images/coins/gold/gold1.png'), py
 
 SMALL_COINS_IMAGES = {'bronze': pygame.image.load('./data/images/coins/small/bronze.png'), 'silver': pygame.image.load(
     './data/images/coins/small/silver.png'), 'gold': pygame.image.load('./data/images/coins/small/gold.png')}
+
+
+# health pack info
+HEALTH_PACK_IMAGE = pygame.image.load('./data/images/other/health-pack.png')
+HEALTH_PACK_WIDTH = 42
+HEALTH_PACK_HEIGHT = 42
+HEALTH_PACK_HEAL = 30
