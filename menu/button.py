@@ -1,5 +1,5 @@
 from consts import MENU_SHURIKEN_SMALL, SOUNDS, BUTTON_PIXEL_FONTS, COLORS, BUTTON_IMAGES, BUTTON_HEIGHTS, BUTTON_WIDTHS
-from static_functions import draw_rotated
+from static_functions import draw_rotated, draw_rect_with_alpha
 
 
 class Button:
@@ -167,3 +167,16 @@ class Checkbox(Button):
                 self.click_counter = 7
                 SOUNDS['button_click'].play()
                 return True
+
+
+class ScrollBar:
+    def __init__(self, x, y, width, height, color):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.color = color
+
+    def show(self, window):
+        draw_rect_with_alpha(self.x, self.y, self.width, self.height, self.color, 128, window, 15)
+    

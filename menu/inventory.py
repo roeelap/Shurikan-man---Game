@@ -1,7 +1,7 @@
 from sys import exit
 import pygame
-from menu.button import Button, ArrowButton
-from menu.inventory_classes import InventoryItem, ScrollBar
+from menu.button import Button, ArrowButton, ScrollBar
+from menu.inventory_item import InventoryItem
 from static_functions import draw_rect_with_alpha
 from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, PIXEL_FONT_MID, PIXEL_FONT_BIG_BUTTON, COLORS, FPS, BACKGROUND_DUNGEON, SHURIKEN_IMAGES, BUTTON_WIDTH_BIG, BUTTON_WIDTH_SMALL, ARROW_BUTTON_WIDTH, SOUNDS
 
