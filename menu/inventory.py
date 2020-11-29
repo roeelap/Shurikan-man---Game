@@ -58,6 +58,8 @@ def inventory_menu(player):
 
     while True:
         mouse = pygame.mouse.get_pos()
+        mouse_in_shuriken_inventory = shuriken_inventory_rect[0] < mouse[0] < shuriken_inventory_rect[0] + shuriken_inventory_rect[2]\
+            and shuriken_inventory_rect[1] < mouse[1] < shuriken_inventory_rect[1] + shuriken_inventory_rect[3]
 
         clock.tick(FPS)
 
@@ -83,14 +85,12 @@ def inventory_menu(player):
                 elif shuriken_scroll_bar.is_pressed(mouse, click):
                     shuriken_scroll_bar.is_dragged = True
 
-                if event.button == 4 and shuriken_inventory_rect[0] < mouse[0] < shuriken_inventory_rect[0] + shuriken_inventory_rect[2]\
-                        and shuriken_inventory_rect[1] < mouse[1] < shuriken_inventory_rect[1] + shuriken_inventory_rect[3]:
+                if event.button == 4 and mouse_in_shuriken_inventory:
                     shuriken_scroll_bar.is_dragged = True
                     scroll_wheel_movement(
                         shuriken_scroll_bar, shurikens_up_button, shurikens_down_button, shuriken_inventory, 'up')
 
-                elif event.button == 5 and shuriken_inventory_rect[0] < mouse[0] < shuriken_inventory_rect[0] + shuriken_inventory_rect[2]\
-                        and shuriken_inventory_rect[1] < mouse[1] < shuriken_inventory_rect[1] + shuriken_inventory_rect[3]:
+                elif event.button == 5 and mouse_in_shuriken_inventory:
                     shuriken_scroll_bar.is_dragged = True
                     scroll_wheel_movement(
                         shuriken_scroll_bar, shurikens_up_button, shurikens_down_button, shuriken_inventory, 'down')
