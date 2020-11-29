@@ -181,9 +181,15 @@ class ScrollBar:
         self.clicked = False
 
     def show(self, window, mouse):
-        if self.is_mouse_over(mouse) or self.clicked:
+        
+        if self.is_mouse_over(mouse) and self.clicked:
             draw_rect_with_alpha(self.x, self.y, self.width,
                                  self.height, self.color, 255, window, 15)
+
+        elif self.is_mouse_over(mouse):
+            draw_rect_with_alpha(self.x, self.y, self.width,
+                                 self.height, self.color, 180, window, 15)
+
         else:
             draw_rect_with_alpha(self.x, self.y, self.width,
                                  self.height, self.color, 128, window, 15)
