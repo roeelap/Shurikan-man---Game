@@ -12,7 +12,7 @@ from background import Background
 from player_movement import player_movement
 from collision_checks import check_collision
 from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, GOBLIN_WIDTH, FPS, \
-    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SOUNDS, TOP_BORDER, HEALTH_PACK_WIDTH, HEALTH_PACK_HEIGHT
+    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SOUNDS, TOP_BORDER, HEALTH_PACK_WIDTH, HEALTH_PACK_HEIGHT, SHURIKEN_ENERGY_REQUIRED
 
 
 def new_game():
@@ -165,7 +165,7 @@ def main():
             shuriken_shoot_timer = 0
 
         # Throwing shurikens with space-bar. Only 3 shurikens allowed
-        if keys[pygame.K_SPACE] and shuriken_shoot_timer == 0 and len(shurikens) < player.max_shurikens:
+        if keys[pygame.K_SPACE] and shuriken_shoot_timer == 0 and len(shurikens) < player.max_shurikens and player.energy > SHURIKEN_ENERGY_REQUIRED:
             shuriken_shoot_timer = 1
             facing = 1
             shuriken_start_x = player.hitbox[0] + player.hitbox[2] - 5
@@ -176,6 +176,7 @@ def main():
             shurikens.append(Shuriken(shuriken_start_x, round(player.y + player.height / 2),
                                       SHURIKEN_RADIUS, player.throw_speed * facing, player.strength, player.shuriken_durability, player.hitbox[1] + player.hitbox[3], SHURIKEN_IMAGES[player.shuriken_equipped], player.shuriken_equipped))
             choice(SOUNDS['shuriken_throw']).play()
+            player.energy -= SHURIKEN_ENERGY_REQUIRED
 
         # Leave for testing
         if keys[pygame.K_d]:

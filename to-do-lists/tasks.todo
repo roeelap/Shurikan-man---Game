@@ -29,15 +29,15 @@ Todo:
   ✘ Back to game on escape from any menu @cancelled(20-11-28 18:31)
   ✔ Think about spawning pit (animation?) @done(20-11-29 01:36)
   ✔ Add ninja sound and animation to confirm @done(20-11-28 18:25)
-  ☐ When player dies - Show dead on screen, popup main menu.
   ✔ Health packs spawn. @done(20-11-29 18:12)
-  ☐ Option to set volume
   ✔ Popup - save on exit (cancel save every 5 seconds) @done(20-11-29 18:53)
-  ☐ Player hold shuriken in hand (blit shuriken image, behind the player -> half reveal)
   ✔ Scroll bar (mouse input) @done(20-11-29 15:18)
-  ☐ Make vertical energy bar
   ✔ When losing hp, don't blit red @done(20-11-29 15:20)
+  ✔ Make vertical energy bar @done(20-11-29 21:54)
+  ☐ Option to set volume
+  ☐ Player hold shuriken in hand (blit shuriken image, behind the player -> half reveal)
+  ☐ When player dies - Show dead on screen, popup main menu.
   ☐ Special attacks (shuriken rain, large shuriken with high durability, shuriken bomb, etc...)
-  ☐ Rounds.
   ☐ New enemy (long range)
+  ☐ Rounds.
   ☐ Block functionality - with timeout

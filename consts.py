@@ -23,6 +23,7 @@ PLAYER_STARTING_STRENGTH = 1
 PLAYER_STARTING_RELOAD_SPEED = 15
 PLAYER_STARTING_MAX_SHURIKENS = 3
 PLAYER_STARTING_SHURIKEN_DURABILITY = 1
+PLAYER_MAX_ENERGY = 200
 
 PLAYER_INVINCIBLE_TIME = 1*FPS
 
@@ -52,6 +53,7 @@ SHURIKEN_RADIUS = 9
 SHURIKEN_STARTING_SLOPE = 9.5
 SHURIKEN_MIN_SHADE_WIDTH = 20
 SHURIKEN_MAX_SHADE_WIDTH = 40
+SHURIKEN_ENERGY_REQUIRED = 25
 
 # shuriken images
 SHURIKEN_IMAGES = {'shuriken': pygame.image.load('./data/images/shurikens/shuriken.png'), 'golden_shuriken': pygame.image.load('./data/images/shurikens/golden-shuriken.png'),

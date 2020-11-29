@@ -1,6 +1,8 @@
 from operator import itemgetter
 import pygame
-from consts import PLAYER_SHOOT_IMAGES, PLAYER_STANDING_IMAGE, PLAYER_STARTING_MAX_HEALTH, PLAYER_STARTING_MAX_SHURIKENS, PLAYER_STARTING_RELOAD_SPEED, PLAYER_STARTING_SHURIKEN_DURABILITY, PLAYER_STARTING_SPEED, PLAYER_STARTING_STRENGTH, PLAYER_STARTING_THROW_SPEED, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES, SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH
+from consts import PLAYER_SHOOT_IMAGES, PLAYER_STANDING_IMAGE, PLAYER_STARTING_MAX_HEALTH, PLAYER_STARTING_MAX_SHURIKENS, PLAYER_STARTING_RELOAD_SPEED,\
+    PLAYER_STARTING_SHURIKEN_DURABILITY, PLAYER_STARTING_SPEED, PLAYER_STARTING_STRENGTH, PLAYER_STARTING_THROW_SPEED, PLAYER_WALK_LEFT_IMAGES, PLAYER_WALK_RIGHT_IMAGES,\
+    SOUNDS, PLAYER_INVINCIBLE_TIME, COLORS, PLAYER_PORTRAIT, PIXEL_FONT_SMALL, SCREEN_WIDTH, PLAYER_MAX_ENERGY
 from static_functions import draw_circle_alpha
 
 
@@ -33,6 +35,8 @@ class Player:
         self.health = self.max_health
         self.hurt_timer = 0
         self.shot_timer = -6
+
+        self.energy = PLAYER_MAX_ENERGY
 
         self.xp = 0
         self.level = 1
@@ -77,6 +81,9 @@ class Player:
         self.walk_count += 1
         self.hitbox = (self.x + 23, self.y + 16, 29, 58)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
+
+        if self.energy < PLAYER_MAX_ENERGY:
+            self.energy += 1
 
     def shoot(self):
         self.shot_timer = 5
@@ -148,6 +155,8 @@ class Player:
         self.display_level_text(window)
         self.display_score_text(window)
         self.display_coins_text(window)
+        self.display_energy_bar(window)
+        self.display_energy_text(window)
 
     def level_up(self):
         SOUNDS['level_up'].play()
@@ -188,6 +197,21 @@ class Player:
         for i in range(1, 4):
             pygame.draw.line(window, COLORS['black'], (xp_bar_x + (
                 xp_bar_width * i / 4), 60), (xp_bar_x + (xp_bar_width * i / 4), 79), width=2)
+
+    def display_energy_bar(self, window):
+        energy_bar_y = 140
+        border_radius = 15
+        energy_bar_height = self.energy if self.energy >= border_radius else border_radius
+        energy_bar_width = 15
+        pygame.draw.rect(window, COLORS['cyan'], (
+                50, energy_bar_y + PLAYER_MAX_ENERGY - energy_bar_height, energy_bar_width, energy_bar_height), border_radius=border_radius)
+        pygame.draw.rect(window, COLORS['black'], (
+                50, energy_bar_y, energy_bar_width, PLAYER_MAX_ENERGY), width=2, border_radius=border_radius)    
+
+    def display_energy_text(self, window):
+        energy_text = PIXEL_FONT_SMALL.render('Energy', True,  COLORS['white'])
+        energy_text = pygame.transform.rotate(energy_text, 90)
+        window.blit(energy_text, (30, 200))
 
     def display_coins_text(self, window):
         coins = f'Coins: {self.coins}'
