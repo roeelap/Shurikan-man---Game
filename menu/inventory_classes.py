@@ -1,4 +1,4 @@
-from static_functions import draw_rotated
+from static_functions import draw_rotated, draw_rect_with_alpha
 from consts import PIXEL_FONT_SMALL, COLORS, BUTTON_WIDTH_SMALL, PIXEL_FONT_SMALL_BUTTON
 from menu.button import Button
 
@@ -24,6 +24,8 @@ class InventoryItem:
                 'Equip', True,  COLORS['black'])
         else:
             self.equip_button.disabled = True
+            self.equip_button.inactive_text = PIXEL_FONT_SMALL_BUTTON.render(
+                'Equipped', True,  COLORS['black'])
             
         self.equip_button.show(window, mouse)
 
@@ -49,3 +51,15 @@ class InventoryItem:
             '_', ' ').capitalize(), True,  COLORS['white'])
         window.blit(name, (x, y))
 
+
+class ScrollBar:
+    def __init__(self, x, y, width, height, color):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.color = color
+
+    def show(self, window):
+        draw_rect_with_alpha(self.x, self.y, self.width, self.height, self.color, 128, window, 15)
+    
