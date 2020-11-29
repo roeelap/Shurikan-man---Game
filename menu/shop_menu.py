@@ -2,7 +2,7 @@ from sys import exit
 import pygame
 from menu.button import Button
 from menu.shuriken_shop import shuriken_shop
-from menu.inventory import inventory
+from menu.inventory import inventory_menu
 from consts import SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, COLORS, FPS, BACKGROUND_DUNGEON, BUTTON_WIDTH_BIG, SHURIKEN_IMAGES
 
 pygame.init()
@@ -58,7 +58,7 @@ def shop_menu(player):
                     shuriken_shop(player)
 
                 elif inventory_button.is_pressed(mouse, click):
-                    inventory(player)
+                    inventory_menu(player)
 
                 elif quit_shop_button.is_pressed(mouse, click):
                     return
