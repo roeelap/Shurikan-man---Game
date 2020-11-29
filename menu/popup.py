@@ -39,8 +39,7 @@ def check_for_button_press(buttons, mouse, click, game_objects):
                 sys.exit()
             if name == 'cancel':
                 return False
-            return True
-
+    return True
 
 def popup(background_image, game_objects):
     menu_buttons = {'save_and_exit': Button((SCREEN_WIDTH // 2) - (BUTTON_WIDTH_BIG // 2), SCREEN_HEIGHT * 3 // 9, 'big', 'Save And Exit'),
