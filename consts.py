@@ -111,7 +111,7 @@ SPLAT_SOUNDS = [pygame.mixer.Sound('./data/sounds/shuriken/splat-1.wav'), pygame
 
 # Sounds
 SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/combat/player-hit.wav'), 'shuriken_throw': [pygame.mixer.Sound('./data/sounds/shuriken/shuriken-throw-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken/shuriken-throw-2.wav')],
-          'enemy_spawn': pygame.mixer.Sound('./data/sounds/combat/enemy-spawn.wav'), 'pause': pygame.mixer.Sound('./data/sounds/general/pause.wav'),
+          'enemy_spawn': pygame.mixer.Sound('./data/sounds/combat/enemy-spawn.wav'), 'pause': pygame.mixer.Sound('./data/sounds/general/pause.wav'), 'health_pack': pygame.mixer.Sound('./data/sounds/combat/give-health.wav'),
           'transition': pygame.mixer.Sound('./data/sounds/general/transition.wav'), 'button_click': pygame.mixer.Sound('./data/sounds/general/button-click.wav'),
           'button_hover': pygame.mixer.Sound('./data/sounds/general/button-hover.wav'), 'player_death': pygame.mixer.Sound('./data/sounds/combat/player-death.wav'),
           'bronze_pickup': [pygame.mixer.Sound('./data/sounds/coin/bronze-pickup.wav')], 'gold_pickup': [pygame.mixer.Sound('./data/sounds/coin/gold-pickup.wav')],
