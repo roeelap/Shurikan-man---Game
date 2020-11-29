@@ -175,8 +175,28 @@ class ScrollBar:
         self.y = y
         self.width = width
         self.height = height
+        self.rect = (self.x, self.y, self.width, self.height)
         self.color = color
+        self.is_full_length = False
+        self.is_dragged = False
+        self.clicked = False
 
-    def show(self, window):
-        draw_rect_with_alpha(self.x, self.y, self.width, self.height, self.color, 128, window, 15)
-    
+    def show(self, window, mouse):
+        if self.is_mouse_over(mouse) or self.clicked:
+            draw_rect_with_alpha(self.x, self.y, self.width, self.height, self.color, 255, window, 15)
+        else:
+            draw_rect_with_alpha(self.x, self.y, self.width, self.height, self.color, 128, window, 15)
+
+    def is_mouse_over(self, mouse):
+        if self.x < mouse[0] < self.x + self.width and self.y < mouse[1] < self.y + self.height:
+            return True
+        return False
+
+    def is_pressed(self, mouse, click):
+        if not self.is_full_length:
+            if self.is_mouse_over(mouse):
+                if click[0] == 1:
+                    self.clicked = True
+                    return True 
+            else:
+                self.clicked = False      
