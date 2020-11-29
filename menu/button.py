@@ -1,3 +1,5 @@
+import sys
+import pygame
 from consts import MENU_SHURIKEN_SMALL, SOUNDS, BUTTON_PIXEL_FONTS, COLORS, BUTTON_IMAGES, BUTTON_HEIGHTS, BUTTON_WIDTHS
 from static_functions import draw_rotated, draw_rect_with_alpha
 
@@ -25,15 +27,20 @@ class Button:
         self.over = False
         self.clicked = False
         self.disabled = False
+        self.exit = False
 
         self.shuriken_rotation_angle = 0
         self.shuriken_x = [self.x-30, self.x+self.width+5]
-        self.display_shurikens = True if self.kind == 'big' else False
+        self.display_shurikens = self.kind == 'big'
 
     def show(self, window, mouse):
         if self.disabled and not self.clicked:
             window.blit(self.disabled_image, (self.x, self.y))
             self.display_button_text(window, 'disabled')
+            if self.exit:
+                pygame.time.wait(300)
+                pygame.quit()
+                sys.exit()
 
         else:
             if self.is_mouse_over(mouse) or self.clicked:

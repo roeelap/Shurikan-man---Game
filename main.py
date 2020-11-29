@@ -1,7 +1,8 @@
-from sys import exit
 from operator import itemgetter
 from random import randint, choice
 import pygame
+from menu.popup import popup
+from menu.start_menu import start_menu
 from static_functions import load_game, save_game
 from player import Player
 from enemy import Enemy
@@ -12,7 +13,6 @@ from player_movement import player_movement
 from collision_checks import check_collision
 from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SOUNDS, TOP_BORDER, HEALTH_PACK_WIDTH, HEALTH_PACK_HEIGHT
-from menu.start_menu import start_menu
 
 
 def new_game():
@@ -146,13 +146,11 @@ def main():
         # Exit on quit button
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
+                popup(window.copy(), game_objects)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     SOUNDS['pause'].play()
-                    win_at_the_moment = window.copy()
-                    state = start_menu(win_at_the_moment, game_objects, True)
+                    state = start_menu(window.copy(), game_objects, True)
                     if state == 'new_game':
                         game_objects = new_game()
 
@@ -185,11 +183,12 @@ def main():
 
         if keys[pygame.K_s]:
             enemies.clear()
-        
+
         if keys[pygame.K_h]:
             spawn_health_pack(health_packs, background)
 
-        player_movement(player, enemies, coins, health_packs, shurikens, background)
+        player_movement(player, enemies, coins,
+                        health_packs, shurikens, background)
         redraw_window()
 
         # if the player dies, the game stops (not a real feature, just to check if things are working properly)

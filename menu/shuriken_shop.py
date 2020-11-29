@@ -1,5 +1,5 @@
-from sys import exit
 import pygame
+from menu.popup import popup
 from menu.button import Button
 from menu.shop_item import ShopItem
 from menu.inventory import inventory_menu
@@ -56,7 +56,8 @@ def redraw_shuriken_shop(mouse, player, spin_count):
     pygame.display.update()
 
 
-def shuriken_shop(player):
+def shuriken_shop(game_objects):
+    player = game_objects['player']
     spin_count = 0
     while True:
         mouse = pygame.mouse.get_pos()
@@ -65,8 +66,7 @@ def shuriken_shop(player):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
+                popup(window.copy(), game_objects)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 click = pygame.mouse.get_pressed()
 
@@ -79,7 +79,7 @@ def shuriken_shop(player):
                             player.coins -= shuriken.price
 
                 if inventory_button.is_pressed(mouse, click):
-                    inventory_menu(player)
+                    inventory_menu(game_objects)
 
                 if quit_shuriken_shop_button.is_pressed(mouse, click):
                     return

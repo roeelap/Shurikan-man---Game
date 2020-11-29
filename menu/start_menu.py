@@ -1,12 +1,12 @@
 from operator import itemgetter
-import sys
 import pygame
-from consts import MENU_SHURIKENS_LARGE, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
+from menu.popup import popup
 from menu.button import Button
 from menu.settings_menu import settings_menu
 from menu.shop_menu import shop_menu
 from menu.upgrades import upgrades_shop
 from static_functions import draw_rect_with_alpha, reset_game, save_game, draw_rotated
+from consts import MENU_SHURIKENS_LARGE, SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, PIXEL_FONT_BIG, FPS, SOUNDS, COLORS, BUTTON_WIDTH_BIG
 
 
 pygame.init()
@@ -53,18 +53,17 @@ def check_for_button_press(buttons, mouse, click, game_objects):
                 reset_game()
                 return 'new_game'
             if name == 'upgrades':
-                upgrades_shop(player)
+                upgrades_shop(game_objects)
             elif name == 'shop':
-                shop_menu(player)
+                shop_menu(game_objects)
             elif name == 'save':
                 save_game(player, enemies, background, settings)
                 button.clicked = True
                 SOUNDS['sword_draw'].play()
             elif name == 'settings':
-                settings_menu(settings)
+                settings_menu(game_objects)
             elif name == 'quit':
-                pygame.quit()
-                sys.exit()
+                popup(window.copy(), game_objects)
             return False
 
 
@@ -87,9 +86,9 @@ def start_menu(background_image, game_objects, pause_screen=False):
         clock.tick(FPS)
 
         for event in pygame.event.get():
+            # do other stuff
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                popup(window.copy(), game_objects)
             if pause_screen:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:

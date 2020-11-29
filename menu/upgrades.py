@@ -1,5 +1,5 @@
-import sys
 import pygame
+from menu.popup import popup
 from menu.player_stat import PlayerStat
 from menu.button import Button
 from consts import SCREEN_WIDTH, SCREEN_HEIGHT, SHURIKEN_IMAGES, BACKGROUND_DUNGEON, FPS, PIXEL_FONT_BIG, COLORS, PIXEL_FONT_BIG_BUTTON, SOUNDS
@@ -42,7 +42,8 @@ def redraw_upgrades_shop(mouse, player, player_stats):
     pygame.display.update()
 
 
-def upgrades_shop(player):
+def upgrades_shop(game_objects):
+    player = game_objects['player']
     distance = 120
     player_stats = [PlayerStat('max_health', 30, SCREEN_HEIGHT * 8 // 10, player.upgrades),
                     PlayerStat('speed', 30 + distance,
@@ -64,8 +65,7 @@ def upgrades_shop(player):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                popup(window.copy(), game_objects)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 click = pygame.mouse.get_pressed()
 

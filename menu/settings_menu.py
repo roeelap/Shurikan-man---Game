@@ -1,8 +1,7 @@
-import sys
 import pygame
-from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, CHECKBOX_HEIGHT, BUTTON_WIDTH_BIG
+from menu.popup import popup
 from menu.button import Button, Checkbox
-
+from consts import SHURIKEN_IMAGES, SCREEN_WIDTH, SCREEN_HEIGHT, COLORS, PIXEL_FONT_MID, PIXEL_FONT_BIG, BACKGROUND_DUNGEON, FPS, SOUNDS, CHECKBOX_HEIGHT, BUTTON_WIDTH_BIG
 
 pygame.init()
 pygame.display.set_caption("Shuriken Man")
@@ -44,7 +43,8 @@ def redraw_settings_menu(mouse, music_checkbox, sound_checkbox, back_button):
     pygame.display.update()
 
 
-def settings_menu(settings):
+def settings_menu(game_objects):
+    settings = game_objects['settings']
     music_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7,
                               SCREEN_HEIGHT // 3 - CHECKBOX_HEIGHT, settings['music'])
     sound_checkbox = Checkbox(SCREEN_WIDTH * 4 // 7,
@@ -59,8 +59,7 @@ def settings_menu(settings):
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+                popup(window.copy(), game_objects)
 
             # modify this when we add real music into the game
             if music_checkbox.is_pressed(mouse, click):

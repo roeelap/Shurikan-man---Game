@@ -30,7 +30,7 @@ Todo:
   ✔ Think about spawning pit (animation?) @done(20-11-29 01:36)
   ✔ Add ninja sound and animation to confirm @done(20-11-28 18:25)
   ☐ When player dies - Show dead on screen, popup main menu.
-  ☐ Health packs spawn.
+  ✔ Health packs spawn. @done(20-11-29 17:38)
   ☐ Option to set volume
   ☐ Popup - save on exit (cancel save every 5 seconds)
   ☐ Player hold shuriken in hand (blit shuriken image, behind the player -> half reveal)

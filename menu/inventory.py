@@ -43,7 +43,8 @@ def redraw_inventory_menu(mouse, player, shuriken_inventory, shuriken_equipped, 
     pygame.display.update()
 
 
-def inventory_menu(player):
+def inventory_menu(game_objects):
+    player = game_objects['player']
 
     shuriken_inventory = [InventoryItem(0, 0, shuriken, SHURIKEN_IMAGES[shuriken])
                           for shuriken in player.shurikens_owned]
