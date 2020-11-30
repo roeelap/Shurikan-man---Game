@@ -20,6 +20,9 @@ inventory_title_textRect.center = SCREEN_WIDTH // 2, SCREEN_HEIGHT // 12
 shurikens_up_button = ArrowButton(120, 240, 'up_arrow')
 shurikens_down_button = ArrowButton(120, 570, 'down_arrow')
 
+backgrounds_up_button = ArrowButton(747, 240, 'up_arrow')
+backgrounds_down_button = ArrowButton(747, 570, 'down_arrow')
+
 quit_inventory_button = Button(
     SCREEN_WIDTH // 2 - BUTTON_WIDTH_BIG / 2, SCREEN_HEIGHT * 7 // 8, 'big', 'Back')
 
@@ -37,6 +40,8 @@ def redraw_inventory_menu(mouse, player, shuriken_inventory, shuriken_equipped, 
 
     draw_inventory_bg('Backgrounds', SCREEN_WIDTH *
                       3 // 4 + 30, SCREEN_HEIGHT // 6)
+    backgrounds_up_button.show(window, mouse)
+    backgrounds_down_button.show(window, mouse)
 
     quit_inventory_button.show(window, mouse)
 
@@ -47,15 +52,9 @@ def inventory_menu(game_objects):
     player = game_objects['player']
 
     shuriken_inventory_rect = (100, 143, 350, 470)
-    shuriken_inventory = [InventoryItem(0, 0, shuriken, SHURIKEN_IMAGES[shuriken])
-                          for shuriken in player.shurikens_owned]
-    update_inventory_item_locations(shuriken_inventory, SCREEN_WIDTH // 4)
+    shuriken_inventory, shuriken_scroll_bar = get_inventory('shuriken', player.shurikens_owned, SCREEN_WIDTH // 4, SHURIKEN_IMAGES)
 
-    if len(shuriken_inventory) > 4:
-        shuriken_scroll_bar = ScrollBar(
-            120, 270, 30, 300 * 4 / len(shuriken_inventory), COLORS['white'])
-    else:
-        shuriken_scroll_bar = ScrollBar(120, 270, 30, 300, COLORS['white'])
+    # backgrounds_inventory, backgrounds_scroll_bar = get_inventory('background', player.backgrounds_owned, SCREEN_WIDTH * 3 // 4, BACKGROUND_IMAGES)
 
     while True:
         mouse = pygame.mouse.get_pos()
@@ -109,6 +108,17 @@ def inventory_menu(game_objects):
 
         redraw_inventory_menu(
             mouse, player, shuriken_inventory, player.shuriken_equipped, shuriken_scroll_bar)
+
+
+def get_inventory(item, items_owned, items_x, images_dict):
+    inventory = [InventoryItem(items_x, SCREEN_HEIGHT * (items_owned.index(item) + 3) // 8,
+                                        item, images_dict[item]) for item in items_owned]
+    if len(inventory) > 4:
+        scroll_bar = ScrollBar(
+            items_x - 180, 270, 30, 300 * 4 / len(inventory), COLORS['white'])
+    else:
+        scroll_bar = ScrollBar(items_x - 180, 270, 30, 300, COLORS['white'])
+    return inventory, scroll_bar
 
 
 def equip_shuriken(shuriken, player):
@@ -182,12 +192,6 @@ def scroll_wheel_movement(scroll_bar, up_button, down_button, inventory, directi
         elif direction == 'up' and scroll_bar.y > shurikens_up_button.y + up_button.height:
             scroll_bar.y -= 300 * 1 / len(inventory)
             move_items_down(inventory)
-
-
-def update_inventory_item_locations(inventory, x):
-    for item in inventory:
-        item.update_location(x, SCREEN_HEIGHT *
-                             (inventory.index(item) + 3) // 8)
 
 
 def draw_inventory_bg(subtitle, subtitle_center_x, subtitle_center_y):

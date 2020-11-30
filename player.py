@@ -69,7 +69,7 @@ class Player:
             self.shot_timer -= 1
             self.image = PLAYER_SHOOT_IMAGES[self.shot_timer//4]
             if self.left:
-                self.image = pygame.transform.flip(self.image,True,False)
+                self.image = pygame.transform.flip(self.image, True, False)
 
         if self.hurt_timer > 0:
             self.hurt_animation(window)
@@ -206,7 +206,7 @@ class Player:
         pygame.draw.rect(window, COLORS['cyan'], (
                 50, energy_bar_y + PLAYER_MAX_ENERGY - energy_bar_height, energy_bar_width, energy_bar_height), border_radius=border_radius)
         pygame.draw.rect(window, COLORS['black'], (
-                50, energy_bar_y, energy_bar_width, PLAYER_MAX_ENERGY), width=2, border_radius=border_radius)    
+            50, energy_bar_y, energy_bar_width, PLAYER_MAX_ENERGY), width=2, border_radius=border_radius)
 
     def display_energy_text(self, window):
         energy_text = PIXEL_FONT_SMALL.render('Energy', True,  COLORS['white'])
