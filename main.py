@@ -59,11 +59,12 @@ def can_spawn_health_pack(spawn_health_pack_timer, health_packs, countdown, back
 
 
 def spawn_health_pack(health_packs, background):
-    random_x = randint(HEALTH_PACK_WIDTH, background.width - HEALTH_PACK_WIDTH)
+    random_x = randint(HEALTH_PACK_WIDTH, SCREEN_WIDTH - HEALTH_PACK_WIDTH)
     random_y = randint(TOP_BORDER + HEALTH_PACK_HEIGHT, BOTTOM_BORDER)
     new_health_pack = HealthPack(random_x, random_y)
+    SOUNDS['health_pack_spawn'].play()
     health_packs.append(new_health_pack)
-
+    
 
 def set_settings(settings):
     from menu.settings_menu import set_all_volumes
@@ -141,7 +142,7 @@ def main():
 
         # Randomely spawn an health pack every 60 seconds
         spawn_health_pack_timer = can_spawn_health_pack(
-            spawn_health_pack_timer, health_packs, 10, background)
+            spawn_health_pack_timer, health_packs, 30, background)
 
         # Exit on quit button
         for event in pygame.event.get():

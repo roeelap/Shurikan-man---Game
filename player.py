@@ -69,7 +69,7 @@ class Player:
             self.shot_timer -= 1
             self.image = PLAYER_SHOOT_IMAGES[self.shot_timer//4]
             if self.left:
-                self.image = pygame.transform.flip(self.image,True,False)
+                self.image = pygame.transform.flip(self.image, True, False)
 
         if self.hurt_timer > 0:
             self.hurt_animation(window)
@@ -81,9 +81,6 @@ class Player:
         self.walk_count += 1
         self.hitbox = (self.x + 23, self.y + 16, 29, 58)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
-
-        if self.energy < PLAYER_MAX_ENERGY:
-            self.energy += 1
 
     def shoot(self):
         self.shot_timer = 5
@@ -199,6 +196,9 @@ class Player:
                 xp_bar_width * i / 4), 60), (xp_bar_x + (xp_bar_width * i / 4), 79), width=2)
 
     def display_energy_bar(self, window):
+        if self.energy < PLAYER_MAX_ENERGY:
+            self.energy += 1
+
         energy_bar_y = 140
         border_radius = 15
         energy_bar_height = self.energy if self.energy >= border_radius else border_radius
@@ -206,7 +206,7 @@ class Player:
         pygame.draw.rect(window, COLORS['cyan'], (
                 50, energy_bar_y + PLAYER_MAX_ENERGY - energy_bar_height, energy_bar_width, energy_bar_height), border_radius=border_radius)
         pygame.draw.rect(window, COLORS['black'], (
-                50, energy_bar_y, energy_bar_width, PLAYER_MAX_ENERGY), width=2, border_radius=border_radius)    
+            50, energy_bar_y, energy_bar_width, PLAYER_MAX_ENERGY), width=2, border_radius=border_radius)
 
     def display_energy_text(self, window):
         energy_text = PIXEL_FONT_SMALL.render('Energy', True,  COLORS['white'])
