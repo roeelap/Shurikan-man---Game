@@ -87,8 +87,11 @@ def start_menu(background_image, game_objects, pause_screen=False):
 
         for event in pygame.event.get():
             # do other stuff
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT and menu_buttons['save'].disabled:
+                exit()
+            elif event.type == pygame.QUIT and not menu_buttons['save'].disabled:
                 popup(window.copy(), game_objects)
+
             if pause_screen:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:

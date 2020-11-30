@@ -200,6 +200,8 @@ class ScrollBar:
         else:
             draw_rect_with_alpha(self.x, self.y, self.width,
                                  self.height, self.color, 128, window, 15)
+        
+        pygame.draw.rect(window, COLORS['black'], (self.x, self.y, self.width, self.height), width=1, border_radius=15)
 
     def is_mouse_over(self, mouse):
         if self.x < mouse[0] < self.x + self.width and self.y < mouse[1] < self.y + self.height:
