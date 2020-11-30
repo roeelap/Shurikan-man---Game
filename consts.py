@@ -79,17 +79,48 @@ COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
 # characters images
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/goblin/R1E.png'), pygame.image.load('./data/images/goblin/R2E.png'), pygame.image.load('./data/images/goblin/R3E.png'),
                             pygame.image.load('./data/images/goblin/R4E.png'), pygame.image.load(
-    './data/images/goblin/R5E.png'), pygame.image.load('./data/images/goblin/R6E.png'),
-    pygame.image.load('./data/images/goblin/R7E.png'), pygame.image.load(
-    './data/images/goblin/R8E.png'), pygame.image.load('./data/images/goblin/R9E.png'),
-    pygame.image.load('./data/images/goblin/R10E.png'), pygame.image.load('./data/images/goblin/R11E.png')]
+                            './data/images/goblin/R5E.png'), pygame.image.load('./data/images/goblin/R6E.png'),
+                            pygame.image.load('./data/images/goblin/R7E.png'), pygame.image.load(
+                            './data/images/goblin/R8E.png'), pygame.image.load('./data/images/goblin/R9E.png'),
+                            pygame.image.load('./data/images/goblin/R10E.png'), pygame.image.load('./data/images/goblin/R11E.png')]
 
 GOBLIN_WALK_LEFT_IMAGES = [pygame.image.load('./data/images/goblin/L1E.png'), pygame.image.load('./data/images/goblin/L2E.png'), pygame.image.load('./data/images/goblin/L3E.png'),
                            pygame.image.load('./data/images/goblin/L4E.png'), pygame.image.load(
-    './data/images/goblin/L5E.png'), pygame.image.load('./data/images/goblin/L6E.png'),
-    pygame.image.load('./data/images/goblin/L7E.png'), pygame.image.load(
-    './data/images/goblin/L8E.png'), pygame.image.load('./data/images/goblin/L9E.png'),
-    pygame.image.load('./data/images/goblin/L10E.png'), pygame.image.load('./data/images/goblin/L11E.png')]
+                               './data/images/goblin/L5E.png'), pygame.image.load('./data/images/goblin/L6E.png'),
+                           pygame.image.load('./data/images/goblin/L7E.png'), pygame.image.load(
+                               './data/images/goblin/L8E.png'), pygame.image.load('./data/images/goblin/L9E.png'),
+                           pygame.image.load('./data/images/goblin/L10E.png'), pygame.image.load('./data/images/goblin/L11E.png')]
+
+
+ARCHER_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/archer/walking/R1.png'), pygame.image.load('./data/images/archer/walking/R2.png'), pygame.image.load('./data/images/archer/walking/R3.png'),
+                            pygame.image.load('./data/images/archer/walking/R4.png'), pygame.image.load(
+                                './data/images/archer/walking/R5.png'), pygame.image.load('./data/images/archer/walking/R6.png'),
+                            pygame.image.load('./data/images/archer/walking/R7.png'), pygame.image.load('./data/images/archer/walking/R8.png'), pygame.image.load('./data/images/archer/walking/R9.png')]
+
+
+ARCHER_WALK_LEFT_IMAGES = [pygame.image.load('./data/images/archer/walking/L1.png'), pygame.image.load('./data/images/archer/walking/L2.png'), pygame.image.load('./data/images/archer/walking/L3.png'),
+                           pygame.image.load('./data/images/archer/walking/L4.png'), pygame.image.load(
+                               './data/images/archer/walking/L5.png'), pygame.image.load('./data/images/archer/walking/L6.png'),
+                           pygame.image.load('./data/images/archer/walking/L7.png'), pygame.image.load('./data/images/archer/walking/L8.png'), pygame.image.load('./data/images/archer/walking/L9.png'), ]
+
+
+ARCHER_SHOOT_RIGHT_IMAGES = [pygame.image.load('./data/images/archer/shooting/RS1.png'), pygame.image.load('./data/images/archer/shooting/RS2.png'), pygame.image.load('./data/images/archer/shooting/RS3.png'),
+                             pygame.image.load('./data/images/archer/shooting/RS4.png'), pygame.image.load(
+    './data/images/archer/shooting/RS5.png'), pygame.image.load('./data/images/archer/shooting/RS6.png'),
+    pygame.image.load('./data/images/archer/shooting/RS7.png'), pygame.image.load(
+    './data/images/archer/shooting/RS8.png'), pygame.image.load('./data/images/archer/shooting/RS9.png'),
+    pygame.image.load('./data/images/archer/shooting/RS10.png'), pygame.image.load('./data/images/archer/shooting/RS11.png'), pygame.image.load('./data/images/archer/shooting/RS12.png')]
+
+ARCHER_SHOOT_LEFT_IMAGES = [pygame.image.load('./data/images/archer/shooting/LS1.png'), pygame.image.load('./data/images/archer/shooting/LS2.png'), pygame.image.load('./data/images/archer/shooting/LS3.png'),
+                            pygame.image.load('./data/images/archer/shooting/LS4.png'), pygame.image.load(
+                            './data/images/archer/shooting/LS5.png'), pygame.image.load('./data/images/archer/shooting/LS6.png'),
+                            pygame.image.load('./data/images/archer/shooting/LS7.png'), pygame.image.load(
+                            './data/images/archer/shooting/LS8.png'), pygame.image.load('./data/images/archer/shooting/LS9.png'),
+                            pygame.image.load('./data/images/archer/shooting/LS10.png'), pygame.image.load('./data/images/archer/shooting/LS11.png'), pygame.image.load('./data/images/archer/shooting/LS12.png')]
+
+ARROW_IMAGES = {'right': pygame.image.load(
+    './data/images/archer/arrow-right.png'), 'left': pygame.image.load('./data/images/archer/arrow-left.png')}
+
 
 PLAYER_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/player/R1.png'), pygame.image.load('./data/images/player/R2.png'), pygame.image.load('./data/images/player/R3.png'),
                             pygame.image.load('./data/images/player/R4.png'), pygame.image.load(
