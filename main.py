@@ -3,7 +3,7 @@ from random import randint, choice
 import pygame
 from menu.popup import popup
 from menu.start_menu import start_menu
-from static_functions import load_game, save_game
+from static_functions import load_game
 from player import Player
 from enemy import Enemy
 from shuriken import Shuriken
@@ -11,7 +11,7 @@ from health_pack import HealthPack
 from background import Background
 from player_movement import player_movement
 from collision_checks import check_collision
-from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, SAVE_TIMEOUT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, GOBLIN_WIDTH, FPS, \
+from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, GOBLIN_WIDTH, FPS, \
     GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SOUNDS, TOP_BORDER, HEALTH_PACK_WIDTH, HEALTH_PACK_HEIGHT, SHURIKEN_ENERGY_REQUIRED
 
 
@@ -81,7 +81,7 @@ def main():
     shuriken_shoot_timer = 0
     spawn_enemy_timer = 0
     spawn_health_pack_timer = 0
-    save_timer = 0
+    # save_timer = 0
     window, background, player, enemies, shurikens, coins, health_packs, settings = itemgetter(
         'window', 'background', 'player', 'enemies', 'shurikens', 'coins', 'health_packs', 'settings')(game_objects)
     load_game(player, enemies, background, settings)
@@ -129,11 +129,11 @@ def main():
         clock.tick(FPS)
 
         # Save game every second (60 fps)
-        if save_timer == SAVE_TIMEOUT:
-            save_timer = 0
-            save_game(player, enemies, background, settings)
-        else:
-            save_timer += 1
+        # if save_timer == SAVE_TIMEOUT:
+        #     save_timer = 0
+        #     save_game(player, enemies, background, settings)
+        # else:
+        #     save_timer += 1
 
         # Randomely spawn enemies every 5 seconds
         spawn_enemy_timer = can_spawn_enemy(
