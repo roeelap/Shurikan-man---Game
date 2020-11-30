@@ -82,9 +82,6 @@ class Player:
         self.hitbox = (self.x + 23, self.y + 16, 29, 58)
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
-        if self.energy < PLAYER_MAX_ENERGY:
-            self.energy += 1
-
     def shoot(self):
         self.shot_timer = 5
 
@@ -199,6 +196,9 @@ class Player:
                 xp_bar_width * i / 4), 60), (xp_bar_x + (xp_bar_width * i / 4), 79), width=2)
 
     def display_energy_bar(self, window):
+        if self.energy < PLAYER_MAX_ENERGY:
+            self.energy += 1
+
         energy_bar_y = 140
         border_radius = 15
         energy_bar_height = self.energy if self.energy >= border_radius else border_radius
