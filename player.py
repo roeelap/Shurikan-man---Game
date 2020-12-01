@@ -204,7 +204,7 @@ class Player:
         energy_bar_height = self.energy if self.energy >= border_radius else border_radius
         energy_bar_width = 15
         pygame.draw.rect(window, COLORS['cyan'], (
-                50, energy_bar_y + PLAYER_MAX_ENERGY - energy_bar_height, energy_bar_width, energy_bar_height), border_radius=border_radius)
+            50, energy_bar_y + PLAYER_MAX_ENERGY - energy_bar_height, energy_bar_width, energy_bar_height), border_radius=border_radius)
         pygame.draw.rect(window, COLORS['black'], (
             50, energy_bar_y, energy_bar_width, PLAYER_MAX_ENERGY), width=2, border_radius=border_radius)
 

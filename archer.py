@@ -1,9 +1,9 @@
-from enemy import Enemy
-from shuriken import Arrow
 from random import choice
 from operator import itemgetter
 import pygame
-from consts import COLORS, SOUNDS, ENEMY_SPAWN_IMAGE, SOUNDS, GOBLIN_PATH_TIMEOUT, TOP_BORDER, BOTTOM_BORDER, ARROW_IMAGES, ARROW_HEIGHT, ARROW_WIDTH
+from enemy import Enemy
+from shuriken import Arrow
+from consts import COLORS, SOUNDS, ENEMY_SPAWN_IMAGE, ARROW_IMAGES, ARROW_HEIGHT, ARROW_WIDTH
 
 
 class Archer(Enemy):
@@ -30,12 +30,12 @@ class Archer(Enemy):
         if self.is_shooting:
             self.shoot_timer += 1
             image_to_blit = self.shoot_right_images[self.walk_count //
-                                                    6] if self.speed > 0 else self.shoot_left_images[self.walk_count//6]  
+                                                    6] if self.speed > 0 else self.shoot_left_images[self.walk_count//6]
         else:
             self.shoot_timer = 0
             image_to_blit = self.walk_right_images[self.walk_count //
                                                    6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
-        
+
         timeout_image = None
 
         if self.hit_timer > 0:
@@ -89,7 +89,7 @@ class Archer(Enemy):
         else:
             self.is_shooting = True
             return
-    
+
     def hit(self, shuriken_strength, shuriken_id, coins):
         self.was_hit_by = shuriken_id
         if self.health > shuriken_strength:

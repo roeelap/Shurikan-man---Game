@@ -52,19 +52,19 @@ def spawn_enemy(enemies, background):
     new_archer = Archer(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.1 * direction, 7, 10, ARCHER_WALK_RIGHT_IMAGES, ARCHER_WALK_LEFT_IMAGES,
                         ARCHER_SHOOT_RIGHT_IMAGES, ARCHER_SHOOT_LEFT_IMAGES)
     SOUNDS['enemy_spawn'].play()
-    new_enemy = choice([new_archer])
+    new_enemy = choice([new_goblin, new_archer])
     enemies.append(new_enemy)
 
 
-def can_spawn_health_pack(spawn_health_pack_timer, health_packs, countdown, background):
+def can_spawn_health_pack(spawn_health_pack_timer, health_packs, countdown):
     spawn_health_pack_timer += 1
     if spawn_health_pack_timer == int(countdown * FPS):
-        spawn_health_pack(health_packs, background)
+        spawn_health_pack(health_packs)
         spawn_health_pack_timer = 0
     return spawn_health_pack_timer
 
 
-def spawn_health_pack(health_packs, background):
+def spawn_health_pack(health_packs):
     random_x = randint(HEALTH_PACK_WIDTH, SCREEN_WIDTH - HEALTH_PACK_WIDTH)
     random_y = randint(TOP_BORDER + HEALTH_PACK_HEIGHT, BOTTOM_BORDER)
     new_health_pack = HealthPack(random_x, random_y)
@@ -152,7 +152,7 @@ def main():
 
         # Randomely spawn an health pack every 60 seconds
         spawn_health_pack_timer = can_spawn_health_pack(
-            spawn_health_pack_timer, health_packs, 30, background)
+            spawn_health_pack_timer, health_packs, 30)
 
         for archer in enemies:
             if isinstance(archer, Archer) and archer.is_shooting and archer.shoot_timer == 11:
@@ -203,7 +203,7 @@ def main():
             enemies.clear()
 
         if keys[pygame.K_h]:
-            spawn_health_pack(health_packs, background)
+            spawn_health_pack(health_packs)
 
         player_movement(player, enemies, coins,
                         health_packs, shurikens, arrows, background)

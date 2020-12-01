@@ -1,5 +1,5 @@
-from static_functions import draw_circle_alpha
 from operator import itemgetter
+from static_functions import draw_circle_alpha
 from consts import HEALTH_PACK_IMAGE, FPS, HEALTH_PACK_WIDTH, HEALTH_PACK_HEIGHT, COLORS
 
 
@@ -27,7 +27,7 @@ class HealthPack:
 
         if FPS * 3 < self.timer < FPS * 10 or self.timer <= FPS * 3 and self.timer % 7 != 0 and not self.taken:
             window.blit(self.image, (self.x, self.y))
-            
+
         self.draw_shade(window)
 
         if self.timer == 0:

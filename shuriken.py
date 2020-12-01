@@ -142,7 +142,8 @@ class Arrow(Shuriken):
                 self.hit_animation_counter += 1
                 new_info = []
                 for broken_arrow in self.broken_info:
-                    image, x, y, x_speed, y_speed = broken_arrow[0], broken_arrow[1], broken_arrow[2], broken_arrow[3], broken_arrow[4]
+                    image, x, y, x_speed, y_speed = broken_arrow[0], broken_arrow[
+                        1], broken_arrow[2], broken_arrow[3], broken_arrow[4]
                     window.blit(image, (x, y))
                     x, y = x + x_speed, y + y_speed
                     new_info.append([image, x, y, x_speed, y_speed])
@@ -178,8 +179,7 @@ class Arrow(Shuriken):
         if self.speed < 0:
             x_direction = 'left', -2
         for index, image in enumerate(BROKEN_ARROW_IMAGES[x_direction[0]]):
-            if index == 0:
-                x_speed, y_speed = x_direction[1], 2
+            x_speed, y_speed = x_direction[1], 2
             if index == 1:
                 x_speed, y_speed = x_direction[1], -2
             self.broken_info.append(
