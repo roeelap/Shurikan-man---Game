@@ -52,7 +52,7 @@ def spawn_enemy(enemies, background):
     new_archer = Archer(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.1 * direction, 7, 10, ARCHER_WALK_RIGHT_IMAGES, ARCHER_WALK_LEFT_IMAGES,
                         ARCHER_SHOOT_RIGHT_IMAGES, ARCHER_SHOOT_LEFT_IMAGES)
     SOUNDS['enemy_spawn'].play()
-    new_enemy = choice([new_goblin, new_archer])
+    new_enemy = choice([new_archer])
     enemies.append(new_enemy)
 
 
@@ -109,14 +109,11 @@ def main():
                 arrows.remove(arrow)
         for enemy in enemies:
             objects_to_draw.append(enemy)
+            enemy.auto_path(player.shade, background.width)
             if not enemy.alive:
                 enemies.remove(enemy)
                 player.score += 1
                 player.earn_xp(1)
-            if isinstance(enemy, Archer) and enemy.is_shooting:
-                continue
-            else:
-                enemy.auto_path(player.shade, background.width)
         for coin in coins:
             objects_to_draw.append(coin)
             if coin.stored:
@@ -129,10 +126,7 @@ def main():
         objects_to_draw.sort(
             key=lambda object: object.shade['y'] + object.shade['h'], reverse=False)
         for object in objects_to_draw:
-            if type(object) == Archer:
-                object.draw(window, player.shade)
-            else:
-                object.draw(window)
+            object.draw(window)
 
         player.update_stats()
         player.display_player_stats(window)

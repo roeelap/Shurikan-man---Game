@@ -11,9 +11,6 @@ class Archer(Enemy):
     def __init__(self, x, y, width, height, speed, health, damage, walk_right_images, walk_left_images, shoot_right_images, shoot_left_images):
         Enemy.__init__(self, x, y, width, height, speed, health,
                        damage, walk_right_images, walk_left_images)
-
-        self.walking_speed = speed
-
         self.shoot_right_images = shoot_right_images
         self.shoot_left_images = shoot_left_images
 
@@ -23,36 +20,36 @@ class Archer(Enemy):
         self.shoot_timer = 0
         self.is_shooting = False
 
-    def draw(self, window, player_shade):
+    def draw(self, window):
         if not self.alive:
             return
 
         if self.shoot_timer > 12:
             self.shoot_timer = 0
 
-        timeout_image = None
-
-        if abs(self.shade['x'] - player_shade['x']) > 400 or abs(self.shade['y'] - player_shade['y']) > 20:
+        if self.is_shooting:
+            self.shoot_timer += 1
+            image_to_blit = self.shoot_right_images[self.walk_count //
+                                                    6] if self.speed > 0 else self.shoot_left_images[self.walk_count//6]  
+        else:
             self.shoot_timer = 0
-            self.is_shooting = False
             image_to_blit = self.walk_right_images[self.walk_count //
                                                    6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
-        else:
-            self.shoot_timer += 1
-            self.is_shooting = True
-            image_to_blit = self.shoot_right_images[self.walk_count //
-                                                    6] if self.speed > 0 else self.shoot_left_images[self.walk_count//6]
+        
+        timeout_image = None
 
         if self.hit_timer > 0:
             timeout_image = image_to_blit.copy()
             timeout_image.fill(
                 COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
+
         if self.spawn_timer > 0:
             window.blit(ENEMY_SPAWN_IMAGE,
-                        (self.x+self.width/2-13, self.y+self.height-5))
+                        (self.x + self.width / 2 - 13, self.y + self.height - 5))
             self.spawn_timer -= 1
         else:
             self.walk_count += 1
+
         if self.hit_timer > 0:
             image_to_blit = timeout_image
             self.hit_timer -= 1
@@ -84,3 +81,11 @@ class Archer(Enemy):
             arrows.append(Arrow(arrow_start_x, round(self.y + self.height / 2), ARROW_WIDTH, ARROW_HEIGHT, 10 * facing, 1,
                                 1, self.hitbox[1] + self.hitbox[3], ARROW_IMAGES['right']))
         SOUNDS['shuriken_throw'][0].play()
+
+    def auto_path(self, player_shade, background_width):
+        if abs(self.shade['x'] - player_shade['x']) > 400 or abs(self.shade['y'] - player_shade['y']) > 20:
+            self.is_shooting = False
+            Enemy.auto_path(self, player_shade, background_width)
+        else:
+            self.is_shooting = True
+            return
