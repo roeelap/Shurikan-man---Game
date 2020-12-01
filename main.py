@@ -212,7 +212,7 @@ def main():
             spawn_health_pack(health_packs, background)
 
         player_movement(player, enemies, coins,
-                        health_packs, shurikens, background)
+                        health_packs, shurikens, arrows, background)
         redraw_window()
 
         # if the player dies, the game stops (not a real feature, just to check if things are working properly)

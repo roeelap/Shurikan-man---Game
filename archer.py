@@ -3,7 +3,7 @@ from shuriken import Arrow
 from random import choice
 from operator import itemgetter
 import pygame
-from consts import COLORS, ENEMY_SPAWN_IMAGE, SOUNDS, GOBLIN_PATH_TIMEOUT, TOP_BORDER, BOTTOM_BORDER, ARROW_IMAGES, ARROW_HEIGHT, ARROW_WIDTH
+from consts import COLORS, SOUNDS, ENEMY_SPAWN_IMAGE, SOUNDS, GOBLIN_PATH_TIMEOUT, TOP_BORDER, BOTTOM_BORDER, ARROW_IMAGES, ARROW_HEIGHT, ARROW_WIDTH
 
 
 class Archer(Enemy):
@@ -83,3 +83,4 @@ class Archer(Enemy):
             arrow_start_x = self.hitbox[0] + self.hitbox[2] + 20
             arrows.append(Arrow(arrow_start_x, round(self.y + self.height / 2), ARROW_WIDTH, ARROW_HEIGHT, 10 * facing, 1,
                                 1, self.hitbox[1] + self.hitbox[3], ARROW_IMAGES['right']))
+        SOUNDS['shuriken_throw'][0].play()

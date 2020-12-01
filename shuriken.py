@@ -146,10 +146,9 @@ class Arrow(Shuriken):
                 self.y -= int((self.slope * abs(self.slope)) * 0.05)
                 self.slope -= 0.5
             return True
-        if abs(self.speed) < 0.1:
+        else:
             self.durability = 0
-            return True
-        return False
+            return False
     
     def hit(self):
         self.durability -= 1

@@ -2,7 +2,7 @@ import pygame
 from consts import BOTTOM_BORDER, SCREEN_WIDTH, SCREEN_MIDDLE, TOP_BORDER
 
 
-def player_movement(player, enemies, coins, health_packs, shurikens, background):
+def player_movement(player, enemies, coins, health_packs, shurikens, arrows, background):
     """The main character movement system"""
 
     keys = pygame.key.get_pressed()
@@ -23,6 +23,8 @@ def player_movement(player, enemies, coins, health_packs, shurikens, background)
                 health_pack.move(player.speed, -1)
             for shuriken in shurikens:
                 shuriken.x += player.speed
+            for arrow in arrows:
+                arrow.x += player.speed
 
     elif keys[pygame.K_RIGHT] and player.x < SCREEN_WIDTH - player.speed - player.width:
         if player.x < SCREEN_MIDDLE:
@@ -40,6 +42,8 @@ def player_movement(player, enemies, coins, health_packs, shurikens, background)
                 health_pack.move(player.speed, 1)
             for shuriken in shurikens:
                 shuriken.x -= player.speed
+            for arrow in arrows:
+                arrow.x -= player.speed
 
     else:
         player.standing = True
