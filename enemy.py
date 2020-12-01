@@ -10,23 +10,31 @@ class Enemy:
     def __init__(self, x, y, width, height, speed, health, damage, walk_right_images, walk_left_images):
         self.x = x
         self.y = y
+
         self.width = width
         self.height = height
+
         self.walk_count = 0
         self.walk_count_limit = len(walk_right_images) * 6
+
         self.speed = speed
         self.vertical_speed = self.speed / 2
         self.max_speed = abs(speed)
+
         self.hitbox = (0, 0, 0, 0)
+        self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
+
         self.health = health
         self.max_health = health
         self.alive = True
+
         self.walk_right_images = walk_right_images
         self.walk_left_images = walk_left_images
+
         self.spawn_timer = GOBLIN_SPAWN_TIMEOUT
         self.path_refresh_timer = GOBLIN_PATH_TIMEOUT
         self.hit_timer = 0
-        self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
+
         self.damage = damage
         self.was_hit_by = None
 
@@ -40,7 +48,7 @@ class Enemy:
         image_to_blit = self.walk_right_images[self.walk_count //
                                                6] if self.speed > 0 else self.walk_left_images[self.walk_count//6]
 
-        if  self.hit_timer > 0:
+        if self.hit_timer > 0:
             timeout_image = image_to_blit.copy()
             timeout_image.fill(
                 COLORS['red'], special_flags=pygame.BLEND_RGBA_MULT)
@@ -66,8 +74,8 @@ class Enemy:
             correction = 15
 
         image_to_blit = pygame.transform.chop(
-            image_to_blit, (0, abs(self.spawn_timer-77), 0, self.spawn_timer))
-        window.blit(image_to_blit, (self.x, self.y+self.spawn_timer))
+            image_to_blit, (0, abs(self.spawn_timer - 77), 0, self.spawn_timer))
+        window.blit(image_to_blit, (self.x, self.y + self.spawn_timer))
 
         # drawing the health bar
         self.hitbox = (self.x + 20 + correction,
@@ -78,7 +86,7 @@ class Enemy:
 
         # pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2)
 
-    def draw_shade(self, window, correction):
+    def draw_shade(self, window, correction=0):
         self.shade = {'x': self.x + self.width / 2 + correction - 5,
                       'y': self.hitbox[1] + self.hitbox[3], 'w': 38, 'h': 12}
         x, y, w, h = itemgetter('x', 'y', 'w', 'h')(self.shade)

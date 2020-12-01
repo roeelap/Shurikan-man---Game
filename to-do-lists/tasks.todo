@@ -34,7 +34,8 @@ Todo:
   ✔ Scroll bar (mouse input) @done(20-11-29 15:18)
   ✔ When losing hp, don't blit red @done(20-11-29 15:20)
   ✔ Make vertical energy bar @done(20-11-29 21:54)
-  ☐ Option to set volume
+  ✔ Option to set volume @done(20-12-01 15:01)
+  ☐ arrow breaking animation
   ☐ Player hold shuriken in hand (blit shuriken image, behind the player -> half reveal)
   ☐ When player dies - Show dead on screen, popup main menu.
   ☐ Special attacks (shuriken rain, large shuriken with high durability, shuriken bomb, etc...)

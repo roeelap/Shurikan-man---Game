@@ -15,6 +15,10 @@ POPUP_IMAGE = pygame.image.load('./data/images/backgrounds/popup-sign.png')
 SAVE_TIMEOUT = 5 * FPS
 ALLOWED_SAVE_TYPES = (int, float, str, bool, list, dict, tuple)
 
+# colors dict
+COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
+          'red': (255, 51, 51), 'green': (60, 179, 113), 'orange': (255, 201, 14), 'cyan': (1, 185, 224)}
+
 # player
 PLAYER_STARTING_MAX_HEALTH = 100
 PLAYER_STARTING_SPEED = 2.5
@@ -72,9 +76,12 @@ BROKEN_SHURIKENS = {"shuriken": [pygame.image.load('./data/images/shurikens/brok
                     "orange": [pygame.image.load('./data/images/shurikens/broken/orange/o1.png'), pygame.image.load('./data/images/shurikens/broken/orange/o2.png'), pygame.image.load('./data/images/shurikens/broken/orange/o3.png'),
                                pygame.image.load('./data/images/shurikens/broken/orange/o4.png')]}
 
-# colors dict
-COLORS = {'black': (0, 0, 0), 'white': (255, 255, 255),
-          'red': (255, 51, 51), 'green': (60, 179, 113), 'orange': (255, 201, 14), 'cyan': (1, 185, 224)}
+
+# arrow info
+ARROW_IMAGES = {'right': pygame.image.load(
+    './data/images/archer/arrow-right.png'), 'left': pygame.image.load('./data/images/archer/arrow-left.png')}
+ARROW_WIDTH = 28
+ARROW_HEIGHT = 4
 
 # characters images
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/goblin/R1E.png'), pygame.image.load('./data/images/goblin/R2E.png'), pygame.image.load('./data/images/goblin/R3E.png'),
@@ -117,9 +124,6 @@ ARCHER_SHOOT_LEFT_IMAGES = [pygame.image.load('./data/images/archer/shooting/LS1
                             pygame.image.load('./data/images/archer/shooting/LS7.png'), pygame.image.load(
                             './data/images/archer/shooting/LS8.png'), pygame.image.load('./data/images/archer/shooting/LS9.png'),
                             pygame.image.load('./data/images/archer/shooting/LS10.png'), pygame.image.load('./data/images/archer/shooting/LS11.png'), pygame.image.load('./data/images/archer/shooting/LS12.png')]
-
-ARROW_IMAGES = {'right': pygame.image.load(
-    './data/images/archer/arrow-right.png'), 'left': pygame.image.load('./data/images/archer/arrow-left.png')}
 
 
 PLAYER_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/player/R1.png'), pygame.image.load('./data/images/player/R2.png'), pygame.image.load('./data/images/player/R3.png'),

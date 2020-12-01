@@ -29,6 +29,7 @@ def draw_rotated(window, image, topleft, angle):
         center=image.get_rect(topleft=topleft).center)
     window.blit(rotated_image, new_rect.topleft)
 
+
 def reset_game():
     files = os.listdir('./saves')
     for file in files:
@@ -37,7 +38,6 @@ def reset_game():
                 file.write('[]')
             else:
                 file.write('{}')
-
 
 
 def save_game(player, enemies, background, settings):

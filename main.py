@@ -6,13 +6,15 @@ from menu.start_menu import start_menu
 from static_functions import load_game
 from player import Player
 from enemy import Enemy
+from archer import Archer
 from shuriken import Shuriken
 from health_pack import HealthPack
 from background import Background
 from player_movement import player_movement
 from collision_checks import check_collision
 from consts import BACKGROUND_DUNGEON, BOTTOM_BORDER, GOBLIN_HEIGHT, SHURIKEN_IMAGES, SCREEN_HEIGHT, SCREEN_WIDTH, GOBLIN_WIDTH, FPS, \
-    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, SHURIKEN_RADIUS, SOUNDS, TOP_BORDER, HEALTH_PACK_WIDTH, HEALTH_PACK_HEIGHT, SHURIKEN_ENERGY_REQUIRED
+    GOBLIN_WALK_LEFT_IMAGES, GOBLIN_WALK_RIGHT_IMAGES, ARCHER_WALK_LEFT_IMAGES, ARCHER_WALK_RIGHT_IMAGES, ARCHER_SHOOT_LEFT_IMAGES, \
+    ARCHER_SHOOT_RIGHT_IMAGES, SHURIKEN_RADIUS, SOUNDS, TOP_BORDER, HEALTH_PACK_WIDTH, HEALTH_PACK_HEIGHT, SHURIKEN_ENERGY_REQUIRED
 
 
 def new_game():
@@ -21,6 +23,7 @@ def new_game():
     pygame.display.set_icon(SHURIKEN_IMAGES['shuriken'])
     game_objects = {'window': pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)),
                     'shurikens': [],
+                    'arrows': [],
                     'background': Background(0, 0, 1650, 610, BACKGROUND_DUNGEON),
                     'enemies': [],
                     'coins': [],
@@ -44,9 +47,12 @@ def spawn_enemy(enemies, background):
         randint(background.width-300, background.width - GOBLIN_WIDTH)
     start_y = randint(TOP_BORDER, BOTTOM_BORDER)
     direction = -1
-    new_enemy = Enemy(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.4 * direction, 9, 10,
-                      GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
+    new_goblin = Enemy(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.4 * direction, 9, 10,
+                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
+    new_archer = Archer(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.1 * direction, 7, 10, ARCHER_WALK_RIGHT_IMAGES, ARCHER_WALK_LEFT_IMAGES,
+                        ARCHER_SHOOT_RIGHT_IMAGES, ARCHER_SHOOT_LEFT_IMAGES)
     SOUNDS['enemy_spawn'].play()
+    new_enemy = choice([new_goblin, new_archer])
     enemies.append(new_enemy)
 
 
@@ -64,7 +70,7 @@ def spawn_health_pack(health_packs, background):
     new_health_pack = HealthPack(random_x, random_y)
     SOUNDS['health_pack_spawn'].play()
     health_packs.append(new_health_pack)
-    
+
 
 def set_settings(settings):
     from menu.settings_menu import set_all_volumes
@@ -83,8 +89,8 @@ def main():
     spawn_enemy_timer = 0
     spawn_health_pack_timer = 0
     # save_timer = 0
-    window, background, player, enemies, shurikens, coins, health_packs, settings = itemgetter(
-        'window', 'background', 'player', 'enemies', 'shurikens', 'coins', 'health_packs', 'settings')(game_objects)
+    window, background, player, enemies, shurikens, arrows, coins, health_packs, settings = itemgetter(
+        'window', 'background', 'player', 'enemies', 'shurikens', 'arrows', 'coins', 'health_packs', 'settings')(game_objects)
     load_game(player, enemies, background, settings)
     set_settings(settings)
     if start_menu(BACKGROUND_DUNGEON, game_objects) == 'new_game':
@@ -97,13 +103,20 @@ def main():
             objects_to_draw.append(shuriken)
             if not shuriken.is_in_screen(background):
                 shurikens.remove(shuriken)
+        for arrow in arrows:
+            objects_to_draw.append(arrow)
+            if not arrow.is_in_screen(background):
+                arrows.remove(arrow)
         for enemy in enemies:
             objects_to_draw.append(enemy)
-            enemy.auto_path(player.shade, background.width)
             if not enemy.alive:
                 enemies.remove(enemy)
                 player.score += 1
                 player.earn_xp(1)
+            if isinstance(enemy, Archer) and enemy.is_shooting:
+                continue
+            else:
+                enemy.auto_path(player.shade, background.width)
         for coin in coins:
             objects_to_draw.append(coin)
             if coin.stored:
@@ -116,7 +129,10 @@ def main():
         objects_to_draw.sort(
             key=lambda object: object.shade['y'] + object.shade['h'], reverse=False)
         for object in objects_to_draw:
-            object.draw(window)
+            if type(object) == Archer:
+                object.draw(window, player.shade)
+            else:
+                object.draw(window)
 
         player.update_stats()
         player.display_player_stats(window)
@@ -125,8 +141,8 @@ def main():
 
     # Game loop
     while True:
-        window, background, player, enemies, shurikens, coins, health_packs, settings = itemgetter(
-            'window', 'background', 'player', 'enemies', 'shurikens', 'coins', 'health_packs', 'settings')(game_objects)
+        window, background, player, enemies, shurikens, arrows, coins, health_packs, settings = itemgetter(
+            'window', 'background', 'player', 'enemies', 'shurikens', 'arrows', 'coins', 'health_packs', 'settings')(game_objects)
         clock.tick(FPS)
 
         # Save game every second (60 fps)
@@ -144,6 +160,11 @@ def main():
         spawn_health_pack_timer = can_spawn_health_pack(
             spawn_health_pack_timer, health_packs, 30, background)
 
+        for archer in enemies:
+            if isinstance(archer, Archer) and archer.is_shooting and archer.shoot_timer == 11:
+                archer.shoot(arrows)
+                archer.shoot_timer = -49
+
         # Exit on quit button
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -155,7 +176,8 @@ def main():
                     if state == 'new_game':
                         game_objects = new_game()
 
-        check_collision(player, enemies, shurikens, coins, health_packs)
+        check_collision(player, enemies, shurikens,
+                        arrows, coins, health_packs)
 
         keys = pygame.key.get_pressed()
 

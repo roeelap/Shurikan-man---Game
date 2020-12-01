@@ -11,6 +11,13 @@ def check_player_enemy_collision(player, enemies):
                 player.hit(enemy.damage)
 
 
+def check_player_arrow_collision(arrows, player):
+    if player.hurt_timer == 0:
+        for arrow in arrows:
+            if is_shade_collision(arrow.shade, player.shade):
+                player.hit(arrow.strength)
+
+
 def check_shuriken_enemy_collision(shurikens, enemies, coins):
     for shuriken in shurikens:
         for enemy in enemies:
@@ -39,8 +46,9 @@ def check_player_health_pack_collision(player, health_packs):
                 player.health += HEALTH_PACK_HEAL
 
 
-def check_collision(player, enemies, shurikens, coins, health_packs):
+def check_collision(player, enemies, shurikens, arrows, coins, health_packs):
     check_player_enemy_collision(player, enemies)
+    check_player_arrow_collision(arrows, player)
     check_shuriken_enemy_collision(shurikens, enemies, coins)
     check_player_coin_collision(player, coins)
     check_player_health_pack_collision(player, health_packs)
