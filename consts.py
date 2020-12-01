@@ -78,8 +78,13 @@ BROKEN_SHURIKENS = {"shuriken": [pygame.image.load('./data/images/shurikens/brok
 
 
 # arrow info
-ARROW_IMAGES = {'right': pygame.image.load(
-    './data/images/archer/arrow-right.png'), 'left': pygame.image.load('./data/images/archer/arrow-left.png')}
+ARROW_IMAGES = {'right': pygame.image.load('./data/images/archer/arrow/arrow-right.png'),
+                    'left': pygame.image.load('./data/images/archer/arrow/arrow-left.png')}
+
+BROKEN_ARROW_IMAGES = {'right': [pygame.image.load('./data/images/archer/arrow/arrow-right-broken1.png'), pygame.image.load(
+    './data/images/archer/arrow/arrow-right-broken2.png')], 'left': [pygame.image.load('./data/images/archer/arrow/arrow-left-broken1.png'), pygame.image.load(
+    './data/images/archer/arrow/arrow-left-broken2.png')]}
+
 ARROW_WIDTH = 28
 ARROW_HEIGHT = 4
 

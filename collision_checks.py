@@ -16,6 +16,7 @@ def check_player_arrow_collision(arrows, player):
         for arrow in arrows:
             if is_shade_collision(arrow.shade, player.shade):
                 player.hit(arrow.strength)
+                arrow.hit()
 
 
 def check_shuriken_enemy_collision(shurikens, enemies, coins):

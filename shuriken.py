@@ -2,7 +2,7 @@ from operator import itemgetter
 from random import choice
 from uuid import uuid4
 import pygame
-from consts import BROKEN_SHURIKENS, COLORS, SCREEN_HEIGHT, SHURIKEN_MAX_SHADE_WIDTH, SHURIKEN_MIN_SHADE_WIDTH, SHURIKEN_STARTING_SLOPE, SOUNDS
+from consts import BROKEN_SHURIKENS, COLORS, SCREEN_HEIGHT, SHURIKEN_MAX_SHADE_WIDTH, SHURIKEN_MIN_SHADE_WIDTH, SHURIKEN_STARTING_SLOPE, SOUNDS, BROKEN_ARROW_IMAGES
 from static_functions import draw_circle_alpha
 
 
@@ -102,7 +102,7 @@ class Shuriken:
             self.durability = 0
             return True
         return False
-    
+
 
 class Arrow(Shuriken):
 
@@ -128,13 +128,28 @@ class Arrow(Shuriken):
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
 
         self.hit_animation_counter = 0
- 
+
+        self.broken = False
+        self.broken_info = []
+
     def draw(self, window):
         if self.durability > 0:
             self.distance_from_bottom = int(abs(self.bottom - self.y) / 2)
             window.blit(self.image, (self.x, self.y))
             self.draw_shade(window)
-    
+        else:
+            if self.hit_animation_counter < 10:
+                self.hit_animation_counter += 1
+                new_info = []
+                for broken_arrow in self.broken_info:
+                    image, x, y, x_speed, y_speed = broken_arrow[0], broken_arrow[1], broken_arrow[2], broken_arrow[3], broken_arrow[4]
+                    window.blit(image, (x, y))
+                    x, y = x + x_speed, y + y_speed
+                    new_info.append([image, x, y, x_speed, y_speed])
+                self.broken_info = new_info
+            else:
+                self.broken = True
+
     def is_in_screen(self, background):
         if self.y < SCREEN_HEIGHT and background.x < self.x < background.width and abs(self.speed) > 0.1:
             self.x += self.speed
@@ -149,13 +164,27 @@ class Arrow(Shuriken):
         else:
             self.durability = 0
             return False
-    
+
     def hit(self):
         self.durability -= 1
         if self.durability > 0:
             self.speed /= 1.2
             self.strength /= 2
-    
+        else:
+            self.hit_animation()
+
+    def hit_animation(self):
+        x_direction = 'right', 2
+        if self.speed < 0:
+            x_direction = 'left', -2
+        for index, image in enumerate(BROKEN_ARROW_IMAGES[x_direction[0]]):
+            if index == 0:
+                x_speed, y_speed = x_direction[1], 2
+            if index == 1:
+                x_speed, y_speed = x_direction[1], -2
+            self.broken_info.append(
+                [image, self.x, self.y, x_speed, y_speed])
+
     def draw_shade(self, window):
         shade_width = self.distance_from_bottom
         if shade_width < SHURIKEN_MIN_SHADE_WIDTH:
