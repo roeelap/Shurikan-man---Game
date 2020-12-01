@@ -89,3 +89,17 @@ class Archer(Enemy):
         else:
             self.is_shooting = True
             return
+    
+    def hit(self, shuriken_strength, shuriken_id, coins):
+        self.was_hit_by = shuriken_id
+        if self.health > shuriken_strength:
+            self.hit_timer = 3
+            self.health -= shuriken_strength
+            self.x += shuriken_strength
+        else:
+            from coin import Coin
+            SOUNDS['archer_death'].play()
+            x, y, h = itemgetter('x', 'y', 'h')(self.shade)
+            coins.append(
+                Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
+            self.alive = False
