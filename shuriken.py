@@ -2,7 +2,7 @@ from operator import itemgetter
 from random import choice
 from uuid import uuid4
 import pygame
-from consts import BROKEN_SHURIKENS, COLORS, SCREEN_HEIGHT, SHURIKEN_MAX_SHADE_WIDTH, SHURIKEN_MIN_SHADE_WIDTH, SHURIKEN_STARTING_SLOPE, SOUNDS, BROKEN_ARROW_IMAGES
+from consts import BROKEN_SHURIKENS, COLORS, SCREEN_HEIGHT, SHURIKEN_MAX_SHADE_WIDTH, SHURIKEN_MIN_SHADE_WIDTH, SHURIKEN_STARTING_SLOPE, SOUNDS, BROKEN_ARROW_IMAGES, ARROW_MIN_SHADE_WIDTH, ARROW_MAX_SHADE_WIDTH
 from static_functions import draw_circle_alpha
 
 
@@ -154,8 +154,8 @@ class Arrow(Shuriken):
     def is_in_screen(self, background):
         if self.y < SCREEN_HEIGHT and background.x < self.x < background.width and abs(self.speed) > 0.1:
             self.x += self.speed
-            if self.y - int((self.slope * abs(self.slope)) * 0.1) >= self.bottom-17 and self.slope < 0:
-                self.y = self.bottom-17
+            if self.y - int((self.slope * abs(self.slope)) * 0.1) >= self.bottom - 7 and self.slope < 0:
+                self.y = self.bottom - 7
                 self.slope = abs(self.slope / 1.8)
                 self.speed = self.speed / 2
             else:
@@ -186,13 +186,13 @@ class Arrow(Shuriken):
                 [image, self.x, self.y, x_speed, y_speed])
 
     def draw_shade(self, window):
-        shade_width = self.distance_from_bottom
-        if shade_width < SHURIKEN_MIN_SHADE_WIDTH:
-            shade_width = SHURIKEN_MIN_SHADE_WIDTH
-        if shade_width > SHURIKEN_MAX_SHADE_WIDTH:
-            shade_width = SHURIKEN_MAX_SHADE_WIDTH
+        shade_width = self.distance_from_bottom * 2
+        if shade_width < ARROW_MIN_SHADE_WIDTH:
+            shade_width = ARROW_MIN_SHADE_WIDTH
+        if shade_width > ARROW_MAX_SHADE_WIDTH:
+            shade_width = ARROW_MAX_SHADE_WIDTH
         self.shade = {'x': self.x + self.width / 2,
-                      'y': self.bottom - 10, 'w': shade_width, 'h': 9}
+                      'y': self.bottom, 'w': shade_width, 'h': 7}
         x, y, w, h = itemgetter('x', 'y', 'w', 'h')(self.shade)
         draw_circle_alpha(
             window, COLORS['black'], (x, y), w, h)

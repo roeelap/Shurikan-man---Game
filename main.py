@@ -52,7 +52,7 @@ def spawn_enemy(enemies, background):
     new_archer = Archer(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.1 * direction, 7, 10, ARCHER_WALK_RIGHT_IMAGES, ARCHER_WALK_LEFT_IMAGES,
                         ARCHER_SHOOT_RIGHT_IMAGES, ARCHER_SHOOT_LEFT_IMAGES)
     SOUNDS['enemy_spawn'].play()
-    new_enemy = choice([new_goblin, new_archer])
+    new_enemy = choice([new_archer])
     enemies.append(new_enemy)
 
 

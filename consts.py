@@ -87,6 +87,9 @@ BROKEN_ARROW_IMAGES = {'right': [pygame.image.load('./data/images/archer/arrow/a
 
 ARROW_WIDTH = 28
 ARROW_HEIGHT = 4
+ARROW_MIN_SHADE_WIDTH = 28
+ARROW_MAX_SHADE_WIDTH = 45
+
 
 # characters images
 GOBLIN_WALK_RIGHT_IMAGES = [pygame.image.load('./data/images/goblin/R1E.png'), pygame.image.load('./data/images/goblin/R2E.png'), pygame.image.load('./data/images/goblin/R3E.png'),

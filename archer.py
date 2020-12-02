@@ -73,22 +73,22 @@ class Archer(Enemy):
         if self.speed < 0:
             facing = -1
             arrow_start_x = self.hitbox[0] - 20
-            arrows.append(Arrow(arrow_start_x, round(self.y + self.height / 2), ARROW_WIDTH, ARROW_HEIGHT, 10 * facing, 1,
+            arrows.append(Arrow(arrow_start_x, round(self.y + self.height // 2) + 10, ARROW_WIDTH, ARROW_HEIGHT, 10 * facing, 1,
                                 1, self.hitbox[1] + self.hitbox[3], ARROW_IMAGES['left']))
         if self.speed > 0:
             facing = 1
             arrow_start_x = self.hitbox[0] + self.hitbox[2] + 20
-            arrows.append(Arrow(arrow_start_x, round(self.y + self.height / 2), ARROW_WIDTH, ARROW_HEIGHT, 10 * facing, 1,
+            arrows.append(Arrow(arrow_start_x, round(self.y + self.height / 2) + 10, ARROW_WIDTH, ARROW_HEIGHT, 10 * facing, 1,
                                 1, self.hitbox[1] + self.hitbox[3], ARROW_IMAGES['right']))
         SOUNDS['shuriken_throw'][0].play()
 
     def auto_path(self, player_shade, background_width):
-        if abs(self.shade['x'] - player_shade['x']) > 400 or abs(self.shade['y'] - player_shade['y']) > 20:
-            self.is_shooting = False
-            Enemy.auto_path(self, player_shade, background_width)
-        else:
+        if abs(self.shade['x'] - player_shade['x']) < 400  and abs(self.shade['y'] - player_shade['y']) < 7:
             self.is_shooting = True
             return
+        else:
+            self.is_shooting = False
+            Enemy.auto_path(self, player_shade, background_width)
 
     def hit(self, shuriken_strength, shuriken_id, coins):
         self.was_hit_by = shuriken_id
