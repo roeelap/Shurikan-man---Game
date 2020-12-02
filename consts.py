@@ -240,7 +240,7 @@ SOUNDS = {'player_hit': pygame.mixer.Sound('./data/sounds/combat/player-hit.wav'
           'button_hover': pygame.mixer.Sound('./data/sounds/general/button-hover.wav'), 'player_death': pygame.mixer.Sound('./data/sounds/combat/player-death.wav'), 'arrow': pygame.mixer.Sound('./data/sounds/combat/arrow.wav'),
           'bronze_pickup': [pygame.mixer.Sound('./data/sounds/coin/bronze-pickup.wav')], 'gold_pickup': [pygame.mixer.Sound('./data/sounds/coin/gold-pickup.wav')],
           'silver_pickup': [pygame.mixer.Sound('./data/sounds/coin/silver-pickup-1.wav'), pygame.mixer.Sound('./data/sounds/coin/silver-pickup-2.wav')],
-          'goblin_deaths': [pygame.mixer.Sound('./data/sounds/combat/goblin-death-1.wav'), pygame.mixer.Sound('./data/sounds/combat/goblin-death-2.wav')], 'archer_death': pygame.mixer.Sound('./data/sounds/combat/skeleton-death.wav'),
+          'goblin_deaths': [pygame.mixer.Sound('./data/sounds/combat/goblin-death-1.wav'), pygame.mixer.Sound('./data/sounds/combat/goblin-death-2.wav')], 'archer_death': [pygame.mixer.Sound('./data/sounds/combat/skeleton-death.wav')],
           'shuriken_hits': [pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-2.wav'),
                             pygame.mixer.Sound('./data/sounds/shuriken/shuriken-hit-3.wav')],
           'granny_hits': [pygame.mixer.Sound('./data/sounds/shuriken/granny-1.wav'), pygame.mixer.Sound('./data/sounds/shuriken/granny-2.wav'), pygame.mixer.Sound('./data/sounds/shuriken/granny-3.wav')],

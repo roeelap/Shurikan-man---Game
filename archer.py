@@ -1,5 +1,3 @@
-from random import choice
-from operator import itemgetter
 import pygame
 from enemy import Enemy
 from shuriken import Arrow
@@ -70,25 +68,23 @@ class Archer(Enemy):
             self.draw_shade(window)
 
     def shoot(self, arrows):
-        if self.speed < 0:
-            facing = -1
-            arrow_start_x = self.hitbox[0] - 20
-            arrows.append(Arrow(arrow_start_x, round(self.y + self.height // 2) + 10, ARROW_WIDTH, ARROW_HEIGHT, 10 * facing, 1,
-                                1, self.hitbox[1] + self.hitbox[3], ARROW_IMAGES['left']))
+        facing = -1
+        arrow_start_x = self.hitbox[0] - 20
+        direction = 'left'
         if self.speed > 0:
             facing = 1
             arrow_start_x = self.hitbox[0] + self.hitbox[2] + 20
-            arrows.append(Arrow(arrow_start_x, round(self.y + self.height / 2) + 10, ARROW_WIDTH, ARROW_HEIGHT, 10 * facing, 1,
-                                1, self.hitbox[1] + self.hitbox[3], ARROW_IMAGES['right']))
+            direction = 'right'
+        arrows.append(Arrow(arrow_start_x, round(self.y + self.height / 2) + 10, ARROW_WIDTH, ARROW_HEIGHT, 10 * facing, 1,
+                            1, self.hitbox[1] + self.hitbox[3], ARROW_IMAGES[direction]))
         SOUNDS['shuriken_throw'][0].play()
 
     def auto_path(self, player_shade, background_width):
-        if abs(self.shade['x'] - player_shade['x']) < 400  and abs(self.shade['y'] - player_shade['y']) < 7:
+        if abs(self.shade['x'] - player_shade['x']) < 400 and abs(self.shade['y'] - player_shade['y']) < 7:
             self.is_shooting = True
             return
-        else:
-            self.is_shooting = False
-            Enemy.auto_path(self, player_shade, background_width)
+        self.is_shooting = False
+        Enemy.auto_path(self, player_shade, background_width)
 
     def hit(self, shuriken_strength, shuriken_id, coins):
         self.was_hit_by = shuriken_id
@@ -97,9 +93,4 @@ class Archer(Enemy):
             self.health -= shuriken_strength
             self.x += shuriken_strength
         else:
-            from coin import Coin
-            SOUNDS['archer_death'].play()
-            x, y, h = itemgetter('x', 'y', 'h')(self.shade)
-            coins.append(
-                Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
-            self.alive = False
+            self.die(SOUNDS['archer_death'], coins)

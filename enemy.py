@@ -146,9 +146,12 @@ class Enemy:
             self.health -= shuriken_strength
             self.x += shuriken_strength
         else:
-            from coin import Coin
-            choice(SOUNDS['goblin_deaths']).play()
-            x, y, h = itemgetter('x', 'y', 'h')(self.shade)
-            coins.append(
-                Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
-            self.alive = False
+            self.die(SOUNDS['goblin_deaths'], coins)
+
+    def die(self, sound, coins):
+        from coin import Coin
+        choice(sound).play()
+        x, y, h = itemgetter('x', 'y', 'h')(self.shade)
+        coins.append(
+            Coin(x - 20, y - 4 * h, choice(["bronze", "silver", "gold"])))
+        self.alive = False
