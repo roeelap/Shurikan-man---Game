@@ -11,19 +11,27 @@ class Shuriken:
     def __init__(self, x, y, radius, speed, strength, durability, bottom, image, name):
         self.x = x
         self.y = y
+
         self.id = uuid4()
+
         self.radius = radius
         self.height = radius * 2
+        self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
+
         self.image = image
+
         self.name = name
+
         self.speed = speed
         self.strength = strength
         self.durability = durability
+
         self.slope = SHURIKEN_STARTING_SLOPE
-        self.rotation_angle = 0
         self.bottom = bottom
         self.distance_from_bottom = abs(self.bottom-self.y)/2
-        self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
+
+        self.rotation_angle = 0
+        
         self.hit_animation_counter = 0
         self.broken = False
         self.broken_info = []

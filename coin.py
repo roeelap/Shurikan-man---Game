@@ -10,15 +10,20 @@ class Coin:
     def __init__(self, x, y, kind):
         self.x = x
         self.y = y
+
         self.pickup_x = x,
         self.pickup_y = y
         self.pickup_x_delta = self.x
         self.pickup_y_delta = self.y
+
         self.radius = 20
         self.height = 20 * 2
-        self.kind = kind
-        self.spin_count = 0
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
+
+        self.kind = kind
+
+        self.spin_count = 0
+
         self.taken = False
         self.stored = False
 

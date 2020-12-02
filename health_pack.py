@@ -7,13 +7,17 @@ class HealthPack:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+
         self.start_y = y
         self.end_y = y - 10
         self.y_speed = -0.5
+
         self.width = HEALTH_PACK_WIDTH
         self.hight = HEALTH_PACK_HEIGHT
-        self.image = HEALTH_PACK_IMAGE
         self.shade = {'x': 0, 'y': 0, 'w': 0, 'h': 0}
+        
+        self.image = HEALTH_PACK_IMAGE
+        
         self.timer = FPS * 10
         self.is_shown = True
         self.taken = False
