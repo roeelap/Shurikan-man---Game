@@ -210,7 +210,8 @@ def main():
         redraw_window()
 
         # if the player dies, the game stops (not a real feature, just to check if things are working properly)
-        if player.health == 0:
+        if player.health <= 0:
+            player.health = 0
             SOUNDS['player_death'].play()
             pygame.time.delay(1000)
             game_objects = new_game()

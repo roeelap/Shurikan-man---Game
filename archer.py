@@ -83,9 +83,14 @@ class Archer(Enemy):
         SOUNDS['shuriken_throw'][0].play()
 
     def auto_path(self, player_shade, background_width):
-        if abs(self.shade['x'] - player_shade['x']) < 400  and abs(self.shade['y'] - player_shade['y']) < 7:
+        x_distance = abs(self.shade['x'] - player_shade['x'])
+        y_distance = abs(self.shade['y'] - player_shade['y'])
+        if x_distance < 400  and  y_distance < 7:
+            if self.shade['x'] > player_shade['x'] and self.speed > 0:
+                Enemy.horizontal_turn_around(self)
+            elif self.shade['x'] < player_shade['x'] and self.speed < 0:
+                Enemy.horizontal_turn_around(self)
             self.is_shooting = True
-            return
         else:
             self.is_shooting = False
             Enemy.auto_path(self, player_shade, background_width)

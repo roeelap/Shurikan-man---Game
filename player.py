@@ -129,7 +129,10 @@ class Player:
     def hit(self, damage):
         if self.hurt_timer == 0:
             if self.health > 0:
-                self.health -= damage
+                if self.health - damage >= 0:
+                    self.health -= damage
+                else:
+                    self.health = 0
             SOUNDS['player_hit'].play()
             self.hurt_timer = PLAYER_INVINCIBLE_TIME
 
@@ -169,11 +172,16 @@ class Player:
 
     def display_health_bar(self, window):
         health_bar_x = SCREEN_WIDTH * 2 // 20
-        health_bar_width = SCREEN_WIDTH * 17 // 20
-        pygame.draw.rect(
-            window, COLORS['green'], (health_bar_x, 30, (health_bar_width) - ((health_bar_width // self.max_health) * (self.max_health - self.health)), 30), border_radius=15)
-        pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH *
-                                                   2 // 20, 30, health_bar_width, 30), width=3, border_radius=15)
+        health_bar_width_max = SCREEN_WIDTH * 17 // 20
+        health_bar_width = health_bar_width_max - \
+            ((health_bar_width_max // self.max_health)
+             * (self.max_health - self.health))
+        border_radius = 15
+        if self.health > 0:
+            pygame.draw.rect(window, COLORS['green'], (health_bar_x,
+                                                       30, health_bar_width, 30), border_radius=border_radius)
+        pygame.draw.rect(window, COLORS['black'], (SCREEN_WIDTH * 2 // 20,
+                                                   30, health_bar_width_max, 30), width=3, border_radius=border_radius)
 
     def display_xp_bar(self, window):
         xp_bar_x = SCREEN_WIDTH * 2 // 20

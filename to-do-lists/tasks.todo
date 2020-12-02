@@ -39,6 +39,6 @@ Todo:
   ☐ Player hold shuriken in hand (blit shuriken image, behind the player -> half reveal)
   ☐ When player dies - Show dead on screen, popup main menu.
   ☐ Special attacks (shuriken rain, large shuriken with high durability, shuriken bomb, etc...)
-  ☐ New enemy (long range)
+  ✔ New enemy (long range) @done(20-12-02 14:00)
   ☐ Rounds.
   ☐ Block functionality - with timeout
