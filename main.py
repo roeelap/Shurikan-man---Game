@@ -128,10 +128,10 @@ def main():
         # else:
         #     save_timer += 1
 
-        # Randomely spawn enemies every 5 seconds
-        game_round.spawn_enemy_if_can(enemies, background)
+        # spawing enemies in rounds
+        game_round.spawn_enemy_if_can(enemies, background, player.level)
 
-        # Randomely spawn an health pack every 60 seconds
+        # Randomely spawn an health pack every 30 seconds
         spawn_health_pack_timer = can_spawn_health_pack(
             spawn_health_pack_timer, health_packs, 30)
 
@@ -180,7 +180,7 @@ def main():
 
         # Leave for testing
         if keys[pygame.K_d]:
-            spawn_enemy(enemies, background)
+            game_round.spawn_enemy(enemies, background, player.level)
 
         if keys[pygame.K_s]:
             enemies.clear()
