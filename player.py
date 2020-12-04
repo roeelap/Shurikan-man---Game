@@ -48,6 +48,7 @@ class Player:
 
         self.score = 0
         self.coins = 0
+        self.round = 1
 
         self.shurikens_owned = ['shuriken']
         self.shuriken_equipped = 'shuriken'

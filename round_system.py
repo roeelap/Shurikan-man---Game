@@ -11,13 +11,14 @@ class RoundSystem:
         self.spawn_enemy_timer = 0
         self.enemies_need_to_kill = self.round_number * 2
 
-    def spawn_enemy_if_can(self, enemies, background, player_level):
+    def spawn_enemy_if_can(self, enemies, background, player):
         self.spawn_enemy_timer += 1
         if self.spawn_enemy_timer == int(3 * FPS) and len(enemies) < self.enemies_need_to_kill:
-            self.spawn_enemy(enemies, background, player_level)
+            self.spawn_enemy(enemies, background, player.level)
             self.spawn_enemy_timer = 0
         elif self.enemies_need_to_kill == 0:
             self.round_number += 1
+            player.round += 1
             self.enemies_need_to_kill = self.round_number * 2
             self.spawn_enemy_timer = 0
 

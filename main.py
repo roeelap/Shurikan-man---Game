@@ -67,7 +67,7 @@ def main():
     spawn_health_pack_timer = 0
     # save_timer = 0
 
-    game_round = RoundSystem(1)
+    
 
     window, background, player, enemies, shurikens, arrows, coins, health_packs, settings = itemgetter(
         'window', 'background', 'player', 'enemies', 'shurikens', 'arrows', 'coins', 'health_packs', 'settings')(game_objects)
@@ -75,6 +75,8 @@ def main():
     set_settings(settings)
     if start_menu(BACKGROUND_DUNGEON, game_objects) == 'new_game':
         game_objects = new_game()
+    
+    game_round = RoundSystem(player.round)
 
     def redraw_window():
         background.draw(window)
@@ -129,7 +131,7 @@ def main():
         #     save_timer += 1
 
         # spawing enemies in rounds
-        game_round.spawn_enemy_if_can(enemies, background, player.level)
+        game_round.spawn_enemy_if_can(enemies, background, player)
 
         # Randomely spawn an health pack every 30 seconds
         spawn_health_pack_timer = can_spawn_health_pack(
