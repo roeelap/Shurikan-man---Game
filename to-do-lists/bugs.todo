@@ -31,5 +31,5 @@ Todo:
   ✔ Player stats blit on top of each other @done(20-11-29 13:07)
   ✔ Images too small at shop menu. @done(20-11-28 15:37)
   ☐ Enemy and player hp bar - same bug like xp bar (border radius)'
-  ☐ archer - there is something wrong about the shooting animation (I can't figure it out)
-  ☐ arrows not stoping if they hit the player
+  ✔ archer - there is something wrong about the shooting animation (I can't figure it out) @done(20-12-04 12:55)
+  ✔ arrows not stoping if they hit the player @done(20-12-04 12:55)

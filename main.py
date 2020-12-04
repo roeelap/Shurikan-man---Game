@@ -4,6 +4,7 @@ import pygame
 from menu.popup import popup
 from menu.start_menu import start_menu
 from static_functions import load_game
+from round_system import RoundSystem
 from player import Player
 from enemy import Enemy
 from archer import Archer
@@ -31,29 +32,6 @@ def new_game():
                     'player': Player(10, 630),
                     'settings': {'sound': True, 'music': True}}
     return game_objects
-
-
-# Pilot for random enemy spawning
-def can_spawn_enemy(spawn_enemy_timer, enemies, countdown, background):
-    spawn_enemy_timer += 1
-    if spawn_enemy_timer == int(countdown * FPS):
-        spawn_enemy(enemies, background)
-        spawn_enemy_timer = 0
-    return spawn_enemy_timer
-
-
-def spawn_enemy(enemies, background):
-    start_x = background.x + \
-        randint(background.width-300, background.width - GOBLIN_WIDTH)
-    start_y = randint(TOP_BORDER, BOTTOM_BORDER)
-    direction = -1
-    new_goblin = Enemy(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.4 * direction, 9, 10,
-                       GOBLIN_WALK_RIGHT_IMAGES, GOBLIN_WALK_LEFT_IMAGES)
-    new_archer = Archer(start_x, start_y, GOBLIN_WIDTH, GOBLIN_HEIGHT, 1.1 * direction, 7, 10, ARCHER_WALK_RIGHT_IMAGES, ARCHER_WALK_LEFT_IMAGES,
-                        ARCHER_SHOOT_RIGHT_IMAGES, ARCHER_SHOOT_LEFT_IMAGES)
-    SOUNDS['enemy_spawn'].play()
-    new_enemy = choice([new_archer])
-    enemies.append(new_enemy)
 
 
 def can_spawn_health_pack(spawn_health_pack_timer, health_packs, countdown):
@@ -86,9 +64,11 @@ def main():
 
     clock = pygame.time.Clock()
     shuriken_shoot_timer = 0
-    spawn_enemy_timer = 0
     spawn_health_pack_timer = 0
     # save_timer = 0
+
+    game_round = RoundSystem(1)
+
     window, background, player, enemies, shurikens, arrows, coins, health_packs, settings = itemgetter(
         'window', 'background', 'player', 'enemies', 'shurikens', 'arrows', 'coins', 'health_packs', 'settings')(game_objects)
     load_game(player, enemies, background, settings)
@@ -113,6 +93,7 @@ def main():
             if not enemy.alive:
                 enemies.remove(enemy)
                 player.score += 1
+                game_round.enemies_need_to_kill -= 1
                 player.earn_xp(1)
         for coin in coins:
             objects_to_draw.append(coin)
@@ -130,6 +111,7 @@ def main():
 
         player.update_stats()
         player.display_player_stats(window)
+        game_round.display_game_round(window)
 
         pygame.display.update()
 
@@ -147,8 +129,7 @@ def main():
         #     save_timer += 1
 
         # Randomely spawn enemies every 5 seconds
-        spawn_enemy_timer = can_spawn_enemy(
-            spawn_enemy_timer, enemies, 5, background)
+        game_round.spawn_enemy_if_can(enemies, background)
 
         # Randomely spawn an health pack every 60 seconds
         spawn_health_pack_timer = can_spawn_health_pack(
